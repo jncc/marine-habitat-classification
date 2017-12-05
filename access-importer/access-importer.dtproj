@@ -26,50 +26,32 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">CATHY-JIN</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA58XCKerGI06361bW/XwpnQAAAAACAAAAAAADZgAAwAAAABAAAAB3EwoognOwyan4+gVSGdjIAAAAAASAAACgAAAAEAAAAPUDLAq0ti1NMREJ4rkVaiCIAAAA1bquY6wUYAOiR8P35hKa0O6VLRjIVKbgzkef4DdRtJya/+UeuNU4gLKFs664QiCNgzoulWWPC215ef/cC3zakcHCek3Sc5U6GZDs0czNPPZTD0000MZlrqDumQlzEtB9/fLr2JhNjfnaO6Iu5JSy/Rd2854QenJbz6Xad780Y9cc2WOTxhDR3RQAAAB9dQUZ6LaGGih8Wc2ng5GFnfOaUw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAuOfE2QkuqEStwAgQO/if8AAAAAACAAAAAAAQZgAAAAEAACAAAACMPQimhj7YECKt4dBxZ/5ymQVFZmRplEbQo7u6J8mxdgAAAAAOgAAAAAIAACAAAABNlrYNjTNsI9R2Cd4n+8L3aF5M7fYRaD4oXHOVwdkUwJAAAADkZ8DMF/lkLOTLYzbDg1i/Cz7Yc7R7WCOgnAUbw6wLtU1pkNIK1ejq2IM5/HN6LY1jgDYkT5rB8CoOn8lxSnfll3RhyB23HXBHwVfzzT9EfKjvPMB0mTr1neTlJ2YsoKswCy9ZRvaxkw81oSvwl64JtFILGwN3s4tSTJeYMHO0V611Nmn0/nkiGLgpN2ANDd1AAAAAZPmjJwJAp5yrnrRItJj9PeElMB2qv5HnYhoq9iWdr0ong3VYHix0kgWSTKUBEvLI2ORgwJ2S0gnkc0KgG/v3Qg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Package1.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Package.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Package1.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{69495386-03F2-4FDC-997F-334EB74F6329}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{3F9C1D7B-4F73-4E38-9CDF-EF3122A9C47B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F1483440-076A-45A7-A0D3-A3567D034509}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Package1.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{414A306A-9F00-4A51-800C-73632BF66CE6}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D56D5040-6C8A-4799-9A9E-C27C2FC9F378}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{49168F92-022E-42CD-A620-A32DF38649A1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">DTS Wizard-generated package</SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
-                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionAdoNET.ConnectionString">
+                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionOLEDB.ConnectionString">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -80,11 +62,11 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=marine-habitat-classification;Integrated Security=True;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=(localdb)\ProjectsV13;Initial Catalog=marbiotopedb;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionAdoNET.InitialCatalog">
+                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionOLEDB.InitialCatalog">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -95,11 +77,11 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">marine-habitat-classification</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">marbiotopedb</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionAdoNET.Password">
+                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionOLEDB.Password">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -113,7 +95,7 @@
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionAdoNET.RetainSameConnection">
+                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionOLEDB.RetainSameConnection">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -128,7 +110,7 @@
                     <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionAdoNET.ServerName">
+                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionOLEDB.ServerName">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -139,11 +121,11 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">(localdb)\MSSQLLocalDB</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">(localdb)\ProjectsV13</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionAdoNET.UserName">
+                <SSIS:Parameter SSIS:Name="CM.DestinationConnectionOLEDB.UserName">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
                     </SSIS:Property>
@@ -168,7 +150,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=D:\workspace\marbiotope-deepsea_MPcleaned.mdb;OLE DB SERVICES=0;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=D:\Work\MHC\marbiotope-deepsea_MPcleaned.mdb;OLE DB SERVICES=0;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -226,7 +208,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">D:\workspace\marbiotope-deepsea_MPcleaned.mdb</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">D:\Work\MHC\marbiotope-deepsea_MPcleaned.mdb</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

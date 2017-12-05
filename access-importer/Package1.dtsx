@@ -1,40 +1,39 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="12/4/2017 1:25:52 PM"
+  DTS:CreationDate="12/5/2017 12:54:09 PM"
   DTS:CreationName=""
-  DTS:CreatorComputerName="CATHY-JIN"
-  DTS:CreatorName="GREEN\Cathy.Jin"
+  DTS:CreatorComputerName="SHADOW"
+  DTS:CreatorName="SHADOW\paulg_bt6vh8x"
   DTS:Description="DTS Wizard-generated package"
-  DTS:DTSID="{414A306A-9F00-4A51-800C-73632BF66CE6}"
+  DTS:DTSID="{3F9C1D7B-4F73-4E38-9CDF-EF3122A9C47B}"
   DTS:ExecutableType=""
   DTS:LastModifiedProductVersion="14.0.0800.98"
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package1"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{D56D5040-6C8A-4799-9A9E-C27C2FC9F378}">
+  DTS:VersionGUID="{49168F92-022E-42CD-A620-A32DF38649A1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      DTS:DTSID="{2EB81611-B496-4F89-AE08-4416E4D1256F}"
-      DTS:ObjectName="DestinationConnectionAdoNET">
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{15D918CC-D323-4203-8FCC-E6C32C46B2D9}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=marine-habitat-classification;Integrated Security=True;" />
+          DTS:ConnectionString="Data Source=(localdb)\ProjectsV13;Initial Catalog=marbiotopedb;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{5A8FEBB5-B7BC-40AA-89A2-6A529031D918}"
+      DTS:DTSID="{D1AC768B-194D-4B7D-B3D8-1E988E1A8224}"
       DTS:ObjectName="SourceConnectionOLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=D:\workspace\marbiotope-deepsea_MPcleaned.mdb;OLE DB SERVICES=0;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;" />
+          DTS:ConnectionString="Data Source=D:\Work\MHC\marbiotope-deepsea_MPcleaned.mdb;OLE DB SERVICES=0;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -44,7 +43,7 @@
       DTS:refId="Package\Data Flow Task 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:DelayValidation="True"
-      DTS:DTSID="{8B925B94-C3CC-4829-8DEE-78CC3B1B12EA}"
+      DTS:DTSID="{16610731-94F6-488D-9FA8-B354C8A5DFD0}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -58,50 +57,73 @@
           <components>
             <component
               refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
               name="Destination - WEB_BIOT_RELATION"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="2">
+              version="4">
               <properties>
                 <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
                   dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOT_RELATION"</property>
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WEB_BIOT_RELATION]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -172,22 +194,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="ADO NET Destination Error Output"
+                  name="OLE DB Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -197,50 +219,73 @@
             </component>
             <component
               refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
               name="Destination 1 - WEB_BIOT_SPECIES"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="2">
+              version="4">
               <properties>
                 <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
                   dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOT_SPECIES"</property>
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WEB_BIOT_SPECIES]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -337,22 +382,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="ADO NET Destination Error Output"
+                  name="OLE DB Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -362,50 +407,73 @@
             </component>
             <component
               refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
               name="Destination 2 - WEB_BIOTOPE"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="2">
+              version="4">
               <properties>
                 <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
                   dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOTOPE"</property>
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WEB_BIOTOPE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -608,22 +676,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="ADO NET Destination Error Output"
+                  name="OLE DB Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -633,50 +701,73 @@
             </component>
             <component
               refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
               name="Destination 3 - WEB_BIOTOPE_HIERARCHY"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="2">
+              version="4">
               <properties>
                 <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
                   dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOTOPE_HIERARCHY"</property>
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WEB_BIOTOPE_HIERARCHY]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -757,22 +848,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="ADO NET Destination Error Output"
+                  name="OLE DB Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -782,50 +873,73 @@
             </component>
             <component
               refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
               name="Destination 4 - WEB_OLD_CODE"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="2">
+              version="4">
               <properties>
                 <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
                   dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_OLD_CODE"</property>
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WEB_OLD_CODE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -874,22 +988,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="ADO NET Destination Error Output"
+                  name="OLE DB Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2140,7 +2254,7 @@
       DTS:refId="Package\Data Flow Task 2"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:DelayValidation="True"
-      DTS:DTSID="{6992A669-7DD4-4261-AD13-31B7F8D34D9F}"
+      DTS:DTSID="{E6CE26E4-9BB7-4F61-AB2F-7B286D768381}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -2154,50 +2268,73 @@
           <components>
             <component
               refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
               name="Destination 5 - WEB_SLIDES"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="2">
+              version="4">
               <properties>
                 <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
                   dataType="System.String"
-                  description="The Destination database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_SLIDES"</property>
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WEB_SLIDES]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
-                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
-                  expressionType="Notify"
-                  name="BatchSize">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
-                  expressionType="Notify"
-                  name="CommandTimeout">30</property>
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
-                  expressionType="Notify"
-                  name="UseBulkInsertWhenPossible">true</property>
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
+                  refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -2364,22 +2501,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[ADO NET Destination Error Output]"
+                  refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="ADO NET Destination Error Output"
+                  name="OLE DB Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2759,7 +2896,7 @@
     <DTS:Executable
       DTS:refId="Package\Preparation SQL Task 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DTSID="{6D1A01D0-E51D-434C-B461-0FDF1CFB7068}"
+      DTS:DTSID="{034131D6-DD51-4296-B80F-5C0532E2B4EA}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -2769,14 +2906,14 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{2EB81611-B496-4F89-AE08-4416E4D1256F}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_RELATION&quot; (&#xA;&quot;BIOTOPE_RELATION_KEY&quot; nvarchar(16),&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;COMMENT&quot; nvarchar(max),&#xA;&quot;RELATED_KEY&quot; nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_SPECIES&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;FREQ&quot; nvarchar(10),&#xA;&quot;ABUND&quot; nvarchar(10),&#xA;&quot;ITEM_NAME&quot; nvarchar(60),&#xA;&quot;contrib_similarity_STRENGTH&quot; nvarchar(10),&#xA;&quot;SED_ABUND_SED_ABUND&quot; nvarchar(10),&#xA;&quot;SORT&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;FULL_TERM&quot; nvarchar(200),&#xA;&quot;DESCRIPTION&quot; nvarchar(max),&#xA;&quot;SPECIAL_FEATURES&quot; nvarchar(max),&#xA;&quot;TEMPORAL_VARIATION&quot; nvarchar(max),&#xA;&quot;SITUATION&quot; nvarchar(max),&#xA;&quot;FREQUENCY_KEY&quot; float,&#xA;&quot;FREQUENCY&quot; nvarchar(255),&#xA;&quot;LANDSCAPE&quot; nvarchar(255),&#xA;&quot;SALINITY&quot; nvarchar(255),&#xA;&quot;HEIGHT&quot; nvarchar(255),&#xA;&quot;EXPOSURE&quot; nvarchar(255),&#xA;&quot;TIDAL_STREAMS&quot; nvarchar(255),&#xA;&quot;SUBZONE&quot; nvarchar(255),&#xA;&quot;SUBSTRATUM&quot; nvarchar(max),&#xA;&quot;SORT_CODE&quot; smallint&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE_HIERARCHY&quot; (&#xA;&quot;originalcode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY&quot; nvarchar(255),&#xA;&quot;highercode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY1&quot; nvarchar(255),&#xA;&quot;originallevel&quot; float,&#xA;&quot;higherlevel&quot; float&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_OLD_CODE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255),&#xA;&quot;OLD_CODE&quot; nvarchar(255),&#xA;&quot;VERSION&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{15D918CC-D323-4203-8FCC-E6C32C46B2D9}"
+          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[WEB_BIOT_RELATION] (&#xA;[BIOTOPE_RELATION_KEY] nvarchar(16),&#xA;[BIOTOPE_KEY] nvarchar(16),&#xA;[ORIGINAL_CODE] nvarchar(30),&#xA;[COMMENT] nvarchar(max),&#xA;[RELATED_KEY] nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_BIOT_SPECIES] (&#xA;[BIOTOPE_KEY] nvarchar(16),&#xA;[FREQ] nvarchar(10),&#xA;[ABUND] nvarchar(10),&#xA;[ITEM_NAME] nvarchar(60),&#xA;[contrib_similarity_STRENGTH] nvarchar(10),&#xA;[SED_ABUND_SED_ABUND] nvarchar(10),&#xA;[SORT] nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_BIOTOPE] (&#xA;[BIOTOPE_KEY] nvarchar(16),&#xA;[ORIGINAL_CODE] nvarchar(30),&#xA;[FULL_TERM] nvarchar(200),&#xA;[DESCRIPTION] nvarchar(max),&#xA;[SPECIAL_FEATURES] nvarchar(max),&#xA;[TEMPORAL_VARIATION] nvarchar(max),&#xA;[SITUATION] nvarchar(max),&#xA;[FREQUENCY_KEY] float,&#xA;[FREQUENCY] nvarchar(255),&#xA;[LANDSCAPE] nvarchar(255),&#xA;[SALINITY] nvarchar(255),&#xA;[HEIGHT] nvarchar(255),&#xA;[EXPOSURE] nvarchar(255),&#xA;[TIDAL_STREAMS] nvarchar(255),&#xA;[SUBZONE] nvarchar(255),&#xA;[SUBSTRATUM] nvarchar(max),&#xA;[SORT_CODE] smallint&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_BIOTOPE_HIERARCHY] (&#xA;[originalcode] nvarchar(255),&#xA;[FirstOfBIOTOPE_LIST_ITEM_KEY] nvarchar(255),&#xA;[highercode] nvarchar(255),&#xA;[FirstOfBIOTOPE_LIST_ITEM_KEY1] nvarchar(255),&#xA;[originallevel] float,&#xA;[higherlevel] float&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_OLD_CODE] (&#xA;[BIOTOPE_KEY] nvarchar(255),&#xA;[OLD_CODE] nvarchar(255),&#xA;[VERSION] nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Preparation SQL Task 2"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DTSID="{4AB60663-E183-4E5C-9F61-34904C740F60}"
+      DTS:DTSID="{3F07E1E3-2AFB-4519-BCFF-AFE59FB98A6B}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -2786,327 +2923,35 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{2EB81611-B496-4F89-AE08-4416E4D1256F}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_SLIDES&quot; (&#xA;&quot;NBNkey&quot; nvarchar(255),&#xA;&quot;fullcode&quot; nvarchar(255),&#xA;&quot;biotope_code_2002&quot; nvarchar(255),&#xA;&quot;slide_key&quot; float,&#xA;&quot;photo_id&quot; nvarchar(255),&#xA;&quot;photographer&quot; nvarchar(255),&#xA;&quot;copyright&quot; nvarchar(255),&#xA;&quot;site_name&quot; nvarchar(255),&#xA;&quot;title&quot; nvarchar(255),&#xA;&quot;orientation&quot; nvarchar(255),&#xA;&quot;photo_cd_no&quot; nvarchar(50),&#xA;&quot;filename&quot; nvarchar(255),&#xA;&quot;original_filename&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{15D918CC-D323-4203-8FCC-E6C32C46B2D9}"
+          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[WEB_SLIDES] (&#xA;[NBNkey] nvarchar(255),&#xA;[fullcode] nvarchar(255),&#xA;[biotope_code_2002] nvarchar(255),&#xA;[slide_key] float,&#xA;[photo_id] nvarchar(255),&#xA;[photographer] nvarchar(255),&#xA;[copyright] nvarchar(255),&#xA;[site_name] nvarchar(255),&#xA;[title] nvarchar(255),&#xA;[orientation] nvarchar(255),&#xA;[photo_cd_no] nvarchar(50),&#xA;[filename] nvarchar(255),&#xA;[original_filename] nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{070A0AE3-3E2E-487A-8EC8-7A91FD835FBE\}]"
+      DTS:refId="Package.PrecedenceConstraints[{278B1BF3-E73F-4044-AF3E-403EE59CB87C\}]"
       DTS:CreationName=""
-      DTS:DTSID="{070A0AE3-3E2E-487A-8EC8-7A91FD835FBE}"
-      DTS:From="Package\Preparation SQL Task 1"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="{070A0AE3-3E2E-487A-8EC8-7A91FD835FBE}"
-      DTS:To="Package\Data Flow Task 1" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{4159DB19-6BA6-46C9-88A4-44052E87EC57\}]"
-      DTS:CreationName=""
-      DTS:DTSID="{4159DB19-6BA6-46C9-88A4-44052E87EC57}"
-      DTS:From="Package\Data Flow Task 1"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="{4159DB19-6BA6-46C9-88A4-44052E87EC57}"
-      DTS:To="Package\Preparation SQL Task 2" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{A6016D10-8BC9-4EF0-BB24-ADF2BE3032B1\}]"
-      DTS:CreationName=""
-      DTS:DTSID="{A6016D10-8BC9-4EF0-BB24-ADF2BE3032B1}"
+      DTS:DTSID="{278B1BF3-E73F-4044-AF3E-403EE59CB87C}"
       DTS:From="Package\Preparation SQL Task 2"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="{A6016D10-8BC9-4EF0-BB24-ADF2BE3032B1}"
+      DTS:ObjectName="{278B1BF3-E73F-4044-AF3E-403EE59CB87C}"
       DTS:To="Package\Data Flow Task 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{33347B5A-8234-419C-82B9-8296F0ACB1E3\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{33347B5A-8234-419C-82B9-8296F0ACB1E3}"
+      DTS:From="Package\Preparation SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{33347B5A-8234-419C-82B9-8296F0ACB1E3}"
+      DTS:To="Package\Data Flow Task 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{E4A1AA48-6918-46CF-8EE7-63A47D6ECB92\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{E4A1AA48-6918-46CF-8EE7-63A47D6ECB92}"
+      DTS:From="Package\Data Flow Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{E4A1AA48-6918-46CF-8EE7-63A47D6ECB92}"
+      DTS:To="Package\Preparation SQL Task 2" />
   </DTS:PrecedenceConstraints>
-  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
-<Objects
-  Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
-  <Package
-    design-time-name="Package">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="159.2,41.6"
-          Id="Package\Data Flow Task 1"
-          TopLeft="20.7,107.1" />
-        <NodeLayout
-          Size="159.2,41.6"
-          Id="Package\Data Flow Task 2"
-          TopLeft="20.7,310.3" />
-        <NodeLayout
-          Size="189.6,41.6"
-          Id="Package\Preparation SQL Task 1"
-          TopLeft="5.5,5.49999999999995" />
-        <NodeLayout
-          Size="189.6,41.6"
-          Id="Package\Preparation SQL Task 2"
-          TopLeft="5.50000000000003,208.7" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[{070A0AE3-3E2E-487A-8EC8-7A91FD835FBE\}]"
-          TopLeft="100.3,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[{4159DB19-6BA6-46C9-88A4-44052E87EC57\}]"
-          TopLeft="100.3,148.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[{A6016D10-8BC9-4EF0-BB24-ADF2BE3032B1\}]"
-          TopLeft="100.3,250.3">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\Data Flow Task 1">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="224,41.6"
-          Id="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE"
-          TopLeft="5.5,107.1" />
-        <NodeLayout
-          Size="234.4,41.6"
-          Id="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE"
-          TopLeft="603.3,107.1" />
-        <NodeLayout
-          Size="204.8,41.6"
-          Id="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE"
-          TopLeft="15.1,5.50000000000007" />
-        <NodeLayout
-          Size="233.6,41.6"
-          Id="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES"
-          TopLeft="299.7,5.50000000000007" />
-        <NodeLayout
-          Size="215.2,41.6"
-          Id="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE"
-          TopLeft="612.9,5.50000000000007" />
-        <NodeLayout
-          Size="290.4,41.6"
-          Id="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY"
-          TopLeft="1209.3,107.1" />
-        <NodeLayout
-          Size="232,41.6"
-          Id="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION"
-          TopLeft="907.5,5.49999999999995" />
-        <NodeLayout
-          Size="252.8,41.6"
-          Id="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES"
-          TopLeft="290.1,107.1" />
-        <NodeLayout
-          Size="271.2,41.6"
-          Id="Package\Data Flow Task 1\Source 3 - WEB_BIOTOPE_HIERARCHY"
-          TopLeft="1218.9,5.49999999999995" />
-        <NodeLayout
-          Size="251.2,41.6"
-          Id="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION"
-          TopLeft="897.9,107.1" />
-        <EdgeLayout
-          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
-          TopLeft="1023.5,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
-              Start="0,0"
-              End="0,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output4]"
-          TopLeft="720.5,47.1000000000001">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
-              Start="0,0"
-              End="0,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output3]"
-          TopLeft="1354.5,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
-              Start="0,0"
-              End="0,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output2]"
-          TopLeft="117.5,47.1000000000001">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
-              Start="0,0"
-              End="0,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output1]"
-          TopLeft="416.5,47.1000000000001">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
-              Start="0,0"
-              End="0,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Data Flow Task 2">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="NaN,NaN"
-          Id="Package\Data Flow Task 2\Source 5 - WEB_SLIDES"
-          TopLeft="NaN,NaN" />
-        <NodeLayout
-          Size="NaN,NaN"
-          Id="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES"
-          TopLeft="NaN,NaN" />
-        <EdgeLayout
-          Id="Package\Data Flow Task 2.Paths[OLE DB Source Output]"
-          TopLeft="NaN,NaN">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="{assembly:Null}"
-              Start="0,0"
-              End="0,0">
-              <mssgle:Curve.Segments>
-                <assembly:Null />
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
