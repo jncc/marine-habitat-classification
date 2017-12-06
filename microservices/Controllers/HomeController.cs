@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using microservices.Models;
 
 namespace microservices.Controllers
 {
@@ -10,9 +11,12 @@ namespace microservices.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
-            return View();
+            using (var db = new BiotopeDB())
+            {
+                var biotopeCount = db.WEB_BIOTOPE.Count();
+                var version = typeof(WebApiApplication).Assembly.GetName().Version;
+                return Json(new { biotopeCount, version }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
