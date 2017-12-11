@@ -2,11 +2,11 @@
 @{
 	Layout = "Master.cshtml";
 }
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml", Model.Content.Parent)
 
 <section class="section">
     <div class="container">
 
-        <p>MHC intro here</p>
+        <p>Biotope here</p>
     </div>
 </section>

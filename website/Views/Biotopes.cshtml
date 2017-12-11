@@ -1,0 +1,38 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<Biotopes>
+@using Newtonsoft.Json.Linq
+@{
+    Layout = "Master.cshtml";
+    
+    var url = "http://localhost:54760/Biotope/";
+    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+    request.Method = "GET";
+
+    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+    string content = "";
+    using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream()))
+    {
+        content = sr.ReadToEnd();
+    }
+    
+    var json = JArray.Parse(content);
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml", Model.Content.Parent)
+
+<section class="section">
+    <div class="container">
+        <div class="biotope-grid">
+            @if (json != null)
+            {
+                foreach (var biotopePair in json)
+                {
+                    <div class="biotope-pair">
+                        Parent: <a href="http://localhost:53291/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_PARENT_KEY"]">@biotopePair["BIOTOPE_PARENT_KEY"]</a>
+                        <br />
+                        Child: <a href="http://localhost:53291/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_KEY"]">@biotopePair["BIOTOPE_KEY"]</a>
+                        <br /><br />
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
