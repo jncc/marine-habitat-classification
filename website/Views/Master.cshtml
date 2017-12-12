@@ -10,74 +10,99 @@
     var font = Umbraco.GetPreValueAsString(home.Font);
 }
 
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lte-ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta charset="utf-8" />
     <title>@Model.Content.Name - @home.Sitename</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" media="screen" href="/css/govuk-template.css" /><!--<![endif]-->
+    <!--[if IE 6]><link rel="stylesheet" media="screen" href="/assets/stylesheets/govuk-template-ie6.css"/><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" media="screen" href="/assets/stylesheets/govuk-template-ie7.css"/><![endif]-->
+    <!--[if IE 8]><link rel="stylesheet" media="screen" href="/assets/stylesheets/govuk-template-ie8.css"/><![endif]-->
+    <link rel="stylesheet" media="print" href="/css/govuk-template-print.css" />
+    <!--[if IE 8]><link rel="stylesheet" media="all" href="/assets/stylesheets/fonts-ie8.css"/><![endif]-->
+    <!--[if gte IE 9]><!-->
+    <link rel="stylesheet" media="all" href="/css/fonts.css" /><!--<![endif]-->
+    <!--[if lt IE 9]><script src="/assets/javascripts/ie.js"></script><![endif]-->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
 
-    <link rel="stylesheet" href="@Url.Content("~/css/umbraco-starterkit-style.css")" />
+    <link rel="mask-icon" href="/assets/images/gov.uk_logotype_crown.svg" color="#0b0c0c">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/assets/images/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+    <meta name="theme-color" content="#0b0c0c" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="/assets/images/opengraph-image.png">
+    
     @RenderSection("Header", required: false)
 </head>
+<body>
+<script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
-<body class="frontpage theme-font-@font theme-color-@colorTheme">
-    <div class="mobile-nav">
-        <nav class="nav-bar">
-            @Html.Partial("~/views/partials/navigation/topNavigation.cshtml")
-        </nav>
+<div id="skiplink-container">
+    <div>
+        <a href="#content" class="skiplink">Skip to main content</a>
     </div>
+</div>
+<div id="global-cookie-message">
 
-    <header class="header">
+    <p>GOV.UK uses cookies to make the site simpler. <a href="https://www.gov.uk/help/cookies">Find out more about cookies</a>
+    </p>
 
-        <div class="logo">
-            @if (home.SiteLogo != null && !string.IsNullOrEmpty(home.SiteLogo.Url))
-            {
-                <div class="nav-link--home">
-                    <img class="logo-image" src="@home.SiteLogo.Url" alt="@home.Sitename">
-                </div>
-            }
-            else
-            {
-                <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
-            }
-        </div>
+</div>
 
-        <nav class="nav-bar top-nav">
+<header role="banner" id="global-header" class="">
+    <div class="header-wrapper">
+        <div class="header-global">
+            <div class="header-logo">
+                <a href="https://www.gov.uk/" title="Go to the GOV.UK homepage" id="logo" class="content">
+                    <img src="/assets/images/gov.uk_logotype_crown_invert_trans.png" width="36" height="32" alt=""> JNCC
+                </a>
+            </div>
             @Html.Partial("~/Views/Partials/Navigation/TopNavigation.cshtml")
-        </nav>
 
-        <div class="mobile-nav-handler">
-            <div class="hamburger lines" id="toggle-nav">
-                <span></span>
-            </div>
         </div>
 
-    </header>
+    </div>
+</header>
 
-    <main>
-        @RenderBody()
-    </main>
 
-    <footer class="section--themed">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 ta-center">
-                    @home.FooterAddress
+<div id="global-header-bar">
+</div>
+<!-- Page content goes here -->
+@RenderBody()
+<footer class="group js-footer" id="footer" role="contentinfo">
+    <div class="footer-wrapper">
+
+        <div class="footer-meta">
+            <div class="footer-meta-inner">
+
+                <div class="open-government-licence">
+                    <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+                    </p>
+
+                    <p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated
+                    </p>
+
                 </div>
             </div>
+            <div class="copyright">
+                <a href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>
+<div id="global-app-error" class="app-error hidden"></div>
+<script src="/scripts/govuk-template.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-    <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
 
+<script>if (
+    typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
 </body>
-
 </html>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Umbraco.Core;
+using Umbraco.Web;
 
 namespace website.App_Start
 {
@@ -14,12 +15,11 @@ namespace website.App_Start
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication,
             ApplicationContext applicationContext)
         {
-            RouteTable.Routes.MapMvcAttributeRoutes();
-
-            RouteTable.Routes.MapRoute(
-                name: "Biotope",
-                url: "marine-habitat-classification/biotopes/biotope/{key}",
-                defaults: new {controller = "Biotope", action = "Biotope", key = UrlParameter.Optional}
+            RouteTable.Routes.MapUmbracoRoute(
+                "Biotope",
+                "marine-habitat-classification/biotopes/biotope/{key}",
+                new {controller = "Biotope", action = "Biotope", key = UrlParameter.Optional},
+                new BiotopeRouteHandler()
             );
         }
     }

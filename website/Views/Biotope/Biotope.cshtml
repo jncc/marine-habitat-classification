@@ -1,8 +1,9 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@inherits UmbracoViewPage<website.Models.BiotopeModel>
 
-<p>Use this area to provide additional information.</p>
-<p>@Model.HelloWorld()</p>
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+<p>BIOTOPE_KEY: @Model.Key</p>
+<p>DESCRIPTION: @Model.Description</p>

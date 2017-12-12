@@ -298,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AppEventHandler.cs" />
+    <Compile Include="App_Start\BiotopeRouteHandler.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -306,7 +307,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Biotope.cs" />
+    <Compile Include="Models\BiotopeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +337,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\fonts-ie8.css" />
+    <Content Include="css\fonts.css" />
+    <Content Include="css\govuk-template-ie6.css" />
+    <Content Include="css\govuk-template-ie7.css" />
+    <Content Include="css\govuk-template-ie8.css" />
+    <Content Include="css\govuk-template-print.css" />
+    <Content Include="css\govuk-template.css" />
     <Content Include="default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -369,6 +377,8 @@
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\govuk-template.js" />
+    <Content Include="Scripts\ie.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -404,6 +414,18 @@
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Views\Biotope\Biotope.cshtml" />
+    <Content Include="Views\Master.old.cshtml" />
+    <Content Include="Views\Partials\SectionHeader.cshtml" />
+    <Content Include="Views\Master.cshtml" />
+    <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
+    <Content Include="Views\Partials\Navigation\SubNavigation.cshtml" />
+    <Content Include="Views\Biotope.cshtml" />
+    <Content Include="Views\Biotopes.cshtml" />
+    <Content Include="Views\Contact.cshtml" />
+    <Content Include="Views\ContentPage.cshtml" />
+    <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\MarineHabitatClassification.cshtml" />
+    <Content Include="Views\Partials\CategoryLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
