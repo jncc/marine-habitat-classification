@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "css/main.css",
+    "inputFile": "css/main.scss"
+  },
+  {
+    "outputFile": "css/govuk_prototype_kit/_layout.css",
+    "inputFile": "css/govuk_prototype_kit/_layout.scss"
+  }
+]

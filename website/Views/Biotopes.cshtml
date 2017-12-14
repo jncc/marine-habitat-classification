@@ -1,4 +1,4 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<Biotopes>
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Newtonsoft.Json.Linq
 @{
     Layout = "Master.cshtml";
@@ -16,7 +16,9 @@
     
     var json = JArray.Parse(content);
 }
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml", Model.Content.Parent)
+<a class="link-back" href="@Model.Content.Parent.Url">Back</a>
+
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
 <section class="section">
     <div class="container">

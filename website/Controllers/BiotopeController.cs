@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
@@ -29,12 +31,11 @@ namespace website.Controllers
                 content = sr.ReadToEnd();
             }
 
-            var json = JArray.Parse(content).First;
+            var biotope = JsonConvert.DeserializeObject<Biotope>(JArray.Parse(content).First.ToString());
 
             var biotopeModel = new BiotopeModel(model.Content)
             {
-                Key = json.Value<string>("BIOTOPE_KEY"),
-                Description = json.Value<string>("DESCRIPTION")
+                Biotope = biotope
             };
 
             return CurrentTemplate(biotopeModel);

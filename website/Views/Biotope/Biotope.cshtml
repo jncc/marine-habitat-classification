@@ -3,7 +3,47 @@
 @{
     Layout = "~/Views/Master.cshtml";
 }
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
-<p>BIOTOPE_KEY: @Model.Key</p>
-<p>DESCRIPTION: @Model.Description</p>
+<div class="grid-row">
+    <div class="column-two-thirds">
+        <a class="link-back" href="@Model.Content.Parent.Url">Back</a>
+
+        @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+
+        <h1>@Model.Biotope.Original_Code</h1>
+        <h2>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Full_Term))</h2>
+
+        <h3>Habitat (physical) description</h3>
+        <div>
+            <p>
+                Salinity: @Model.Biotope.Salinity <br/>
+                Wave exposure: @Model.Biotope.Exposure <br/>
+                Tidal streams: @Model.Biotope.Tidal_Streams <br/>
+                Substratum: @Model.Biotope.Substratum <br/>
+                Zone: @Model.Biotope.Subzone <br/>
+                Depth Band: @Model.Biotope.Landscape <br/>
+                Other Features: @Model.Biotope.Special_Features
+            </p>
+        </div>
+
+        <h3>Biotope description</h3>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
+
+        <h3>Situation</h3>
+        <p>@Model.Biotope.Situation</p>
+
+        <h3>Temporal variation</h3>
+        <p>@Model.Biotope.Temporal_Variation</p>
+
+        <h3>Similar biotopes</h3>
+        <p></p>
+
+        <h3>Characterising Species</h3>
+        <p></p>
+
+        <h3>Example photographs of biotope</h3>
+        <p></p>
+    </div>
+    <div class="column-one-third">Map here?</div>
+</div>

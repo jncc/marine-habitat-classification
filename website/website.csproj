@@ -307,6 +307,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Biotope.cs" />
     <Compile Include="Models\BiotopeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -314,6 +315,9 @@
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
+    <Content Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -337,13 +341,22 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="css\fonts-ie8.css" />
-    <Content Include="css\fonts.css" />
-    <Content Include="css\govuk-template-ie6.css" />
-    <Content Include="css\govuk-template-ie7.css" />
-    <Content Include="css\govuk-template-ie8.css" />
-    <Content Include="css\govuk-template-print.css" />
-    <Content Include="css\govuk-template.css" />
+    <Content Include="css\govuk_template\fonts-ie8.css" />
+    <Content Include="css\govuk_template\fonts.css" />
+    <Content Include="css\govuk_template\govuk-template-ie6.css" />
+    <Content Include="css\govuk_template\govuk-template-ie7.css" />
+    <Content Include="css\govuk_template\govuk-template-ie8.css" />
+    <Content Include="css\govuk_template\govuk-template-print.css" />
+    <Content Include="css\govuk_template\govuk-template.css" />
+    <Content Include="css\govuk_prototype_kit\_layout.scss" />
+    <Content Include="css\govuk_prototype_kit\_elements-typography.scss" />
+    <None Include="css\main.scss" />
+    <Content Include="css\main.css">
+      <DependentUpon>main.scss</DependentUpon>
+    </Content>
+    <Content Include="css\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -376,6 +389,25 @@
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
+    <Content Include="compilerconfig.json" />
+    <Content Include="css\govuk_frontend_toolkit\.gitkeep" />
+    <Content Include="css\govuk_frontend_toolkit\colours\_organisation.scss" />
+    <Content Include="css\govuk_frontend_toolkit\colours\_palette.scss" />
+    <Content Include="css\govuk_frontend_toolkit\design-patterns\_alpha-beta.scss" />
+    <Content Include="css\govuk_frontend_toolkit\design-patterns\_breadcrumbs.scss" />
+    <Content Include="css\govuk_frontend_toolkit\design-patterns\_buttons.scss" />
+    <Content Include="css\govuk_frontend_toolkit\design-patterns\_media-player.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_colours.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_conditionals.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_css3.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_device-pixels.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_font_stack.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_grid_layout.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_helpers.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_measurements.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_shims.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_typography.scss" />
+    <Content Include="css\govuk_frontend_toolkit\_url-helpers.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\govuk-template.js" />
     <Content Include="Scripts\ie.js" />
@@ -414,7 +446,6 @@
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Views\Biotope\Biotope.cshtml" />
-    <Content Include="Views\Master.old.cshtml" />
     <Content Include="Views\Partials\SectionHeader.cshtml" />
     <Content Include="Views\Master.cshtml" />
     <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
