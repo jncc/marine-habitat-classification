@@ -1,43 +1,82 @@
-﻿@inherits UmbracoViewPage<website.Models.BiotopeModel>
+﻿@using System.Text
+@inherits UmbracoViewPage<website.Models.BiotopeModel>
 
 @{
     Layout = "~/Views/Master.cshtml";
+
+    StringBuilder oldCodesString = new StringBuilder("");
+
+    foreach (var oldCode in Model.OldCodes)
+    {
+        oldCodesString
+            .Append(oldCode.OLD_CODE)
+            .Append(" ");
+    }
+
 }
 
 <div class="grid-row">
-    <div class="column-two-thirds">
+    <div class="column-full">
         <a class="link-back" href="@Model.Content.Parent.Url">Back</a>
-
         @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+        <h1>@Model.Biotope.ORIGINAL_CODE</h1>
+    </div>
+</div>
 
 
-        <h1>@Model.Biotope.Original_Code</h1>
-        <h2>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Full_Term))</h2>
-
-        <h3>Habitat (physical) description</h3>
-        <div>
-            <p>
-                Salinity: @Model.Biotope.Salinity <br/>
-                Wave exposure: @Model.Biotope.Exposure <br/>
-                Tidal streams: @Model.Biotope.Tidal_Streams <br/>
-                Substratum: @Model.Biotope.Substratum <br/>
-                Zone: @Model.Biotope.Subzone <br/>
-                Depth Band: @Model.Biotope.Landscape <br/>
-                Other Features: @Model.Biotope.Special_Features
-            </p>
+<div class="grid-row">
+    <div class="column-two-thirds">
+        <div class="grid-row">
+            <div class="column-full">
+                <h2>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM))</h2>
+                <h3>Habitat (physical) description</h3>
+            </div>
         </div>
-
+        <div class="grid-row">
+            <div class="column-one-third">
+                <div class="grid-row"><div class="column-full">Salinity:</div></div>
+                <div class="grid-row"><div class="column-full">Wave exposure:</div></div>
+                <div class="grid-row"><div class="column-full">Tidal streams:</div></div>
+                <div class="grid-row"><div class="column-full">Substratum:</div></div>
+                <div class="grid-row"><div class="column-full">Zone:</div></div>
+                <div class="grid-row"><div class="column-full">Depth Band:</div></div>
+                <div class="grid-row"><div class="column-full">Other Features:</div></div>
+            </div>
+            <div class="column-two-thirds">
+                <div class="grid-row"><div class="column-full">@Model.Biotope.SALINITY</div></div>
+                <div class="grid-row"><div class="column-full">@Model.Biotope.EXPOSURE</div></div>
+                <div class="grid-row"><div class="column-full">@Model.Biotope.TIDAL_STREAMS</div></div>
+                <div class="grid-row"><div class="column-full">@Model.Biotope.SUBSTRATUM</div></div>
+                <div class="grid-row"><div class="column-full">@Model.Biotope.SUBZONE</div></div>
+                <div class="grid-row"><div class="column-full">@Model.Biotope.LANDSCAPE</div></div>
+                <div class="grid-row"><div class="column-full">@Model.Biotope.SPECIAL_FEATURES</div></div>
+            </div>
+        </div>
+        <div class="grid-row">
+            <div class="column-full">
+                <h3>Old codes</h3>
+                <p>@oldCodesString</p>
+            </div>
+        </div>
+    </div>
+    <div class="column-one-third">Map here?</div>
+</div>
+<div class="grid-row">
+    <div class="column-full">
         <h3>Biotope description</h3>
-        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.DESCRIPTION))</p>
 
         <h3>Situation</h3>
-        <p>@Model.Biotope.Situation</p>
+        <p>@Model.Biotope.SITUATION</p>
 
         <h3>Temporal variation</h3>
-        <p>@Model.Biotope.Temporal_Variation</p>
+        <p>@Model.Biotope.TEMPORAL_VARIATION</p>
 
         <h3>Similar biotopes</h3>
-        <p></p>
+        @foreach (var biotope in Model.SimilarBiotopes)
+        {
+            <p><b>@biotope.RELATED_BIOTOPE_KEY:</b> @Html.Raw(HttpUtility.HtmlDecode(biotope.COMMENT))</p>
+        }
 
         <h3>Characterising Species</h3>
         <p></p>
@@ -45,5 +84,4 @@
         <h3>Example photographs of biotope</h3>
         <p></p>
     </div>
-    <div class="column-one-third">Map here?</div>
 </div>

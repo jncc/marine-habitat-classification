@@ -10,7 +10,7 @@ namespace microservices.Controllers
     public class BiotopeController : Controller
     {
         // GET: Biotope
-        public ActionResult Index()
+        public JsonResult Index()
         {
             using (var db = new BiotopeDB())
             {
@@ -21,15 +21,55 @@ namespace microservices.Controllers
 
         // GET: Biotope/biotopeKey
         [Route("Biotope/{key}")]
-        public ActionResult Index(string key)
+        public JsonResult Index(string key)
         {
             using (var db = new BiotopeDB())
             {
                 db.Configuration.LazyLoadingEnabled = false;
                 db.Configuration.ProxyCreationEnabled = false;
 
-                var data = db.WEB_BIOTOPE.Where(b => b.BIOTOPE_KEY == key).ToList();
-                return Json(data, JsonRequestBehavior.AllowGet);
+                var biotope = db.WEB_BIOTOPE.Where(b => b.BIOTOPE_KEY == key).ToList();
+                var transferObject = new
+                {
+                    Biotope = biotope,
+//                    Species = GetCharacterisingSpecies(key),
+                    SimilarBiotopes = GetSimilarBiotopes(key),
+                    OldCodes = GetOldCodes(key),
+                };
+                return Json(transferObject, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+//        private List<WEB_BIOT_SPECIES> GetCharacterisingSpecies(string key)
+//        {
+//            using (var db = new BiotopeDB())
+//            {
+//                db.Configuration.LazyLoadingEnabled = false;
+//                db.Configuration.ProxyCreationEnabled = false;
+//
+//                return db.WEB_BIOT_SPECIES.Where(c => c.BIOTOPE_KEY == key).ToList();
+//            }
+//        }
+
+        private List<WEB_BIOT_RELATION> GetSimilarBiotopes(string key)
+        {
+            using (var db = new BiotopeDB())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
+
+                return db.WEB_BIOT_RELATION.Where(c => c.BIOTOPE_KEY == key).ToList();
+            }
+        }
+
+        private List<WEB_OLD_CODE> GetOldCodes(string key)
+        {
+            using (var db = new BiotopeDB())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
+
+                return db.WEB_OLD_CODE.Where(c => c.BIOTOPE_KEY == key).ToList();
             }
         }
     }

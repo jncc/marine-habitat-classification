@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Lucene.Net.Search;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Umbraco.Web.Models;
@@ -31,11 +33,19 @@ namespace website.Controllers
                 content = sr.ReadToEnd();
             }
 
-            var biotope = JsonConvert.DeserializeObject<Biotope>(JArray.Parse(content).First.ToString());
+            var jsonObject = JObject.Parse(content);
+
+            var biotope = JsonConvert.DeserializeObject<WEB_BIOTOPE>(jsonObject["Biotope"].First.ToString());
+//            var species = JsonConvert.DeserializeObject<List<WEB_BIOT_SPECIES_OBSERVATION>>(jsonObject["Species"].ToString());
+            var similarBiotopes = JsonConvert.DeserializeObject<List<WEB_BIOT_RELATION>>(jsonObject["SimilarBiotopes"].ToString());
+            var oldCodes = JsonConvert.DeserializeObject<List<WEB_OLD_CODE>>(jsonObject["OldCodes"].ToString());
 
             var biotopeModel = new BiotopeModel(model.Content)
             {
-                Biotope = biotope
+                Biotope = biotope,
+//                Species = species,
+                SimilarBiotopes = similarBiotopes,
+                OldCodes = oldCodes
             };
 
             return CurrentTemplate(biotopeModel);
