@@ -390,6 +390,7 @@
     <Content Include="css\govuk_template\govuk-template.css" />
     <Content Include="css\govuk_prototype_kit\_layout.scss" />
     <Content Include="css\govuk_prototype_kit\_elements-typography.scss" />
+    <Content Include="css\_biotope.scss" />
     <None Include="css\main.scss" />
     <Content Include="css\main.css">
       <DependentUpon>main.scss</DependentUpon>

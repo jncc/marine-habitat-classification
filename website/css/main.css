@@ -89,3 +89,13 @@
       float: left;
       width: 100%; } }
 
+.similar-biotope {
+  width: 19em;
+  float: left;
+  padding: 0.5em; }
+  .similar-biotope img {
+    width: 19em; }
+
+.biotope-image {
+  width: 100%; }
+
