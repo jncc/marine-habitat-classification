@@ -6,13 +6,13 @@
 
     string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=300&HEIGHT=400&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.ORIGINAL_CODE;
 
-    StringBuilder oldCodesString = new StringBuilder("");
+    StringBuilder biotopeHierarchy = new StringBuilder("");
 
-    foreach (var oldCode in Model.OldCodes)
+    foreach (var biotope in Model.Biotope.WEB_BIOTOPE_HIERARCHY)
     {
-        oldCodesString
-            .Append(oldCode.OLD_CODE)
-            .Append(" ");
+        biotopeHierarchy
+            .Append(biotope.BIOTOPE_KEY)
+            .Append(" >> ");
     }
 
 }
@@ -21,85 +21,85 @@
     <div class="column-full">
         <a class="link-back" href="@Model.Content.Parent.Url">Back</a>
         @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
-        <h1>@Model.Biotope.ORIGINAL_CODE</h1>
+        <h2>Full hierarchy @biotopeHierarchy</h2>
+        <h1>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM))</h1>
     </div>
 </div>
 
 
-<div class="grid-row">
-    <div class="column-two-thirds">
-        <div class="grid-row">
-            <div class="column-full">
-                <h2>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM))</h2>
-            </div>
-        </div>
-        <div class="grid-row">
-            <div class="column-full"><h3>Habitat (physical) description</h3></div>
-            <div class="column-one-third">
-                <div class="grid-row">
-                    <div class="column-full">Salinity:</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">Wave exposure:</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">Tidal streams:</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">Substratum:</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">Zone:</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">Depth Band:</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">Other Features:</div>
-                </div>
-            </div>
-            <div class="column-two-thirds">
-                <div class="grid-row">
-                    <div class="column-full">@Model.Biotope.SALINITY</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">@Model.Biotope.EXPOSURE</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">@Model.Biotope.TIDAL_STREAMS</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">@Model.Biotope.SUBSTRATUM</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">@Model.Biotope.SUBZONE</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">@Model.Biotope.LANDSCAPE</div>
-                </div>
-                <div class="grid-row">
-                    <div class="column-full">@Model.Biotope.SPECIAL_FEATURES</div>
-                </div>
-            </div>
-        </div>
-        <div class="grid-row">
-            <div class="column-full">
-                <p><a href="http://jncc.defra.gov.uk/default.aspx?page=3249">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.</p>
 
-                <h3>Old codes</h3>
-                <p>@oldCodesString</p>
+<div class="grid-row">
+    <div class="biotope">
+        <div class="column-two-thirds">
+            <div class="grid-row">
+                <div class="column-full">
+                    <table>
+                        <caption class="heading-small">Habitat (physical) description</caption>
+                        <tbody>
+                        <tr>
+                            <th>Salinity</th>
+                            <td>@Model.Biotope.SALINITY</td>
+                        </tr>
+                        <tr>
+                            <th>Wave exposure</th>
+                            <td>@Model.Biotope.EXPOSURE</td>
+                        </tr>
+                        <tr>
+                            <th>Tidal streams</th>
+                            <td>@Model.Biotope.TIDAL_STREAMS</td>
+                        </tr>
+                        <tr>
+                            <th>Substratum</th>
+                            <td>@Model.Biotope.SUBSTRATUM</td>
+                        </tr>
+                        <tr>
+                            <th>Zone</th>
+                            <td>@Model.Biotope.SUBZONE</td>
+                        </tr>
+                        <tr>
+                            <th>Depth Band</th>
+                            <td>@Model.Biotope.LANDSCAPE</td>
+                        </tr>
+                        <tr>
+                            <th>Other Features</th>
+                            <td>@Model.Biotope.SPECIAL_FEATURES</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="grid-row">
+                <div class="column-full">
+                    <p>
+                        <a href="http://jncc.defra.gov.uk/default.aspx?page=3249">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
+                    </p>
+
+                    <h3>Previous classification codes</h3>
+                    <ul>
+                        @foreach (var oldCode in Model.OldCodes)
+                        {
+                            <li>@oldCode.OLD_CODE.Replace("(part)", "in part") - Version @oldCode.VERSION</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column-one-third">
+            <div class="biomap">
+                <div class="loading">
+                    <img alt="Distribution of habitat @Model.Biotope.ORIGINAL_CODE @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM))"
+                         src="@biomapUrl" />
+                </div>
+                <ul>
+                    <li><span class="legend">Core records on which the biotope is based</span></li>
+                    <li><span class="legend">Non-core records with certain determination</span></li>
+                    <li><span class="legend">Non-core records with uncertain determination, tentatively assigned to this biotope</span></li>
+                    <li><span class="legend">Predicted habitat extent showing level 2 and 3 sublittoral and deep-sea habitats</span></li>
+                </ul>
+                <span class="legend">Distribution data based on records on the <a href="http://jncc.defra.gov.uk/page-1599">UK Marine Recorder database</a> and <a href="http://jncc.defra.gov.uk/default.aspx?page=5020">EUSeaMap</a>.</span>
             </div>
         </div>
     </div>
-    <div class="column-one-third">
-        <div id="biomap">
-            <img alt="Distribution of habitat @Model.Biotope.ORIGINAL_CODE @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM))" 
-                 src="@biomapUrl"/><img src="/media/1001/biomap_legend.png" />
-            <div>Distribution of habitat @Model.Biotope.ORIGINAL_CODE @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM)), based on records on the <a href="http://jncc.defra.gov.uk/page-1599">UK Marine Recorder database</a> and EUSeaMap. Red dots represent records on which the biotope is based. Blue dots show other certain records, black dots show records tentatively assigned to this biotope. Yellow areas show level 2 and 3 sublittoral and deep-sea habitats prediced by <a href="http://jncc.defra.gov.uk/default.aspx?page=5020">EUSeaMap</a> within UK waters.</div>
-        </div>
-    </div>
-</div>
-<div class="grid-row">
     <div class="column-full">
         <h3>Description</h3>
         <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.DESCRIPTION))</p>

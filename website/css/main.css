@@ -89,13 +89,112 @@
       float: left;
       width: 100%; } }
 
+.biotope {
+  /**
+        govuk-elements-styles table style
+    */ }
+  .biotope table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%; }
+  .biotope table th,
+  .biotope table td {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 0.63158em 1.05263em 0.47368em 0;
+    text-align: left;
+    border-bottom: 1px solid #bfc1c3; }
+  @media (min-width: 641px) {
+    .biotope table th,
+    .biotope table td {
+      font-size: 19px;
+      line-height: 1.31579; } }
+  .biotope table thead th {
+    font-weight: 700; }
+  .biotope table td:last-child,
+  .biotope table th:last-child {
+    padding-right: 0; }
+  .biotope table .numeric {
+    text-align: right; }
+  .biotope table td.numeric {
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif; }
+  .biotope table caption {
+    text-align: left; }
+  .biotope .table-font-xsmall th {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 14px;
+    line-height: 1.14286; }
+  @media (min-width: 641px) {
+    .biotope .table-font-xsmall th {
+      font-size: 16px;
+      line-height: 1.25; } }
+  .biotope .table-font-xsmall td {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 14px;
+    line-height: 1.14286; }
+  @media (min-width: 641px) {
+    .biotope .table-font-xsmall td {
+      font-size: 16px;
+      line-height: 1.25; } }
+  .biotope .table-font-xsmall th,
+  .biotope .table-font-xsmall td {
+    padding: 0.75em 1.25em 0.5625em 0; }
+  .biotope .heading-small {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 16px;
+    line-height: 1.25;
+    display: block;
+    margin-top: 0.625em;
+    margin-bottom: 0.3125em; }
+  @media (min-width: 641px) {
+    .biotope .heading-small {
+      font-size: 19px;
+      line-height: 1.31579; } }
+  @media (min-width: 641px) {
+    .biotope .heading-small {
+      margin-top: 1.05263em; } }
+
 .similar-biotope {
   width: 19em;
   float: left;
-  padding: 0.5em; }
+  margin-right: 0.5em; }
   .similar-biotope img {
     width: 19em; }
 
 .biotope-image {
   width: 100%; }
+
+.biomap .loading {
+  height: 400px;
+  background: transparent url("/media/1005/loading_map.png") no-repeat center; }
+
+.biomap .legend {
+  color: black;
+  font-size: medium; }
+
+.biomap ul {
+  padding-left: 1em; }
+
+.biomap ul li:nth-child(1) {
+  color: red; }
+
+.biomap ul li:nth-child(2) {
+  color: cyan; }
+
+.biomap ul li:nth-child(3) {
+  color: black; }
+
+.biomap ul li:last-child {
+  list-style-type: square;
+  color: gold;
+  font-size: large; }
 

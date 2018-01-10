@@ -1,10 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 using FluentAssertions;
 using microservices.Controllers;
 using microservices.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using Moq;
 
 namespace microservices.Tests.Controllers
 {
@@ -14,11 +18,15 @@ namespace microservices.Tests.Controllers
         public void GetBiotopeByKeyTest()
         {
             // Arrange
+            var biotopeDbMock = new Mock<BiotopeDB>();
+
             BiotopeController controller = new BiotopeController();
 
-            var expectedBiotope = new WEB_BIOTOPE();
-            expectedBiotope.BIOTOPE_KEY = "JNCCMNCR0000TEST";
-            expectedBiotope.DESCRIPTION = "test biotope";
+            var expectedBiotope = new Mock<DbSet<WEB_BIOTOPE>>();
+//            expectedBiotope.BIOTOPE_KEY = "JNCCMNCR0000TEST";
+//            expectedBiotope.DESCRIPTION = "test biotope";
+
+            biotopeDbMock.Setup(m => m.WEB_BIOTOPE).Returns(expectedBiotope.Object);
 
             // Act
             JsonResult result = controller.Index("JNCCMNCR0000TEST");
