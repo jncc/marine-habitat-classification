@@ -33,46 +33,88 @@ namespace microservices.Controllers
                 var similarBiotopes = db.WEB_BIOT_RELATION.Where(c => c.BIOTOPE_KEY == key).ToList();
                 var oldCodes = db.WEB_OLD_CODE.Where(c => c.BIOTOPE_KEY == key).ToList();
 
-                var hierarchy = new Dictionary<string, string>();
-
-                foreach (var currentBiotope in biotope[0].WEB_BIOTOPE_HIERARCHY)
-                {
-                    hierarchy.Add(currentBiotope.HIGHERLEVEL.ToString(), currentBiotope.WEB_BIOTOPE1.ORIGINAL_CODE);
-                }
-
                 var transferObject = new
                 {
-//                    Biotope = biotope,
-                    BiotopeHierarchy = hierarchy,
+                    Biotope = GetBiotopeDto(biotope[0]),
+                    BiotopeHierarchy = GetBiotopeHierarchyDto(biotope[0].WEB_BIOTOPE_HIERARCHY),
 //                    Species = GetCharacterisingSpecies(key),
-//                    SimilarBiotopes = similarBiotopes,
-//                    OldCodes = oldCodes
+                    SimilarBiotopes = GetSimilarBiotopesDto(similarBiotopes),
+                    OldCodes = GetOldCodes(oldCodes)
                 };
+
                 return Json(transferObject, JsonRequestBehavior.AllowGet);
             }
         }
 
-//        private List<WEB_BIOT_SPECIES> GetCharacterisingSpecies(string key)
-//        {
-//            using (var db = new BiotopeDB())
-//            {
-//                db.Configuration.LazyLoadingEnabled = false;
-//                db.Configuration.ProxyCreationEnabled = false;
-//
-//                return db.WEB_BIOT_SPECIES.Where(c => c.BIOTOPE_KEY == key).ToList();
-//            }
-//        }
+        private object GetBiotopeDto(WEB_BIOTOPE biotope)
+        {
+            var biotopeDto = new
+            {
+                BiotopeKey = biotope.BIOTOPE_KEY,
+                OriginalCode = biotope.ORIGINAL_CODE,
+                FullTerm = biotope.FULL_TERM,
+                Description = biotope.DESCRIPTION,
+                SpecialFeatures = biotope.SPECIAL_FEATURES,
+                TemporalVariation = biotope.TEMPORAL_VARIATION,
+                Situation = biotope.SITUATION,
+                FrequencyKey = biotope.FREQUENCY_KEY,
+                Frequency = biotope.FREQUENCY,
+                Landscape = biotope.LANDSCAPE,
+                Salinity = biotope.SALINITY,
+                Height = biotope.HEIGHT,
+                Exposure = biotope.EXPOSURE,
+                TidalStreams = biotope.TIDAL_STREAMS,
+                Substratum = biotope.SUBSTRATUM,
+                Subzone = biotope.SUBZONE,
+                SortCode = biotope.SORT_CODE
+            };
 
-//        private List<WEB_BIOT_RELATION> GetSimilarBiotopes(BiotopeDB db, string key)
-//        {
-////            db.WEB_BIOT_RELATION.Include(m => m.WEB_BIOTOPE);
-//
-//            return 
-//        }
-//
-//        private List<WEB_OLD_CODE> GetOldCodes(BiotopeDB db, string key)
-//        {
-//            return db.WEB_OLD_CODE.Where(c => c.BIOTOPE_KEY == key).ToList();
-//        }
+            return biotopeDto;
+        }
+
+        private Dictionary<string, object> GetBiotopeHierarchyDto(IEnumerable<WEB_BIOTOPE_HIERARCHY> hierarchy)
+        {
+            var hierarchyDto = new Dictionary<string, object>();
+            foreach (var currentBiotope in hierarchy)
+            {
+                hierarchyDto.Add(currentBiotope.HIGHERLEVEL.ToString(), new
+                {
+                    BiotopeKey = currentBiotope.WEB_BIOTOPE1.BIOTOPE_KEY,
+                    OriginalCode = currentBiotope.WEB_BIOTOPE1.ORIGINAL_CODE
+                });
+            }
+            return hierarchyDto;
+        }
+
+        private List<object> GetSimilarBiotopesDto(IEnumerable<WEB_BIOT_RELATION> similarBiotopes)
+        {
+            var similarBiotopesDto = new List<object>();
+            foreach (var similarBiotope in similarBiotopes)
+            {
+                similarBiotopesDto.Add(new
+                {
+                    BiotopeKey = similarBiotope.WEB_BIOTOPE1.BIOTOPE_KEY,
+                    OriginalCode = similarBiotope.WEB_BIOTOPE1.ORIGINAL_CODE,
+                    Comment = similarBiotope.COMMENT
+                });
+            }
+
+            return similarBiotopesDto;
+        }
+
+        private List<object> GetOldCodes(IEnumerable<WEB_OLD_CODE> oldCodes)
+        {
+            var oldCodesDto = new List<object>();
+            foreach (var oldCode in oldCodes)
+            {
+                oldCodesDto.Add(new
+                {
+                    OriginalCode = oldCode.OLD_CODE,
+                    Version = oldCode.VERSION
+                });
+            }
+
+            return oldCodesDto;
+        }
     }
 }

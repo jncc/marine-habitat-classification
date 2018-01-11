@@ -35,15 +35,17 @@ namespace website.Controllers
 
             var jsonObject = JObject.Parse(content);
 
-            var biotope = JsonConvert.DeserializeObject<WEB_BIOTOPE>(jsonObject["Biotope"].First.ToString());
-//            var species = JsonConvert.DeserializeObject<List<WEB_BIOT_SPECIES_OBSERVATION>>(jsonObject["Species"].ToString());
-            var similarBiotopes = JsonConvert.DeserializeObject<List<WEB_BIOT_RELATION>>(jsonObject["SimilarBiotopes"].ToString());
-            var oldCodes = JsonConvert.DeserializeObject<List<WEB_OLD_CODE>>(jsonObject["OldCodes"].ToString());
+            var biotope = JsonConvert.DeserializeObject<Biotope>(jsonObject["Biotope"].ToString());
+            //            var species = JsonConvert.DeserializeObject<List<WEB_BIOT_SPECIES_OBSERVATION>>(jsonObject["Species"].ToString());
+            var biotopeHierarchy = JsonConvert.DeserializeObject<Dictionary<int, BiotopeLevel>>(jsonObject["BiotopeHierarchy"].ToString());
+            var similarBiotopes = JsonConvert.DeserializeObject<List<SimilarBiotope>>(jsonObject["SimilarBiotopes"].ToString());
+            var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
 
             var biotopeModel = new BiotopeModel(model.Content)
             {
                 Biotope = biotope,
 //                Species = species,
+                BiotopeHierarchy = biotopeHierarchy,
                 SimilarBiotopes = similarBiotopes,
                 OldCodes = oldCodes
             };

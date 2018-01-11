@@ -1,28 +1,27 @@
-﻿@using System.Text
-@inherits UmbracoViewPage<website.Models.BiotopeModel>
+﻿@using website.Models
+@inherits UmbracoViewPage<BiotopeModel>
 
 @{
     Layout = "~/Views/Master.cshtml";
 
-    string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=300&HEIGHT=400&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.ORIGINAL_CODE;
-
-    StringBuilder biotopeHierarchy = new StringBuilder("");
-
-    foreach (var biotope in Model.Biotope.WEB_BIOTOPE_HIERARCHY)
-    {
-        biotopeHierarchy
-            .Append(biotope.BIOTOPE_KEY)
-            .Append(" >> ");
-    }
-
+    string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=300&HEIGHT=400&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
 }
 
 <div class="grid-row">
     <div class="column-full">
         <a class="link-back" href="@Model.Content.Parent.Url">Back</a>
         @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
-        <h2>Full hierarchy @biotopeHierarchy</h2>
-        <h1>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM))</h1>
+        <h2>
+            <a href="@Model.Content.Parent.Url">Full hierarchy</a>
+            @for (int i = 1; i < Model.BiotopeHierarchy.Count+1; i++)
+            {
+                BiotopeLevel biotopeCode;
+                
+                Model.BiotopeHierarchy.TryGetValue(i, out biotopeCode);
+                <span> > <a href="@string.Format("{0}biotope/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey)">@biotopeCode.OriginalCode</a></span>
+            }
+        </h2>
+        <h1>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h1>
     </div>
 </div>
 
@@ -33,36 +32,36 @@
         <div class="column-two-thirds">
             <div class="grid-row">
                 <div class="column-full">
+                    <h2>Habitat (physical) description</h2>
                     <table>
-                        <caption class="heading-small">Habitat (physical) description</caption>
                         <tbody>
                         <tr>
                             <th>Salinity</th>
-                            <td>@Model.Biotope.SALINITY</td>
+                            <td>@Model.Biotope.Salinity</td>
                         </tr>
                         <tr>
                             <th>Wave exposure</th>
-                            <td>@Model.Biotope.EXPOSURE</td>
+                            <td>@Model.Biotope.Exposure</td>
                         </tr>
                         <tr>
                             <th>Tidal streams</th>
-                            <td>@Model.Biotope.TIDAL_STREAMS</td>
+                            <td>@Model.Biotope.TidalStreams</td>
                         </tr>
                         <tr>
                             <th>Substratum</th>
-                            <td>@Model.Biotope.SUBSTRATUM</td>
+                            <td>@Model.Biotope.Substratum</td>
                         </tr>
                         <tr>
                             <th>Zone</th>
-                            <td>@Model.Biotope.SUBZONE</td>
+                            <td>@Model.Biotope.Subzone</td>
                         </tr>
                         <tr>
                             <th>Depth Band</th>
-                            <td>@Model.Biotope.LANDSCAPE</td>
+                            <td>@Model.Biotope.Landscape</td>
                         </tr>
                         <tr>
                             <th>Other Features</th>
-                            <td>@Model.Biotope.SPECIAL_FEATURES</td>
+                            <td>@Model.Biotope.SpecialFeatures</td>
                         </tr>
                         </tbody>
                     </table>
@@ -74,11 +73,11 @@
                         <a href="http://jncc.defra.gov.uk/default.aspx?page=3249">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
                     </p>
 
-                    <h3>Previous classification codes</h3>
+                    <h2>Previous classification codes</h2>
                     <ul>
                         @foreach (var oldCode in Model.OldCodes)
                         {
-                            <li>@oldCode.OLD_CODE.Replace("(part)", "in part") - Version @oldCode.VERSION</li>
+                            <li>@oldCode.OriginalCode.Replace("(part)", "in part") - Version @oldCode.Version</li>
                         }
                     </ul>
                 </div>
@@ -87,7 +86,7 @@
         <div class="column-one-third">
             <div class="biomap">
                 <div class="loading">
-                    <img alt="Distribution of habitat @Model.Biotope.ORIGINAL_CODE @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FULL_TERM))"
+                    <img alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
                          src="@biomapUrl" />
                 </div>
                 <ul>
@@ -101,26 +100,26 @@
         </div>
     </div>
     <div class="column-full">
-        <h3>Description</h3>
-        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.DESCRIPTION))</p>
+        <h2>Description</h2>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
 
-        <h3>Situation</h3>
-        <p>@Model.Biotope.SITUATION</p>
+        <h2>Situation</h2>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Biotope.Situation))</p>
 
-        <h3>Temporal variation</h3>
-        <p>@Model.Biotope.TEMPORAL_VARIATION</p>
+        <h2>Temporal variation</h2>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Biotope.TemporalVariation))</p>
 
-        <h3>Characterising Species</h3>
+        <h2>Characterising Species</h2>
         <p></p>
 
         <div id="similar-biotopes">
-            <h3>Similar biotopes</h3>
+            <h2>Similar biotopes</h2>
             @foreach (var biotope in Model.SimilarBiotopes)
             {
                 <div class="similar-biotope">
                     <img src="http://jncc.defra.gov.uk/marine/biotopes/images/0003/HIMG0005_large.jpg"/>
-                    <div><b>@biotope.RELATED_BIOTOPE_KEY</b><br/>
-                        @Html.Raw(HttpUtility.HtmlDecode(biotope.COMMENT))</div>
+                    <div><h4><a href="@string.Format("{0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
+                    @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))</div>
                 </div>
             }
         </div>
