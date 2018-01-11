@@ -301,7 +301,7 @@ button:focus {
       float: left; } }
   #global-header.with-proposition .header-wrapper .header-proposition .content {
     margin: 0 15px; }
-  #global-header #logo {
+#global-header #logo {
     float: left;
     overflow: visible;
     color: white;
@@ -311,9 +311,10 @@ button:focus {
     text-decoration: none;
     text-rendering: optimizeLegibility;
     border-bottom: 1px solid transparent;
-    background: url(images/gov.uk_logotype_crown.png) no-repeat;
-    background-size: 36px 32px;
-    background-position: 0 0; }
+    background: url(/media/1006/jncclogo_white.png) no-repeat;
+    background-size: 103px 30px;
+    background-position: 0 0;
+}
     #global-header #logo img {
       margin: 2px 1px 0 0;
       vertical-align: bottom;

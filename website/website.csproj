@@ -370,6 +370,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Media\1005\loading_map.png" />
+    <Content Include="Media\1005\loading_map_thumb.png" />
+    <Content Include="Media\1006\jncclogo_white.png" />
+    <Content Include="Media\1006\jncclogo_white_thumb.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
