@@ -1,11 +1,75 @@
-﻿@using website.Models
+﻿@using System.Text
+@using website.Models
 @inherits UmbracoViewPage<BiotopeModel>
 
 @{
     Layout = "~/Views/Master.cshtml";
 
     string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=300&HEIGHT=400&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
+
+
+    // Previous codes
+    var previousCodesSB = new StringBuilder();
+    if (Model.OldCodes != null && Model.OldCodes.Count > 0)
+    {
+        previousCodesSB.Append("<h2>Previous classification codes</h2>");
+        previousCodesSB.Append("<ul>");
+        foreach (var oldCode in Model.OldCodes)
+        {
+            previousCodesSB.Append("<li>" + oldCode.OriginalCode.Replace("(part)", "in part") + " - Version " + oldCode.Version + "</li>");
+        }
+        previousCodesSB.Append("</ul>");
+    }
+    var previousCodesText = previousCodesSB.ToString();
+
+
+    // Characterising species
+    var characterisingSpeciesSB = new StringBuilder();
+    if (Model.Species != null && Model.Species.Count > 0)
+    {
+        characterisingSpeciesSB.Append("<table><thead><tr><th>Taxa</th><th>Frequency</th><th>Typical Abundance</th><th>% Contribution to similarity</th><th>Abundance (no.<sup>2</sup>)</th></tr></thead><tbody>");
+        foreach (var species in Model.Species)
+        {
+            characterisingSpeciesSB.Append("<tr>");
+            characterisingSpeciesSB.Append("<td><i>").Append(species.Name).Append("</i></td>");
+            characterisingSpeciesSB.Append("<td>").Append(species.Frequency).Append("</td>");
+            characterisingSpeciesSB.Append("<td>").Append(species.TypicalAbundance).Append("</td>");
+            characterisingSpeciesSB.Append("<td>").Append(species.SimilarityContribution).Append("</td>");
+            characterisingSpeciesSB.Append("<td>").Append(species.Abundance).Append("</td>");
+            characterisingSpeciesSB.Append("</tr>");
+        }
+        characterisingSpeciesSB.Append("</tbody></table><br />");
+    }
+    else
+    {
+        characterisingSpeciesSB.Append("<p>Characterising species data not applicable.</p>");
+    }
+    var characterisingSpeciesText = characterisingSpeciesSB.ToString();
+
+
+    // Similar biotopes
+    var similarBiotopesSB = new StringBuilder();
+    if (Model.SimilarBiotopes != null && Model.SimilarBiotopes.Count > 0)
+    {
+        foreach (var biotope in Model.SimilarBiotopes)
+        {
+            similarBiotopesSB.Append("<div class=\"similar-biotope\">");
+            similarBiotopesSB.Append("    <img src=\"http://jncc.defra.gov.uk/marine/biotopes/images/0003/HIMG0005_large.jpg\"/>");
+            similarBiotopesSB.Append("    <div>");
+            similarBiotopesSB.Append("        <h4><a href=" + string.Format("{0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey) + ">" + biotope.OriginalCode + "</a></h4>");
+            similarBiotopesSB.Append(biotope.Comment);
+            similarBiotopesSB.Append("    </div>");
+            similarBiotopesSB.Append("</div>");
+        }
+    }
+    else
+    {
+        similarBiotopesSB.Append("<p>Not applicable or unknown.</p>");
+    }
+    var similarBiotopesText = similarBiotopesSB.ToString();
 }
+
+
 
 <div class="grid-row">
     <div class="column-full">
@@ -24,7 +88,6 @@
         <h1>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h1>
     </div>
 </div>
-
 
 
 <div class="grid-row">
@@ -73,13 +136,7 @@
                         <a href="http://jncc.defra.gov.uk/default.aspx?page=3249">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
                     </p>
 
-                    <h2>Previous classification codes</h2>
-                    <ul>
-                        @foreach (var oldCode in Model.OldCodes)
-                        {
-                            <li>@oldCode.OriginalCode.Replace("(part)", "in part") - Version @oldCode.Version</li>
-                        }
-                    </ul>
+                    @Html.Raw(HttpUtility.HtmlDecode(previousCodesText))
                 </div>
             </div>
         </div>
@@ -98,30 +155,23 @@
                 <span class="legend">Distribution data based on records on the <a href="http://jncc.defra.gov.uk/page-1599">UK Marine Recorder database</a> and <a href="http://jncc.defra.gov.uk/default.aspx?page=5020">EUSeaMap</a>.</span>
             </div>
         </div>
-    </div>
-    <div class="column-full">
-        <h2>Description</h2>
-        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
+        <div class="column-full">
+            <h2>Description</h2>
+            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
 
-        <h2>Situation</h2>
-        <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Biotope.Situation))</p>
+            <h2>Situation</h2>
+            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Situation))</p>
 
-        <h2>Temporal variation</h2>
-        <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Biotope.TemporalVariation))</p>
+            <h2>Temporal variation</h2>
+            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TemporalVariation))</p>
+        
+            <h2>Characterising Species</h2>
+            @Html.Raw(HttpUtility.HtmlDecode(characterisingSpeciesText))
 
-        <h2>Characterising Species</h2>
-        <p></p>
-
-        <div id="similar-biotopes">
-            <h2>Similar biotopes</h2>
-            @foreach (var biotope in Model.SimilarBiotopes)
-            {
-                <div class="similar-biotope">
-                    <img src="http://jncc.defra.gov.uk/marine/biotopes/images/0003/HIMG0005_large.jpg"/>
-                    <div><h4><a href="@string.Format("{0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
-                    @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))</div>
-                </div>
-            }
+            <div id="similar-biotopes">
+                <h2>Similar biotopes</h2>
+                @Html.Raw(HttpUtility.HtmlDecode(similarBiotopesText))
+            </div>
         </div>
     </div>
 </div>

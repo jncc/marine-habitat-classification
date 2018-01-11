@@ -9,7 +9,7 @@ namespace website.Models
         public BiotopeModel(IPublishedContent content) : base(content) {}
 
         public Biotope Biotope { get; set; }
-//        public List<WEB_BIOT_SPECIES> Species { get; set; }
+        public List<Species> Species { get; set; }
         public Dictionary<int, BiotopeLevel> BiotopeHierarchy { get; set; }
         public List<SimilarBiotope> SimilarBiotopes { get; set; }
         public List<OldCode> OldCodes { get; set; }
@@ -47,6 +47,16 @@ namespace website.Models
         public string BiotopeKey { get; set; }
         public string OriginalCode { get; set; }
         public string Comment { get; set; }
+    }
+
+    public class Species
+    {
+        public string Name { get; set; }
+        public string Frequency { get; set; }
+        public string TypicalAbundance { get; set; }
+        public short? SimilarityContribution { get; set; }
+        public int? Abundance { get; set; }
+        public string Sort { get; set; }
     }
 
     public class OldCode

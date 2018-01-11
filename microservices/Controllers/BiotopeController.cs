@@ -30,15 +30,17 @@ namespace microservices.Controllers
                 db.Configuration.ProxyCreationEnabled = true;
 
                 var biotope = db.WEB_BIOTOPE.Where(b => b.BIOTOPE_KEY == key).ToList();
-                var similarBiotopes = db.WEB_BIOT_RELATION.Where(c => c.BIOTOPE_KEY == key).ToList();
-                var oldCodes = db.WEB_OLD_CODE.Where(c => c.BIOTOPE_KEY == key).ToList();
+                var similarBiotopes = db.WEB_BIOT_RELATION.Where(b => b.BIOTOPE_KEY == key).ToList();
+                var oldCodes = db.WEB_OLD_CODE.Where(b => b.BIOTOPE_KEY == key).ToList();
+                var speciesGrab = db.WEB_BIOT_SPECIES_GRAB.Where(b => b.BIOTOPE_KEY == key).ToList();
+                var speciesObservation = db.WEB_BIOT_SPECIES_OBSERVATION.Where(b => b.BIOTOPE_KEY == key).ToList();
 
                 var transferObject = new
                 {
                     Biotope = GetBiotopeDto(biotope[0]),
                     BiotopeHierarchy = GetBiotopeHierarchyDto(biotope[0].WEB_BIOTOPE_HIERARCHY),
-//                    Species = GetCharacterisingSpecies(key),
                     SimilarBiotopes = GetSimilarBiotopesDto(similarBiotopes),
+                    Species = GetCharacterisingSpecies(speciesGrab, speciesObservation),
                     OldCodes = GetOldCodes(oldCodes)
                 };
 
@@ -100,6 +102,40 @@ namespace microservices.Controllers
             }
 
             return similarBiotopesDto;
+        }
+
+        private List<object> GetCharacterisingSpecies(IEnumerable<WEB_BIOT_SPECIES_GRAB> speciesGrab,
+            IEnumerable<WEB_BIOT_SPECIES_OBSERVATION> speciesObservation)
+        {
+            var characterisingSpecies = new List<object>();
+
+            foreach (var species in speciesGrab)
+            {
+                characterisingSpecies.Add(new
+                {
+                    Name = species.ITEM_NAME,
+                    Frequency = species.FREQ,
+                    TypicalAbundance = species.ABUND,
+                    SimilarityContribution = species.contrib_similarity_STRENGTH,
+                    Abundance = species.SED_ABUND_SED_ABUND,
+                    Sort = species.SORT
+                });
+            }
+
+            foreach (var species in speciesObservation)
+            {
+                characterisingSpecies.Add(new
+                {
+                    Name = species.ITEM_NAME,
+                    Frequency = species.FREQ,
+                    TypicalAbundance = species.ABUND,
+                    SimilarityContribution = species.contrib_similarity_STRENGTH,
+                    Abundance = species.SED_ABUND_SED_ABUND,
+                    Sort = species.SORT
+                });
+            }
+
+            return characterisingSpecies;
         }
 
         private List<object> GetOldCodes(IEnumerable<WEB_OLD_CODE> oldCodes)
