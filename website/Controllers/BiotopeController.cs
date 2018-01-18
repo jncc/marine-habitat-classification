@@ -22,7 +22,7 @@ namespace website.Controllers
         // GET: Biotope/biotopeKey
         public ActionResult Biotope(RenderModel model, string key)
         {
-            var url = "http://localhost:54760/Biotope/" + key;
+            var url = "http://localhost:8088/Biotope/" + key;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 

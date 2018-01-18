@@ -28,9 +28,9 @@
                 foreach (var biotopePair in json)
                 {
                     <div class="biotope-pair">
-                        Parent: <a href="http://localhost:53291/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_PARENT_KEY"]">@biotopePair["BIOTOPE_PARENT_KEY"]</a>
+                        Parent: <a href="http://localhost:8088/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_PARENT_KEY"]">@biotopePair["BIOTOPE_PARENT_KEY"]</a>
                         <br />
-                        Child: <a href="http://localhost:53291/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_KEY"]">@biotopePair["BIOTOPE_KEY"]</a>
+                        Child: <a href="http://localhost:8088/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_KEY"]">@biotopePair["BIOTOPE_KEY"]</a>
                         <br /><br />
                     </div>
                 }
