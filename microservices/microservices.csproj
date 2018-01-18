@@ -276,6 +276,7 @@
     <Content Include="Models\BiotopeDB.edmx.diagram">
       <DependentUpon>BiotopeDB.edmx</DependentUpon>
     </Content>
+    <Content Include="microserviceConnectionStrings.config" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

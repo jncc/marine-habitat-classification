@@ -293,3 +293,5 @@ website/App_Data/cache/**
 website/App_Data/preview/**
 website/App_Data/TEMP/**
 
+/microservices/microserviceConnectionStrings.config
+/website/umbracoConnectionStrings.config

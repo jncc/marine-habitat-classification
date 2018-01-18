@@ -469,6 +469,7 @@
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\MarineHabitatClassification.cshtml" />
     <Content Include="Views\Partials\CategoryLinks.cshtml" />
+    <Content Include="umbracoConnectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
