@@ -1,9 +1,12 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using System.Configuration
 @using Newtonsoft.Json.Linq
 @{
     Layout = "Master.cshtml";
-    
-    var url = "http://localhost:8088/Biotope/";
+
+    var baseUrl = Model.Content.Parent.Url + "biotopes/biotope/";
+
+    var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
     request.Method = "GET";
 
@@ -13,7 +16,7 @@
     {
         content = sr.ReadToEnd();
     }
-    
+
     var json = JArray.Parse(content);
 }
 <a class="link-back" href="@Model.Content.Parent.Url">Back</a>
@@ -28,9 +31,9 @@
                 foreach (var biotopePair in json)
                 {
                     <div class="biotope-pair">
-                        Parent: <a href="http://localhost:8089/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_PARENT_KEY"]">@biotopePair["BIOTOPE_PARENT_KEY"]</a>
+                        Parent: <a href="@baseUrl@biotopePair["BIOTOPE_PARENT_KEY"]">@biotopePair["BIOTOPE_PARENT_KEY"]</a>
                         <br />
-                        Child: <a href="http://localhost:8089/marine-habitat-classification/biotopes/biotope/@biotopePair["BIOTOPE_KEY"]">@biotopePair["BIOTOPE_KEY"]</a>
+                        Child: <a href="@baseUrl@biotopePair["BIOTOPE_KEY"]">@biotopePair["BIOTOPE_KEY"]</a>
                         <br /><br />
                     </div>
                 }

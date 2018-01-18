@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -22,7 +23,7 @@ namespace website.Controllers
         // GET: Biotope/biotopeKey
         public ActionResult Biotope(RenderModel model, string key)
         {
-            var url = "http://localhost:8088/Biotope/" + key;
+            var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/" + key;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 
