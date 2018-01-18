@@ -12,16 +12,16 @@ Development
 
 ### Add local config files ###
 * Create a new file microservices\microserviceConnectionStrings.config and add an entity framework connection string to your biotope-db database, e.g.
-    <connectionStrings>
+    `<connectionStrings>
       <remove name="BiotopeDB"/>
       <add name="BiotopeDB" connectionString="metadata=res://*/Models.BiotopeDB.csdl|res://*/Models.BiotopeDB.ssdl|res://*/Models.BiotopeDB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\ProjectsV13;initial catalog=biotope-db;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-    </connectionStrings>
+    </connectionStrings>`
 
 * Create a new file website\umbracoConnectionStrings.config and add a connection string to your umbraco-cms database, e.g.
-    <connectionStrings>
+    `<connectionStrings>
       <remove name="umbracoDbDSN" />
       <add name="umbracoDbDSN" connectionString="Server=(localdb)\ProjectsV13;Database=umbraco-cms;Integrated Security=true" providerName="System.Data.SqlClient" />
-    </connectionStrings>
+    </connectionStrings>`
 
 
 ### Local run ###
