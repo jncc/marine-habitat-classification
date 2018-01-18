@@ -8,17 +8,17 @@ Development
 ### Database set up ###
 * Set up a local SQL server (we used SSDT for Visual Studio) and create a database named biotope-db
 * Run the table creation SQL scripts found under the biotope-db project against the biotope-db database
-* Create the umbraco-cms database by restoring it from the backup found under website\App_Data\MSSQL Backup
+* Create the umbraco-cms database by restoring it from the backup found under `website\App_Data\MSSQL Backup`
 
 ### Add local config files ###
-* Create a new file microservices\microserviceConnectionStrings.config and add an entity framework connection string to your biotope-db database, e.g.
+* Create a new file `microservices\microserviceConnectionStrings.config` and add an entity framework connection string to your biotope-db database, e.g.
 
 `<connectionStrings>
   <remove name="BiotopeDB"/>
   <add name="BiotopeDB" connectionString="metadata=res://*/Models.BiotopeDB.csdl|res://*/Models.BiotopeDB.ssdl|res://*/Models.BiotopeDB.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\ProjectsV13;initial catalog=biotope-db;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
 </connectionStrings>`
 
-* Create a new file website\umbracoConnectionStrings.config and add a connection string to your umbraco-cms database, e.g.
+* Create a new file `website\umbracoConnectionStrings.config`- and add a connection string to your umbraco-cms database, e.g.
 
 `<connectionStrings>
   <remove name="umbracoDbDSN" />
