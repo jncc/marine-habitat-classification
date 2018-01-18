@@ -1,13 +1,6 @@
-﻿@using ContentModels = Umbraco.Web.PublishedContentModels;
-@using Umbraco.Core
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoTemplatePage
 @{
     Layout = null;
-
-    // Get basic design settings from the homepage
-    ContentModels.Home home = Model.Content.Site() as ContentModels.Home;
-    var colorTheme = Umbraco.GetPreValueAsString(home.ColorTheme);
-    var font = Umbraco.GetPreValueAsString(home.Font);
 }
 
 <!DOCTYPE html>
@@ -17,7 +10,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>@Model.Content.Name - @home.Sitename</title>
+    <title>@Model.Content.Name</title>
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" media="screen" href="/css/govuk_template/govuk-template.css" /><!--<![endif]-->
     <!--[if IE 6]><link rel="stylesheet" media="screen" href="/assets/stylesheets/govuk-template-ie6.css"/><![endif]-->
