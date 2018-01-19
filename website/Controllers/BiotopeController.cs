@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Web.Mvc;
@@ -70,6 +71,7 @@ namespace website.Controllers
             var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
 
             PopulateFullTypicalAbundanceTerms(species);
+            species.Sort((species1, species2) => string.Compare(species1.Sort, species2.Sort, StringComparison.Ordinal));
 
             var biotopeModel = new BiotopeModel(modelContent)
             {
