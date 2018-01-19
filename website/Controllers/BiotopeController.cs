@@ -46,25 +46,7 @@ namespace website.Controllers
                     content = sr.ReadToEnd();
                 }
 
-                var jsonObject = JObject.Parse(content);
-
-                var biotope = JsonConvert.DeserializeObject<Biotope>(jsonObject["Biotope"].ToString());
-                var species = JsonConvert.DeserializeObject<List<Species>>(jsonObject["Species"].ToString());
-                var biotopeHierarchy =
-                    JsonConvert.DeserializeObject<Dictionary<int, BiotopeLevel>>(jsonObject["BiotopeHierarchy"]
-                        .ToString());
-                var similarBiotopes =
-                    JsonConvert.DeserializeObject<List<SimilarBiotope>>(jsonObject["SimilarBiotopes"].ToString());
-                var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
-
-                biotopeModel = new BiotopeModel(model.Content)
-                {
-                    Biotope = biotope,
-                    Species = species,
-                    BiotopeHierarchy = biotopeHierarchy,
-                    SimilarBiotopes = similarBiotopes,
-                    OldCodes = oldCodes
-                };
+                biotopeModel = GetBiotopeModel(content, model.Content);
             }
             catch (WebException we)
             {
@@ -73,5 +55,51 @@ namespace website.Controllers
 
             return CurrentTemplate(biotopeModel);
         }
+
+        private BiotopeModel GetBiotopeModel(string jsonContent, IPublishedContent modelContent)
+        {
+            var jsonObject = JObject.Parse(jsonContent);
+
+            var biotope = JsonConvert.DeserializeObject<Biotope>(jsonObject["Biotope"].ToString());
+            var species = JsonConvert.DeserializeObject<List<Species>>(jsonObject["Species"].ToString());
+            var biotopeHierarchy =
+                JsonConvert.DeserializeObject<Dictionary<int, BiotopeLevel>>(jsonObject["BiotopeHierarchy"]
+                    .ToString());
+            var similarBiotopes =
+                JsonConvert.DeserializeObject<List<SimilarBiotope>>(jsonObject["SimilarBiotopes"].ToString());
+            var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
+
+            PopulateFullTypicalAbundanceTerms(species);
+
+            var biotopeModel = new BiotopeModel(modelContent)
+            {
+                Biotope = biotope,
+                Species = species,
+                BiotopeHierarchy = biotopeHierarchy,
+                SimilarBiotopes = similarBiotopes,
+                OldCodes = oldCodes
+            };
+
+            return biotopeModel;
+        }
+
+        private void PopulateFullTypicalAbundanceTerms(List<Species> speciesList)
+        {
+            foreach (var species in speciesList)
+            {
+                AbundanceCodes.TryGetValue(species.TypicalAbundance, out var fullTerm);
+                species.TypicalAbundance = fullTerm;
+            }
+        }
+
+        public static readonly Dictionary<string, string> AbundanceCodes = new Dictionary<string, string>
+        {
+            {"S", "Super abundant"},
+            {"A", "Abundant"},
+            {"C", "Common"},
+            {"F", "Frequent"},
+            {"O", "Occasional"},
+            {"R", "Rare"},
+        };
     }
 }

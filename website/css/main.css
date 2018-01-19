@@ -199,12 +199,12 @@
   font-size: large; }
 
 .mhc-copyright {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 1em;
   text-align: center; }
 
 .mhc-footer-category {
-  margin-top: 1em; }
+  margin-top: 1em;
+  margin-bottom: 2em; }
   .mhc-footer-category img {
     width: 2em;
     height: 2em; }

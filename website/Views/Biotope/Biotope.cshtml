@@ -27,7 +27,7 @@
     var characterisingSpeciesSB = new StringBuilder();
     if (Model.Species != null && Model.Species.Count > 0)
     {
-        characterisingSpeciesSB.Append("<table><thead><tr><th>Taxa</th><th>Frequency</th><th>Typical Abundance</th><th>% Contribution to similarity</th><th>Abundance (no.<sup>2</sup>)</th></tr></thead><tbody>");
+        characterisingSpeciesSB.Append("<table><thead><tr><th>Taxa</th><th>Frequency</th><th>Typical Abundance <a href=\"http://jncc.defra.gov.uk/page-2684\">?</a></th><th>% Contribution to similarity</th><th>Abundance (no.<sup>2</sup>)</th></tr></thead><tbody>");
         foreach (var species in Model.Species)
         {
             characterisingSpeciesSB.Append("<tr>");
