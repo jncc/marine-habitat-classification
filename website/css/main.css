@@ -203,7 +203,12 @@
   margin-bottom: 30px;
   text-align: center; }
 
-.mhc-social-media img {
-  width: 2em;
-  height: 2em; }
+.mhc-footer-category {
+  margin-top: 1em; }
+  .mhc-footer-category img {
+    width: 2em;
+    height: 2em; }
+  .mhc-footer-category .contact-us {
+    margin-right: 1em;
+    float: left; }
 
