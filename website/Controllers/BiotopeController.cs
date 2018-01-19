@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Lucene.Net.Search;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Umbraco.Core.Models;
+using Umbraco.Web;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 using website.Models;
@@ -27,29 +27,49 @@ namespace website.Controllers
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 
-            var response = (HttpWebResponse)request.GetResponse();
-            string content;
-            using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream()))
-            {
-                content = sr.ReadToEnd();
-            }
-
-            var jsonObject = JObject.Parse(content);
-
-            var biotope = JsonConvert.DeserializeObject<Biotope>(jsonObject["Biotope"].ToString());
-            var species = JsonConvert.DeserializeObject<List<Species>>(jsonObject["Species"].ToString());
-            var biotopeHierarchy = JsonConvert.DeserializeObject<Dictionary<int, BiotopeLevel>>(jsonObject["BiotopeHierarchy"].ToString());
-            var similarBiotopes = JsonConvert.DeserializeObject<List<SimilarBiotope>>(jsonObject["SimilarBiotopes"].ToString());
-            var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
-
             var biotopeModel = new BiotopeModel(model.Content)
             {
-                Biotope = biotope,
-                Species = species,
-                BiotopeHierarchy = biotopeHierarchy,
-                SimilarBiotopes = similarBiotopes,
-                OldCodes = oldCodes
+                Biotope = null,
+                Species = null,
+                BiotopeHierarchy = null,
+                SimilarBiotopes = null,
+                OldCodes = null
             };
+
+            try
+            {
+                var response = (HttpWebResponse) request.GetResponse();
+
+                string content;
+                using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream()))
+                {
+                    content = sr.ReadToEnd();
+                }
+
+                var jsonObject = JObject.Parse(content);
+
+                var biotope = JsonConvert.DeserializeObject<Biotope>(jsonObject["Biotope"].ToString());
+                var species = JsonConvert.DeserializeObject<List<Species>>(jsonObject["Species"].ToString());
+                var biotopeHierarchy =
+                    JsonConvert.DeserializeObject<Dictionary<int, BiotopeLevel>>(jsonObject["BiotopeHierarchy"]
+                        .ToString());
+                var similarBiotopes =
+                    JsonConvert.DeserializeObject<List<SimilarBiotope>>(jsonObject["SimilarBiotopes"].ToString());
+                var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
+
+                biotopeModel = new BiotopeModel(model.Content)
+                {
+                    Biotope = biotope,
+                    Species = species,
+                    BiotopeHierarchy = biotopeHierarchy,
+                    SimilarBiotopes = similarBiotopes,
+                    OldCodes = oldCodes
+                };
+            }
+            catch (WebException we)
+            {
+                return View("Error", Umbraco.GetErrorPage());
+            }
 
             return CurrentTemplate(biotopeModel);
         }
