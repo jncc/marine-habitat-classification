@@ -7,6 +7,14 @@
 
     string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=300&HEIGHT=400&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
 
+    // Description
+    var descriptionText = string.IsNullOrWhiteSpace(Model.Biotope.Description) ? "No description available." : Model.Biotope.Description;
+
+    // Situation
+    var situationText = string.IsNullOrWhiteSpace(Model.Biotope.Situation) ? "No situation data available." : Model.Biotope.Situation;
+
+    // Temporal variation
+    var temporalVariationText = string.IsNullOrWhiteSpace(Model.Biotope.TemporalVariation) ? "No temporal variation data available." : Model.Biotope.TemporalVariation;
 
     // Previous codes
     var previousCodesSB = new StringBuilder();
@@ -42,7 +50,7 @@
     }
     else
     {
-        characterisingSpeciesSB.Append("<p>Characterising species data not applicable.</p>");
+        characterisingSpeciesSB.Append("Characterising species data not applicable.");
     }
     var characterisingSpeciesText = characterisingSpeciesSB.ToString();
 
@@ -91,11 +99,11 @@
 
 
 <div class="grid-row">
-    <div class="biotope">
-        <div class="column-two-thirds">
-            <div class="grid-row">
-                <div class="column-full">
-                    <h2>Habitat (physical) description</h2>
+    <div class="column-two-thirds">
+        <div class="grid-row">
+            <div class="column-full">
+                <h2>Habitat (physical) description</h2>
+                <p>
                     <table>
                         <tbody>
                         <tr>
@@ -128,50 +136,50 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-            <div class="grid-row">
-                <div class="column-full">
-                    <p>
-                        <a href="http://jncc.defra.gov.uk/default.aspx?page=3249">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
-                    </p>
-
-                    @Html.Raw(HttpUtility.HtmlDecode(previousCodesText))
-                </div>
+                </p>
             </div>
         </div>
-        <div class="column-one-third">
-            <div class="biomap">
-                <div class="loading">
-                    <img alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
-                         src="@biomapUrl" />
-                </div>
-                <ul>
-                    <li><span class="legend">Core records on which the biotope is based</span></li>
-                    <li><span class="legend">Non-core records with certain determination</span></li>
-                    <li><span class="legend">Non-core records with uncertain determination, tentatively assigned to this biotope</span></li>
-                    <li><span class="legend">Predicted habitat extent showing level 2 and 3 sublittoral and deep-sea habitats</span></li>
-                </ul>
-                <span class="legend">Distribution data based on records on the <a href="http://jncc.defra.gov.uk/page-1599">UK Marine Recorder database</a> and <a href="http://jncc.defra.gov.uk/default.aspx?page=5020">EUSeaMap</a>.</span>
+        <div class="grid-row">
+            <div class="column-full">
+                <p>
+                    <a href="http://jncc.defra.gov.uk/default.aspx?page=3249">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
+                </p>
+
+                <p>@Html.Raw(HttpUtility.HtmlDecode(previousCodesText))</p>
             </div>
         </div>
-        <div class="column-full">
-            <h2>Description</h2>
-            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
+    </div>
+    <div class="column-one-third">
+        <div class="biomap">
+            <div class="loading">
+                <img alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
+                        src="@biomapUrl" />
+            </div>
+            <ul>
+                <li><span class="legend">Core records on which the biotope is based</span></li>
+                <li><span class="legend">Non-core records with certain determination</span></li>
+                <li><span class="legend">Non-core records with uncertain determination, tentatively assigned to this biotope</span></li>
+                <li><span class="legend">Predicted habitat extent showing level 2 and 3 sublittoral and deep-sea habitats</span></li>
+            </ul>
+            <span class="legend">Distribution data based on records on the <a href="http://jncc.defra.gov.uk/page-1599">UK Marine Recorder database</a> and <a href="http://jncc.defra.gov.uk/default.aspx?page=5020">EUSeaMap</a>.</span>
+        </div>
+    </div>
+    <div class="column-full">
+        <h2>Description</h2>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(descriptionText))</p>
 
-            <h2>Situation</h2>
-            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Situation))</p>
+        <h2>Situation</h2>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(situationText))</p>
 
-            <h2>Temporal variation</h2>
-            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TemporalVariation))</p>
+        <h2>Temporal variation</h2>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(temporalVariationText))</p>
         
-            <h2>Characterising Species</h2>
-            @Html.Raw(HttpUtility.HtmlDecode(characterisingSpeciesText))
+        <h2>Characterising Species</h2>
+        <p>@Html.Raw(HttpUtility.HtmlDecode(characterisingSpeciesText))</p>
 
-            <div id="similar-biotopes">
-                <h2>Similar biotopes</h2>
-                @Html.Raw(HttpUtility.HtmlDecode(similarBiotopesText))
-            </div>
+        <div id="similar-biotopes">
+            <h2>Similar biotopes</h2>
+            <p>@Html.Raw(HttpUtility.HtmlDecode(similarBiotopesText))</p>
         </div>
     </div>
 </div>
