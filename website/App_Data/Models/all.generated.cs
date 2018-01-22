@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "ea1552bc1af78f20")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "84333ddef00f39c0")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
 
 
 // FILE: models.generated.cs
@@ -249,24 +249,6 @@ namespace Umbraco.Web.PublishedContentModels
 		public IPublishedContent HeroBackgroundImage
 		{
 			get { return this.GetPropertyValue<IPublishedContent>("HeroBackgroundImage"); }
-		}
-
-		///<summary>
-		/// Call To Action Caption: The caption on the button
-		///</summary>
-		[ImplementPropertyType("heroCTACaption")]
-		public string HeroCtacaption
-		{
-			get { return this.GetPropertyValue<string>("heroCTACaption"); }
-		}
-
-		///<summary>
-		/// Call To Action Link
-		///</summary>
-		[ImplementPropertyType("HeroCtalink")]
-		public IPublishedContent HeroCtalink
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("HeroCtalink"); }
 		}
 
 		///<summary>
@@ -943,193 +925,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
-	/// <summary>Product</summary>
-	[PublishedContentModel("product")]
-	public partial class Product : PublishedContentModel
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "product";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public Product(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Product, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Content
-		///</summary>
-		[ImplementPropertyType("bodyText")]
-		public Newtonsoft.Json.Linq.JToken BodyText
-		{
-			get { return this.GetPropertyValue<Newtonsoft.Json.Linq.JToken>("bodyText"); }
-		}
-
-		///<summary>
-		/// Category
-		///</summary>
-		[ImplementPropertyType("category")]
-		public IEnumerable<string> Category
-		{
-			get { return this.GetPropertyValue<IEnumerable<string>>("category"); }
-		}
-
-		///<summary>
-		/// Description
-		///</summary>
-		[ImplementPropertyType("description")]
-		public string Description
-		{
-			get { return this.GetPropertyValue<string>("description"); }
-		}
-
-		///<summary>
-		/// Features
-		///</summary>
-		[ImplementPropertyType("features")]
-		public object Features
-		{
-			get { return this.GetPropertyValue("features"); }
-		}
-
-		///<summary>
-		/// Photos: You can add multiple photos - the first one will be the default and used in overviews and lists
-		///</summary>
-		[ImplementPropertyType("photos")]
-		public IEnumerable<IPublishedContent> Photos
-		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("photos"); }
-		}
-
-		///<summary>
-		/// Price
-		///</summary>
-		[ImplementPropertyType("price")]
-		public decimal Price
-		{
-			get { return this.GetPropertyValue<decimal>("price"); }
-		}
-
-		///<summary>
-		/// Product Name
-		///</summary>
-		[ImplementPropertyType("productName")]
-		public string ProductName
-		{
-			get { return this.GetPropertyValue<string>("productName"); }
-		}
-
-		///<summary>
-		/// SKU
-		///</summary>
-		[ImplementPropertyType("sku")]
-		public string Sku
-		{
-			get { return this.GetPropertyValue<string>("sku"); }
-		}
-	}
-
-	/// <summary>Products</summary>
-	[PublishedContentModel("products")]
-	public partial class Products : PublishedContentModel, IContentBase, INavigationBase
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "products";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public Products(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Products, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Default Currency: This is just used to prefix pricing
-		///</summary>
-		[ImplementPropertyType("defaultCurrency")]
-		public string DefaultCurrency
-		{
-			get { return this.GetPropertyValue<string>("defaultCurrency"); }
-		}
-
-		///<summary>
-		/// Featured Products
-		///</summary>
-		[ImplementPropertyType("featuredProducts")]
-		public IEnumerable<IPublishedContent> FeaturedProducts
-		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("featuredProducts"); }
-		}
-
-		///<summary>
-		/// Content
-		///</summary>
-		[ImplementPropertyType("bodyText")]
-		public Newtonsoft.Json.Linq.JToken BodyText
-		{
-			get { return Umbraco.Web.PublishedContentModels.ContentBase.GetBodyText(this); }
-		}
-
-		///<summary>
-		/// Page Title: The title of the page, this is also the first text in a google search result. The ideal length is between 40 and 60 characters
-		///</summary>
-		[ImplementPropertyType("pageTitle")]
-		public string PageTitle
-		{
-			get { return Umbraco.Web.PublishedContentModels.ContentBase.GetPageTitle(this); }
-		}
-
-		///<summary>
-		/// Keywords: Keywords that describe the content of the page. This is consired optional since most modern search engines don't use this anymore
-		///</summary>
-		[ImplementPropertyType("keywords")]
-		public IEnumerable<string> Keywords
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetKeywords(this); }
-		}
-
-		///<summary>
-		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
-		///</summary>
-		[ImplementPropertyType("seoMetaDescription")]
-		public string SeoMetaDescription
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetSeoMetaDescription(this); }
-		}
-
-		///<summary>
-		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
-		///</summary>
-		[ImplementPropertyType("umbracoNavihide")]
-		public bool UmbracoNavihide
-		{
-			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetUmbracoNavihide(this); }
-		}
-	}
-
 	/// <summary>Marine Habitat Classification</summary>
 	[PublishedContentModel("marineHabitatClassification")]
 	public partial class MarineHabitatClassification : PublishedContentModel
@@ -1250,6 +1045,32 @@ namespace Umbraco.Web.PublishedContentModels
 		public string PageTitle
 		{
 			get { return this.GetPropertyValue<string>("pageTitle"); }
+		}
+	}
+
+	/// <summary>MHC Content Page</summary>
+	[PublishedContentModel("mHCContentPage")]
+	public partial class MHccontentPage : MarineHabitatClassification
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "mHCContentPage";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public MHccontentPage(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<MHccontentPage, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 	}
 

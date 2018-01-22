@@ -1,18 +1,19 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Umbraco.Web;
-@{ 
-    var site = Model.Content.Site();
-    var selection = site.Children.Where(x => x.IsVisible());
+@{
+    var mhcSite = Umbraco.TypedContent(1137);
+    var children = mhcSite.Children.Where(x => x.IsVisible());
 }
 <div class="header-proposition">
     <div class="content">
         <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
         <nav id="proposition-menu">
-            <a href="@site.Url" id="proposition-name">Marine Habitat Classification</a>
+            <a href="@mhcSite.Url" id="proposition-name">@mhcSite.Name</a>
             <ul id="proposition-links">
-                <li><a href="/marine-habitat-classification/" class="active">Our classification</a></li>
-                <li><a href="/marine-habitat-classification/biotopes">Classification hierarchy</a></li>
-                <li><a href="#">Data library</a></li>
+                @foreach (var item in children)
+                {
+                    <li><a class="@(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
+                }
             </ul>
         </nav>
     </div>

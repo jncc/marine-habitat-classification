@@ -35,7 +35,7 @@
     var characterisingSpeciesSB = new StringBuilder();
     if (Model.Species != null && Model.Species.Count > 0)
     {
-        characterisingSpeciesSB.Append("<table><thead><tr><th>Taxa</th><th>Frequency</th><th>Typical Abundance <a href=\"http://jncc.defra.gov.uk/page-2684\">?</a></th><th>% Contribution to similarity</th><th>Abundance (no.<sup>2</sup>)</th></tr></thead><tbody>");
+        characterisingSpeciesSB.Append("<table><thead><tr><th>Taxa</th><th>Frequency</th><th>Typical Abundance <a href=\"http://jncc.defra.gov.uk/page-2684\" target=\"_blank\">?</a></th><th>% Contribution to similarity</th><th>Abundance (no.<sup>2</sup>)</th></tr></thead><tbody>");
         foreach (var species in Model.Species)
         {
             characterisingSpeciesSB.Append("<tr>");
@@ -81,7 +81,6 @@
 
 <div class="grid-row">
     <div class="column-full">
-        <a class="link-back" href="@Model.Content.Parent.Url">Back</a>
         @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
         <h2>
             <a href="@Model.Content.Parent.Url">Full hierarchy</a>
@@ -142,7 +141,7 @@
         <div class="grid-row">
             <div class="column-full">
                 <p>
-                    <a href="http://jncc.defra.gov.uk/default.aspx?page=3249">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
+                    <a href="http://jncc.defra.gov.uk/default.aspx?page=3249" target="_blank">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
                 </p>
 
                 <p>@Html.Raw(HttpUtility.HtmlDecode(previousCodesText))</p>
@@ -161,7 +160,7 @@
                 <li><span class="legend">Non-core records with uncertain determination, tentatively assigned to this biotope</span></li>
                 <li><span class="legend">Predicted habitat extent showing level 2 and 3 sublittoral and deep-sea habitats</span></li>
             </ul>
-            <span class="legend">Distribution data based on records on the <a href="http://jncc.defra.gov.uk/page-1599">UK Marine Recorder database</a> and <a href="http://jncc.defra.gov.uk/default.aspx?page=5020">EUSeaMap</a>.</span>
+            <p><span class="legend">Distribution data based on records on the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder database</a> and <a href="http://jncc.defra.gov.uk/default.aspx?page=5020" target="_blank">EUSeaMap</a>.</span></p>
         </div>
     </div>
     <div class="column-full">
