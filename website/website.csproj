@@ -317,6 +317,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BiotopeModel.cs" />
+    <Compile Include="Models\BiotopeTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

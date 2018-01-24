@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using microservices.Models;
+using Newtonsoft.Json.Linq;
 
 namespace microservices.Controllers
 {
@@ -15,8 +16,33 @@ namespace microservices.Controllers
         {
             using (var db = new BiotopeDB())
             {
-                var data = db.WEB_BIOTOPE_HIERARCHY.Select(b => new { b.BIOTOPE_KEY, b.BIOTOPE_PARENT_KEY }).ToList();
-                return Json(data, JsonRequestBehavior.AllowGet);
+                var data = db.WEB_BIOTOPE_HIERARCHY.Select(b => new { b.BIOTOPE_KEY, b.BIOTOPE_PARENT_KEY, b.HIGHERLEVEL, b.LEVEL, b.WEB_BIOTOPE, b.WEB_BIOTOPE1 }).ToList();
+                var parentChildHierarchy = new List<object>();
+
+                foreach (var hierarchyLevel in data)
+                {
+                    if (hierarchyLevel.LEVEL == hierarchyLevel.HIGHERLEVEL + 1)
+                    {
+                        parentChildHierarchy.Add(new 
+                        {
+                            BiotopeKey = hierarchyLevel.BIOTOPE_KEY,
+                            BiotopeParentKey = hierarchyLevel.BIOTOPE_PARENT_KEY,
+                            FullTerm = hierarchyLevel.WEB_BIOTOPE.FULL_TERM,
+                            SortCode = hierarchyLevel.WEB_BIOTOPE.SORT_CODE
+                        });
+                    } else if (hierarchyLevel.LEVEL == 1 && hierarchyLevel.HIGHERLEVEL == 1)
+                    {
+                        parentChildHierarchy.Add(new
+                        {
+                            BiotopeKey = hierarchyLevel.BIOTOPE_KEY,
+                            BiotopeParentKey = hierarchyLevel.BIOTOPE_KEY,
+                            FullTerm = hierarchyLevel.WEB_BIOTOPE.FULL_TERM,
+                            SortCode = hierarchyLevel.WEB_BIOTOPE.SORT_CODE
+                        });
+                    }
+                }
+
+                return Json(parentChildHierarchy, JsonRequestBehavior.AllowGet);
             }
         }
 
