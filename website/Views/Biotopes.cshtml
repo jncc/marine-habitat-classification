@@ -1,107 +1,127 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoTemplatePage
 @using System.Configuration
 @using System.Text
 @using Newtonsoft.Json.Linq
-@using website.Models
 @{
     Layout = "Master.cshtml";
 
-    var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
-    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-    request.Method = "GET";
+    var json = GetJsonFromApi();
 
-    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-    string content;
-    using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-    {
-        content = sr.ReadToEnd();
-    }
+    var biotopeNodeMap = GetOrderedParentChildNodeMap(json);
+    var fullTermMap = GetFullTermMap(json);
 
-    var json = JArray.Parse(content);
-
-    var biotopeNodeMap = new Dictionary<string, BiotopeTreeNode>();
-    var fullTermMap = new Dictionary<string, string>();
-
-    foreach (var pair in json.OrderBy(p => p["SortCode"]))
-    {
-        var biotopeKey = pair["BiotopeKey"].ToString();
-        var biotopeParentKey = pair["BiotopeParentKey"].ToString();
-        var fullTerm = pair["FullTerm"].ToString();
-        var sortCode = pair["SortCode"].ToString();
-
-        if (!biotopeNodeMap.ContainsKey(biotopeParentKey))
-        {
-            biotopeNodeMap.Add(biotopeParentKey, new BiotopeTreeNode
-            {
-                Children = new List<string> {biotopeKey},
-                SortCode = sortCode
-            });
-        }
-        else
-        {
-            var node = new BiotopeTreeNode();
-            biotopeNodeMap.TryGetValue(biotopeParentKey, out node);
-            node.Children.Add(biotopeKey);
-        }
-
-        fullTermMap.Add(biotopeKey, fullTerm);
-    }
-
-
-    var treeSB = new StringBuilder();
-    foreach (var pair in biotopeNodeMap)
-    {
-        if (IsRootNode(pair.Value.Children, pair.Key))
-        {
-            List<string> childrenWithoutSelf;
-            childrenWithoutSelf = pair.Value.Children;
-            childrenWithoutSelf.Remove(pair.Key);
-
-            string fullTerm;
-            fullTermMap.TryGetValue(pair.Key, out fullTerm);
-            treeSB.Append("{text:'").Append(fullTerm).Append("',");
-            treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, pair.Key)).Append("'");
-            treeSB = GenerateTree(childrenWithoutSelf, treeSB, biotopeNodeMap, fullTermMap);
-            treeSB.Append("},");
-            //            if (parentChildMap.Last().Equals(pair))
-            //            {
-            //                treeSB.Append(",");
-            //            }
-        }
-    }
-    var treeString = treeSB.ToString();
+    var treeString = GenerateJavascriptTreeString(biotopeNodeMap, fullTermMap);
 }
 @functions
 {
-    private StringBuilder GenerateTree(List<string> children, StringBuilder treeStringBuilder, Dictionary<string, BiotopeTreeNode> biotopeNodeMap, Dictionary<string, string> fullTermMap)
+    private JArray GetJsonFromApi()
+    {
+        var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        request.Method = "GET";
+
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        string content;
+        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+        {
+            content = sr.ReadToEnd();
+        }
+
+        return JArray.Parse(content);
+    }
+
+    private Dictionary<string, List<string>> GetOrderedParentChildNodeMap(JArray json)
+    {
+        var biotopeNodeMap = new Dictionary<string, List<string>>();
+        foreach (var pair in json.OrderBy(p => p["SortCode"]))
+        {
+            var biotopeKey = pair["BiotopeKey"].ToString();
+            var biotopeParentKey = pair["BiotopeParentKey"].ToString();
+
+            if (!biotopeNodeMap.ContainsKey(biotopeParentKey))
+            {
+                biotopeNodeMap.Add(biotopeParentKey, new List<string> {biotopeKey});
+            }
+            else
+            {
+                var node = new List<string>();
+                biotopeNodeMap.TryGetValue(biotopeParentKey, out node);
+                node.Add(biotopeKey);
+            }
+        }
+
+        return biotopeNodeMap;
+    }
+
+    private Dictionary<string, string> GetFullTermMap(JArray json)
+    {
+        var fullTermMap = new Dictionary<string, string>();
+        foreach (var pair in json)
+        {
+            fullTermMap.Add(pair["BiotopeKey"].ToString(), pair["FullTerm"].ToString());
+        }
+
+        return fullTermMap;
+    }
+
+    private string GenerateJavascriptTreeString(Dictionary<string, List<string>> biotopeNodeMap, Dictionary<string, string> fullTermMap)
+    {
+        var treeSB = new StringBuilder();
+        treeSB.Append("[");
+        foreach (var pair in biotopeNodeMap)
+        {
+            if (IsRootNode(pair.Value, pair.Key))
+            {
+                List<string> childrenWithoutSelf;
+                childrenWithoutSelf = pair.Value;
+                childrenWithoutSelf.Remove(pair.Key);
+
+                string fullTerm;
+                fullTermMap.TryGetValue(pair.Key, out fullTerm);
+                treeSB.Append("{text:'").Append(fullTerm).Append("',");
+                treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, pair.Key)).Append("'");
+                treeSB = GenerateTree(childrenWithoutSelf, treeSB, biotopeNodeMap, fullTermMap);
+                treeSB.Append("}");
+                if (!biotopeNodeMap.Last().Key.Equals(pair.Key))
+                {
+                    treeSB.Append(",");
+                }
+            }
+        }
+        treeSB.Append("]");
+
+        return treeSB.ToString();
+    }
+
+    private StringBuilder GenerateTree(List<string> children, StringBuilder treeSB, Dictionary<string, List<string>> biotopeNodeMap, Dictionary<string, string> fullTermMap)
     {
         if (children == null || children.Count < 1)
-            return treeStringBuilder;
+            return treeSB;
 
-        treeStringBuilder.Append(", nodes:[");
+        treeSB.Append(", nodes:[");
 
         foreach (var child in children)
         {
             string fullTerm;
             fullTermMap.TryGetValue(child, out fullTerm);
-            treeStringBuilder.Append("{text:'").Append(fullTerm).Append("',");
-            treeStringBuilder.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, child)).Append("'");
+            treeSB.Append("{text:'").Append(fullTerm).Append("',");
+            treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, child)).Append("'");
 
-            BiotopeTreeNode grandChild;
-            biotopeNodeMap.TryGetValue(child, out grandChild);
-            if (grandChild != null)
+            List<string> grandChildren;
+            biotopeNodeMap.TryGetValue(child, out grandChildren);
+            if (grandChildren != null)
             {
-                treeStringBuilder = GenerateTree(grandChild.Children, treeStringBuilder, biotopeNodeMap, fullTermMap);
+                treeSB = GenerateTree(grandChildren, treeSB, biotopeNodeMap, fullTermMap);
             }
-            treeStringBuilder.Append("},");
-    //            if (!children.Last().Equals(child))
-            //            {
-            //                treeStringBuilder.Append(",");
-            //            }
+            treeSB.Append("}");
+            if (!children.Last().Equals(child))
+            {
+                treeSB.Append(",");
+            }
         }
-        treeStringBuilder.Append("]");
+        treeSB.Append("]");
 
-        return treeStringBuilder;
+        return treeSB;
     }
 
     private bool IsRootNode(List<string> children, string key)
@@ -114,9 +134,7 @@
 
 <script type="text/javascript">
     $(function() {
-        var myTree = [
-            @Html.Raw(HttpUtility.HtmlDecode(treeString))
-        ];
+        var myTree = @Html.Raw(HttpUtility.HtmlDecode(treeString));
         $('#tree').treeview({
             data: myTree,
             levels: 6,
