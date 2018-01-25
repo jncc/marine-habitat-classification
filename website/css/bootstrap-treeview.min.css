@@ -9,10 +9,25 @@
 
 .treeview span.icon {
     width: 12px;
-    margin-right: 5px
+    margin-right: 0.4em;
+    margin-left: 0.4em;
 }
 
 .treeview .node-disabled {
     color: silver;
     cursor: not-allowed
+}
+
+.treeview a:link {
+    text-decoration: none;
+}
+
+.treeview  a:hover {
+    text-decoration: underline;
+}
+
+.treeview ol, ul, nav ol, nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }

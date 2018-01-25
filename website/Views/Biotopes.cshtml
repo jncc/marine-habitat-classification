@@ -7,13 +7,16 @@
 
     var json = GetJsonFromApi();
 
-    var biotopeNodeMap = GetOrderedParentChildNodeMap(json);
-    var fullTermMap = GetFullTermMap(json);
+    biotopeNodeMap = GetOrderedParentChildNodeMap(json);
+    fullTermMap = GetFullTermMap(json);
 
-    var treeString = GenerateJavascriptTreeString(biotopeNodeMap, fullTermMap);
+    var treeString = GenerateJavascriptTreeString();
 }
 @functions
 {
+    private Dictionary<string, List<string>> biotopeNodeMap;
+    private Dictionary<string, string> fullTermMap;
+
     private JArray GetJsonFromApi()
     {
         var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
@@ -32,7 +35,7 @@
 
     private Dictionary<string, List<string>> GetOrderedParentChildNodeMap(JArray json)
     {
-        var biotopeNodeMap = new Dictionary<string, List<string>>();
+        biotopeNodeMap = new Dictionary<string, List<string>>();
         foreach (var pair in json.OrderBy(p => p["SortCode"]))
         {
             var biotopeKey = pair["BiotopeKey"].ToString();
@@ -55,7 +58,7 @@
 
     private Dictionary<string, string> GetFullTermMap(JArray json)
     {
-        var fullTermMap = new Dictionary<string, string>();
+        fullTermMap = new Dictionary<string, string>();
         foreach (var pair in json)
         {
             fullTermMap.Add(pair["BiotopeKey"].ToString(), pair["FullTerm"].ToString());
@@ -64,7 +67,7 @@
         return fullTermMap;
     }
 
-    private string GenerateJavascriptTreeString(Dictionary<string, List<string>> biotopeNodeMap, Dictionary<string, string> fullTermMap)
+    private string GenerateJavascriptTreeString()
     {
         var treeSB = new StringBuilder();
         treeSB.Append("[");
@@ -80,7 +83,7 @@
                 fullTermMap.TryGetValue(pair.Key, out fullTerm);
                 treeSB.Append("{text:'").Append(fullTerm).Append("',");
                 treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, pair.Key)).Append("'");
-                treeSB = GenerateTree(childrenWithoutSelf, treeSB, biotopeNodeMap, fullTermMap);
+                treeSB = GenerateTree(childrenWithoutSelf, treeSB, 1);
                 treeSB.Append("}");
                 if (!biotopeNodeMap.Last().Key.Equals(pair.Key))
                 {
@@ -93,7 +96,7 @@
         return treeSB.ToString();
     }
 
-    private StringBuilder GenerateTree(List<string> children, StringBuilder treeSB, Dictionary<string, List<string>> biotopeNodeMap, Dictionary<string, string> fullTermMap)
+    private StringBuilder GenerateTree(List<string> children, StringBuilder treeSB, int level)
     {
         if (children == null || children.Count < 1)
             return treeSB;
@@ -111,7 +114,7 @@
             biotopeNodeMap.TryGetValue(child, out grandChildren);
             if (grandChildren != null)
             {
-                treeSB = GenerateTree(grandChildren, treeSB, biotopeNodeMap, fullTermMap);
+                treeSB = GenerateTree(grandChildren, treeSB, level+1);
             }
             treeSB.Append("}");
             if (!children.Last().Equals(child))
@@ -131,16 +134,20 @@
 }
 
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+<head><link rel="stylesheet" media="all" href="/css/bootstrap-treeview.min.css" /></head>
 <script src="/Scripts/jquery-1.10.2.min.js"></script>
 <script src="/Scripts/bootstrap.min.js"></script>
-<script src="/Scripts/bootstrap-treeview.min.js"></script>
+<script src="/Scripts/bootstrap-treeview.js"></script>
 <script type="text/javascript">
     $(function() {
         var myTree = @Html.Raw(HttpUtility.HtmlDecode(treeString));
         $('#tree').treeview({
             data: myTree,
             levels: 6,
-            enableLinks: true
+            enableLinks: true,
+            collapseIcon: "glyphicon glyphicon-chevron-down",
+            expandIcon: "glyphicon glyphicon-chevron-right",
+            nodeIcon: "vocabful-colour-edge"
         });
     });
 </script>

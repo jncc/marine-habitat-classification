@@ -209,14 +209,6 @@ table caption {
   color: gold;
   font-size: large; }
 
-.treeview a {
-  text-decoration: none; }
-
-.treeview ol, .treeview ul, .treeview nav ol, .treeview nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0; }
-
 .mhc-copyright {
   margin-bottom: 1em;
   text-align: center; }
