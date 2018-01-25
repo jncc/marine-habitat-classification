@@ -45,6 +45,17 @@
     }
 }
 
+.treeview {
+    a {
+        text-decoration: none;
+    }
+    ol, ul, nav ol, nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+}
+
 .mhc-copyright {
     margin-bottom: 1em;
     text-align: center;

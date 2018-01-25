@@ -1,42 +1,154 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoTemplatePage
 @using System.Configuration
+@using System.Text
 @using Newtonsoft.Json.Linq
 @{
     Layout = "Master.cshtml";
 
-    var baseUrl = Model.Content.Parent.Url + "biotopes/biotope/";
+    var json = GetJsonFromApi();
 
-    var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
-    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-    request.Method = "GET";
+    var biotopeNodeMap = GetOrderedParentChildNodeMap(json);
+    var fullTermMap = GetFullTermMap(json);
 
-    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-    string content = "";
-    using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream()))
+    var treeString = GenerateJavascriptTreeString(biotopeNodeMap, fullTermMap);
+}
+@functions
+{
+    private JArray GetJsonFromApi()
     {
-        content = sr.ReadToEnd();
+        var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        request.Method = "GET";
+
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        string content;
+        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+        {
+            content = sr.ReadToEnd();
+        }
+
+        return JArray.Parse(content);
     }
 
-    var json = JArray.Parse(content);
+    private Dictionary<string, List<string>> GetOrderedParentChildNodeMap(JArray json)
+    {
+        var biotopeNodeMap = new Dictionary<string, List<string>>();
+        foreach (var pair in json.OrderBy(p => p["SortCode"]))
+        {
+            var biotopeKey = pair["BiotopeKey"].ToString();
+            var biotopeParentKey = pair["BiotopeParentKey"].ToString();
+
+            if (!biotopeNodeMap.ContainsKey(biotopeParentKey))
+            {
+                biotopeNodeMap.Add(biotopeParentKey, new List<string> {biotopeKey});
+            }
+            else
+            {
+                var node = new List<string>();
+                biotopeNodeMap.TryGetValue(biotopeParentKey, out node);
+                node.Add(biotopeKey);
+            }
+        }
+
+        return biotopeNodeMap;
+    }
+
+    private Dictionary<string, string> GetFullTermMap(JArray json)
+    {
+        var fullTermMap = new Dictionary<string, string>();
+        foreach (var pair in json)
+        {
+            fullTermMap.Add(pair["BiotopeKey"].ToString(), pair["FullTerm"].ToString());
+        }
+
+        return fullTermMap;
+    }
+
+    private string GenerateJavascriptTreeString(Dictionary<string, List<string>> biotopeNodeMap, Dictionary<string, string> fullTermMap)
+    {
+        var treeSB = new StringBuilder();
+        treeSB.Append("[");
+        foreach (var pair in biotopeNodeMap)
+        {
+            if (IsRootNode(pair.Value, pair.Key))
+            {
+                List<string> childrenWithoutSelf;
+                childrenWithoutSelf = pair.Value;
+                childrenWithoutSelf.Remove(pair.Key);
+
+                string fullTerm;
+                fullTermMap.TryGetValue(pair.Key, out fullTerm);
+                treeSB.Append("{text:'").Append(fullTerm).Append("',");
+                treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, pair.Key)).Append("'");
+                treeSB = GenerateTree(childrenWithoutSelf, treeSB, biotopeNodeMap, fullTermMap);
+                treeSB.Append("}");
+                if (!biotopeNodeMap.Last().Key.Equals(pair.Key))
+                {
+                    treeSB.Append(",");
+                }
+            }
+        }
+        treeSB.Append("]");
+
+        return treeSB.ToString();
+    }
+
+    private StringBuilder GenerateTree(List<string> children, StringBuilder treeSB, Dictionary<string, List<string>> biotopeNodeMap, Dictionary<string, string> fullTermMap)
+    {
+        if (children == null || children.Count < 1)
+            return treeSB;
+
+        treeSB.Append(", nodes:[");
+
+        foreach (var child in children)
+        {
+            string fullTerm;
+            fullTermMap.TryGetValue(child, out fullTerm);
+            treeSB.Append("{text:'").Append(fullTerm).Append("',");
+            treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, child)).Append("'");
+
+            List<string> grandChildren;
+            biotopeNodeMap.TryGetValue(child, out grandChildren);
+            if (grandChildren != null)
+            {
+                treeSB = GenerateTree(grandChildren, treeSB, biotopeNodeMap, fullTermMap);
+            }
+            treeSB.Append("}");
+            if (!children.Last().Equals(child))
+            {
+                treeSB.Append(",");
+            }
+        }
+        treeSB.Append("]");
+
+        return treeSB;
+    }
+
+    private bool IsRootNode(List<string> children, string key)
+    {
+        return children.Contains(key);
+    }
 }
 
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+<script src="/Scripts/jquery-1.10.2.min.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/bootstrap-treeview.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var myTree = @Html.Raw(HttpUtility.HtmlDecode(treeString));
+        $('#tree').treeview({
+            data: myTree,
+            levels: 6,
+            enableLinks: true
+        });
+    });
+</script>
 
 <section class="section">
     <div class="container">
         <div class="biotope-grid">
-            @if (json != null)
-            {
-                foreach (var biotopePair in json)
-                {
-                    <div class="biotope-pair">
-                        Parent: <a href="@baseUrl@biotopePair["BIOTOPE_PARENT_KEY"]">@biotopePair["BIOTOPE_PARENT_KEY"]</a>
-                        <br />
-                        Child: <a href="@baseUrl@biotopePair["BIOTOPE_KEY"]">@biotopePair["BIOTOPE_KEY"]</a>
-                        <br /><br />
-                    </div>
-                }
-            }
+            <div id="tree"></div>
         </div>
     </div>
 </section>
