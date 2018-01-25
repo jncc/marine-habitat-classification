@@ -131,7 +131,10 @@
 }
 
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
-
+<head><link rel="stylesheet" media="all" href="/css/bootstrap-glyphicons.css" /></head>
+<script src="/Scripts/jquery-1.10.2.min.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/bootstrap-treeview.min.js"></script>
 <script type="text/javascript">
     $(function() {
         var myTree = @Html.Raw(HttpUtility.HtmlDecode(treeString));
