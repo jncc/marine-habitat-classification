@@ -1,21 +1,6 @@
-/* =========================================================
- * bootstrap-treeview.js v1.2.0
- * =========================================================
- * Copyright 2013 Jonathan Miles
- * Project URL : http://www.jondmiles.com/bootstrap-treeview
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ========================================================= */
+/*
+   Adapted from bootstrap-treeview.js v1.2.0
+*/
 
 ; (function ($, window, document, undefined) {
 
@@ -123,6 +108,7 @@
             collapseNode: $.proxy(this.collapseNode, this),
             expandAll: $.proxy(this.expandAll, this),
             expandNode: $.proxy(this.expandNode, this),
+            expandToLevel: $.proxy(this.expandToLevel, this),
             toggleNodeExpanded: $.proxy(this.toggleNodeExpanded, this),
             revealNode: $.proxy(this.revealNode, this),
 
@@ -545,8 +531,8 @@
                     .addClass(classList.join(' '))
                 );
 
-            // red, blue, green, orange, pink, purple
-            var levelColours = [ "#ff0000", "#3366ff", "#33cc33", "#ff6600", "#cc33ff", "#6600ff" ];
+            // blue, red, green, purple, orange, pink
+            var levelColours = ["#3366ff", "#ff0000", "#33cc33", "#6600ff", "#ff6600", "#cc33ff" ];
 
             // Add node icon
             if (_this.options.showIcon) {
@@ -874,6 +860,27 @@
 
         if (options && options.levels) {
             this.expandLevels(this.tree, options.levels, options);
+        }
+        else {
+            var identifiers = this.findNodes('false', 'g', 'state.expanded');
+            this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
+                this.setExpandedState(node, true, options);
+            }, this));
+        }
+
+        this.render();
+    };
+
+    /**
+        Expand all tree nodes to given level
+        @param {optional int} level
+        @param {optional Object} options
+    */
+    Tree.prototype.expandToLevel = function (level, options) {
+        options = $.extend({}, _default.options, options);
+
+        if (options && level) {
+            this.expandLevels(this.tree, level-1, options);
         }
         else {
             var identifiers = this.findNodes('false', 'g', 'state.expanded');
