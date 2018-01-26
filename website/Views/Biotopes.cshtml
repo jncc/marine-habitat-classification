@@ -153,7 +153,7 @@
         $('#tree').treeview('collapseAll', { silent: true });
     });
 
-    var expanded = true;
+    var expanded = false;
 
     function expandCollapseAll() {
         if (expanded) {
@@ -167,13 +167,40 @@
         }
     }
 
+    function expandLevel(level) {
+        $('#tree').treeview('expandToLevel', level, { silent: true });
+    }
+
 </script>
 
 <section class="section">
     <div class="container">
-        <div class="biotope-grid">
-            <input id="expandCollapseButton" class="button" type="submit" value="Expand All" onclick="expandCollapseAll()"/>
-            <div id="tree"></div>
+        <div class="grid-row">
+            <div class="column-full">
+                <form>
+                    <div class="form-group">
+                        <input class="form-control" type="text" />
+                        <input class="button" type="submit" value="Search" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="grid-row">
+            <div class="column-full">
+                <p>
+                    @*                <input id="expandCollapseButton" class="button" type="submit" value="Expand All" onclick="expandCollapseAll()" />*@
+                    <input class="button" style="background-color: #ff0000" type="submit" value="Level 1" onclick="expandLevel(1)"/>
+                    <input class="button" style="background-color: #3366ff" type="submit" value="Level 2" onclick="expandLevel(2)"/>
+                    <input class="button" style="background-color: #33cc33" type="submit" value="Level 3" onclick="expandLevel(3)"/>
+                    <input class="button" style="background-color: #ff6600" type="submit" value="Level 4" onclick="expandLevel(4)"/>
+                    <input class="button" style="background-color: #cc33ff" type="submit" value="Level 5" onclick="expandLevel(5)"/>
+                </p>
+            </div>
+        </div>
+        <div class="grid-row">
+            <div class="column-full">
+                <div id="tree"></div>
+            </div>
         </div>
     </div>
 </section>
