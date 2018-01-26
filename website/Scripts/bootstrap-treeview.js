@@ -531,8 +531,8 @@
                     .addClass(classList.join(' '))
                 );
 
-            // red, blue, green, orange, pink, purple
-            var levelColours = [ "#ff0000", "#3366ff", "#33cc33", "#ff6600", "#cc33ff", "#6600ff" ];
+            // blue, red, green, purple, orange, pink
+            var levelColours = ["#3366ff", "#ff0000", "#33cc33", "#6600ff", "#ff6600", "#cc33ff" ];
 
             // Add node icon
             if (_this.options.showIcon) {

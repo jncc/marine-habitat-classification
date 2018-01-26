@@ -140,7 +140,7 @@
 <script src="/Scripts/bootstrap-treeview.js"></script>
 <script type="text/javascript">
     $(function() {
-        var myTree = @Html.Raw(HttpUtility.HtmlDecode(treeString));
+        var myTree = [{text: "Marine", nodes: @Html.Raw(HttpUtility.HtmlDecode(treeString))}];
         $('#tree').treeview({
             data: myTree,
             levels: 6,
@@ -150,7 +150,7 @@
             nodeIcon: "vocabful-colour-edge",
             highlightSelected: false
         });
-        $('#tree').treeview('collapseAll', { silent: true });
+        $('#tree').treeview('expandToLevel', 2, { silent: true });
     });
 
     var expanded = false;
@@ -189,11 +189,12 @@
             <div class="column-full">
                 <p>
                     @*                <input id="expandCollapseButton" class="button" type="submit" value="Expand All" onclick="expandCollapseAll()" />*@
-                    <input class="button" style="background-color: #ff0000" type="submit" value="Level 1" onclick="expandLevel(1)"/>
-                    <input class="button" style="background-color: #3366ff" type="submit" value="Level 2" onclick="expandLevel(2)"/>
+                    <input class="button" style="background-color: #3366ff" type="submit" value="Level 1" onclick="expandLevel(1)" />
+                    <input class="button" style="background-color: #ff0000" type="submit" value="Level 2" onclick="expandLevel(2)"/>
                     <input class="button" style="background-color: #33cc33" type="submit" value="Level 3" onclick="expandLevel(3)"/>
-                    <input class="button" style="background-color: #ff6600" type="submit" value="Level 4" onclick="expandLevel(4)"/>
-                    <input class="button" style="background-color: #cc33ff" type="submit" value="Level 5" onclick="expandLevel(5)"/>
+                    <input class="button" style="background-color: #6600ff" type="submit" value="Level 4" onclick="expandLevel(4)"/>
+                    <input class="button" style="background-color: #ff6600" type="submit" value="Level 5" onclick="expandLevel(5)"/>
+                    <input class="button" style="background-color: #cc33ff" type="submit" value="Level 6" onclick="expandLevel(6)"/>
                 </p>
             </div>
         </div>
