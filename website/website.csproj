@@ -351,6 +351,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\bootstrap-treeview.min.css" />
     <Content Include="css\bootstrap-glyphicons.css" />
+    <Content Include="css\govuk_elements\_styles.css" />
     <Content Include="css\govuk_template\fonts-ie8.css" />
     <Content Include="css\govuk_template\fonts.css" />
     <Content Include="css\govuk_template\govuk-template-ie6.css" />

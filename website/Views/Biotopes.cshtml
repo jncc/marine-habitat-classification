@@ -147,14 +147,32 @@
             enableLinks: true,
             collapseIcon: "glyphicon glyphicon-chevron-down",
             expandIcon: "glyphicon glyphicon-chevron-right",
-            nodeIcon: "vocabful-colour-edge"
+            nodeIcon: "vocabful-colour-edge",
+            highlightSelected: false
         });
+        $('#tree').treeview('collapseAll', { silent: true });
     });
+
+    var expanded = true;
+
+    function expandCollapseAll() {
+        if (expanded) {
+            $('#tree').treeview('collapseAll', { silent: true });
+            document.getElementById("expandCollapseButton").value = "Expand All";
+            expanded = false;
+        } else {
+            $('#tree').treeview('expandAll', { silent: true });
+            document.getElementById("expandCollapseButton").value = "Collapse All";
+            expanded = true;
+        }
+    }
+
 </script>
 
 <section class="section">
     <div class="container">
         <div class="biotope-grid">
+            <input id="expandCollapseButton" class="button" type="submit" value="Expand All" onclick="expandCollapseAll()"/>
             <div id="tree"></div>
         </div>
     </div>
