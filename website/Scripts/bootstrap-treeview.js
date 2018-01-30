@@ -34,6 +34,7 @@
         selectedBackColor: '#428bca',
         searchResultColor: '#D9534F',
         searchResultBackColor: undefined, //'#FFFFFF',
+        levelColors: ["#3366ff", "#ff0000", "#33cc33", "#6600ff", "#ff6600", "#cc33ff"],  // blue, red, green, purple, orange, pink
 
         enableLinks: false,
         highlightSelected: true,
@@ -531,9 +532,6 @@
                     .addClass(classList.join(' '))
                 );
 
-            // blue, red, green, purple, orange, pink
-            var levelColours = ["#3366ff", "#ff0000", "#33cc33", "#6600ff", "#ff6600", "#cc33ff" ];
-
             // Add node icon
             if (_this.options.showIcon) {
 
@@ -549,7 +547,7 @@
                 treeItem
                     .append($(_this.template.icon)
                         .addClass(classList.join(' '))
-                        .attr('style', 'background-color: '+levelColours[level-1])
+                        .attr('style', 'background-color: ' + _this.options.levelColors[level-1])
                     );
             }
 

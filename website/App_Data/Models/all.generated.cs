@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "4f96b7c594be0fca")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "4ba17e762c7d1305")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -983,6 +983,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Biotopes, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Level Colours
+		///</summary>
+		[ImplementPropertyType("levelColour")]
+		public string LevelColour
+		{
+			get { return this.GetPropertyValue<string>("levelColour"); }
 		}
 
 		///<summary>
