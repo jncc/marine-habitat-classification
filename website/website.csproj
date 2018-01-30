@@ -361,6 +361,7 @@
     <Content Include="css\govuk_template\govuk-template.css" />
     <Content Include="css\govuk_prototype_kit\_layout.scss" />
     <Content Include="css\govuk_prototype_kit\_elements-typography.scss" />
+    <Content Include="css\svg\legend_rectangle.svg" />
     <Content Include="css\_biotope.scss" />
     <Content Include="css\govuk_elements\_table.scss" />
     <None Include="css\main.scss" />

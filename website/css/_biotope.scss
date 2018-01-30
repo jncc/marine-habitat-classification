@@ -13,7 +13,8 @@
 
 .biomap {
     .loading {
-        height: 400px;
+        width: 450px;
+        height: 600px;
         background: transparent url('/media/1005/loading_map.png') no-repeat center;
     }
 
@@ -23,25 +24,28 @@
     }
 
     ul {
-        padding-left: 1em;
+        padding-left: 1.2em;
     }
 
     ul li:nth-child(1) {
         color: red;
+        font-size: large;
     }
 
     ul li:nth-child(2) {
         color: cyan;
+        font-size: large;
     }
 
     ul li:nth-child(3) {
         color: black;
+        font-size: large;
     }
 
-    ul li:last-child {
-        list-style-type: square;
-        color: gold;
-        font-size: large;
+    ul li:nth-child(4) {
+        list-style-image: url("svg/legend_rectangle.svg");
+        font-size: x-large;
+        line-height: 1;
     }
 }
 

@@ -5,7 +5,7 @@
 @{
     Layout = "~/Views/Master.cshtml";
 
-    string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=300&HEIGHT=400&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
+    string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=450&HEIGHT=600&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
     var nodeColoursSetting = Model.Content.Parent.GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
 
@@ -109,9 +109,10 @@
 
 
 <div class="grid-row">
-    <div class="column-two-thirds">
+    <div class="column-one-half">
         <div class="grid-row">
             <div class="column-full">
+                <br />
                 <h2>Habitat (physical) description</h2>
                 <p>
                     <table>
@@ -159,19 +160,30 @@
             </div>
         </div>
     </div>
-    <div class="column-one-third">
+    <div class="column-one-half">
         <div class="biomap">
             <div class="loading">
                 <img alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
                         src="@biomapUrl" />
             </div>
             <ul>
-                <li><span class="legend">Core records on which the biotope is based</span></li>
-                <li><span class="legend">Non-core records with certain determination</span></li>
-                <li><span class="legend">Non-core records with uncertain determination, tentatively assigned to this biotope</span></li>
-                <li><span class="legend">Predicted habitat extent showing level 2 and 3 sublittoral and deep-sea habitats</span></li>
+                <li><span class="legend">Records used to define the biotope (core records)</span></li>
+                <li><span class="legend">Other records assigned to this biotope, marked as 'certain'</span></li>
+                <li><span class="legend">Other records assigned to this biotope, marked as 'uncertain'</span></li>
+                @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+                {
+                    <li><span class="legend">Predicted extent of the level 3 (for sublittoral rock & deep sea) or 4 (for sublittoral sediment) habitat</span></li>
+                }
             </ul>
-            <p><span class="legend">Distribution data based on records on the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder database</a> and <a href="http://jncc.defra.gov.uk/default.aspx?page=5020" target="_blank">EUSeaMap</a>.</span></p>
+            <p>
+                <span class="legend">
+                    Point data based on records in the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder Snapshot</a>.
+                    @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+                    {
+                        <span>Predicted habitat extent is from <a href="http://jncc.defra.gov.uk/page-7354" target="_blank">UKSeaMap</a>.</span>
+                    }
+                </span>
+            </p>
         </div>
     </div>
     <div class="column-full">
