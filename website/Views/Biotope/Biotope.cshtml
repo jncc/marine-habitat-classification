@@ -6,6 +6,8 @@
     Layout = "~/Views/Master.cshtml";
 
     string biomapUrl = "http://www.emodnet-seabedhabitats.eu/plugins/MESHAtlanticMapper/proxyhandler.ashx?mapInstance=MESHAtlanticMap_&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=300&HEIGHT=400&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
+    var nodeColoursSetting = Model.Content.Parent.GetPropertyValue<string>("LevelColour");
+    var levelColours = nodeColoursSetting.Split(',');
 
     // Description
     var descriptionText = string.IsNullOrWhiteSpace(Model.Biotope.Description) ? "No description available." : Model.Biotope.Description;
@@ -82,17 +84,26 @@
 <div class="grid-row">
     <div class="column-full">
         @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
-        <h2>
+        <h3>
             <a href="@Model.Content.Parent.Url">Full hierarchy</a>
-            @for (int i = 1; i < Model.BiotopeHierarchy.Count+1; i++)
+            @for (int i = 1; i < Model.BiotopeHierarchy.Count + 1; i++)
             {
                 BiotopeLevel biotopeCode;
-                
+
                 Model.BiotopeHierarchy.TryGetValue(i, out biotopeCode);
-                <span> > <a href="@string.Format("{0}biotope/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey)">@biotopeCode.OriginalCode</a></span>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="icon" style="background-color: @levelColours[i]">&nbsp;&nbsp;</span>
+                if (i == Model.BiotopeHierarchy.Count)
+                {
+                    @biotopeCode.OriginalCode
+                }
+                else
+                {
+                    <a href="@string.Format("{0}biotope/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey)">@biotopeCode.OriginalCode</a>
+                }
             }
-        </h2>
-        <h1>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h1>
+        </h3>
+        <h1><span class="icon" style="background-color: @levelColours[Model.BiotopeHierarchy.Count]">&nbsp;&nbsp;</span> @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h1>
     </div>
 </div>
 
