@@ -274,7 +274,8 @@ table caption {
   width: 100%; }
 
 .biomap .loading {
-  height: 400px;
+  width: 450px;
+  height: 600px;
   background: transparent url("/media/1005/loading_map.png") no-repeat center; }
 
 .biomap .legend {
@@ -282,21 +283,24 @@ table caption {
   font-size: medium; }
 
 .biomap ul {
-  padding-left: 1em; }
+  padding-left: 1.2em; }
 
 .biomap ul li:nth-child(1) {
-  color: red; }
+  color: red;
+  font-size: large; }
 
 .biomap ul li:nth-child(2) {
-  color: cyan; }
+  color: cyan;
+  font-size: large; }
 
 .biomap ul li:nth-child(3) {
-  color: black; }
-
-.biomap ul li:last-child {
-  list-style-type: square;
-  color: gold;
+  color: black;
   font-size: large; }
+
+.biomap ul li:nth-child(4) {
+  list-style-image: url("svg/legend_rectangle.svg");
+  font-size: x-large;
+  line-height: 1; }
 
 .mhc-copyright {
   margin-bottom: 1em;
