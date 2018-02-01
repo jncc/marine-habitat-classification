@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using microservices.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using microservices.Models;
 
 namespace microservices.Controllers
 {
