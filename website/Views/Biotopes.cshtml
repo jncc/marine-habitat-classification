@@ -12,8 +12,11 @@
 
     var treeString = GenerateJavascriptTreeString();
 
+
     var nodeColoursSetting = Model.Content.GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
+
+    var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
 }
 @functions
 {
@@ -175,18 +178,23 @@
         $('#tree').treeview('expandToLevel', level, { silent: true });
     }
 
+    function search() {
+        var queryInput = document.getElementById("searchField").value;
+        var queryString = 'anyof(biotopeKey,\'' + queryInput + '\') or anyof(fullTerm,\'' + queryInput + '\') or anyof(originalCode,\'' + queryInput + '\') or anyof(description,\'' + queryInput + '\')';
+        $.get('@searchUrl', { c: '*', q: queryString },
+            function(data, status) {
+                alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+            });
+    }
+
 </script>
 
 <section class="section">
     <div class="container">
         <div class="grid-row">
             <div class="column-full">
-                <form>
-                    <div class="form-group">
-                        <input class="form-control" type="text" />
-                        <input class="button" type="submit" value="Search" />
-                    </div>
-                </form>
+                <input id="searchField" class="form-control" type="text" />
+                <input class="button" type="submit" value="Search" onclick="search()" />
             </div>
         </div>
         <div class="grid-row">
