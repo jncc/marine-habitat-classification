@@ -36,12 +36,10 @@ namespace microservices.Controllers
             }
 
             var failures = 0;
-            var totalCount = 0;
             try
             {
-                    using (var db = new BiotopeDB())
+                using (var db = new BiotopeDB())
                 {
-                    totalCount = db.WEB_BIOTOPE.Count();
                     db.WEB_BIOTOPE.ForEach(b => CreateBiotopeDocuments(b, baseUrl));
                 }
             }
@@ -51,7 +49,7 @@ namespace microservices.Controllers
             }
 
             return "Indexing complete\r\n" +
-                   "There were " + failures + " failures out of a total " + totalCount + " biotopes indexed";
+                   "Number of biotopes that failed processing: " + failures;
         }
 
         private void DeleteAllDocuments(string baseUrl)
