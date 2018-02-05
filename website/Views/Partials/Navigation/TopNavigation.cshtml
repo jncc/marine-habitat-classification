@@ -1,14 +1,14 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoTemplatePage
 @using Umbraco.Web;
 @{
-    var mhcSite = Umbraco.TypedContent(1137);
-    var children = mhcSite.Children.Where(x => x.IsVisible());
+    var home = Umbraco.TypedContentAtRoot().FirstOrDefault();
+    var children = home.Children.Where(x => x.IsVisible());
 }
 <div class="header-proposition">
     <div class="content">
         <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
         <nav id="proposition-menu">
-            <a href="@mhcSite.Url" id="proposition-name">@mhcSite.Name</a>
+            <a href="@home.Url" id="proposition-name">@home.Name</a>
             <ul id="proposition-links">
                 @foreach (var item in children)
                 {

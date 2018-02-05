@@ -9,7 +9,7 @@ namespace website.App_Start
     {
         protected override IPublishedContent FindContent(RequestContext requestContext, UmbracoContext umbracoContext)
         {
-            return umbracoContext.ContentCache.GetByRoute("/marine-habitat-classification/biotopes/biotope");
+            return umbracoContext.ContentCache.GetByRoute("/biotopes/biotope");
         }
     }
 }

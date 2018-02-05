@@ -464,7 +464,7 @@
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
-    <Content Include="Views\Biotope\Biotope.cshtml" />
+    <Content Include="Views\Biotope.cshtml" />
     <Content Include="Views\Partials\SectionHeader.cshtml" />
     <Content Include="Views\Master.cshtml" />
     <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
@@ -473,10 +473,9 @@
     <Content Include="Views\Contact.cshtml" />
     <Content Include="Views\ContentPage.cshtml" />
     <Content Include="Views\Home.cshtml" />
-    <Content Include="Views\MarineHabitatClassification.cshtml" />
     <Content Include="Views\Partials\CategoryLinks.cshtml" />
     <Content Include="umbracoConnectionStrings.config" />
-    <Content Include="Views\MHCContentPage.cshtml" />
+    <Content Include="Views\Biotope\Biotope.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
