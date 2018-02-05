@@ -17,7 +17,7 @@ namespace website.App_Start
         {
             RouteTable.Routes.MapUmbracoRoute(
                 "Biotope",
-                "marine-habitat-classification/biotopes/biotope/{key}",
+                "biotopes/biotope/{key}",
                 new {controller = "Biotope", action = "Biotope", key = UrlParameter.Optional},
                 new BiotopeRouteHandler()
             );

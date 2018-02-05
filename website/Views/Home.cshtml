@@ -1,11 +1,51 @@
 ﻿@inherits UmbracoTemplatePage
+@using System.Configuration
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "Master.cshtml";
+
+    var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
 }
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+<script type="text/javascript">
+    function search() {
+        var queryInput = document.getElementById("searchField").value;
+        var queryString = 'anyof(biotopeKey,\'' + queryInput + '\') or anyof(fullTerm,\'' + queryInput + '\') or anyof(originalCode,\'' + queryInput + '\') or anyof(description,\'' + queryInput + '\')';
+        $.get('@searchUrl', { c: '*', q: queryString },
+            function (data, status) {
+                $('#tree').treeview('collapseAll', { silent: true });
+                $('#tree').treeview('clearSearch');
+                $('#tree').treeview('search',
+                    [
+                        queryInput, {
+                            ignoreCase: true,
+                            exactMatch: false,
+                            revealResults: true,
+                        }
+                    ]);
+//                alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+                var searchResultText = "";
+                var result = JSON.parse(data);
+                console.log(result);
+                for (var biotope in data.documents) {
+                    console.log(biotope.fields);
+                    searchResultText = searchResultText + biotope.fields.biotopeKey;
+                }
+                document.getElementById("searchResults").innerText = searchResultText;
+            });
+    }
+</script>
 <section class="section">
     <div class="container">
 
         <p>Home</p>
+        <div class="grid-row">
+            <div class="column-full">
+                <p>
+                    <input id="searchField" class="form-control" type="text"/>
+                    <input class="button" type="submit" value="Search" onclick="search()"/>
+                </p>
+            </div>
+        </div>
     </div>
 </section>
