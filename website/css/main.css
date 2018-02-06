@@ -302,6 +302,17 @@ table caption {
   font-size: x-large;
   line-height: 1; }
 
+.search-result {
+  margin-top: 2em; }
+  .search-result .biotope-code {
+    color: black; }
+  .search-result .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; }
+
 .mhc-copyright {
   margin-bottom: 1em;
   text-align: center; }

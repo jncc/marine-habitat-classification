@@ -1,13 +1,10 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoTemplatePage
 @{
 	Layout = "Master.cshtml";
 }
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml", Model.Content.Parent)
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
 <section class="section">
     <div class="container">
-
-        <p>Biotope here</p>
-        <p>@Model.Content.GetPropertyValue("BiotopeKey")</p>
     </div>
 </section>

@@ -49,6 +49,22 @@
     }
 }
 
+.search-result {
+    margin-top: 2em;
+
+    .biotope-code {
+        color: black;
+    }
+
+    .description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+}
+
 
 .mhc-copyright {
     margin-bottom: 1em;

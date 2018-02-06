@@ -5,33 +5,24 @@
     Layout = "Master.cshtml";
 
     var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
+    var biotopeUrl = CurrentPage.UrlWithDomain() + "biotopes/biotope/";
 }
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <script type="text/javascript">
     function search() {
         var queryInput = document.getElementById("searchField").value;
-        var queryString = 'anyof(biotopeKey,\'' + queryInput + '\') or anyof(fullTerm,\'' + queryInput + '\') or anyof(originalCode,\'' + queryInput + '\') or anyof(description,\'' + queryInput + '\')';
-        $.get('@searchUrl', { c: '*', q: queryString },
+        var queryString = 'anyof(biotopeKey,\'' + queryInput + '\') or anyof(fullTerm,\'' + queryInput + '\', -boost \'45\') or anyof(originalCode,\'' + queryInput + '\', -boost \'30\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
+        $.getJSON('@searchUrl', { c: '*', q: queryString },
             function (data, status) {
-                $('#tree').treeview('collapseAll', { silent: true });
-                $('#tree').treeview('clearSearch');
-                $('#tree').treeview('search',
-                    [
-                        queryInput, {
-                            ignoreCase: true,
-                            exactMatch: false,
-                            revealResults: true,
-                        }
-                    ]);
-//                alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
                 var searchResultText = "";
-                var result = JSON.parse(data);
-                console.log(result);
-                for (var biotope in data.documents) {
-                    console.log(biotope.fields);
-                    searchResultText = searchResultText + biotope.fields.biotopeKey;
+                for (var i = 0; i < data.data.documents.length; i++) {
+                    var biotope = data.data.documents[i].fields;
+                    console.log(biotope);
+                    searchResultText = searchResultText + "<div class=\"search-result\">" +
+                        "<h3><span class=\"icon\" style=\"background-color:red\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@biotopeUrl" + biotope.biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
+                        "<div class=\"description\">"+biotope.description+"</div></div>";
                 }
-                document.getElementById("searchResults").innerText = searchResultText;
+                document.getElementById("searchResults").innerHTML = searchResultText;
             });
     }
 </script>
@@ -43,8 +34,9 @@
             <div class="column-full">
                 <p>
                     <input id="searchField" class="form-control" type="text"/>
-                    <input class="button" type="submit" value="Search" onclick="search()"/>
+                    <button type="submit" onclick="search()">Search</button>
                 </p>
+                <div id="searchResults"></div>
             </div>
         </div>
     </div>
