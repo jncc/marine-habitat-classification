@@ -303,7 +303,7 @@ table caption {
   line-height: 1; }
 
 .search-result {
-  margin-top: 2em; }
+  margin-bottom: 2em; }
   .search-result .biotope-code {
     color: black; }
   .search-result .description {
@@ -312,6 +312,17 @@ table caption {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; }
+
+.pagination {
+  display: inline-block; }
+  .pagination .page {
+    float: left;
+    padding: 8px 16px; }
+    .pagination .page .link-page {
+      color: blue;
+      text-decoration: underline; }
+  .pagination .link-page:hover {
+    background-color: #dee0e2; }
 
 .mhc-copyright {
   margin-bottom: 1em;

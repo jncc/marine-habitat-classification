@@ -9,21 +9,52 @@
 }
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <script type="text/javascript">
-    function search() {
+    function search(page) {
         var queryInput = document.getElementById("searchField").value;
         var queryString = 'anyof(biotopeKey,\'' + queryInput + '\') or anyof(fullTerm,\'' + queryInput + '\', -boost \'45\') or anyof(originalCode,\'' + queryInput + '\', -boost \'30\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
-        $.getJSON('@searchUrl', { c: '*', q: queryString },
+        var itemsPerPage = 20;
+        $.getJSON('@searchUrl', { c: '*', q: queryString, count: itemsPerPage, skip: itemsPerPage*(page-1)},
             function (data, status) {
-                var searchResultText = "";
-                for (var i = 0; i < data.data.documents.length; i++) {
-                    var biotope = data.data.documents[i].fields;
-                    console.log(biotope);
-                    searchResultText = searchResultText + "<div class=\"search-result\">" +
-                        "<h3><span class=\"icon\" style=\"background-color:red\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@biotopeUrl" + biotope.biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
-                        "<div class=\"description\">"+biotope.description+"</div></div>";
+                if (data.data.documents.length > 0) {
+                    paginate(1, data.data, itemsPerPage);
+
+                    var searchResultText = "";
+                    for (var i = 0; i < data.data.documents.length; i++) {
+                        var biotope = data.data.documents[i].fields;
+                        searchResultText = searchResultText + "<div class=\"search-result\">" +
+                            "<h3><span class=\"icon\" style=\"background-color:red\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@biotopeUrl" + biotope.biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
+                            "<div class=\"description\">"+biotope.description+"</div></div>";
+                    }
+                    document.getElementById("searchResults").innerHTML = searchResultText;
+                } else {
+                    document.getElementById("searchResults").innerHTML = "<p>No results found.</p>";
                 }
-                document.getElementById("searchResults").innerHTML = searchResultText;
             });
+    }
+
+    function paginate(currentPage, data, itemsPerPage) {
+        
+        var totalRecords = data.totalAvailable;
+        var totalPages = Math.ceil(totalRecords / itemsPerPage);
+        console.log(totalRecords);
+        var pageNavHtml = "";
+        if (currentPage !== 1) {
+            pageNavHtml += "<span class=\"page link-page\">«</span>";
+        }
+
+        for (var i = 1; i <= totalPages; i++) {
+            if (currentPage === i) {
+                pageNavHtml += "<span class=\"page\">" + i + "</span>";
+            } else {
+                pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + i + ")\">" + i + "</span>";
+            }
+        }
+
+        if (currentPage !== totalPages) {
+            pageNavHtml += "<span class=\"page link-page\">»</span>";
+        }
+
+        document.getElementById("pageNav").innerHTML = pageNavHtml;
     }
 </script>
 <section class="section">
@@ -34,9 +65,10 @@
             <div class="column-full">
                 <p>
                     <input id="searchField" class="form-control" type="text"/>
-                    <button type="submit" onclick="search()">Search</button>
+                    <button type="submit" onclick="search(1)">Search</button>
                 </p>
                 <div id="searchResults"></div>
+                <div id="pageNav" class="pagination"></div>
             </div>
         </div>
     </div>
