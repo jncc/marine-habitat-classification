@@ -2,14 +2,12 @@
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Web.Http.Cors;
 using System.Web.Mvc;
 using microservices.Models;
 using WebGrease.Css.Extensions;
 
 namespace microservices.Controllers
 {
-    [EnableCors("*", "*", "*")]
     public class SearchController : Controller
     {
         // GET: Search
@@ -30,7 +28,6 @@ namespace microservices.Controllers
                 DeleteAllDocuments(baseUrl);
                 DeleteCurrentIndex(baseUrl);
                 CreateBiotopeIndex(baseUrl);
-
             }
             catch (WebException we)
             {
@@ -42,6 +39,9 @@ namespace microservices.Controllers
             {
                 using (var db = new BiotopeDB())
                 {
+                    db.Configuration.LazyLoadingEnabled = true;
+                    db.Configuration.ProxyCreationEnabled = true;
+
                     db.WEB_BIOTOPE.ForEach(b => CreateBiotopeDocuments(b, baseUrl));
                 }
             }
@@ -83,6 +83,9 @@ namespace microservices.Controllers
                 },
                 {
                     ""fieldName"": ""description""
+                },
+                {
+                    ""fieldName"": ""hierarchyLevel""
                 }
                 ]
             }";
@@ -109,7 +112,8 @@ namespace microservices.Controllers
                 ""fields"": {{
                     ""originalCode"": ""{biotope.ORIGINAL_CODE}"",
                     ""fullTerm"": ""{biotope.FULL_TERM}"",
-                    ""description"": ""{jsonSafeDescription}""
+                    ""description"": ""{jsonSafeDescription}"",
+                    ""hierarchyLevel"": ""{biotope.WEB_BIOTOPE_HIERARCHY.Count}""
                 }},
                 ""id"": ""{biotope.BIOTOPE_KEY}"",
                 indexName: ""biotope""
