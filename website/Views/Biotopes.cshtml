@@ -181,6 +181,13 @@
     <div class="container">
         <div class="grid-row">
             <div class="column-full">
+                @Model.Content.GetPropertyValue("content")
+            </div>
+        </div>
+        <div class="grid-row">
+            <div class="column-full">
+            </div>
+            <div class="column-full">
                 <p>
                     <input class="button" style="background-color: @levelColours[0]" type="submit" value="Level 1" onclick="expandLevel(1)" />
                     <input class="button" style="background-color: @levelColours[1]" type="submit" value="Level 2" onclick="expandLevel(2)" />

@@ -71,15 +71,16 @@
     .page {
         float: left;
         padding: 8px 16px;
+        font-size: larger;
+    }
 
-        .link-page {
-            color: blue;
-            text-decoration: underline;
-        }
+    .link-page {
+        text-decoration: underline;
     }
 
     .link-page:hover {
         background-color: #dee0e2;
+        cursor: pointer;
     }
 }
 

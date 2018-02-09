@@ -317,12 +317,13 @@ table caption {
   display: inline-block; }
   .pagination .page {
     float: left;
-    padding: 8px 16px; }
-    .pagination .page .link-page {
-      color: blue;
-      text-decoration: underline; }
+    padding: 8px 16px;
+    font-size: larger; }
+  .pagination .link-page {
+    text-decoration: underline; }
   .pagination .link-page:hover {
-    background-color: #dee0e2; }
+    background-color: #dee0e2;
+    cursor: pointer; }
 
 .mhc-copyright {
   margin-bottom: 1em;

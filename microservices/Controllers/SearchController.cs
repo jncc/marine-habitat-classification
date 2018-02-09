@@ -2,12 +2,14 @@
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using microservices.Models;
 using WebGrease.Css.Extensions;
 
 namespace microservices.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class SearchController : Controller
     {
         // GET: Search
@@ -74,10 +76,6 @@ namespace microservices.Controllers
                 ""indexName"": ""biotope"",
                 ""fields"": [
                 {
-                    ""fieldName"": ""biotopeKey"",
-                    ""fieldType"": ""Keyword""
-                },
-                {
                     ""fieldName"": ""originalCode""
                 },
                 {
@@ -109,7 +107,6 @@ namespace microservices.Controllers
 
             var biotopeDoc = $@"{{
                 ""fields"": {{
-                    ""biotopeKey"": '{biotope.BIOTOPE_KEY}',
                     ""originalCode"": ""{biotope.ORIGINAL_CODE}"",
                     ""fullTerm"": ""{biotope.FULL_TERM}"",
                     ""description"": ""{jsonSafeDescription}""

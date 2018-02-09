@@ -1,17 +1,23 @@
 ﻿@inherits UmbracoTemplatePage
 @using System.Configuration
-@using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "Master.cshtml";
 
+    var biotopeUrl = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
     var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
-    var biotopeUrl = CurrentPage.UrlWithDomain() + "biotopes/biotope/";
+    var umbracoBiotopeUrl = CurrentPage.UrlWithDomain() + "biotopes/biotope/";
+
+    // Getting the Biotopes node which will have the level colours, this shouldn't change
+    var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
+    var levelColours = nodeColoursSetting.Split(',');
 }
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <script type="text/javascript">
+    var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
+
     function search(page) {
         var queryInput = document.getElementById("searchField").value;
-        var queryString = 'anyof(biotopeKey,\'' + queryInput + '\') or anyof(fullTerm,\'' + queryInput + '\', -boost \'45\') or anyof(originalCode,\'' + queryInput + '\', -boost \'30\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
+        var queryString = 'anyof(fullTerm,\'' + queryInput + '\', -boost \'45\') or anyof(originalCode,\'' + queryInput + '\', -boost \'30\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
         var itemsPerPage = 20;
         $.getJSON('@searchUrl', { c: '*', q: queryString, count: itemsPerPage, skip: itemsPerPage*(page-1)},
             function (data, status) {
@@ -20,9 +26,11 @@
 
                     var searchResultText = "";
                     for (var i = 0; i < data.data.documents.length; i++) {
+                        var biotopeKey = data.data.documents[i].id;
                         var biotope = data.data.documents[i].fields;
+                        var biotopeLevel = getBiotopeLevel(biotopeKey);
                         searchResultText = searchResultText + "<div class=\"search-result\">" +
-                            "<h3><span class=\"icon\" style=\"background-color:red\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@biotopeUrl" + biotope.biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
+                            "<h3><span class=\"icon\" style=\"background-color:"+levelColors[biotopeLevel]+"\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@umbracoBiotopeUrl" + biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
                             "<div class=\"description\">"+biotope.description+"</div></div>";
                     }
                     document.getElementById("searchResults").innerHTML = searchResultText;
@@ -33,10 +41,9 @@
     }
 
     function paginate(currentPage, data, itemsPerPage) {
-        
         var totalRecords = data.totalAvailable;
         var totalPages = Math.ceil(totalRecords / itemsPerPage);
-        console.log(totalRecords);
+
         var pageNavHtml = "";
         if (currentPage !== 1) {
             pageNavHtml += "<span class=\"page link-page\">«</span>";
@@ -55,6 +62,14 @@
         }
 
         document.getElementById("pageNav").innerHTML = pageNavHtml;
+    }
+
+    function getBiotopeLevel(biotopeKey) {
+        var url = "@biotopeUrl" + biotopeKey;
+        return $.getJSON(url,
+            function (data, status) {
+                return data.BiotopeHierarchy.count;
+            });
     }
 </script>
 <section class="section">

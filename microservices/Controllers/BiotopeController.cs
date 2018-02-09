@@ -1,10 +1,12 @@
 ﻿using microservices.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace microservices.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class BiotopeController : Controller
     {
         // GET: Biotope
