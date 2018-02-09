@@ -302,6 +302,21 @@ table caption {
   font-size: x-large;
   line-height: 1; }
 
+.search-field {
+  margin-bottom: 2em; }
+  .search-field input {
+    font-size: 19px;
+    line-height: 44px;
+    padding-left: 0.5em;
+    margin-right: -3px; }
+  .search-field button {
+    background-color: #2b8cc4;
+    border-radius: 0;
+    box-shadow: none;
+    width: 50px;
+    height: 50px;
+    border: none; }
+
 .search-result {
   margin-bottom: 2em; }
   .search-result .biotope-code {

@@ -49,6 +49,26 @@
     }
 }
 
+.search-field {
+    margin-bottom: 2em;
+
+    input {
+        font-size: 19px;
+        line-height: 44px;
+        padding-left: 0.5em;
+        margin-right: -3px;
+    }
+
+    button {
+        background-color: #2b8cc4;
+        border-radius: 0;
+        box-shadow: none;
+        width: 50px;
+        height: 50px;
+        border: none;
+    }
+}
+
 .search-result {
     margin-bottom: 2em;
 

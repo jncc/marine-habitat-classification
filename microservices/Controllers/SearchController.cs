@@ -85,7 +85,8 @@ namespace microservices.Controllers
                     ""fieldName"": ""description""
                 },
                 {
-                    ""fieldName"": ""hierarchyLevel""
+                    ""fieldName"": ""hierarchyLevel"",
+                    ""fieldType"": ""Stored""
                 }
                 ]
             }";
@@ -93,7 +94,7 @@ namespace microservices.Controllers
             var request = (HttpWebRequest)WebRequest.Create(baseUrl + "/indices");
             request.Method = "POST";
 
-            ASCIIEncoding encoding = new ASCIIEncoding();
+            var encoding = new ASCIIEncoding();
             byte[] bytes = encoding.GetBytes(biotopeIndex);
             using (var requestStream = request.GetRequestStream())
             {
@@ -123,7 +124,7 @@ namespace microservices.Controllers
             var request = (HttpWebRequest)WebRequest.Create(baseUrl + "/indices/biotope/documents");
             request.Method = "POST";
 
-            ASCIIEncoding encoding = new ASCIIEncoding();
+            var encoding = new ASCIIEncoding();
             byte[] bytes = encoding.GetBytes(biotopeDoc);
             using (var requestStream = request.GetRequestStream())
             {
