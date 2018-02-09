@@ -305,6 +305,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\ApiHelper.cs" />
     <Compile Include="App_Start\AppEventHandler.cs" />
     <Compile Include="App_Start\BiotopeRouteHandler.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

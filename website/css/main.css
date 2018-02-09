@@ -302,6 +302,29 @@ table caption {
   font-size: x-large;
   line-height: 1; }
 
+.search-result {
+  margin-bottom: 2em; }
+  .search-result .biotope-code {
+    color: black; }
+  .search-result .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; }
+
+.pagination {
+  display: inline-block; }
+  .pagination .page {
+    float: left;
+    padding: 8px 16px;
+    font-size: larger; }
+  .pagination .link-page {
+    text-decoration: underline; }
+  .pagination .link-page:hover {
+    background-color: #dee0e2;
+    cursor: pointer; }
+
 .mhc-copyright {
   margin-bottom: 1em;
   text-align: center; }

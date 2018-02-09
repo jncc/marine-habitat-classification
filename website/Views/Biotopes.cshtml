@@ -139,7 +139,6 @@
 
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <head><link rel="stylesheet" media="all" href="/css/bootstrap-treeview.min.css" /></head>
-<script src="/Scripts/jquery-1.10.2.min.js"></script>
 <script src="/Scripts/bootstrap.min.js"></script>
 <script src="/Scripts/bootstrap-treeview.js"></script>
 <script type="text/javascript">
@@ -181,6 +180,13 @@
 <section class="section">
     <div class="container">
         <div class="grid-row">
+            <div class="column-full">
+                @Model.Content.GetPropertyValue("content")
+            </div>
+        </div>
+        <div class="grid-row">
+            <div class="column-full">
+            </div>
             <div class="column-full">
                 <p>
                     <input class="button" style="background-color: @levelColours[0]" type="submit" value="Level 1" onclick="expandLevel(1)" />

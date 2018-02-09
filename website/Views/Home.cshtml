@@ -1,37 +1,74 @@
 ﻿@inherits UmbracoTemplatePage
 @using System.Configuration
-@using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "Master.cshtml";
 
+    var biotopeUrl = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
     var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
+    var umbracoBiotopeUrl = CurrentPage.UrlWithDomain() + "biotopes/biotope/";
+
+    // Getting the Biotopes node which will have the level colours, this shouldn't change
+    var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
+    var levelColours = nodeColoursSetting.Split(',');
 }
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <script type="text/javascript">
-    function search() {
+    var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
+
+    function search(page) {
         var queryInput = document.getElementById("searchField").value;
-        var queryString = 'anyof(biotopeKey,\'' + queryInput + '\') or anyof(fullTerm,\'' + queryInput + '\') or anyof(originalCode,\'' + queryInput + '\') or anyof(description,\'' + queryInput + '\')';
-        $.get('@searchUrl', { c: '*', q: queryString },
+        var queryString = 'anyof(fullTerm,\'' + queryInput + '\', -boost \'45\') or anyof(originalCode,\'' + queryInput + '\', -boost \'30\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
+        var itemsPerPage = 20;
+        $.getJSON('@searchUrl', { c: '*', q: queryString, count: itemsPerPage, skip: itemsPerPage*(page-1)},
             function (data, status) {
-                $('#tree').treeview('collapseAll', { silent: true });
-                $('#tree').treeview('clearSearch');
-                $('#tree').treeview('search',
-                    [
-                        queryInput, {
-                            ignoreCase: true,
-                            exactMatch: false,
-                            revealResults: true,
-                        }
-                    ]);
-//                alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-                var searchResultText = "";
-                var result = JSON.parse(data);
-                console.log(result);
-                for (var biotope in data.documents) {
-                    console.log(biotope.fields);
-                    searchResultText = searchResultText + biotope.fields.biotopeKey;
+                if (data.data.documents.length > 0) {
+                    paginate(1, data.data, itemsPerPage);
+
+                    var searchResultText = "";
+                    for (var i = 0; i < data.data.documents.length; i++) {
+                        var biotopeKey = data.data.documents[i].id;
+                        var biotope = data.data.documents[i].fields;
+                        var biotopeLevel = getBiotopeLevel(biotopeKey);
+                        searchResultText = searchResultText + "<div class=\"search-result\">" +
+                            "<h3><span class=\"icon\" style=\"background-color:"+levelColors[biotopeLevel]+"\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@umbracoBiotopeUrl" + biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
+                            "<div class=\"description\">"+biotope.description+"</div></div>";
+                    }
+                    document.getElementById("searchResults").innerHTML = searchResultText;
+                } else {
+                    document.getElementById("searchResults").innerHTML = "<p>No results found.</p>";
                 }
-                document.getElementById("searchResults").innerText = searchResultText;
+            });
+    }
+
+    function paginate(currentPage, data, itemsPerPage) {
+        var totalRecords = data.totalAvailable;
+        var totalPages = Math.ceil(totalRecords / itemsPerPage);
+
+        var pageNavHtml = "";
+        if (currentPage !== 1) {
+            pageNavHtml += "<span class=\"page link-page\">«</span>";
+        }
+
+        for (var i = 1; i <= totalPages; i++) {
+            if (currentPage === i) {
+                pageNavHtml += "<span class=\"page\">" + i + "</span>";
+            } else {
+                pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + i + ")\">" + i + "</span>";
+            }
+        }
+
+        if (currentPage !== totalPages) {
+            pageNavHtml += "<span class=\"page link-page\">»</span>";
+        }
+
+        document.getElementById("pageNav").innerHTML = pageNavHtml;
+    }
+
+    function getBiotopeLevel(biotopeKey) {
+        var url = "@biotopeUrl" + biotopeKey;
+        return $.getJSON(url,
+            function (data, status) {
+                return data.BiotopeHierarchy.count;
             });
     }
 </script>
@@ -43,8 +80,10 @@
             <div class="column-full">
                 <p>
                     <input id="searchField" class="form-control" type="text"/>
-                    <input class="button" type="submit" value="Search" onclick="search()"/>
+                    <button type="submit" onclick="search(1)">Search</button>
                 </p>
+                <div id="searchResults"></div>
+                <div id="pageNav" class="pagination"></div>
             </div>
         </div>
     </div>
