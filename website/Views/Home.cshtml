@@ -3,7 +3,6 @@
 @{
     Layout = "Master.cshtml";
 
-    var biotopeUrl = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
     var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
     var umbracoBiotopeUrl = CurrentPage.UrlWithDomain() + "biotopes/biotope/";
 
@@ -15,6 +14,28 @@
 <script type="text/javascript">
     var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
 
+    $(function () {
+        var query = retrieveParamFromUrl("q");
+        var page = parseInt(retrieveParamFromUrl("p"));
+        if (query) {
+            document.getElementById("searchBox").value = query;
+
+            if (page > 1) {
+                search(page);
+            } else {
+                search(1);
+            }
+        }
+    });
+
+    $(function () {
+        $("#searchBox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                search(1);
+            }
+        });
+    });
+
     function search(page) {
         var queryInput = document.getElementById("searchBox").value;
         var queryString = 'anyof(fullTerm,\'' + queryInput + '\', -boost \'50\') or anyof(originalCode,\'' + queryInput + '\', -boost \'45\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
@@ -22,8 +43,6 @@
         $.getJSON('@searchUrl', { c: '*', q: queryString, count: itemsPerPage, skip: itemsPerPage*(page-1)},
             function (data, status) {
                 if (data.data.documents.length > 0) {
-                    paginate(page, data.data, itemsPerPage);
-
                     var searchResultText = "";
                     for (var i = 0; i < data.data.documents.length; i++) {
                         var biotopeKey = data.data.documents[i].id;
@@ -32,16 +51,30 @@
                             "<h3><span class=\"icon\" style=\"background-color:" + levelColors[biotope.hierarchyLevel]+"\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@umbracoBiotopeUrl" + biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
                             "<div class=\"description\">"+biotope.description+"</div></div>";
                     }
+
                     document.getElementById("searchResults").innerHTML = searchResultText;
+                    paginate(page, data.data, itemsPerPage);
                 } else {
-                    document.getElementById("searchResults").innerHTML = "<p>No results found.</p>";
+                    document.getElementById("noOfResults").innerHTML = "0 results found";
+                    document.getElementById("searchResults").innerHTML = "";
+                    document.getElementById("pageNav").innerHTML = "";
                 }
             });
+
+        addQueryParamsToUrl(queryInput, page);
     }
+
+
 
     function paginate(currentPage, data, itemsPerPage) {
         var totalRecords = data.totalAvailable;
 
+        if (totalRecords === 1) {
+            document.getElementById("noOfResults").innerHTML = totalRecords + " result found";
+        } else {
+            document.getElementById("noOfResults").innerHTML = totalRecords + " results found";
+        }
+        
         document.getElementById("pageNav").innerHTML = "";
         if (totalRecords > itemsPerPage) {
             var totalPages = Math.ceil(totalRecords / itemsPerPage);
@@ -66,6 +99,19 @@
             document.getElementById("pageNav").innerHTML = pageNavHtml;
         }
     }
+
+    function addQueryParamsToUrl(query, page) {
+        if (history.pushState) {
+            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + query + '&p=' + page;
+            window.history.pushState({path:newurl},'',newurl);
+        }
+    }
+
+    function retrieveParamFromUrl(key) {
+        key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+        var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+        return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+    }
 </script>
 <section class="section">
     <div class="container">
@@ -74,14 +120,15 @@
         <div class="grid-row">
             <div class="column-two-thirds">
                 <div class="search-field">
-                    <input id="searchBox" type="search" />
-                    <button class="button" type="submit" onclick="search(1)"><span class="glyphicon glyphicon-search"></span></button>
+                    <input id="searchBox" type="search" placeholder="Search for a biotope" aria-label="Search for a biotope"/>
+                    <button class="button" onclick="search(1)"><span class="glyphicon glyphicon-search"></span></button>
                 </div>
             </div>
         </div>
         <div class="grid-row">
             <div class="column-full">
-                <div id="searchResults"></div>
+                <div id="noOfResults" class="search-result"></div>
+                <div id="searchResults" class="search-result"></div>
                 <div id="pageNav" class="pagination"></div>
             </div>
         </div>

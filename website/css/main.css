@@ -308,7 +308,7 @@ table caption {
     font-size: 19px;
     line-height: 44px;
     padding-left: 0.5em;
-    margin-right: -5px;
+    margin-right: -4px;
     width: 75%; }
   .search-field button {
     background-color: #2b8cc4;
@@ -317,7 +317,7 @@ table caption {
     width: 50px;
     height: 50px;
     border: none; }
-  .search-field button:hover {
+  .search-field button:hover, .search-field button:active {
     background-color: #267daf; }
 
 .search-result {
