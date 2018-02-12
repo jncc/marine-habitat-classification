@@ -1,32 +1,67 @@
 ﻿@inherits UmbracoTemplatePage
 @using System.Configuration
+@using Newtonsoft.Json.Linq
 @{
     Layout = "Master.cshtml";
 
-    var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
     var umbracoBiotopeUrl = CurrentPage.UrlWithDomain() + "biotopes/biotope/";
 
     // Getting the Biotopes node which will have the level colours, this shouldn't change
     var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
+
+    var result = new JObject();
+    var searchResults = new JArray();
+    var totalResults = 0;
+    var totalPages = 0;
+
+    var query = Request.QueryString["q"];
+    int page;
+    int.TryParse(Request.QueryString["p"], out page);
+
+    if (!string.IsNullOrEmpty(query))
+    {
+        if (page > 1)
+        {
+            result = Search(query, page);
+        }
+        else
+        {
+            result = Search(query, 1);
+        }
+
+        searchResults = JArray.FromObject(result["documents"]);
+        totalResults = result["totalAvailable"].ToObject<int>();
+        totalPages = (int)Math.Ceiling((double)totalResults/itemsPerPage);
+    }
+}
+@functions {
+    private int itemsPerPage = 15;
+
+    private JObject Search(string query, int page)
+    {
+        var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
+        var searchQuery = @"anyof(fullTerm,'" + query + "', -boost '50') or anyof(originalCode,'" + query + "', -boost '45') or anyof(description,'" + query + "', -boost '10')";
+        var requestString = searchUrl + "?c=*&q=" + searchQuery + "&count=" + itemsPerPage + "&skip=" + itemsPerPage * (page - 1);
+
+        var request = (HttpWebRequest)WebRequest.Create(requestString);
+        request.Method = "GET";
+
+        var response = (HttpWebResponse)request.GetResponse();
+        string content;
+        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+        {
+            content = sr.ReadToEnd();
+        }
+
+        return JObject.Parse(JObject.Parse(content)["data"].ToString());
+    }
+
 }
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <script type="text/javascript">
     var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
-
-    $(function () {
-        var query = retrieveParamFromUrl("q");
-        var page = parseInt(retrieveParamFromUrl("p"));
-        if (query) {
-            document.getElementById("searchBox").value = query;
-
-            if (page > 1) {
-                search(page);
-            } else {
-                search(1);
-            }
-        }
-    });
+    var itemsPerPage = @itemsPerPage;
 
     $(function () {
         $("#searchBox").keyup(function(event) {
@@ -37,80 +72,9 @@
     });
 
     function search(page) {
-        var queryInput = document.getElementById("searchBox").value;
-        var queryString = 'anyof(fullTerm,\'' + queryInput + '\', -boost \'50\') or anyof(originalCode,\'' + queryInput + '\', -boost \'45\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
-        var itemsPerPage = 15;
-        $.getJSON('@searchUrl', { c: '*', q: queryString, count: itemsPerPage, skip: itemsPerPage*(page-1)},
-            function (data, status) {
-                if (data.data.documents.length > 0) {
-                    var searchResultText = "";
-                    for (var i = 0; i < data.data.documents.length; i++) {
-                        var biotopeKey = data.data.documents[i].id;
-                        var biotope = data.data.documents[i].fields;
-                        searchResultText = searchResultText + "<div class=\"search-result\">" +
-                            "<h3><span class=\"icon\" style=\"background-color:" + levelColors[biotope.hierarchyLevel]+"\"/>&nbsp;&nbsp;</span>&nbsp;<span class=\"biotope-code\">" + biotope.originalCode +"</span>&nbsp;&nbsp;<a href=\"@umbracoBiotopeUrl" + biotopeKey + "\">" + biotope.fullTerm + "</a></h3>" +
-                            "<div class=\"description\">"+biotope.description+"</div></div>";
-                    }
-
-                    document.getElementById("searchResults").innerHTML = searchResultText;
-                    paginate(page, data.data, itemsPerPage);
-                } else {
-                    document.getElementById("noOfResults").innerHTML = "0 results found";
-                    document.getElementById("searchResults").innerHTML = "";
-                    document.getElementById("pageNav").innerHTML = "";
-                }
-            });
-
-        addQueryParamsToUrl(queryInput, page);
-    }
-
-
-
-    function paginate(currentPage, data, itemsPerPage) {
-        var totalRecords = data.totalAvailable;
-
-        if (totalRecords === 1) {
-            document.getElementById("noOfResults").innerHTML = totalRecords + " result found";
-        } else {
-            document.getElementById("noOfResults").innerHTML = totalRecords + " results found";
-        }
-        
-        document.getElementById("pageNav").innerHTML = "";
-        if (totalRecords > itemsPerPage) {
-            var totalPages = Math.ceil(totalRecords / itemsPerPage);
-
-            var pageNavHtml = "";
-            if (currentPage !== 1) {
-                pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + (currentPage-1) + ")\">«</span>";
-            }
-
-            for (var i = 1; i <= totalPages; i++) {
-                if (currentPage === i) {
-                    pageNavHtml += "<span class=\"page\">" + i + "</span>";
-                } else {
-                    pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + i + ")\">" + i + "</span>";
-                }
-            }
-
-            if (currentPage !== totalPages) {
-                pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + (currentPage+1) + ")\">»</span>";
-            }
-
-            document.getElementById("pageNav").innerHTML = pageNavHtml;
-        }
-    }
-
-    function addQueryParamsToUrl(query, page) {
-        if (history.pushState) {
-            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + query + '&p=' + page;
-            window.history.pushState({path:newurl},'',newurl);
-        }
-    }
-
-    function retrieveParamFromUrl(key) {
-        key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
-        var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
-        return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+        var query = document.getElementById("searchBox").value;
+        var paramString = '&q=' + query + '&p=' + page;
+        window.location.search = paramString;
     }
 </script>
 <section class="section">
@@ -120,16 +84,54 @@
         <div class="grid-row">
             <div class="column-two-thirds">
                 <div class="search-field">
-                    <input id="searchBox" type="search" placeholder="Search for a biotope" aria-label="Search for a biotope"/>
+                    <input id="searchBox" type="search" placeholder="Search for a biotope" aria-label="Search for a biotope" value="@query"/>
                     <button class="button" onclick="search(1)"><span class="glyphicon glyphicon-search"></span></button>
                 </div>
             </div>
         </div>
         <div class="grid-row">
             <div class="column-full">
-                <div id="noOfResults" class="search-result"></div>
-                <div id="searchResults" class="search-result"></div>
-                <div id="pageNav" class="pagination"></div>
+                <div id="noOfResults" class="search-result">
+                    @if (!string.IsNullOrEmpty(query) && searchResults.Count == 1)
+                    {
+                        <span>1 result found</span>
+                    } else if (!string.IsNullOrEmpty(query))
+                    {
+                        <span>@result["totalAvailable"] results found</span>
+                    }
+                </div>
+                <div id="searchResults" class="search-result">
+                    @foreach (var pair in searchResults)
+                    {
+                        <div class="search-result">
+                            <h3>
+                                <span class="icon" style="background-color: @levelColours[int.Parse(pair["fields"]["hierarchyLevel"].ToString())]">&nbsp;&nbsp;</span>
+                                <span class="biotope-code">@pair["fields"]["originalCode"]</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
+                            </h3>
+                            <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
+                        </div>
+                    }
+                </div>
+                <div id="pageNav" class="pagination">
+                    @if (totalResults > itemsPerPage)
+                    {
+                        if (page != 1) {
+                            <span class="page link-page" onClick="search(@page-1)">«</span>
+                        }
+
+                        for (var x = 1; x <= totalPages; x++) {
+                            if (page == x) {
+                                <span class="page">@x</span>
+                            } else {
+                                <span class="page link-page" onClick="search(@x)">@x</span>
+                            }
+                        }
+
+                        if (page != totalPages) {
+                            <span class="page link-page" onClick="search(@page+1)">»</span>
+                        }
+                    }
+                </div>
             </div>
         </div>
     </div>
