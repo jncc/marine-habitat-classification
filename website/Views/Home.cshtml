@@ -16,7 +16,7 @@
     var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
 
     function search(page) {
-        var queryInput = document.getElementById("searchField").value;
+        var queryInput = document.getElementById("searchBox").value;
         var queryString = 'anyof(fullTerm,\'' + queryInput + '\', -boost \'50\') or anyof(originalCode,\'' + queryInput + '\', -boost \'45\') or anyof(description,\'' + queryInput + '\', -boost \'10\')';
         var itemsPerPage = 15;
         $.getJSON('@searchUrl', { c: '*', q: queryString, count: itemsPerPage, skip: itemsPerPage*(page-1)},
@@ -41,26 +41,30 @@
 
     function paginate(currentPage, data, itemsPerPage) {
         var totalRecords = data.totalAvailable;
-        var totalPages = Math.ceil(totalRecords / itemsPerPage);
-        console.log(currentPage);
-        var pageNavHtml = "";
-        if (currentPage !== 1) {
-            pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + (currentPage-1) + ")\">«</span>";
-        }
 
-        for (var i = 1; i <= totalPages; i++) {
-            if (currentPage === i) {
-                pageNavHtml += "<span class=\"page\">" + i + "</span>";
-            } else {
-                pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + i + ")\">" + i + "</span>";
+        document.getElementById("pageNav").innerHTML = "";
+        if (totalRecords > itemsPerPage) {
+            var totalPages = Math.ceil(totalRecords / itemsPerPage);
+
+            var pageNavHtml = "";
+            if (currentPage !== 1) {
+                pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + (currentPage-1) + ")\">«</span>";
             }
-        }
 
-        if (currentPage !== totalPages) {
-            pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + (currentPage+1) + ")\">»</span>";
-        }
+            for (var i = 1; i <= totalPages; i++) {
+                if (currentPage === i) {
+                    pageNavHtml += "<span class=\"page\">" + i + "</span>";
+                } else {
+                    pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + i + ")\">" + i + "</span>";
+                }
+            }
 
-        document.getElementById("pageNav").innerHTML = pageNavHtml;
+            if (currentPage !== totalPages) {
+                pageNavHtml += "<span class=\"page link-page\" onClick=\"search(" + (currentPage+1) + ")\">»</span>";
+            }
+
+            document.getElementById("pageNav").innerHTML = pageNavHtml;
+        }
     }
 </script>
 <section class="section">
@@ -68,11 +72,15 @@
 
         <p>Home</p>
         <div class="grid-row">
+            <div class="column-two-thirds">
+                <div class="search-field">
+                    <input id="searchBox" type="search" />
+                    <button class="button" type="submit" onclick="search(1)"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row">
             <div class="column-full">
-                <p>
-                    <input id="searchField" class="form-control" type="text"/>
-                    <button type="submit" onclick="search(1)">Search</button>
-                </p>
                 <div id="searchResults"></div>
                 <div id="pageNav" class="pagination"></div>
             </div>

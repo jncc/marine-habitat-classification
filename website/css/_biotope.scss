@@ -49,6 +49,31 @@
     }
 }
 
+.search-field {
+    margin-bottom: 2em;
+
+    input {
+        font-size: 19px;
+        line-height: 44px;
+        padding-left: 0.5em;
+        margin-right: -5px;
+        width: 75%;
+    }
+
+    button {
+        background-color: #2b8cc4;
+        border-radius: 0;
+        box-shadow: none;
+        width: 50px;
+        height: 50px;
+        border: none;
+    }
+
+    button:hover {
+        background-color: #267daf;
+    }
+}
+
 .search-result {
     margin-bottom: 2em;
 
@@ -82,6 +107,10 @@
         background-color: #dee0e2;
         cursor: pointer;
     }
+}
+
+.colour-button:hover {
+    text-decoration: underline;
 }
 
 .mhc-copyright {
