@@ -24,10 +24,10 @@
     private JArray GetJsonFromApi()
     {
         var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        var request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "GET";
 
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        var response = (HttpWebResponse)request.GetResponse();
         string content;
         using (StreamReader sr = new StreamReader(response.GetResponseStream()))
         {
