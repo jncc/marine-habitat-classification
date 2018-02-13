@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="a42712df-5f00-4ab6-a214-c7ad05ecb6e7" ChangeDateTime="02/13/2018 10:26:33">
+    <Property Name="ElementName" Value="[dbo].[WEB_PHOTO].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_PHOTO]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BIOTOPE_KEY" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="556d7713-1dd4-4e9d-a80e-f753ba2444eb" ChangeDateTime="02/13/2018 10:28:01">
+    <Property Name="ElementName" Value="[dbo].[WEB_PHOTO].[PHOTO_FILENAME]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_PHOTO]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PHOTO_PATH" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ad6259ca-3639-432a-8551-f55549956f1c" ChangeDateTime="02/13/2018 11:24:19">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BIOTOPE_KEY" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fcf7e03d-fb52-4eca-afd3-a91a5dc4a7b4" ChangeDateTime="02/13/2018 11:36:59">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS].[RELATED_HABITAT_CLASSIFICATION]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RELATED_HAB_CLASS_SYSTEM" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5efa2bb4-f0f4-4894-8960-dba9b1233987" ChangeDateTime="02/13/2018 11:37:03">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS].[RELATED_HABITAT_NAME]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RELATED_HAB_NAME" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="86da7724-c6eb-487a-9465-c4362e983dcd" ChangeDateTime="02/13/2018 11:39:27">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS].[CLASS_SYSTEM_PATH]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CLASS_SYSTEM_URL" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d7908f26-c717-48bd-aa8c-a91067babbd3" ChangeDateTime="02/13/2018 11:40:18">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS].[RELATED_HAB_CLASS_SYSTEM]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RELATED_CLASSIFICATION_SYSTEM" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="79b10383-0764-4178-83f0-99f3bc00ccfd" ChangeDateTime="02/13/2018 11:40:27">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS].[RELATED_HAB_NAME]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RELATED_NAME" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7f47782a-ee8b-46eb-8117-ad0aed2f9594" ChangeDateTime="02/13/2018 11:40:30">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS].[CLASS_SYSTEM_URL]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CLASSIFICATION_SYSTEM_URL" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d1333303-183e-4a3e-8302-7b0978aad81e" ChangeDateTime="02/13/2018 11:44:28">
+    <Property Name="ElementName" Value="[dbo].[WEB_BIOTOPE].[DERIVED_FROM]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_BIOTOPE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DATA_DERIVED_FROM" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6c53d8af-348b-4d73-aa0b-b99804e0c468" ChangeDateTime="02/13/2018 11:44:45">
+    <Property Name="ElementName" Value="[dbo].[WEB_BIOTOPE].[DATA_DERIVED_FROM]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_BIOTOPE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DERIVED_FROM" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b9c998bc-480c-4c2b-8e25-4a3f67176ba7" ChangeDateTime="02/13/2018 13:08:03">
+    <Property Name="ElementName" Value="[dbo].[WEB_PHOTO].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_PHOTO]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BIOTOPE_KEY" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8b62da6b-e0be-4309-9e8b-ee076ad40dc3" ChangeDateTime="02/13/2018 13:10:36">
+    <Property Name="ElementName" Value="[dbo].[WEB_HABITAT_CORRELATION].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WEB_HABITAT_CORRELATION]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BIOTOPE_KEY" />
+  </Operation>
+</Operations>

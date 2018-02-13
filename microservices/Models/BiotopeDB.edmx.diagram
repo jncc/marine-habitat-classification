@@ -4,22 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1b129c92942d4bfd83583d1e6c5b59c9" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.WEB_BIOT_RELATION" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_GRAB" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_OBSERVATION" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.WEB_BIOTOPE" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.WEB_BIOTOPE_HIERARCHY" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.WEB_OLD_CODE" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+      <Diagram DiagramId="e807fca398a64bfea14355cc5134eccf" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.WEB_BIOT_RELATION" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_GRAB" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_OBSERVATION" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WEB_BIOTOPE" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WEB_BIOTOPE_HIERARCHY" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WEB_HABITAT_CORRELATION" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WEB_OLD_CODE" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WEB_PHOTO" Width="1.5" PointX="3" PointY="20.375" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_WBR_BIOTOPE_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_WBR_RELATED_BIOTOPE_KEY" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_WBS_BIOTOPE_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_WBSG_BIOTOPE_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_WBSO_BIOTOPE_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_BIOTOPE_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_BIOTOPE_PARENT_KEY" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_WHC_BIOTOPE_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_WOC_BIOTOPE_KEY" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_WP_BIOTOPE_KEY" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

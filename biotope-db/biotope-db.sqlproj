@@ -65,8 +65,13 @@
     <Build Include="WEB_BIOT_RELATION.sql" />
     <Build Include="WEB_OLD_CODE.sql" />
     <Build Include="WEB_BIOT_SPECIES_OBSERVATION.sql" />
+    <Build Include="WEB_PHOTO.sql" />
+    <Build Include="WEB_HABITAT_CORRELATION.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Import.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="biotope-db.refactorlog" />
   </ItemGroup>
 </Project>

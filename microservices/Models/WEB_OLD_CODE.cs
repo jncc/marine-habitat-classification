@@ -17,6 +17,9 @@ namespace microservices.Models
         public string BIOTOPE_KEY { get; set; }
         public string OLD_CODE { get; set; }
         public string VERSION { get; set; }
+        public string PREVIOUS_FULLNAME { get; set; }
+        public string RELATIONSHIP_TYPE { get; set; }
+        public string MODIFICATIONS { get; set; }
     
         public virtual WEB_BIOTOPE WEB_BIOTOPE { get; set; }
     }
