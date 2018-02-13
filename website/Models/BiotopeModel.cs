@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Umbraco.Core.Models;
 using Umbraco.Web.Models;
 
@@ -13,6 +14,8 @@ namespace website.Models
         public Dictionary<int, BiotopeLevel> BiotopeHierarchy { get; set; }
         public List<SimilarBiotope> SimilarBiotopes { get; set; }
         public List<OldCode> OldCodes { get; set; }
+        public List<HabitatCorrelation> HabitatCorrelations { get; set; }
+        public List<Photo> Photos { get; set; }
     }
 
     public class Biotope
@@ -34,6 +37,9 @@ namespace website.Models
         public string Substratum { get; set; }
         public string Subzone { get; set; }
         public string SortCode { get; set; }
+        public Uri SensitivityAssessment { get; set; }
+        public string DerivedFrom { get; set; }
+        public string FaunalGroup { get; set; }
     }
 
     public class BiotopeLevel
@@ -63,5 +69,22 @@ namespace website.Models
     {
         public string OriginalCode { get; set; }
         public string Version { get; set; }
+        public string FullName { get; set; }
+        public string RelationshipType { get; set; }
+        public string Modifications { get; set; }
+    }
+
+    public class HabitatCorrelation
+    {
+        public string Name { get; set; }
+        public string ClassificationSystemName { get; set; }
+        public string ClassificationSystemUrl { get; set; }
+        public string RelationshipType { get; set; }
+    }
+
+    public class Photo
+    {
+        public string Caption { get; set; }
+        public Uri Url { get; set; }
     }
 }
