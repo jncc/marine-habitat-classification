@@ -12,14 +12,13 @@ namespace microservices.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class WEB_OLD_CODE
+    public partial class WEB_HABITAT_CORRELATION
     {
         public string BIOTOPE_KEY { get; set; }
-        public string OLD_CODE { get; set; }
-        public string VERSION { get; set; }
-        public string PREVIOUS_FULLNAME { get; set; }
+        public string RELATED_CLASSIFICATION_SYSTEM { get; set; }
+        public string RELATED_NAME { get; set; }
         public string RELATIONSHIP_TYPE { get; set; }
-        public string MODIFICATIONS { get; set; }
+        public string CLASSIFICATION_SYSTEM_URL { get; set; }
     
         public virtual WEB_BIOTOPE WEB_BIOTOPE { get; set; }
     }

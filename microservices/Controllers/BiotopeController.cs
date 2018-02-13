@@ -56,14 +56,18 @@ namespace microservices.Controllers
                 var oldCodes = db.WEB_OLD_CODE.Where(b => b.BIOTOPE_KEY == key).ToList();
                 var speciesGrab = db.WEB_BIOT_SPECIES_GRAB.Where(b => b.BIOTOPE_KEY == key).ToList();
                 var speciesObservation = db.WEB_BIOT_SPECIES_OBSERVATION.Where(b => b.BIOTOPE_KEY == key).ToList();
+                var habitatCorrelations = db.WEB_HABITAT_CORRELATION.Where(b => b.BIOTOPE_KEY == key).ToList();
+                var photos = db.WEB_PHOTO.Where(b => b.BIOTOPE_KEY == key).ToList();
 
                 var transferObject = new
                 {
                     Biotope = GetBiotopeDto(biotope[0]),
                     BiotopeHierarchy = GetBiotopeHierarchyDto(biotope[0].WEB_BIOTOPE_HIERARCHY),
                     SimilarBiotopes = GetSimilarBiotopesDto(similarBiotopes),
-                    Species = GetCharacterisingSpecies(speciesGrab, speciesObservation),
-                    OldCodes = GetOldCodes(oldCodes)
+                    Species = GetCharacterisingSpeciesDto(speciesGrab, speciesObservation),
+                    OldCodes = GetOldCodesDto(oldCodes),
+                    HabitatCorrelations = GetHabitatCorrelationsDto(habitatCorrelations),
+                    Photos = GetPhotosDto(photos)
                 };
 
                 return Json(transferObject, JsonRequestBehavior.AllowGet);
@@ -90,7 +94,10 @@ namespace microservices.Controllers
                 TidalStreams = biotope.TIDAL_STREAMS,
                 Substratum = biotope.SUBSTRATUM,
                 Subzone = biotope.SUBZONE,
-                SortCode = biotope.SORT_CODE
+                SortCode = biotope.SORT_CODE,
+                SensitivityAssessment = biotope.SENSITIVITY_ASSESSMENT,
+                DerivedFrom = biotope.DERIVED_FROM,
+                FaunalGroup = biotope.FAUNAL_GROUP
             };
 
             return biotopeDto;
@@ -126,7 +133,7 @@ namespace microservices.Controllers
             return similarBiotopesDto;
         }
 
-        private List<object> GetCharacterisingSpecies(IEnumerable<WEB_BIOT_SPECIES_GRAB> speciesGrab,
+        private List<object> GetCharacterisingSpeciesDto(IEnumerable<WEB_BIOT_SPECIES_GRAB> speciesGrab,
             IEnumerable<WEB_BIOT_SPECIES_OBSERVATION> speciesObservation)
         {
             var characterisingSpecies = new List<object>();
@@ -160,7 +167,7 @@ namespace microservices.Controllers
             return characterisingSpecies;
         }
 
-        private List<object> GetOldCodes(IEnumerable<WEB_OLD_CODE> oldCodes)
+        private List<object> GetOldCodesDto(IEnumerable<WEB_OLD_CODE> oldCodes)
         {
             var oldCodesDto = new List<object>();
             foreach (var oldCode in oldCodes)
@@ -173,6 +180,38 @@ namespace microservices.Controllers
             }
 
             return oldCodesDto;
+        }
+
+        private List<object> GetHabitatCorrelationsDto(IEnumerable<WEB_HABITAT_CORRELATION> habitatCorrelations)
+        {
+            var habitatCorrelationsDto = new List<object>();
+            foreach (var habitat in habitatCorrelations)
+            {
+                habitatCorrelationsDto.Add(new
+                {
+                    RelatedClassificationSystem = habitat.RELATED_CLASSIFICATION_SYSTEM,
+                    RelatedName = habitat.RELATED_NAME,
+                    RelationshipType = habitat.RELATIONSHIP_TYPE,
+                    ClassificationSystemUrl = habitat.CLASSIFICATION_SYSTEM_URL
+                });
+            }
+
+            return habitatCorrelationsDto;
+        }
+
+        private List<object> GetPhotosDto(IEnumerable<WEB_PHOTO> photos)
+        {
+            var photosDto = new List<object>();
+            foreach (var photo in photos)
+            {
+                photosDto.Add(new
+                {
+                    PhotoCaption = photo.PHOTO_CAPTION,
+                    PhotoPath = photo.PHOTO_PATH
+                });
+            }
+
+            return photosDto;
         }
     }
 }

@@ -12,15 +12,12 @@ namespace microservices.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class WEB_BIOT_SPECIES
+    public partial class WEB_PHOTO
     {
+        public int ID { get; set; }
         public string BIOTOPE_KEY { get; set; }
-        public string ITEM_NAME { get; set; }
-        public string FREQ { get; set; }
-        public string ABUND { get; set; }
-        public Nullable<short> contrib_similarity_STRENGTH { get; set; }
-        public Nullable<int> SED_ABUND_SED_ABUND { get; set; }
-        public string SORT { get; set; }
+        public string PHOTO_PATH { get; set; }
+        public string PHOTO_CAPTION { get; set; }
     
         public virtual WEB_BIOTOPE WEB_BIOTOPE { get; set; }
     }

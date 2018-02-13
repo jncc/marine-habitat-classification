@@ -14,19 +14,6 @@
           <Property Name="RELATED_BIOTOPE_KEY" Type="char" MaxLength="16" Nullable="false" />
           <Property Name="COMMENT" Type="text" />
         </EntityType>
-        <EntityType Name="WEB_BIOT_SPECIES">
-          <Key>
-            <PropertyRef Name="BIOTOPE_KEY" />
-            <PropertyRef Name="ITEM_NAME" />
-          </Key>
-          <Property Name="BIOTOPE_KEY" Type="char" MaxLength="16" Nullable="false" />
-          <Property Name="ITEM_NAME" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="FREQ" Type="varchar" MaxLength="10" />
-          <Property Name="ABUND" Type="char" MaxLength="1" />
-          <Property Name="contrib_similarity_STRENGTH" Type="smallint" />
-          <Property Name="SED_ABUND_SED_ABUND" Type="int" />
-          <Property Name="SORT" Type="varchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="WEB_BIOT_SPECIES_GRAB">
           <Key>
             <PropertyRef Name="BIOTOPE_KEY" />
@@ -74,6 +61,9 @@
           <Property Name="SUBZONE" Type="nvarchar" MaxLength="255" />
           <Property Name="SUBSTRATUM" Type="ntext" />
           <Property Name="SORT_CODE" Type="smallint" />
+          <Property Name="SENSITIVITY_ASSESSMENT" Type="ntext" />
+          <Property Name="DERIVED_FROM" Type="varchar" MaxLength="50" />
+          <Property Name="FAUNAL_GROUP" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="WEB_BIOTOPE_HIERARCHY">
           <Key>
@@ -85,6 +75,18 @@
           <Property Name="LEVEL" Type="int" Nullable="false" />
           <Property Name="HIGHERLEVEL" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="WEB_HABITAT_CORRELATION">
+          <Key>
+            <PropertyRef Name="BIOTOPE_KEY" />
+            <PropertyRef Name="RELATED_CLASSIFICATION_SYSTEM" />
+            <PropertyRef Name="RELATED_NAME" />
+          </Key>
+          <Property Name="BIOTOPE_KEY" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="RELATED_CLASSIFICATION_SYSTEM" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RELATED_NAME" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RELATIONSHIP_TYPE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CLASSIFICATION_SYSTEM_URL" Type="ntext" />
+        </EntityType>
         <EntityType Name="WEB_OLD_CODE">
           <Key>
             <PropertyRef Name="BIOTOPE_KEY" />
@@ -93,6 +95,18 @@
           <Property Name="BIOTOPE_KEY" Type="char" MaxLength="16" Nullable="false" />
           <Property Name="OLD_CODE" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="VERSION" Type="varchar" MaxLength="20" />
+          <Property Name="PREVIOUS_FULLNAME" Type="ntext" />
+          <Property Name="RELATIONSHIP_TYPE" Type="varchar" MaxLength="255" />
+          <Property Name="MODIFICATIONS" Type="ntext" />
+        </EntityType>
+        <EntityType Name="WEB_PHOTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BIOTOPE_KEY" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="PHOTO_PATH" Type="ntext" Nullable="false" />
+          <Property Name="PHOTO_CAPTION" Type="ntext" />
         </EntityType>
         <Association Name="FK_BIOTOPE_KEY">
           <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
@@ -142,18 +156,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WBS_BIOTOPE_KEY">
-          <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
-          <End Role="WEB_BIOT_SPECIES" Type="Self.WEB_BIOT_SPECIES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WEB_BIOTOPE">
-              <PropertyRef Name="BIOTOPE_KEY" />
-            </Principal>
-            <Dependent Role="WEB_BIOT_SPECIES">
-              <PropertyRef Name="BIOTOPE_KEY" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_WBSG_BIOTOPE_KEY">
           <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
           <End Role="WEB_BIOT_SPECIES_GRAB" Type="Self.WEB_BIOT_SPECIES_GRAB" Multiplicity="*" />
@@ -178,6 +180,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WHC_BIOTOPE_KEY">
+          <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
+          <End Role="WEB_HABITAT_CORRELATION" Type="Self.WEB_HABITAT_CORRELATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEB_BIOTOPE">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Principal>
+            <Dependent Role="WEB_HABITAT_CORRELATION">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WOC_BIOTOPE_KEY">
           <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
           <End Role="WEB_OLD_CODE" Type="Self.WEB_OLD_CODE" Multiplicity="*" />
@@ -190,14 +204,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WP_BIOTOPE_KEY">
+          <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
+          <End Role="WEB_PHOTO" Type="Self.WEB_PHOTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEB_BIOTOPE">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Principal>
+            <Dependent Role="WEB_PHOTO">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="WEB_BIOT_RELATION" EntityType="Self.WEB_BIOT_RELATION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WEB_BIOT_SPECIES" EntityType="Self.WEB_BIOT_SPECIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEB_BIOT_SPECIES_GRAB" EntityType="Self.WEB_BIOT_SPECIES_GRAB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEB_BIOT_SPECIES_OBSERVATION" EntityType="Self.WEB_BIOT_SPECIES_OBSERVATION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEB_BIOTOPE" EntityType="Self.WEB_BIOTOPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEB_BIOTOPE_HIERARCHY" EntityType="Self.WEB_BIOTOPE_HIERARCHY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEB_HABITAT_CORRELATION" EntityType="Self.WEB_HABITAT_CORRELATION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WEB_OLD_CODE" EntityType="Self.WEB_OLD_CODE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WEB_PHOTO" EntityType="Self.WEB_PHOTO" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BIOTOPE_KEY" Association="Self.FK_BIOTOPE_KEY">
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_BIOTOPE_HIERARCHY" EntitySet="WEB_BIOTOPE_HIERARCHY" />
@@ -214,10 +241,6 @@
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_BIOT_RELATION" EntitySet="WEB_BIOT_RELATION" />
           </AssociationSet>
-          <AssociationSet Name="FK_WBS_BIOTOPE_KEY" Association="Self.FK_WBS_BIOTOPE_KEY">
-            <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
-            <End Role="WEB_BIOT_SPECIES" EntitySet="WEB_BIOT_SPECIES" />
-          </AssociationSet>
           <AssociationSet Name="FK_WBSG_BIOTOPE_KEY" Association="Self.FK_WBSG_BIOTOPE_KEY">
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_BIOT_SPECIES_GRAB" EntitySet="WEB_BIOT_SPECIES_GRAB" />
@@ -226,9 +249,17 @@
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_BIOT_SPECIES_OBSERVATION" EntitySet="WEB_BIOT_SPECIES_OBSERVATION" />
           </AssociationSet>
+          <AssociationSet Name="FK_WHC_BIOTOPE_KEY" Association="Self.FK_WHC_BIOTOPE_KEY">
+            <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
+            <End Role="WEB_HABITAT_CORRELATION" EntitySet="WEB_HABITAT_CORRELATION" />
+          </AssociationSet>
           <AssociationSet Name="FK_WOC_BIOTOPE_KEY" Association="Self.FK_WOC_BIOTOPE_KEY">
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_OLD_CODE" EntitySet="WEB_OLD_CODE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WP_BIOTOPE_KEY" Association="Self.FK_WP_BIOTOPE_KEY">
+            <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
+            <End Role="WEB_PHOTO" EntitySet="WEB_PHOTO" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -246,20 +277,6 @@
           <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WBR_BIOTOPE_KEY" FromRole="WEB_BIOT_RELATION" ToRole="WEB_BIOTOPE" />
           <NavigationProperty Name="WEB_BIOTOPE1" Relationship="Self.FK_WBR_RELATED_BIOTOPE_KEY" FromRole="WEB_BIOT_RELATION" ToRole="WEB_BIOTOPE" />
-        </EntityType>
-        <EntityType Name="WEB_BIOT_SPECIES">
-          <Key>
-            <PropertyRef Name="BIOTOPE_KEY" />
-            <PropertyRef Name="ITEM_NAME" />
-          </Key>
-          <Property Name="BIOTOPE_KEY" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="ITEM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FREQ" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ABUND" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="contrib_similarity_STRENGTH" Type="Int16" />
-          <Property Name="SED_ABUND_SED_ABUND" Type="Int32" />
-          <Property Name="SORT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WBS_BIOTOPE_KEY" FromRole="WEB_BIOT_SPECIES" ToRole="WEB_BIOTOPE" />
         </EntityType>
         <EntityType Name="WEB_BIOT_SPECIES_GRAB">
           <Key>
@@ -310,14 +327,18 @@
           <Property Name="SUBZONE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="SUBSTRATUM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SORT_CODE" Type="Int16" />
+          <Property Name="SENSITIVITY_ASSESSMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DERIVED_FROM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FAUNAL_GROUP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="WEB_BIOT_RELATION" Relationship="Self.FK_WBR_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_BIOT_RELATION" />
           <NavigationProperty Name="WEB_BIOT_RELATION1" Relationship="Self.FK_WBR_RELATED_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_BIOT_RELATION" />
-          <NavigationProperty Name="WEB_BIOT_SPECIES" Relationship="Self.FK_WBS_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_BIOT_SPECIES" />
           <NavigationProperty Name="WEB_BIOT_SPECIES_GRAB" Relationship="Self.FK_WBSG_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_BIOT_SPECIES_GRAB" />
           <NavigationProperty Name="WEB_BIOT_SPECIES_OBSERVATION" Relationship="Self.FK_WBSO_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_BIOT_SPECIES_OBSERVATION" />
           <NavigationProperty Name="WEB_BIOTOPE_HIERARCHY" Relationship="Self.FK_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_BIOTOPE_HIERARCHY" />
           <NavigationProperty Name="WEB_BIOTOPE_HIERARCHY1" Relationship="Self.FK_BIOTOPE_PARENT_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_BIOTOPE_HIERARCHY" />
+          <NavigationProperty Name="WEB_HABITAT_CORRELATION" Relationship="Self.FK_WHC_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_HABITAT_CORRELATION" />
           <NavigationProperty Name="WEB_OLD_CODE" Relationship="Self.FK_WOC_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_OLD_CODE" />
+          <NavigationProperty Name="WEB_PHOTO" Relationship="Self.FK_WP_BIOTOPE_KEY" FromRole="WEB_BIOTOPE" ToRole="WEB_PHOTO" />
         </EntityType>
         <EntityType Name="WEB_BIOTOPE_HIERARCHY">
           <Key>
@@ -331,6 +352,19 @@
           <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_BIOTOPE_KEY" FromRole="WEB_BIOTOPE_HIERARCHY" ToRole="WEB_BIOTOPE" />
           <NavigationProperty Name="WEB_BIOTOPE1" Relationship="Self.FK_BIOTOPE_PARENT_KEY" FromRole="WEB_BIOTOPE_HIERARCHY" ToRole="WEB_BIOTOPE" />
         </EntityType>
+        <EntityType Name="WEB_HABITAT_CORRELATION">
+          <Key>
+            <PropertyRef Name="BIOTOPE_KEY" />
+            <PropertyRef Name="RELATED_CLASSIFICATION_SYSTEM" />
+            <PropertyRef Name="RELATED_NAME" />
+          </Key>
+          <Property Name="BIOTOPE_KEY" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RELATED_CLASSIFICATION_SYSTEM" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RELATED_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RELATIONSHIP_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLASSIFICATION_SYSTEM_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WHC_BIOTOPE_KEY" FromRole="WEB_HABITAT_CORRELATION" ToRole="WEB_BIOTOPE" />
+        </EntityType>
         <EntityType Name="WEB_OLD_CODE">
           <Key>
             <PropertyRef Name="BIOTOPE_KEY" />
@@ -339,7 +373,20 @@
           <Property Name="BIOTOPE_KEY" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="OLD_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VERSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PREVIOUS_FULLNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RELATIONSHIP_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MODIFICATIONS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WOC_BIOTOPE_KEY" FromRole="WEB_OLD_CODE" ToRole="WEB_BIOTOPE" />
+        </EntityType>
+        <EntityType Name="WEB_PHOTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BIOTOPE_KEY" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PHOTO_PATH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PHOTO_CAPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WP_BIOTOPE_KEY" FromRole="WEB_PHOTO" ToRole="WEB_BIOTOPE" />
         </EntityType>
         <Association Name="FK_WBR_BIOTOPE_KEY">
           <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
@@ -362,18 +409,6 @@
             </Principal>
             <Dependent Role="WEB_BIOT_RELATION">
               <PropertyRef Name="RELATED_BIOTOPE_KEY" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WBS_BIOTOPE_KEY">
-          <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
-          <End Role="WEB_BIOT_SPECIES" Type="Self.WEB_BIOT_SPECIES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WEB_BIOTOPE">
-              <PropertyRef Name="BIOTOPE_KEY" />
-            </Principal>
-            <Dependent Role="WEB_BIOT_SPECIES">
-              <PropertyRef Name="BIOTOPE_KEY" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -425,6 +460,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WHC_BIOTOPE_KEY">
+          <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
+          <End Role="WEB_HABITAT_CORRELATION" Type="Self.WEB_HABITAT_CORRELATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEB_BIOTOPE">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Principal>
+            <Dependent Role="WEB_HABITAT_CORRELATION">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WOC_BIOTOPE_KEY">
           <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
           <End Role="WEB_OLD_CODE" Type="Self.WEB_OLD_CODE" Multiplicity="*" />
@@ -437,14 +484,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WP_BIOTOPE_KEY">
+          <End Role="WEB_BIOTOPE" Type="Self.WEB_BIOTOPE" Multiplicity="1" />
+          <End Role="WEB_PHOTO" Type="Self.WEB_PHOTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WEB_BIOTOPE">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Principal>
+            <Dependent Role="WEB_PHOTO">
+              <PropertyRef Name="BIOTOPE_KEY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BiotopeDB" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="WEB_BIOT_RELATION" EntityType="Self.WEB_BIOT_RELATION" />
-          <EntitySet Name="WEB_BIOT_SPECIES" EntityType="Self.WEB_BIOT_SPECIES" />
           <EntitySet Name="WEB_BIOT_SPECIES_GRAB" EntityType="Self.WEB_BIOT_SPECIES_GRAB" />
           <EntitySet Name="WEB_BIOT_SPECIES_OBSERVATION" EntityType="Self.WEB_BIOT_SPECIES_OBSERVATION" />
           <EntitySet Name="WEB_BIOTOPE" EntityType="Self.WEB_BIOTOPE" />
           <EntitySet Name="WEB_BIOTOPE_HIERARCHY" EntityType="Self.WEB_BIOTOPE_HIERARCHY" />
+          <EntitySet Name="WEB_HABITAT_CORRELATION" EntityType="Self.WEB_HABITAT_CORRELATION" />
           <EntitySet Name="WEB_OLD_CODE" EntityType="Self.WEB_OLD_CODE" />
+          <EntitySet Name="WEB_PHOTO" EntityType="Self.WEB_PHOTO" />
           <AssociationSet Name="FK_WBR_BIOTOPE_KEY" Association="Self.FK_WBR_BIOTOPE_KEY">
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_BIOT_RELATION" EntitySet="WEB_BIOT_RELATION" />
@@ -452,10 +512,6 @@
           <AssociationSet Name="FK_WBR_RELATED_BIOTOPE_KEY" Association="Self.FK_WBR_RELATED_BIOTOPE_KEY">
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_BIOT_RELATION" EntitySet="WEB_BIOT_RELATION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WBS_BIOTOPE_KEY" Association="Self.FK_WBS_BIOTOPE_KEY">
-            <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
-            <End Role="WEB_BIOT_SPECIES" EntitySet="WEB_BIOT_SPECIES" />
           </AssociationSet>
           <AssociationSet Name="FK_WBSG_BIOTOPE_KEY" Association="Self.FK_WBSG_BIOTOPE_KEY">
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
@@ -473,9 +529,17 @@
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_BIOTOPE_HIERARCHY" EntitySet="WEB_BIOTOPE_HIERARCHY" />
           </AssociationSet>
+          <AssociationSet Name="FK_WHC_BIOTOPE_KEY" Association="Self.FK_WHC_BIOTOPE_KEY">
+            <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
+            <End Role="WEB_HABITAT_CORRELATION" EntitySet="WEB_HABITAT_CORRELATION" />
+          </AssociationSet>
           <AssociationSet Name="FK_WOC_BIOTOPE_KEY" Association="Self.FK_WOC_BIOTOPE_KEY">
             <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
             <End Role="WEB_OLD_CODE" EntitySet="WEB_OLD_CODE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WP_BIOTOPE_KEY" Association="Self.FK_WP_BIOTOPE_KEY">
+            <End Role="WEB_BIOTOPE" EntitySet="WEB_BIOTOPE" />
+            <End Role="WEB_PHOTO" EntitySet="WEB_PHOTO" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -491,19 +555,6 @@
                 <ScalarProperty Name="BIOTOPE_KEY" ColumnName="BIOTOPE_KEY" />
                 <ScalarProperty Name="RELATED_BIOTOPE_KEY" ColumnName="RELATED_BIOTOPE_KEY" />
                 <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WEB_BIOT_SPECIES">
-            <EntityTypeMapping TypeName="Model.WEB_BIOT_SPECIES">
-              <MappingFragment StoreEntitySet="WEB_BIOT_SPECIES">
-                <ScalarProperty Name="BIOTOPE_KEY" ColumnName="BIOTOPE_KEY" />
-                <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
-                <ScalarProperty Name="FREQ" ColumnName="FREQ" />
-                <ScalarProperty Name="ABUND" ColumnName="ABUND" />
-                <ScalarProperty Name="contrib_similarity_STRENGTH" ColumnName="contrib_similarity_STRENGTH" />
-                <ScalarProperty Name="SED_ABUND_SED_ABUND" ColumnName="SED_ABUND_SED_ABUND" />
-                <ScalarProperty Name="SORT" ColumnName="SORT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -553,6 +604,9 @@
                 <ScalarProperty Name="SUBZONE" ColumnName="SUBZONE" />
                 <ScalarProperty Name="SUBSTRATUM" ColumnName="SUBSTRATUM" />
                 <ScalarProperty Name="SORT_CODE" ColumnName="SORT_CODE" />
+                <ScalarProperty Name="SENSITIVITY_ASSESSMENT" ColumnName="SENSITIVITY_ASSESSMENT" />
+                <ScalarProperty Name="DERIVED_FROM" ColumnName="DERIVED_FROM" />
+                <ScalarProperty Name="FAUNAL_GROUP" ColumnName="FAUNAL_GROUP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -566,12 +620,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="WEB_HABITAT_CORRELATION">
+            <EntityTypeMapping TypeName="Model.WEB_HABITAT_CORRELATION">
+              <MappingFragment StoreEntitySet="WEB_HABITAT_CORRELATION">
+                <ScalarProperty Name="BIOTOPE_KEY" ColumnName="BIOTOPE_KEY" />
+                <ScalarProperty Name="RELATED_CLASSIFICATION_SYSTEM" ColumnName="RELATED_CLASSIFICATION_SYSTEM" />
+                <ScalarProperty Name="RELATED_NAME" ColumnName="RELATED_NAME" />
+                <ScalarProperty Name="RELATIONSHIP_TYPE" ColumnName="RELATIONSHIP_TYPE" />
+                <ScalarProperty Name="CLASSIFICATION_SYSTEM_URL" ColumnName="CLASSIFICATION_SYSTEM_URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WEB_OLD_CODE">
             <EntityTypeMapping TypeName="Model.WEB_OLD_CODE">
               <MappingFragment StoreEntitySet="WEB_OLD_CODE">
                 <ScalarProperty Name="BIOTOPE_KEY" ColumnName="BIOTOPE_KEY" />
                 <ScalarProperty Name="OLD_CODE" ColumnName="OLD_CODE" />
                 <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="PREVIOUS_FULLNAME" ColumnName="PREVIOUS_FULLNAME" />
+                <ScalarProperty Name="RELATIONSHIP_TYPE" ColumnName="RELATIONSHIP_TYPE" />
+                <ScalarProperty Name="MODIFICATIONS" ColumnName="MODIFICATIONS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WEB_PHOTO">
+            <EntityTypeMapping TypeName="Model.WEB_PHOTO">
+              <MappingFragment StoreEntitySet="WEB_PHOTO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BIOTOPE_KEY" ColumnName="BIOTOPE_KEY" />
+                <ScalarProperty Name="PHOTO_PATH" ColumnName="PHOTO_PATH" />
+                <ScalarProperty Name="PHOTO_CAPTION" ColumnName="PHOTO_CAPTION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
