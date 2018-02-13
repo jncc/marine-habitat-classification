@@ -175,7 +175,10 @@ namespace microservices.Controllers
                 oldCodesDto.Add(new
                 {
                     OriginalCode = oldCode.OLD_CODE,
-                    Version = oldCode.VERSION
+                    Version = oldCode.VERSION,
+                    PreviousFullname = oldCode.PREVIOUS_FULLNAME,
+                    RelationshipType = oldCode.RELATIONSHIP_TYPE,
+                    Modifications = oldCode.MODIFICATIONS
                 });
             }
 
