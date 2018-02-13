@@ -122,31 +122,31 @@
                         <tbody>
                         <tr>
                             <th>Salinity</th>
-                            <td>@Model.Biotope.Salinity</td>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Salinity))</td>
                         </tr>
                         <tr>
                             <th>Wave exposure</th>
-                            <td>@Model.Biotope.Exposure</td>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Exposure))</td>
                         </tr>
                         <tr>
                             <th>Tidal streams</th>
-                            <td>@Model.Biotope.TidalStreams</td>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TidalStreams))</td>
                         </tr>
                         <tr>
                             <th>Substratum</th>
-                            <td>@Model.Biotope.Substratum</td>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Substratum))</td>
                         </tr>
                         <tr>
                             <th>Zone</th>
-                            <td>@Model.Biotope.Subzone</td>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Subzone))</td>
                         </tr>
                         <tr>
                             <th>Depth Band</th>
-                            <td>@Model.Biotope.Height</td>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Height))</td>
                         </tr>
                         <tr>
                             <th>Other Features</th>
-                            <td>@Model.Biotope.SpecialFeatures</td>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.SpecialFeatures))</td>
                         </tr>
                         </tbody>
                     </table>
