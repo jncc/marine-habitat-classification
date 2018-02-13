@@ -9,6 +9,9 @@
     var nodeColoursSetting = Model.Content.Parent.GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
 
+    // Habitat correlations
+    var habitatCorrelationText = Model.HabitatCorrelations != null && Model.HabitatCorrelations.Count > 0 ? "" : "Habitat correlations";
+
     // Description
     var descriptionText = string.IsNullOrWhiteSpace(Model.Biotope.Description) ? "No description available." : Model.Biotope.Description;
 
