@@ -33,7 +33,9 @@ namespace website.Controllers
                 Species = null,
                 BiotopeHierarchy = null,
                 SimilarBiotopes = null,
-                OldCodes = null
+                OldCodes = null,
+                HabitatCorrelations = null,
+                Photos = null
             };
 
             try
@@ -68,6 +70,8 @@ namespace website.Controllers
             var similarBiotopes =
                 JsonConvert.DeserializeObject<List<SimilarBiotope>>(jsonObject["SimilarBiotopes"].ToString());
             var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
+            var habitatCorrelations = JsonConvert.DeserializeObject<List<HabitatCorrelation>>(jsonObject["HabitatCorrelations"].ToString());
+            var photos = JsonConvert.DeserializeObject<List<Photo>>(jsonObject["Photos"].ToString());
 
             PopulateFullTypicalAbundanceTerms(species);
             species.Sort((species1, species2) => string.Compare(species1.Sort, species2.Sort, StringComparison.Ordinal));
@@ -78,7 +82,9 @@ namespace website.Controllers
                 Species = species,
                 BiotopeHierarchy = biotopeHierarchy,
                 SimilarBiotopes = similarBiotopes,
-                OldCodes = oldCodes
+                OldCodes = oldCodes,
+                HabitatCorrelations = habitatCorrelations,
+                Photos = photos
             };
 
             return biotopeModel;
