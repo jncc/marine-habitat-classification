@@ -255,7 +255,6 @@
                     @foreach (var biotope in Model.SimilarBiotopes)
                     {
                         <div class="similar-biotope">
-                            <img src="http://jncc.defra.gov.uk/marine/biotopes/images/0003/HIMG0005_large.jpg"/>
                             <div>
                                 <h4><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
                                 @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
