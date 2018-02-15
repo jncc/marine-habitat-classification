@@ -37,7 +37,7 @@ namespace website.Models
         public string Substratum { get; set; }
         public string Subzone { get; set; }
         public string SortCode { get; set; }
-        public Uri SensitivityAssessment { get; set; }
+        public string SensitivityAssessment { get; set; }
         public string DerivedFrom { get; set; }
         public string FaunalGroup { get; set; }
     }
@@ -53,6 +53,7 @@ namespace website.Models
         public string BiotopeKey { get; set; }
         public string OriginalCode { get; set; }
         public string Comment { get; set; }
+        public List<Photo> Photos { get; set; }
     }
 
     public class Species
@@ -69,22 +70,22 @@ namespace website.Models
     {
         public string OriginalCode { get; set; }
         public string Version { get; set; }
-        public string FullName { get; set; }
+        public string PreviousFullname { get; set; }
         public string RelationshipType { get; set; }
         public string Modifications { get; set; }
     }
 
     public class HabitatCorrelation
     {
-        public string Name { get; set; }
-        public string ClassificationSystemName { get; set; }
+        public string RelatedName { get; set; }
+        public string RelatedClassificationSystem { get; set; }
         public string ClassificationSystemUrl { get; set; }
         public string RelationshipType { get; set; }
     }
 
     public class Photo
     {
-        public string Caption { get; set; }
-        public Uri Url { get; set; }
+        public string PhotoCaption { get; set; }
+        public string PhotoPath { get; set; }
     }
 }
