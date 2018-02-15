@@ -307,44 +307,25 @@
 
         @* Similar biotopes *@
 
-        <div id="similar-biotopes">
-            <h2>Similar biotopes</h2>
-            @if (Model.SimilarBiotopes != null && Model.SimilarBiotopes.Count > 0)
+        <h2>Similar biotopes</h2>
+        @if (Model.SimilarBiotopes != null && Model.SimilarBiotopes.Count > 0)
+        {
+            foreach (var biotope in Model.SimilarBiotopes)
             {
-                foreach (var biotope in Model.SimilarBiotopes)
-                {
-                    <div class="grid-row">
-                        @if (biotope.Photos != null && biotope.Photos.Count > 0)
-                        {
-                            <div class="column-one-quarter">
-                                <div class="similar-biotope">
-                                    <img src="@biotope.Photos[0].PhotoPath" />
-                                </div>
-                            </div>
-                            <div class="column-two-thirds">
-                                <p>
-                                    <h4><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
-                                    @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
-                                </p>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="column-full">
-                                <p>
-                                    <h4><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
-                                    @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
-                                </p>
-                            </div>
-                        }
+                <div class="grid-row">
+                    <div class="column-full">
+                        <p>
+                            <h4><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
+                            @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
+                        </p>
                     </div>
-                }
+                </div>
             }
-            else
-            {
-                <p>Not applicable or unknown.</p>
-            }
-        </div>
+        }
+        else
+        {
+            <p>Not applicable or unknown.</p>
+        }
 
 
         @* Habitat correlations *@

@@ -53,7 +53,6 @@ namespace website.Models
         public string BiotopeKey { get; set; }
         public string OriginalCode { get; set; }
         public string Comment { get; set; }
-        public List<Photo> Photos { get; set; }
     }
 
     public class Species
