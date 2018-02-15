@@ -337,6 +337,9 @@ table caption {
   .heading-small {
     margin-top: 1.05263em; } }
 
+.header-global-search {
+  float: right; }
+
 .similar-biotope img {
   width: 14em; }
 

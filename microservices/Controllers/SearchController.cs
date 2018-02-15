@@ -109,9 +109,10 @@ namespace microservices.Controllers
             // Replace " with \" or the json will break
             var jsonSafeDescription = biotope.DESCRIPTION.Replace("\"", "\\\"");
 
+            // Replacing full stops in original code with spaces because I can't figure out how to use a lettertokenizer
             var biotopeDoc = $@"{{
                 ""fields"": {{
-                    ""originalCode"": ""{biotope.ORIGINAL_CODE}"",
+                    ""originalCode"": ""{biotope.ORIGINAL_CODE.Trim().Replace('.', ' ')}"",
                     ""fullTerm"": ""{biotope.FULL_TERM}"",
                     ""description"": ""{jsonSafeDescription}"",
                     ""hierarchyLevel"": ""{biotope.WEB_BIOTOPE_HIERARCHY.Count}""
