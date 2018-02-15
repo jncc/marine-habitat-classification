@@ -85,7 +85,7 @@ namespace website.Models
 
     public class Photo
     {
-        public string Caption { get; set; }
-        public string Url { get; set; }
+        public string PhotoCaption { get; set; }
+        public string PhotoPath { get; set; }
     }
 }
