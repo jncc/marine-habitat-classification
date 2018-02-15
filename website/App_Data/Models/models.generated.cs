@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "2a344b8e3008d685")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "b230e55c48e8d48")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.3")]
 
 namespace Umbraco.Web.PublishedContentModels
@@ -155,75 +155,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Content
+		/// Body Text
 		///</summary>
 		[ImplementPropertyType("bodyText")]
-		public Newtonsoft.Json.Linq.JToken BodyText
+		public IHtmlString BodyText
 		{
-			get { return this.GetPropertyValue<Newtonsoft.Json.Linq.JToken>("bodyText"); }
-		}
-
-		///<summary>
-		/// Color Theme: This will be a custom property editor later
-		///</summary>
-		[ImplementPropertyType("colorTheme")]
-		public int ColorTheme
-		{
-			get { return this.GetPropertyValue<int>("colorTheme"); }
-		}
-
-		///<summary>
-		/// Font: This will be a custom property editor later
-		///</summary>
-		[ImplementPropertyType("font")]
-		public int Font
-		{
-			get { return this.GetPropertyValue<int>("font"); }
-		}
-
-		///<summary>
-		/// Address
-		///</summary>
-		[ImplementPropertyType("footerAddress")]
-		public string FooterAddress
-		{
-			get { return this.GetPropertyValue<string>("footerAddress"); }
-		}
-
-		///<summary>
-		/// Description
-		///</summary>
-		[ImplementPropertyType("footerDescription")]
-		public string FooterDescription
-		{
-			get { return this.GetPropertyValue<string>("footerDescription"); }
-		}
-
-		///<summary>
-		/// Header
-		///</summary>
-		[ImplementPropertyType("footerHeader")]
-		public string FooterHeader
-		{
-			get { return this.GetPropertyValue<string>("footerHeader"); }
-		}
-
-		///<summary>
-		/// Hero Background: Spice up the homepage by adding a beautiful photo that relates to your business
-		///</summary>
-		[ImplementPropertyType("HeroBackgroundImage")]
-		public IPublishedContent HeroBackgroundImage
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("HeroBackgroundImage"); }
-		}
-
-		///<summary>
-		/// Description
-		///</summary>
-		[ImplementPropertyType("heroDescription")]
-		public string HeroDescription
-		{
-			get { return this.GetPropertyValue<string>("heroDescription"); }
+			get { return this.GetPropertyValue<IHtmlString>("bodyText"); }
 		}
 
 		///<summary>
@@ -233,24 +170,6 @@ namespace Umbraco.Web.PublishedContentModels
 		public string PageTitle
 		{
 			get { return this.GetPropertyValue<string>("pageTitle"); }
-		}
-
-		///<summary>
-		/// Logo: Optional. If you add a logo it'll be used in the upper left corner instead of the site name. Make sure to use a transparent logo for best results
-		///</summary>
-		[ImplementPropertyType("SiteLogo")]
-		public IPublishedContent SiteLogo
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("SiteLogo"); }
-		}
-
-		///<summary>
-		/// Sitename: Used on the homepage as well as the title and social cards
-		///</summary>
-		[ImplementPropertyType("sitename")]
-		public string Sitename
-		{
-			get { return this.GetPropertyValue<string>("sitename"); }
 		}
 	}
 

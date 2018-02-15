@@ -41,7 +41,8 @@
     private JObject Search(string query, int page)
     {
         var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
-        var searchQuery = @"anyof(fullTerm,'" + query + "', -boost '50') or anyof(originalCode,'" + query + "', -boost '45') or anyof(description,'" + query + "', -boost '10')";
+        // Special formatting for original code because the standard tokenizer doesn't split by full stops
+        var searchQuery = @"anyof(fullTerm,'" + query + "', -boost '50') or anyof(originalCode,'" + query.Trim().Replace('.',' ') + "', -boost '45') or anyof(description,'" + query + "', -boost '10')";
         var requestString = searchUrl + "?c=*&q=" + searchQuery + "&count=" + itemsPerPage + "&skip=" + itemsPerPage * (page - 1);
 
         var request = (HttpWebRequest)WebRequest.Create(requestString);
@@ -80,7 +81,14 @@
 <section class="section">
     <div class="container">
 
-        <p>Home</p>
+        <div class="grid-row">
+            <div class="column-full">
+                @Model.Content.GetPropertyValue("bodyText")
+            </div>
+        </div>
+        
+        <br />
+
         <div class="grid-row">
             <div class="column-two-thirds">
                 <div class="search-field">
@@ -106,7 +114,7 @@
                         <div class="search-result">
                             <h3>
                                 <span class="icon" style="background-color: @levelColours[int.Parse(pair["fields"]["hierarchyLevel"].ToString())]">&nbsp;&nbsp;</span>
-                                <span class="biotope-code">@pair["fields"]["originalCode"]</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
+                                <span class="biotope-code">@pair["fields"]["originalCode"].ToString().Replace(' ','.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
                             </h3>
                             <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
                         </div>
