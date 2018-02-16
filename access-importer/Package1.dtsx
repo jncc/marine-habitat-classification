@@ -1,40 +1,39 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="12/5/2017 12:54:09 PM"
+  DTS:CreationDate="2/16/2018 9:46:13 AM"
   DTS:CreationName=""
-  DTS:CreatorComputerName="SHADOW"
-  DTS:CreatorName="SHADOW\paulg_bt6vh8x"
+  DTS:CreatorComputerName="CATHY-JIN"
+  DTS:CreatorName="GREEN\Cathy.Jin"
   DTS:Description="DTS Wizard-generated package"
-  DTS:DTSID="{3F9C1D7B-4F73-4E38-9CDF-EF3122A9C47B}"
+  DTS:DTSID="{3C2A2B89-AFD9-40FC-A7BF-DDC1DACD19F9}"
   DTS:ExecutableType=""
   DTS:LastModifiedProductVersion="14.0.0800.98"
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package1"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{AE696F95-C91A-4FEE-BD8A-1FEFE52E0C49}">
+  DTS:VersionGUID="{823AA5CD-D4CA-4711-A5C6-F9C30B316B37}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{15D918CC-D323-4203-8FCC-E6C32C46B2D9}"
-      DTS:ObjectName="DestinationConnectionOLEDB">
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{14B2BAC1-0E5B-40BC-8E44-B30E8460DC20}"
+      DTS:ObjectName="DestinationConnectionAdoNET">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=(localdb)\ProjectsV13;Initial Catalog=marbiotopedb;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=false;" />
+          DTS:ConnectionString="Data Source=(localdb)\ProjectsV13;Initial Catalog=marbiotopedb;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{D1AC768B-194D-4B7D-B3D8-1E988E1A8224}"
+      DTS:DTSID="{60B8EBBF-B764-4DAC-A4A1-1452B81A1D15}"
       DTS:ObjectName="SourceConnectionOLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=D:\workspace\marbiotope-deepsea_MPcleaned.mdb;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;OLE DB Services=0;" />
+          DTS:ConnectionString="Data Source=D:\workspace\marbiotope-deepsea_MPcleaned.mdb;OLE DB SERVICES=0;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -44,7 +43,7 @@
       DTS:refId="Package\Data Flow Task 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:DelayValidation="True"
-      DTS:DTSID="{16610731-94F6-488D-9FA8-B354C8A5DFD0}"
+      DTS:DTSID="{9B4BF054-0D99-4BC7-A759-7C78BB73A612}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -58,73 +57,50 @@
           <components>
             <component
               refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="Destination - WEB_BIOT_RELATION"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[WEB_BIOT_RELATION]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOT_RELATION"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -195,22 +171,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
+                  name="ADO NET Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -220,73 +196,50 @@
             </component>
             <component
               refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="Destination 1 - WEB_BIOT_SPECIES"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[WEB_BIOT_SPECIES]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOT_SPECIES"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -383,22 +336,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
+                  name="ADO NET Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -408,73 +361,50 @@
             </component>
             <component
               refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="Destination 2 - WEB_BIOTOPE"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[WEB_BIOTOPE]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOTOPE"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -591,6 +521,26 @@
                       cachedName="SORT_CODE"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[SORT_CODE]"
                       lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[SORT_CODE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].Columns[SENSITIVITY_ASSESSMENT]"
+                      cachedDataType="nText"
+                      cachedName="SENSITIVITY_ASSESSMENT"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[SENSITIVITY_ASSESSMENT]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[SENSITIVITY_ASSESSMENT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].Columns[DERIVED_FROM]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DERIVED_FROM"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[DERIVED_FROM]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[DERIVED_FROM]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].Columns[FAUNAL_GROUP]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FAUNAL_GROUP"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[FAUNAL_GROUP]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[FAUNAL_GROUP]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -672,27 +622,41 @@
                       refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[SORT_CODE]"
                       dataType="i2"
                       name="SORT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[SENSITIVITY_ASSESSMENT]"
+                      dataType="nText"
+                      name="SENSITIVITY_ASSESSMENT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[DERIVED_FROM]"
+                      dataType="wstr"
+                      length="255"
+                      name="DERIVED_FROM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input].ExternalColumns[FAUNAL_GROUP]"
+                      dataType="wstr"
+                      length="255"
+                      name="FAUNAL_GROUP" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
+                  name="ADO NET Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -702,73 +666,50 @@
             </component>
             <component
               refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
               name="Destination 3 - WEB_BIOTOPE_HIERARCHY"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[WEB_BIOTOPE_HIERARCHY]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOTOPE_HIERARCHY"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
@@ -849,22 +790,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
+                  name="ADO NET Destination Error Output"
                   synchronousInputId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -873,138 +814,137 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="Destination 4 - WEB_OLD_CODE"
+              refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Destination 4 - WEB_HABITAT_CORRELATION"
               usesDispositions="true"
               validateExternalMetadata="False"
-              version="4">
+              version="2">
               <properties>
                 <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
                   dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[WEB_OLD_CODE]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_HABITAT_CORRELATION"</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
                   dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
+                  refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
+                  refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input]"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="BIOTOPE_KEY"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].Columns[OLD_CODE]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].Columns[RELATED_CLASSIFICATION_SYSTEM]"
                       cachedDataType="wstr"
                       cachedLength="255"
-                      cachedName="OLD_CODE"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[OLD_CODE]"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[OLD_CODE]" />
+                      cachedName="RELATED_CLASSIFICATION_SYSTEM"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[RELATED_CLASSIFICATION_SYSTEM]"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATED_CLASSIFICATION_SYSTEM]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].Columns[VERSION]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].Columns[RELATED_NAME]"
                       cachedDataType="wstr"
                       cachedLength="255"
-                      cachedName="VERSION"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[VERSION]"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[VERSION]" />
+                      cachedName="RELATED_NAME"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[RELATED_NAME]"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATED_NAME]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].Columns[RELATIONSHIP_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RELATIONSHIP_TYPE"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[RELATIONSHIP_TYPE]"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATIONSHIP_TYPE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].Columns[CLASSIFICATION_SYSTEM_URL]"
+                      cachedDataType="nText"
+                      cachedName="CLASSIFICATION_SYSTEM_URL"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[CLASSIFICATION_SYSTEM_URL]"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[CLASSIFICATION_SYSTEM_URL]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="255"
                       name="BIOTOPE_KEY" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[OLD_CODE]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[RELATED_CLASSIFICATION_SYSTEM]"
                       dataType="wstr"
                       length="255"
-                      name="OLD_CODE" />
+                      name="RELATED_CLASSIFICATION_SYSTEM" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[VERSION]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[RELATED_NAME]"
                       dataType="wstr"
                       length="255"
-                      name="VERSION" />
+                      name="RELATED_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="RELATIONSHIP_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input].ExternalColumns[CLASSIFICATION_SYSTEM_URL]"
+                      dataType="nText"
+                      name="CLASSIFICATION_SYSTEM_URL" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Outputs[ADO NET Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input]">
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1661,6 +1601,35 @@
                       lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[SORT_CODE]"
                       name="SORT_CODE"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[SENSITIVITY_ASSESSMENT]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].ExternalColumns[SENSITIVITY_ASSESSMENT]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[SENSITIVITY_ASSESSMENT]"
+                      name="SENSITIVITY_ASSESSMENT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[DERIVED_FROM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].ExternalColumns[DERIVED_FROM]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[DERIVED_FROM]"
+                      name="DERIVED_FROM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[FAUNAL_GROUP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].ExternalColumns[FAUNAL_GROUP]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].Columns[FAUNAL_GROUP]"
+                      name="FAUNAL_GROUP"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1742,6 +1711,20 @@
                       refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].ExternalColumns[SORT_CODE]"
                       dataType="i2"
                       name="SORT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].ExternalColumns[SENSITIVITY_ASSESSMENT]"
+                      dataType="nText"
+                      name="SENSITIVITY_ASSESSMENT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].ExternalColumns[DERIVED_FROM]"
+                      dataType="wstr"
+                      length="255"
+                      name="DERIVED_FROM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output].ExternalColumns[FAUNAL_GROUP]"
+                      dataType="wstr"
+                      length="255"
+                      name="FAUNAL_GROUP" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1850,6 +1833,23 @@
                       dataType="i2"
                       lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[SORT_CODE]"
                       name="SORT_CODE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[SENSITIVITY_ASSESSMENT]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[SENSITIVITY_ASSESSMENT]"
+                      name="SENSITIVITY_ASSESSMENT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[DERIVED_FROM]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[DERIVED_FROM]"
+                      name="DERIVED_FROM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[FAUNAL_GROUP]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[FAUNAL_GROUP]"
+                      name="FAUNAL_GROUP" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
@@ -2070,11 +2070,520 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE"
+              refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="Source 4 - WEB_OLD_CODE"
+              name="Source 4 - WEB_HABITAT_CORRELATION"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">WEB_HABITAT_CORRELATION</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
+                      name="BIOTOPE_KEY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATED_CLASSIFICATION_SYSTEM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[RELATED_CLASSIFICATION_SYSTEM]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATED_CLASSIFICATION_SYSTEM]"
+                      name="RELATED_CLASSIFICATION_SYSTEM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATED_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[RELATED_NAME]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATED_NAME]"
+                      name="RELATED_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[RELATIONSHIP_TYPE]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[RELATIONSHIP_TYPE]"
+                      name="RELATIONSHIP_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[CLASSIFICATION_SYSTEM_URL]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[CLASSIFICATION_SYSTEM_URL]"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].Columns[CLASSIFICATION_SYSTEM_URL]"
+                      name="CLASSIFICATION_SYSTEM_URL"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="255"
+                      name="BIOTOPE_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[RELATED_CLASSIFICATION_SYSTEM]"
+                      dataType="wstr"
+                      length="255"
+                      name="RELATED_CLASSIFICATION_SYSTEM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[RELATED_NAME]"
+                      dataType="wstr"
+                      length="255"
+                      name="RELATED_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="RELATIONSHIP_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output].ExternalColumns[CLASSIFICATION_SYSTEM_URL]"
+                      dataType="nText"
+                      name="CLASSIFICATION_SYSTEM_URL" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
+                      name="BIOTOPE_KEY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[RELATED_CLASSIFICATION_SYSTEM]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[RELATED_CLASSIFICATION_SYSTEM]"
+                      name="RELATED_CLASSIFICATION_SYSTEM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[RELATED_NAME]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[RELATED_NAME]"
+                      name="RELATED_NAME" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[RELATIONSHIP_TYPE]"
+                      name="RELATIONSHIP_TYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[CLASSIFICATION_SYSTEM_URL]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[CLASSIFICATION_SYSTEM_URL]"
+                      name="CLASSIFICATION_SYSTEM_URL" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output2]"
+              endId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output3]"
+              endId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output4]"
+              endId="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 2"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{22D9E89D-F3E9-4C2E-8433-5BE9688448CB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 2"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Destination 5 - WEB_OLD_CODE"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_OLD_CODE"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BIOTOPE_KEY"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].Columns[OLD_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OLD_CODE"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[OLD_CODE]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[OLD_CODE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].Columns[VERSION]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="VERSION"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[VERSION]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[VERSION]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].Columns[PREVIOUS_FULLNAME]"
+                      cachedDataType="nText"
+                      cachedName="PREVIOUS_FULLNAME"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[PREVIOUS_FULLNAME]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[PREVIOUS_FULLNAME]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].Columns[RELATIONSHIP_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RELATIONSHIP_TYPE"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[RELATIONSHIP_TYPE]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[RELATIONSHIP_TYPE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].Columns[MODIFICATIONS]"
+                      cachedDataType="nText"
+                      cachedName="MODIFICATIONS"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[MODIFICATIONS]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[MODIFICATIONS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="255"
+                      name="BIOTOPE_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[OLD_CODE]"
+                      dataType="wstr"
+                      length="255"
+                      name="OLD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[VERSION]"
+                      dataType="wstr"
+                      length="255"
+                      name="VERSION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[PREVIOUS_FULLNAME]"
+                      dataType="nText"
+                      name="PREVIOUS_FULLNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="RELATIONSHIP_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input].ExternalColumns[MODIFICATIONS]"
+                      dataType="nText"
+                      name="MODIFICATIONS" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Destination 6 - WEB_PHOTO"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_PHOTO"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BIOTOPE_KEY"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].Columns[PHOTO_PATH]"
+                      cachedDataType="nText"
+                      cachedName="PHOTO_PATH"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[PHOTO_PATH]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[PHOTO_PATH]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].Columns[PHOTO_CAPTION]"
+                      cachedDataType="nText"
+                      cachedName="PHOTO_CAPTION"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[PHOTO_CAPTION]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[PHOTO_CAPTION]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="255"
+                      name="BIOTOPE_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[PHOTO_PATH]"
+                      dataType="nText"
+                      name="PHOTO_PATH" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input].ExternalColumns[PHOTO_CAPTION]"
+                      dataType="nText"
+                      name="PHOTO_CAPTION" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source 5 - WEB_OLD_CODE"
               usesDispositions="true"
               version="7">
               <properties>
@@ -2119,7 +2628,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
                   connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -2127,397 +2636,149 @@
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output]"
+                  refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[OLD_CODE]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[OLD_CODE]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[OLD_CODE]"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[OLD_CODE]"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[OLD_CODE]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[OLD_CODE]"
                       name="OLD_CODE"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[VERSION]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[VERSION]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[VERSION]"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[VERSION]"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[VERSION]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[VERSION]"
                       name="VERSION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[PREVIOUS_FULLNAME]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[PREVIOUS_FULLNAME]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[PREVIOUS_FULLNAME]"
+                      name="PREVIOUS_FULLNAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[RELATIONSHIP_TYPE]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[RELATIONSHIP_TYPE]"
+                      name="RELATIONSHIP_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[MODIFICATIONS]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[MODIFICATIONS]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].Columns[MODIFICATIONS]"
+                      name="MODIFICATIONS"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="255"
                       name="BIOTOPE_KEY" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[OLD_CODE]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[OLD_CODE]"
                       dataType="wstr"
                       length="255"
                       name="OLD_CODE" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[VERSION]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[VERSION]"
                       dataType="wstr"
                       length="255"
                       name="VERSION" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[PREVIOUS_FULLNAME]"
+                      dataType="nText"
+                      name="PREVIOUS_FULLNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="RELATIONSHIP_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output].ExternalColumns[MODIFICATIONS]"
+                      dataType="nText"
+                      name="MODIFICATIONS" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[OLD_CODE]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[OLD_CODE]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[OLD_CODE]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[OLD_CODE]"
                       name="OLD_CODE" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[VERSION]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[VERSION]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[VERSION]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[VERSION]"
                       name="VERSION" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
-              endId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output1]"
-              endId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output2]"
-              endId="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE.Inputs[Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output3]"
-              endId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Inputs[Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow Task 1\Source 3 - WEB_BIOTOPE_HIERARCHY.Outputs[OLE DB Source Output]" />
-            <path
-              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output4]"
-              endId="Package\Data Flow Task 1\Destination 4 - WEB_OLD_CODE.Inputs[Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow Task 1\Source 4 - WEB_OLD_CODE.Outputs[OLE DB Source Output]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Data Flow Task 2"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:DelayValidation="True"
-      DTS:DTSID="{E6CE26E4-9BB7-4F61-AB2F-7B286D768381}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:FailPackageOnFailure="True"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task 2"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          defaultBufferSize="3145728"
-          version="1">
-          <components>
-            <component
-              refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="Destination 5 - WEB_SLIDES"
-              usesDispositions="true"
-              validateExternalMetadata="False"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[WEB_SLIDES]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[NBNkey]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="NBNkey"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[NBNkey]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[NBNkey]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[fullcode]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="fullcode"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[fullcode]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[fullcode]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[biotope_code_2002]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="biotope_code_2002"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[biotope_code_2002]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[biotope_code_2002]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[slide_key]"
-                      cachedDataType="r8"
-                      cachedName="slide_key"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[slide_key]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[slide_key]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[photo_id]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="photo_id"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[photo_id]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photo_id]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[photographer]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="photographer"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[photographer]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photographer]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[copyright]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="copyright"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[copyright]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[copyright]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[site_name]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="site_name"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[site_name]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[site_name]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[title]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="title"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[title]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[title]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[orientation]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="orientation"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[orientation]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[orientation]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[photo_cd_no]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="photo_cd_no"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[photo_cd_no]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photo_cd_no]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[filename]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="filename"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[filename]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[filename]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].Columns[original_filename]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="original_filename"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[original_filename]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[original_filename]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[NBNkey]"
-                      dataType="wstr"
-                      length="255"
-                      name="NBNkey" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[fullcode]"
-                      dataType="wstr"
-                      length="255"
-                      name="fullcode" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[biotope_code_2002]"
-                      dataType="wstr"
-                      length="255"
-                      name="biotope_code_2002" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[slide_key]"
-                      dataType="r8"
-                      name="slide_key" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[photo_id]"
-                      dataType="wstr"
-                      length="255"
-                      name="photo_id" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[photographer]"
-                      dataType="wstr"
-                      length="255"
-                      name="photographer" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[copyright]"
-                      dataType="wstr"
-                      length="255"
-                      name="copyright" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[site_name]"
-                      dataType="wstr"
-                      length="255"
-                      name="site_name" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[title]"
-                      dataType="wstr"
-                      length="255"
-                      name="title" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[orientation]"
-                      dataType="wstr"
-                      length="255"
-                      name="orientation" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[photo_cd_no]"
-                      dataType="wstr"
-                      length="50"
-                      name="photo_cd_no" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[filename]"
-                      dataType="wstr"
-                      length="255"
-                      name="filename" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input].ExternalColumns[original_filename]"
-                      dataType="wstr"
-                      length="255"
-                      name="original_filename" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input]">
-                  <outputColumns>
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[PREVIOUS_FULLNAME]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[PREVIOUS_FULLNAME]"
+                      name="PREVIOUS_FULLNAME" />
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[RELATIONSHIP_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[RELATIONSHIP_TYPE]"
+                      name="RELATIONSHIP_TYPE" />
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[MODIFICATIONS]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[MODIFICATIONS]"
+                      name="MODIFICATIONS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2526,11 +2787,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES"
+              refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="Source 5 - WEB_SLIDES"
+              name="Source 6 - WEB_PHOTO"
               usesDispositions="true"
               version="7">
               <properties>
@@ -2541,7 +2802,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">WEB_SLIDES</property>
+                  name="OpenRowset">WEB_PHOTO</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -2575,7 +2836,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
                   connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -2583,299 +2844,104 @@
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output]"
+                  refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[NBNkey]"
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[NBNkey]"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
                       length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[NBNkey]"
-                      name="NBNkey"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
+                      name="BIOTOPE_KEY"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[fullcode]"
-                      dataType="wstr"
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[PHOTO_PATH]"
+                      dataType="nText"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[fullcode]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[fullcode]"
-                      name="fullcode"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[PHOTO_PATH]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[PHOTO_PATH]"
+                      name="PHOTO_PATH"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[biotope_code_2002]"
-                      dataType="wstr"
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[PHOTO_CAPTION]"
+                      dataType="nText"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[biotope_code_2002]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[biotope_code_2002]"
-                      name="biotope_code_2002"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[slide_key]"
-                      dataType="r8"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[slide_key]"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[slide_key]"
-                      name="slide_key"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photo_id]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[photo_id]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photo_id]"
-                      name="photo_id"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photographer]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[photographer]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photographer]"
-                      name="photographer"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[copyright]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[copyright]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[copyright]"
-                      name="copyright"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[site_name]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[site_name]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[site_name]"
-                      name="site_name"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[title]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[title]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[title]"
-                      name="title"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[orientation]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[orientation]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[orientation]"
-                      name="orientation"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photo_cd_no]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[photo_cd_no]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[photo_cd_no]"
-                      name="photo_cd_no"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[filename]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[filename]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[filename]"
-                      name="filename"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[original_filename]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[original_filename]"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].Columns[original_filename]"
-                      name="original_filename"
+                      externalMetadataColumnId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[PHOTO_CAPTION]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].Columns[PHOTO_CAPTION]"
+                      name="PHOTO_CAPTION"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[NBNkey]"
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="255"
-                      name="NBNkey" />
+                      name="BIOTOPE_KEY" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[fullcode]"
-                      dataType="wstr"
-                      length="255"
-                      name="fullcode" />
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[PHOTO_PATH]"
+                      dataType="nText"
+                      name="PHOTO_PATH" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[biotope_code_2002]"
-                      dataType="wstr"
-                      length="255"
-                      name="biotope_code_2002" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[slide_key]"
-                      dataType="r8"
-                      name="slide_key" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[photo_id]"
-                      dataType="wstr"
-                      length="255"
-                      name="photo_id" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[photographer]"
-                      dataType="wstr"
-                      length="255"
-                      name="photographer" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[copyright]"
-                      dataType="wstr"
-                      length="255"
-                      name="copyright" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[site_name]"
-                      dataType="wstr"
-                      length="255"
-                      name="site_name" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[title]"
-                      dataType="wstr"
-                      length="255"
-                      name="title" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[orientation]"
-                      dataType="wstr"
-                      length="255"
-                      name="orientation" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[photo_cd_no]"
-                      dataType="wstr"
-                      length="50"
-                      name="photo_cd_no" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[filename]"
-                      dataType="wstr"
-                      length="255"
-                      name="filename" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output].ExternalColumns[original_filename]"
-                      dataType="wstr"
-                      length="255"
-                      name="original_filename" />
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output].ExternalColumns[PHOTO_CAPTION]"
+                      dataType="nText"
+                      name="PHOTO_CAPTION" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[NBNkey]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[NBNkey]"
-                      name="NBNkey" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[fullcode]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[fullcode]"
-                      name="fullcode" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[biotope_code_2002]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[biotope_code_2002]"
-                      name="biotope_code_2002" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[slide_key]"
-                      dataType="r8"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[slide_key]"
-                      name="slide_key" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[photo_id]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[photo_id]"
-                      name="photo_id" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[photographer]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[photographer]"
-                      name="photographer" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[copyright]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[copyright]"
-                      name="copyright" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[site_name]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[site_name]"
-                      name="site_name" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[title]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[title]"
-                      name="title" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[orientation]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[orientation]"
-                      name="orientation" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[photo_cd_no]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[photo_cd_no]"
-                      name="photo_cd_no" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[filename]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[filename]"
-                      name="filename" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[original_filename]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[original_filename]"
-                      name="original_filename" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[ID]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
+                      name="BIOTOPE_KEY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[PHOTO_PATH]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[PHOTO_PATH]"
+                      name="PHOTO_PATH" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[PHOTO_CAPTION]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[PHOTO_CAPTION]"
+                      name="PHOTO_CAPTION" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2887,9 +2953,14 @@
           <paths>
             <path
               refId="Package\Data Flow Task 2.Paths[OLE DB Source Output]"
-              endId="Package\Data Flow Task 2\Destination 5 - WEB_SLIDES.Inputs[Destination Input]"
+              endId="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE.Inputs[Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\Data Flow Task 2\Source 5 - WEB_SLIDES.Outputs[OLE DB Source Output]" />
+              startId="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 2.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 2\Source 6 - WEB_PHOTO.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -2897,7 +2968,7 @@
     <DTS:Executable
       DTS:refId="Package\Preparation SQL Task 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DTSID="{034131D6-DD51-4296-B80F-5C0532E2B4EA}"
+      DTS:DTSID="{DE9E87BA-48F3-4618-B316-C6B84A48269D}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -2907,14 +2978,14 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{15D918CC-D323-4203-8FCC-E6C32C46B2D9}"
-          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[WEB_BIOT_RELATION] (&#xA;[BIOTOPE_RELATION_KEY] nvarchar(16),&#xA;[BIOTOPE_KEY] nvarchar(16),&#xA;[ORIGINAL_CODE] nvarchar(30),&#xA;[COMMENT] nvarchar(max),&#xA;[RELATED_KEY] nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_BIOT_SPECIES] (&#xA;[BIOTOPE_KEY] nvarchar(16),&#xA;[FREQ] nvarchar(10),&#xA;[ABUND] nvarchar(10),&#xA;[ITEM_NAME] nvarchar(60),&#xA;[contrib_similarity_STRENGTH] nvarchar(10),&#xA;[SED_ABUND_SED_ABUND] nvarchar(10),&#xA;[SORT] nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_BIOTOPE] (&#xA;[BIOTOPE_KEY] nvarchar(16),&#xA;[ORIGINAL_CODE] nvarchar(30),&#xA;[FULL_TERM] nvarchar(200),&#xA;[DESCRIPTION] nvarchar(max),&#xA;[SPECIAL_FEATURES] nvarchar(max),&#xA;[TEMPORAL_VARIATION] nvarchar(max),&#xA;[SITUATION] nvarchar(max),&#xA;[FREQUENCY_KEY] float,&#xA;[FREQUENCY] nvarchar(255),&#xA;[LANDSCAPE] nvarchar(255),&#xA;[SALINITY] nvarchar(255),&#xA;[HEIGHT] nvarchar(255),&#xA;[EXPOSURE] nvarchar(255),&#xA;[TIDAL_STREAMS] nvarchar(255),&#xA;[SUBZONE] nvarchar(255),&#xA;[SUBSTRATUM] nvarchar(max),&#xA;[SORT_CODE] smallint&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_BIOTOPE_HIERARCHY] (&#xA;[originalcode] nvarchar(255),&#xA;[FirstOfBIOTOPE_LIST_ITEM_KEY] nvarchar(255),&#xA;[highercode] nvarchar(255),&#xA;[FirstOfBIOTOPE_LIST_ITEM_KEY1] nvarchar(255),&#xA;[originallevel] float,&#xA;[higherlevel] float&#xA;)&#xA;GO&#xA;CREATE TABLE [dbo].[WEB_OLD_CODE] (&#xA;[BIOTOPE_KEY] nvarchar(255),&#xA;[OLD_CODE] nvarchar(255),&#xA;[VERSION] nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{14B2BAC1-0E5B-40BC-8E44-B30E8460DC20}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_RELATION&quot; (&#xA;&quot;BIOTOPE_RELATION_KEY&quot; nvarchar(16),&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;COMMENT&quot; nvarchar(max),&#xA;&quot;RELATED_KEY&quot; nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_SPECIES&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;FREQ&quot; nvarchar(10),&#xA;&quot;ABUND&quot; nvarchar(10),&#xA;&quot;ITEM_NAME&quot; nvarchar(60),&#xA;&quot;contrib_similarity_STRENGTH&quot; nvarchar(10),&#xA;&quot;SED_ABUND_SED_ABUND&quot; nvarchar(10),&#xA;&quot;SORT&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;FULL_TERM&quot; nvarchar(200),&#xA;&quot;DESCRIPTION&quot; nvarchar(max),&#xA;&quot;SPECIAL_FEATURES&quot; nvarchar(max),&#xA;&quot;TEMPORAL_VARIATION&quot; nvarchar(max),&#xA;&quot;SITUATION&quot; nvarchar(max),&#xA;&quot;FREQUENCY_KEY&quot; float,&#xA;&quot;FREQUENCY&quot; nvarchar(255),&#xA;&quot;LANDSCAPE&quot; nvarchar(255),&#xA;&quot;SALINITY&quot; nvarchar(255),&#xA;&quot;HEIGHT&quot; nvarchar(255),&#xA;&quot;EXPOSURE&quot; nvarchar(255),&#xA;&quot;TIDAL_STREAMS&quot; nvarchar(255),&#xA;&quot;SUBZONE&quot; nvarchar(255),&#xA;&quot;SUBSTRATUM&quot; nvarchar(max),&#xA;&quot;SORT_CODE&quot; smallint,&#xA;&quot;SENSITIVITY_ASSESSMENT&quot; nvarchar(max),&#xA;&quot;DERIVED_FROM&quot; nvarchar(255),&#xA;&quot;FAUNAL_GROUP&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE_HIERARCHY&quot; (&#xA;&quot;originalcode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY&quot; nvarchar(255),&#xA;&quot;highercode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY1&quot; nvarchar(255),&#xA;&quot;originallevel&quot; float,&#xA;&quot;higherlevel&quot; float&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_HABITAT_CORRELATION&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255) NOT NULL,&#xA;&quot;RELATED_CLASSIFICATION_SYSTEM&quot; nvarchar(255) NOT NULL,&#xA;&quot;RELATED_NAME&quot; nvarchar(255) NOT NULL,&#xA;&quot;RELATIONSHIP_TYPE&quot; nvarchar(255),&#xA;&quot;CLASSIFICATION_SYSTEM_URL&quot; nvarchar(max)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Preparation SQL Task 2"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DTSID="{3F07E1E3-2AFB-4519-BCFF-AFE59FB98A6B}"
+      DTS:DTSID="{46A4AA64-3D57-4108-A495-651D28ED1A5E}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -2924,133 +2995,35 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{15D918CC-D323-4203-8FCC-E6C32C46B2D9}"
-          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[WEB_SLIDES] (&#xA;[NBNkey] nvarchar(255),&#xA;[fullcode] nvarchar(255),&#xA;[biotope_code_2002] nvarchar(255),&#xA;[slide_key] float,&#xA;[photo_id] nvarchar(255),&#xA;[photographer] nvarchar(255),&#xA;[copyright] nvarchar(255),&#xA;[site_name] nvarchar(255),&#xA;[title] nvarchar(255),&#xA;[orientation] nvarchar(255),&#xA;[photo_cd_no] nvarchar(50),&#xA;[filename] nvarchar(255),&#xA;[original_filename] nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{14B2BAC1-0E5B-40BC-8E44-B30E8460DC20}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_OLD_CODE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255) NOT NULL,&#xA;&quot;OLD_CODE&quot; nvarchar(255) NOT NULL,&#xA;&quot;VERSION&quot; nvarchar(255),&#xA;&quot;PREVIOUS_FULLNAME&quot; nvarchar(max),&#xA;&quot;RELATIONSHIP_TYPE&quot; nvarchar(255),&#xA;&quot;MODIFICATIONS&quot; nvarchar(max)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_PHOTO&quot; (&#xA;&quot;ID&quot; int NOT NULL,&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255) NOT NULL,&#xA;&quot;PHOTO_PATH&quot; nvarchar(max) NOT NULL,&#xA;&quot;PHOTO_CAPTION&quot; nvarchar(max)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{278B1BF3-E73F-4044-AF3E-403EE59CB87C\}]"
+      DTS:refId="Package.PrecedenceConstraints[{8A1DD197-3B5E-4A8F-AF49-F91A51F2A3F4\}]"
       DTS:CreationName=""
-      DTS:DTSID="{278B1BF3-E73F-4044-AF3E-403EE59CB87C}"
-      DTS:From="Package\Preparation SQL Task 2"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="{278B1BF3-E73F-4044-AF3E-403EE59CB87C}"
-      DTS:To="Package\Data Flow Task 2" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{33347B5A-8234-419C-82B9-8296F0ACB1E3\}]"
-      DTS:CreationName=""
-      DTS:DTSID="{33347B5A-8234-419C-82B9-8296F0ACB1E3}"
-      DTS:From="Package\Preparation SQL Task 1"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="{33347B5A-8234-419C-82B9-8296F0ACB1E3}"
-      DTS:To="Package\Data Flow Task 1" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{E4A1AA48-6918-46CF-8EE7-63A47D6ECB92\}]"
-      DTS:CreationName=""
-      DTS:DTSID="{E4A1AA48-6918-46CF-8EE7-63A47D6ECB92}"
+      DTS:DTSID="{8A1DD197-3B5E-4A8F-AF49-F91A51F2A3F4}"
       DTS:From="Package\Data Flow Task 1"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="{E4A1AA48-6918-46CF-8EE7-63A47D6ECB92}"
+      DTS:ObjectName="{8A1DD197-3B5E-4A8F-AF49-F91A51F2A3F4}"
       DTS:To="Package\Preparation SQL Task 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{BB39F8D8-84F7-4941-83ED-3814D482E978\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{BB39F8D8-84F7-4941-83ED-3814D482E978}"
+      DTS:From="Package\Preparation SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{BB39F8D8-84F7-4941-83ED-3814D482E978}"
+      DTS:To="Package\Data Flow Task 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{E401B331-DAF1-491F-B110-92FD8F26C757\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{E401B331-DAF1-491F-B110-92FD8F26C757}"
+      DTS:From="Package\Preparation SQL Task 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{E401B331-DAF1-491F-B110-92FD8F26C757}"
+      DTS:To="Package\Data Flow Task 2" />
   </DTS:PrecedenceConstraints>
-  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
-<Objects
-  Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
-  <Package
-    design-time-name="Package">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="164,42"
-          Id="Package\Data Flow Task 1"
-          TopLeft="22,107.5" />
-        <NodeLayout
-          Size="164,42"
-          Id="Package\Data Flow Task 2"
-          TopLeft="22,311.5" />
-        <NodeLayout
-          Size="197,42"
-          Id="Package\Preparation SQL Task 1"
-          TopLeft="5.5,5.5" />
-        <NodeLayout
-          Size="197,42"
-          Id="Package\Preparation SQL Task 2"
-          TopLeft="5.50000000000003,209.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[{278B1BF3-E73F-4044-AF3E-403EE59CB87C\}]"
-          TopLeft="104,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[{33347B5A-8234-419C-82B9-8296F0ACB1E3\}]"
-          TopLeft="104,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[{E4A1AA48-6918-46CF-8EE7-63A47D6ECB92\}]"
-          TopLeft="104,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
