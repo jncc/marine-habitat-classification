@@ -1,15 +1,4 @@
-﻿.header-global-search {
-    float: right;
-}
-
-.similar-biotope {
-    img {
-        width: 14em;
-    }
-}
-
-
-/*
+﻿/*
     W3 slideshow
     https://www.w3schools.com/howto/howto_js_slideshow.asp
 */
@@ -219,6 +208,12 @@
 
 .colour-button:hover {
     text-decoration: underline;
+}
+
+.similar-biotope {
+    img {
+        width: 14em;
+    }
 }
 
 .mhc-copyright {

@@ -63,7 +63,7 @@ namespace microservices.Controllers
                 {
                     Biotope = GetBiotopeDto(biotope[0]),
                     BiotopeHierarchy = GetBiotopeHierarchyDto(biotope[0].WEB_BIOTOPE_HIERARCHY),
-                    SimilarBiotopes = GetSimilarBiotopesDto(similarBiotopes, db),
+                    SimilarBiotopes = GetSimilarBiotopesDto(similarBiotopes),
                     Species = GetCharacterisingSpeciesDto(speciesGrab, speciesObservation),
                     OldCodes = GetOldCodesDto(oldCodes),
                     HabitatCorrelations = GetHabitatCorrelationsDto(habitatCorrelations),
@@ -117,23 +117,16 @@ namespace microservices.Controllers
             return hierarchyDto;
         }
 
-        private List<object> GetSimilarBiotopesDto(IEnumerable<WEB_BIOT_RELATION> similarBiotopes, BiotopeDB db)
+        private List<object> GetSimilarBiotopesDto(IEnumerable<WEB_BIOT_RELATION> similarBiotopes)
         {
             var similarBiotopesDto = new List<object>();
             foreach (var similarBiotope in similarBiotopes)
             {
-
-                db.Configuration.LazyLoadingEnabled = true;
-                db.Configuration.ProxyCreationEnabled = true;
-
-                var photos = db.WEB_PHOTO.Where(b => b.BIOTOPE_KEY == similarBiotope.WEB_BIOTOPE1.BIOTOPE_KEY).ToList();
-
                 similarBiotopesDto.Add(new
                 {
                     BiotopeKey = similarBiotope.WEB_BIOTOPE1.BIOTOPE_KEY,
                     OriginalCode = similarBiotope.WEB_BIOTOPE1.ORIGINAL_CODE,
                     Comment = similarBiotope.COMMENT,
-                    Photos = GetPhotosDto(photos)
                 });
             }
 
