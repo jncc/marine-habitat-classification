@@ -105,7 +105,6 @@
 
         <div class="grid-row">
             <div class="column-full">
-                <br />
                 <h2>Habitat (physical) description</h2>
                 <p>
                     <table>
@@ -149,18 +148,19 @@
         @if (!string.IsNullOrWhiteSpace(Model.Biotope.DerivedFrom) && !string.IsNullOrWhiteSpace(Model.Biotope.FaunalGroup))
         {
             <p>
+                <h2>Biotope origin</h2>
                 <table>
                     <thead>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Derived using data from</td>
-                            <td>@Model.Biotope.DerivedFrom</td>
-                        </tr>
-                        <tr>
-                            <td>Faunal group</td>
-                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FaunalGroup))</td>
-                        </tr>
+                    <tr>
+                        <td>Derived using data from</td>
+                        <td>@Model.Biotope.DerivedFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Faunal group</td>
+                        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FaunalGroup))</td>
+                    </tr>
                     </tbody>
                 </table>
             </p>
@@ -312,14 +312,10 @@
         {
             foreach (var biotope in Model.SimilarBiotopes)
             {
-                <div class="grid-row">
-                    <div class="column-full">
-                        <p>
-                            <h4><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
-                            @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
-                        </p>
-                    </div>
-                </div>
+                <p>
+                    <h4><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
+                    @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
+                </p>
             }
         }
         else

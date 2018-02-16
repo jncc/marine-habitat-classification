@@ -350,7 +350,7 @@ table caption {
   height: 30em;
   position: relative;
   margin-top: 1em;
-  margin-bottom: 1em; }
+  margin-bottom: 3em; }
 
 /* Hide the images by default */
 .mySlides {
@@ -499,9 +499,6 @@ table caption {
 
 .colour-button:hover {
   text-decoration: underline; }
-
-.similar-biotope img {
-  width: 14em; }
 
 .mhc-copyright {
   margin-bottom: 1em;
