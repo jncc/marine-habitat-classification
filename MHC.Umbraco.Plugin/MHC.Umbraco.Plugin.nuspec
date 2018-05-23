@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MarineHabitatClassification</id>
+    <version>1.0.0</version>
+    <authors>JNCC</authors>
+    <owners>JNCC</owners>
+    <licenseUrl>http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</licenseUrl>
+    <projectUrl>https://github.com/jncc/marine-habitat-classification</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	  <description>Marine Habitat Classification database services plugin</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <dependencies>
+      <dependency id="UmbracoCms.Core" version="7.10.4"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Debug\MHC.Umbraco.Plugin.dll" target="lib\net461\MHC.Umbraco.Plugin.dll" />
+    <file src="config\Web.config.install.xdt" target="content\Web.config.install.xdt" />
+    <file src="config\Web.config.uninstall.xdt" target="content\Web.config.uninstall.xdt" />
+    <file src="Views\Biotope\*" target="content\Views\Biotope\" />
+    <file src="Views\*" target="content\Views\" />
+  </files>
+</package>

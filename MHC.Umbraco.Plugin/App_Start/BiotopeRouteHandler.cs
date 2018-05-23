@@ -3,7 +3,7 @@ using Umbraco.Core.Models;
 using Umbraco.Web;
 using Umbraco.Web.Mvc;
 
-namespace website.App_Start
+namespace MHC.Umbraco.Plugin.App_Start
 {
     public class BiotopeRouteHandler : UmbracoVirtualNodeRouteHandler
     {

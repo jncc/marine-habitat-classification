@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Umbraco.Core.Models;
 using Umbraco.Web.Models;
 
-namespace website.Models
+namespace MHC.Umbraco.Plugin.Models
 {
     public class BiotopeModel : RenderModel
     {

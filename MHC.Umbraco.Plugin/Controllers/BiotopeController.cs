@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Web.Mvc;
+using MHC.Umbraco.Plugin.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Umbraco.Core.Models;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
-using website.Models;
 
-namespace website.Controllers
+namespace MHC.Umbraco.Plugin.Controllers
 {
     public class BiotopeController : RenderMvcController
     {
@@ -24,6 +24,7 @@ namespace website.Controllers
         public ActionResult Biotope(RenderModel model, string key)
         {
             var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/" + key;
+
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 
@@ -52,7 +53,8 @@ namespace website.Controllers
             }
             catch (WebException we)
             {
-                return View("Error", Umbraco.GetErrorPage());
+//                return View("Error", Umbraco.GetErrorPage());
+                //TODO: error page handling?
             }
 
             return CurrentTemplate(biotopeModel);

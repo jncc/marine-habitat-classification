@@ -13,6 +13,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "biotope-db", "biotope-db\bi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "website", "website\website.csproj", "{3534CA31-11BA-47DB-B8D5-D53D05349C45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHC.Umbraco.Plugin", "MHC.Umbraco.Plugin\MHC.Umbraco.Plugin.csproj", "{B1816EB8-29A9-41A6-9A28-8BCAD90E7703}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,12 @@ Global
 		{3534CA31-11BA-47DB-B8D5-D53D05349C45}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{3534CA31-11BA-47DB-B8D5-D53D05349C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3534CA31-11BA-47DB-B8D5-D53D05349C45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1816EB8-29A9-41A6-9A28-8BCAD90E7703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1816EB8-29A9-41A6-9A28-8BCAD90E7703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1816EB8-29A9-41A6-9A28-8BCAD90E7703}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1816EB8-29A9-41A6-9A28-8BCAD90E7703}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{B1816EB8-29A9-41A6-9A28-8BCAD90E7703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1816EB8-29A9-41A6-9A28-8BCAD90E7703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
