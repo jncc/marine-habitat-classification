@@ -1,0 +1,29 @@
+﻿@using MHC.Umbraco.Plugin.Models
+@inherits UmbracoViewPage<BiotopeModel>
+@{
+    var nodeColoursSetting = Model.Content.Parent.GetPropertyValue<string>("LevelColour");
+    var levelColours = nodeColoursSetting.Split(',');
+}
+
+<div id="biotope-title">
+    <h3>
+        <a href="@Model.Content.Parent.Url">Full hierarchy</a>
+        @for (int i = 1; i < Model.BiotopeHierarchy.Count + 1; i++)
+        {
+            BiotopeLevel biotopeCode;
+
+            Model.BiotopeHierarchy.TryGetValue(i, out biotopeCode);
+            <span>&#10095;</span>
+            <span class="icon" style="background-color: @levelColours[i]">&nbsp;&nbsp;</span>
+            if (i == Model.BiotopeHierarchy.Count)
+            {
+                @biotopeCode.OriginalCode
+            }
+            else
+            {
+                <a href="@string.Format("{0}biotope/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey)">@biotopeCode.OriginalCode</a>
+            }
+        }
+    </h3>
+    <h1><span class="icon" style="background-color: @levelColours[Model.BiotopeHierarchy.Count]">&nbsp;&nbsp;</span> @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h1>
+</div>

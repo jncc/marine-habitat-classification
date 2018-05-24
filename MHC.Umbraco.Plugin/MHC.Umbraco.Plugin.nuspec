@@ -19,7 +19,6 @@
     <file src="bin\Debug\MHC.Umbraco.Plugin.dll" target="lib\net461\MHC.Umbraco.Plugin.dll" />
     <file src="config\Web.config.install.xdt" target="content\Web.config.install.xdt" />
     <file src="config\Web.config.uninstall.xdt" target="content\Web.config.uninstall.xdt" />
-    <file src="Views\Biotope\*" target="content\Views\Biotope\" />
-    <file src="Views\*" target="content\Views\" />
+    <file src="Views\**" target="content\Views" />
   </files>
 </package>

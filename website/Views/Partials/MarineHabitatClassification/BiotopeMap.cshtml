@@ -1,0 +1,31 @@
+﻿@using MHC.Umbraco.Plugin.Models
+@inherits UmbracoViewPage<BiotopeModel>
+
+@{
+    string biomapUrl = "http://213.122.160.75/scripts/mapserv.exe?map=D:/Websites/MESHAtlantic/map/MESHAtlantic.map&SERVICE=WMS&REQUEST=GetMap&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=450&HEIGHT=600&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
+}
+
+<div id="biotope-map" class="biomap">
+    <div class="loading">
+        <img alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
+                src="@biomapUrl" />
+    </div>
+    <ul>
+        <li><span class="legend">Records used to define the biotope (core records)</span></li>
+        <li><span class="legend">Other records assigned to this biotope, marked as 'certain'</span></li>
+        <li><span class="legend">Other records assigned to this biotope, marked as 'uncertain'</span></li>
+        @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+        {
+            <li><span class="legend">Predicted extent of the level 3 (for sublittoral rock & deep sea) or 4 (for sublittoral sediment) habitat</span></li>
+        }
+    </ul>
+    <p>
+        <span class="legend">
+            Point data based on records in the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder Snapshot</a>.
+            @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+            {
+                <span>Predicted habitat extent is from <a href="http://jncc.defra.gov.uk/page-7354" target="_blank">UKSeaMap</a>.</span>
+            }
+        </span>
+    </p>
+</div>

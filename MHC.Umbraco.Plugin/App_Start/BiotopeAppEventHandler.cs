@@ -5,7 +5,7 @@ using Umbraco.Web;
 
 namespace MHC.Umbraco.Plugin.App_Start
 {
-    public class AppEventHandler : ApplicationEventHandler
+    public class BiotopeAppEventHandler : ApplicationEventHandler
     {
 
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication,

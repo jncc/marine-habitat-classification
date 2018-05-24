@@ -210,7 +210,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AppEventHandler.cs" />
+    <Compile Include="App_Start\BiotopeAppEventHandler.cs" />
     <Compile Include="App_Start\BiotopeRouteHandler.cs" />
     <Compile Include="Controllers\BiotopeController.cs" />
     <Compile Include="Models\BiotopeModel.cs" />
@@ -224,9 +224,13 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Views\Biotope.cshtml" />
-    <None Include="Views\Biotopes.cshtml" />
-    <None Include="Views\Biotope\Biotope.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTree.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTreeLevels.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTitle.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeMainContent.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeMap.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\BiotopePhotos.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeSideContent.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

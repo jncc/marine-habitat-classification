@@ -288,10 +288,9 @@ __pycache__/
 *.xsd.cs
 
 # Umbraco
-website/App_Data/Logs/**
-website/App_Data/cache/**
-website/App_Data/preview/**
-website/App_Data/TEMP/**
+website/App_Data/**
+website/Umbraco/**
+website/Umbraco_Client/**
 
 /microservices/microserviceConnectionStrings.config
 /website/umbracoConnectionStrings.config

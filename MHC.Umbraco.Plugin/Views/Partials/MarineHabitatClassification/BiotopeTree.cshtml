@@ -3,8 +3,6 @@
 @using System.Text
 @using Newtonsoft.Json.Linq
 @{
-    Layout = "Master.cshtml";
-
     var json = GetJsonFromApi();
 
     biotopeNodeMap = GetOrderedParentChildNodeMap(json);
@@ -137,7 +135,6 @@
     }
 }
 
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <head><link rel="stylesheet" media="all" href="/css/bootstrap-treeview.min.css" /></head>
 <script src="/Scripts/bootstrap.min.js"></script>
 <script src="/Scripts/bootstrap-treeview.js"></script>
@@ -177,29 +174,4 @@
 
 </script>
 
-<section class="section">
-    <div class="container">
-        <div class="grid-row">
-            <div class="column-full">
-                @Model.Content.GetPropertyValue("content")
-            </div>
-        </div>
-        <div class="grid-row">
-            <div class="column-full">
-            </div>
-            <div class="column-full">
-                <p>
-                    <input class="button colour-button" style="background-color: @levelColours[0]" type="submit" value="Level 1" onclick="expandLevel(1)" />
-                    <input class="button colour-button" style="background-color: @levelColours[1]" type="submit" value="Level 2" onclick="expandLevel(2)" />
-                    <input class="button colour-button" style="background-color: @levelColours[2]" type="submit" value="Level 3" onclick="expandLevel(3)" />
-                    <input class="button colour-button" style="background-color: @levelColours[3]" type="submit" value="Level 4" onclick="expandLevel(4)" />
-                    <input class="button colour-button" style="background-color: @levelColours[4]" type="submit" value="Level 5" onclick="expandLevel(5)" />
-                    <input class="button colour-button" style="background-color: @levelColours[5]" type="submit" value="Level 6" onclick="expandLevel(6)" />
-                </p>
-            </div>
-            <div class="column-full">
-                <div id="tree"></div>
-            </div>
-        </div>
-    </div>
-</section>
+<div id="tree"></div>

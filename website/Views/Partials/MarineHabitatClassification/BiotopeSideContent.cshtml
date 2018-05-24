@@ -1,0 +1,86 @@
+﻿@using MHC.Umbraco.Plugin.Models
+@inherits UmbracoViewPage<BiotopeModel>
+
+<div id="biotope-side-content">
+    @* Habitat description *@
+
+    <h2>Habitat (physical) description</h2>
+    <p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Salinity</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Salinity))</td>
+                </tr>
+                <tr>
+                    <th>Wave exposure</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Exposure))</td>
+                </tr>
+                <tr>
+                    <th>Tidal streams</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TidalStreams))</td>
+                </tr>
+                <tr>
+                    <th>Substratum</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Substratum))</td>
+                </tr>
+                <tr>
+                    <th>Zone</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Subzone))</td>
+                </tr>
+                <tr>
+                    <th>Depth Band</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Height))</td>
+                </tr>
+                <tr>
+                    <th>Other Features</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.SpecialFeatures))</td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+
+    @* Derived using data from and faunal group *@
+
+    @if (!string.IsNullOrWhiteSpace(Model.Biotope.DerivedFrom) && !string.IsNullOrWhiteSpace(Model.Biotope.FaunalGroup))
+    {
+        <p>
+            <h2>Biotope origin</h2>
+            <table>
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Derived using data from</td>
+                    <td>@Model.Biotope.DerivedFrom</td>
+                </tr>
+                <tr>
+                    <td>Faunal group</td>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FaunalGroup))</td>
+                </tr>
+                </tbody>
+            </table>
+        </p>
+    }
+
+    @* Sensitivity assessment *@
+
+    @if (!string.IsNullOrWhiteSpace(Model.Biotope.SensitivityAssessment))
+    {
+        <div class="grid-row">
+            <div class="column-full">
+                <p><a href="@Model.Biotope.SensitivityAssessment" target="_blank">View sensitivity assessment</a>. A sensitivity assessment for this biotope against different pressures can be found on the MarLIN website.</p>
+            </div>
+        </div>
+    }
+
+    @* Comparative data *@
+
+    <div class="grid-row">
+        <div class="column-full">
+            <p>
+                <a href="http://jncc.defra.gov.uk/default.aspx?page=3249" target="_blank">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
+            </p>
+        </div>
+    </div>
+</div>
