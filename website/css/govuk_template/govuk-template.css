@@ -311,7 +311,7 @@ button:focus {
     text-decoration: none;
     text-rendering: optimizeLegibility;
     border-bottom: 1px solid transparent;
-    background: url(/media/1006/jncclogo_white.png) no-repeat;
+    background: url(/img/jncclogo_white.png) no-repeat;
     background-size: 103px 30px;
     background-position: 0 0;
 }

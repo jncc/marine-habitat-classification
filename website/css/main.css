@@ -430,7 +430,7 @@ table caption {
 .biomap .loading {
   width: 450px;
   height: 600px;
-  background: transparent url("/media/1005/loading_map.png") no-repeat center; }
+  background: transparent url("../img/loading_map.png") no-repeat center; }
 
 .biomap .legend {
   color: black;

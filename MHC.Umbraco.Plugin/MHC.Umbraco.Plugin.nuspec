@@ -13,12 +13,17 @@
     <copyright>Copyright 2018</copyright>
     <dependencies>
       <dependency id="UmbracoCms.Core" version="7.10.4"/>
+      <dependency id="UmbracoCms" version="7.10.4"/>
     </dependencies>
   </metadata>
   <files>
     <file src="bin\Debug\MHC.Umbraco.Plugin.dll" target="lib\net461\MHC.Umbraco.Plugin.dll" />
     <file src="config\Web.config.install.xdt" target="content\Web.config.install.xdt" />
     <file src="config\Web.config.uninstall.xdt" target="content\Web.config.uninstall.xdt" />
+    <file src="App_Plugins\MarineHabitatClassification\css\*.css" target="content\App_Plugins\MarineHabitatClassification\css" />
+    <file src="App_Plugins\MarineHabitatClassification\fonts\**" target="content\App_Plugins\MarineHabitatClassification\fonts" />
+    <file src="App_Plugins\MarineHabitatClassification\img\**" target="content\App_Plugins\MarineHabitatClassification\img" />
+    <file src="App_Plugins\MarineHabitatClassification\js\**" target="content\App_Plugins\MarineHabitatClassification\js" />
     <file src="Views\**" target="content\Views" />
   </files>
 </package>

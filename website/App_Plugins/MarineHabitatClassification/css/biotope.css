@@ -1,0 +1,209 @@
+﻿/*
+    W3 slideshow
+    https://www.w3schools.com/howto/howto_js_slideshow.asp
+*/
+* {
+  box-sizing: border-box; }
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  height: 30em;
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 3em; }
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  background-size: cover;
+  background-position: center;
+  height: 30em;
+  margin-bottom: 0.5em; }
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0; }
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px; }
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease; }
+
+.dot-active, .dot:hover {
+  background-color: #717171; }
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 0.5s;
+  animation-name: fade;
+  animation-duration: 0.5s; }
+
+@-webkit-keyframes fade {
+  from {
+    opacity: .4; }
+  to {
+    opacity: 1; } }
+
+@keyframes fade {
+  from {
+    opacity: .4; }
+  to {
+    opacity: 1; } }
+
+.biomap .loading {
+  width: 450px;
+  height: 600px;
+  background: transparent url("../img/loading_map.png") no-repeat center; }
+
+.biomap .legend {
+  color: black;
+  font-size: medium; }
+
+.biomap ul {
+  padding-left: 1.2em; }
+
+.biomap ul li:nth-child(1) {
+  color: red;
+  font-size: large; }
+
+.biomap ul li:nth-child(2) {
+  color: cyan;
+  font-size: large; }
+
+.biomap ul li:nth-child(3) {
+  color: black;
+  font-size: large; }
+
+.biomap ul li:nth-child(4) {
+  list-style-image: url("img/legend_rectangle.svg");
+  font-size: x-large;
+  line-height: 1; }
+
+.search-field {
+  margin-bottom: 2em; }
+  .search-field input {
+    font-size: 19px;
+    height: 44px;
+    padding-left: 0.5em;
+    margin-right: -4px;
+    width: 75%; }
+  .search-field button {
+    background-color: #2b8cc4;
+    border-radius: 0;
+    box-shadow: none;
+    width: 50px;
+    height: 50px;
+    border: none; }
+  .search-field button:hover, .search-field button:active {
+    background-color: #267daf; }
+
+.search-result {
+  margin-bottom: 2em; }
+  .search-result .biotope-code {
+    color: black; }
+  .search-result .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; }
+
+.pagination {
+  display: inline-block; }
+  .pagination .page {
+    float: left;
+    padding: 8px 16px;
+    font-size: larger; }
+  .pagination .link-page {
+    text-decoration: underline; }
+  .pagination .link-page:hover {
+    background-color: #dee0e2;
+    cursor: pointer; }
+
+.colour-button:hover {
+  text-decoration: underline; }
+
+.mhc-copyright {
+  margin-bottom: 1em;
+  text-align: center; }
+
+.mhc-footer-category {
+  margin-top: 1em;
+  margin-bottom: 2em; }
+  .mhc-footer-category img {
+    width: 2em;
+    height: 2em; }
+  .mhc-footer-category .contact-us {
+    margin-right: 1em;
+    float: left; }
+
+/*
+    Taken from Topcat
+*/
+.tag {
+  white-space: nowrap;
+  display: inline-block;
+  background-color: white;
+  padding-right: 0.5em;
+  margin: 0 0.8em 0.45em 0;
+  position: relative; }
+  .tag > .vocabful-colour-edge {
+    display: inline-block;
+    width: 7px;
+    margin-right: 2px; }
+  .tag > .vocabless-colour-edge {
+    display: inline-block;
+    width: 0;
+    margin-right: 0.15em; }
+  .tag.squashed-tag {
+    width: 60px;
+    margin-right: 0;
+    overflow: hidden;
+    vertical-align: top; }
+    .tag.squashed-tag::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1.5em;
+      height: 100%;
+      background: linear-gradient(to right, rgba(238, 238, 238, 0), white 70%); }
+

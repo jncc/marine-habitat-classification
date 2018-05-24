@@ -21,7 +21,7 @@
 
     private JArray GetJsonFromApi()
     {
-        var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
+        var url = ConfigurationManager.AppSettings["BiotopeApiUrl"] + "/Biotope/";
         var request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "GET";
 
@@ -45,7 +45,7 @@
 
             if (!biotopeNodeMap.ContainsKey(biotopeParentKey))
             {
-                biotopeNodeMap.Add(biotopeParentKey, new List<string> {biotopeKey});
+                biotopeNodeMap.Add(biotopeParentKey, new List<string> { biotopeKey });
             }
             else
             {
@@ -116,7 +116,7 @@
             biotopeNodeMap.TryGetValue(child, out grandChildren);
             if (grandChildren != null)
             {
-                treeSB = GenerateTree(grandChildren, treeSB, level+1);
+                treeSB = GenerateTree(grandChildren, treeSB, level + 1);
             }
             treeSB.Append("}");
             if (!children.Last().Equals(child))
@@ -135,43 +135,46 @@
     }
 }
 
-<head><link rel="stylesheet" media="all" href="/css/bootstrap-treeview.min.css" /></head>
-<script src="/Scripts/bootstrap.min.js"></script>
-<script src="/Scripts/bootstrap-treeview.js"></script>
-<script type="text/javascript">
-    $(function() {
-        var myTree = [{ text: "Marine", nodes: @Html.Raw(HttpUtility.HtmlDecode(treeString))}];
-        $('#tree').treeview({
-            data: myTree,
-            levels: 6,
-            enableLinks: true,
-            collapseIcon: "glyphicon glyphicon-chevron-down",
-            expandIcon: "glyphicon glyphicon-chevron-right",
-            nodeIcon: "vocabful-colour-edge",
-            highlightSelected: false,
-            levelColors: ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"]
+<head>
+    <link rel="stylesheet" media="all" href="~/App_Plugins/MarineHabitatClassification/css/bootstrap-glyphicons.css" />
+    <link rel="stylesheet" media="all" href="~/App_Plugins/MarineHabitatClassification/css/bootstrap-treeview.min.css" />
+    <link rel="stylesheet" media="all" href="~/App_Plugins/MarineHabitatClassification/css/biotope.min.css" />
+    <script src="~/App_Plugins/MarineHabitatClassification/js/bootstrap.min.js"></script>
+    <script src="~/App_Plugins/MarineHabitatClassification/js/bootstrap-treeview.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var myTree = [{ text: "Marine", nodes: @Html.Raw(HttpUtility.HtmlDecode(treeString))}];
+            $('#tree').treeview({
+                data: myTree,
+                levels: 6,
+                enableLinks: true,
+                collapseIcon: "glyphicon glyphicon-chevron-down",
+                expandIcon: "glyphicon glyphicon-chevron-right",
+                nodeIcon: "vocabful-colour-edge",
+                highlightSelected: false,
+                levelColors: ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"]
+            });
+            $('#tree').treeview('expandToLevel', 2, { silent: true });
         });
-        $('#tree').treeview('expandToLevel', 2, { silent: true });
-    });
 
-    var expanded = false;
+        var expanded = false;
 
-    function expandCollapseAll() {
-        if (expanded) {
-            $('#tree').treeview('collapseAll', { silent: true });
-            document.getElementById("expandCollapseButton").value = "Expand All";
-            expanded = false;
-        } else {
-            $('#tree').treeview('expandAll', { silent: true });
-            document.getElementById("expandCollapseButton").value = "Collapse All";
-            expanded = true;
+        function expandCollapseAll() {
+            if (expanded) {
+                $('#tree').treeview('collapseAll', { silent: true });
+                document.getElementById("expandCollapseButton").value = "Expand All";
+                expanded = false;
+            } else {
+                $('#tree').treeview('expandAll', { silent: true });
+                document.getElementById("expandCollapseButton").value = "Collapse All";
+                expanded = true;
+            }
         }
-    }
 
-    function expandLevel(level) {
-        $('#tree').treeview('expandToLevel', level, { silent: true });
-    }
-
-</script>
+        function expandLevel(level) {
+            $('#tree').treeview('expandToLevel', level, { silent: true });
+        }
+    </script>
+</head>
 
 <div id="tree"></div>

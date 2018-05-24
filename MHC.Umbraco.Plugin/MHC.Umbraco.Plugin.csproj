@@ -210,6 +210,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\ApiHelper.cs" />
     <Compile Include="App_Start\BiotopeAppEventHandler.cs" />
     <Compile Include="App_Start\BiotopeRouteHandler.cs" />
     <Compile Include="Controllers\BiotopeController.cs" />
@@ -218,12 +219,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="App_Plugins\MarineHabitatClassification\css\biotope.css" />
+    <Content Include="App_Plugins\MarineHabitatClassification\css\biotope.min.css">
+      <DependentUpon>biotope.css</DependentUpon>
+    </Content>
+    <Content Include="App_Plugins\MarineHabitatClassification\css\bootstrap-glyphicons.css" />
+    <Content Include="App_Plugins\MarineHabitatClassification\css\bootstrap-treeview.min.css" />
+    <Content Include="App_Plugins\MarineHabitatClassification\img\legend_rectangle.svg" />
+    <Content Include="App_Plugins\MarineHabitatClassification\css\_biotope.scss" />
+    <Content Include="App_Plugins\MarineHabitatClassification\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="App_Plugins\MarineHabitatClassification\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="App_Plugins\MarineHabitatClassification\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
     <None Include="config\Web.config.uninstall.xdt" />
     <None Include="config\Web.config.install.xdt" />
     <None Include="MHC.Umbraco.Plugin.nuspec">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <Content Include="App_Plugins\MarineHabitatClassification\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="App_Plugins\MarineHabitatClassification\img\loading_map.png" />
+    <Content Include="App_Plugins\MarineHabitatClassification\js\bootstrap-treeview.min.js" />
+    <Content Include="App_Plugins\MarineHabitatClassification\js\bootstrap.js" />
+    <Content Include="App_Plugins\MarineHabitatClassification\js\bootstrap.min.js" />
     <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTree.cshtml" />
     <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTreeLevels.cshtml" />
     <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTitle.cshtml" />
@@ -231,6 +252,8 @@
     <Content Include="Views\Partials\MarineHabitatClassification\BiotopeMap.cshtml" />
     <Content Include="Views\Partials\MarineHabitatClassification\BiotopePhotos.cshtml" />
     <Content Include="Views\Partials\MarineHabitatClassification\BiotopeSideContent.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\SearchBar.cshtml" />
+    <Content Include="Views\Partials\MarineHabitatClassification\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

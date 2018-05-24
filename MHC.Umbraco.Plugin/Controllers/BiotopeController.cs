@@ -23,7 +23,7 @@ namespace MHC.Umbraco.Plugin.Controllers
         // GET: Biotope/biotopeKey
         public ActionResult Biotope(RenderModel model, string key)
         {
-            var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/" + key;
+            var url = ConfigurationManager.AppSettings["BiotopeApiUrl"] + "/Biotope/" + key;
 
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
