@@ -230,6 +230,7 @@
     <Content Include="App_Plugins\MarineHabitatClassification\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="App_Plugins\MarineHabitatClassification\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="App_Plugins\MarineHabitatClassification\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="App_Plugins\MarineHabitatClassification\js\jquery-1.10.2.min.js" />
     <Content Include="compilerconfig.json" />
     <Content Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -245,15 +246,15 @@
     <Content Include="App_Plugins\MarineHabitatClassification\js\bootstrap-treeview.min.js" />
     <Content Include="App_Plugins\MarineHabitatClassification\js\bootstrap.js" />
     <Content Include="App_Plugins\MarineHabitatClassification\js\bootstrap.min.js" />
-    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTree.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTreeLevels.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeTitle.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeMainContent.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeMap.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\BiotopePhotos.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\BiotopeSideContent.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\SearchBar.cshtml" />
-    <Content Include="Views\Partials\MarineHabitatClassification\SearchResults.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\BiotopeTree.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\BiotopeTreeLevels.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\BiotopeTitle.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\BiotopeMainContent.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\BiotopeMap.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\BiotopePhotos.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\BiotopeSideContent.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\SearchBar.cshtml" />
+    <Content Include="Views\Partials\JNCCPackages\MHC\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -96,7 +96,8 @@ namespace MHC.Umbraco.Plugin.Controllers
         {
             foreach (var species in speciesList)
             {
-                AbundanceCodes.TryGetValue(species.TypicalAbundance, out var fullTerm);
+                var fullTerm = "";
+                AbundanceCodes.TryGetValue(species.TypicalAbundance, out fullTerm);
                 species.TypicalAbundance = fullTerm;
             }
         }

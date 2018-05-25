@@ -1,10 +1,10 @@
 ﻿[
   {
-    "outputFile": "css/main.css",
-    "inputFile": "css/main.scss"
+    "outputFile": "App_Plugins/MarineHabitatClassification/css/main.css",
+    "inputFile": "App_Plugins/MarineHabitatClassification/css/main.scss"
   },
   {
-    "outputFile": "css/govuk_prototype_kit/_layout.css",
-    "inputFile": "css/govuk_prototype_kit/_layout.scss"
+    "outputFile": "App_Plugins/MarineHabitatClassification/css/govuk_prototype_kit/_layout.css",
+    "inputFile": "App_Plugins/MarineHabitatClassification/css/govuk_prototype_kit/_layout.scss"
   }
 ]

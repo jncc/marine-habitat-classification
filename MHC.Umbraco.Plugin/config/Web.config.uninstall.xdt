@@ -4,5 +4,6 @@
     <add key="BiotopeApiUrl" xdt:Transform="Remove" xdt:Locator="Match(key)" />
     <add key="BiotopeSearchUrl" xdt:Transform="Remove" xdt:Locator="Match(key)" />
     <add key="BiotopeMapUrl" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+    <add key="BiotopeTreeColours" xdt:Transform="Remove" xdt:Locator="Match(key)" />
   </appSettings>
 </configuration>

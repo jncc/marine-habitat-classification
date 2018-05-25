@@ -1,0 +1,196 @@
+﻿@using MHC.Umbraco.Plugin.Models
+@inherits UmbracoViewPage<BiotopeModel>
+
+<div id="biotope-main-content">
+    @* Description *@
+
+    <h2>Description</h2>
+    @if (string.IsNullOrWhiteSpace(Model.Biotope.Description))
+    {
+        <p>No description available.</p>
+    }
+    else
+    {
+        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
+    }
+
+
+    @* Situation *@
+
+    <h2>Situation</h2>
+    @if (string.IsNullOrWhiteSpace(Model.Biotope.Situation))
+    {
+        <p>No situation data available.</p>
+    }
+    else
+    {
+        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Situation))</p>
+    }
+
+
+    @* Temporal variation *@
+
+    <h2>Temporal variation</h2>
+    @if (string.IsNullOrWhiteSpace(Model.Biotope.TemporalVariation))
+    {
+        <p>No temporal variation data available</p>
+    }
+    else
+    {
+        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TemporalVariation))</p>
+    }
+
+
+    @* Characterising species *@
+
+    <h2>Characterising Species</h2>
+    @if (Model.Species != null && Model.Species.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Taxon</th>
+                    <th>Relative importance of taxon for defining this community (%)</th>
+                    @if (!Model.Species.Any(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
+                    {
+                        <th>Typical abundance - <a href="http://jncc.defra.gov.uk/page-2684" target="_blank">SACFOR scale</a></th>
+                    }
+                    @if (Model.Species.All(s => s.Abundance != null))
+                    {
+                        <th>Typical abundance - (count per m<sup>2</sup>)</th>
+                    }
+                    <th>% of core records where taxon was recorded</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var species in Model.Species)
+                {
+                    <tr>
+                        <td><i>@species.Name</i></td>
+                        <td>@species.SimilarityContribution</td>
+                        @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
+                        {
+                            <td>@species.TypicalAbundance</td>
+                        }
+                        @if (Model.Species.Any(s => s.Abundance != null))
+                        {
+                            <td>@species.Abundance</td>
+                        }
+                        <td>@species.Frequency</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    }
+    else
+    {
+        <p>Characterising species data not applicable.</p>
+    }
+
+
+    @* Similar biotopes *@
+
+    <h2>Similar biotopes</h2>
+    @if (Model.SimilarBiotopes != null && Model.SimilarBiotopes.Count > 0)
+    {
+        foreach (var biotope in Model.SimilarBiotopes)
+        {
+            <p>
+                <h4><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h4>
+                @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
+            </p>
+        }
+    }
+    else
+    {
+        <p>Not applicable or unknown.</p>
+    }
+
+
+    @* Habitat correlations *@
+
+    @if (Model.HabitatCorrelations != null && Model.HabitatCorrelations.Count > 0)
+    {
+        <h2>Habitat correlations</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Relationship type</th>
+                    <th>Related habitat classification system</th>
+                    <th>Related habitat name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var habitat in Model.HabitatCorrelations)
+                {
+                    <tr>
+                        <td>@habitat.RelationshipType</td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(@habitat.ClassificationSystemUrl))
+                            {
+                                <a href="@habitat.ClassificationSystemUrl" target="_blank">@habitat.RelatedClassificationSystem</a>
+                            }
+                            else
+                            {
+                                @habitat.RelatedClassificationSystem
+                            }
+                        </td>
+                        <td>@habitat.RelatedName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    }
+
+
+    @* Biotope history *@
+
+    @if (Model.OldCodes != null && Model.OldCodes.Count > 0)
+    {
+        <h2>Biotope history</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Classification</th>
+                    <th>Habitat code</th>
+                    @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.PreviousFullname)))
+                    {
+                        <th>Habitat name</th>
+                    }
+                    @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.RelationshipType)))
+                    {
+                        <th>Relationship type</th>
+                    }
+                    @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.Modifications)))
+                    {
+                        <th>Modifications</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var oldCode in Model.OldCodes)
+                {
+                    <tr>
+                        <td>@oldCode.Version</td>
+                        <td>@oldCode.OriginalCode</td>
+                        @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.PreviousFullname)))
+                        {
+                            <td>@oldCode.PreviousFullname</td>
+                        }
+                        @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.RelationshipType)))
+                        {
+                            <td>@oldCode.RelationshipType</td>
+                        }
+                        @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.Modifications)))
+                        {
+                            <td>@oldCode.Modifications</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+    }
+</div>
