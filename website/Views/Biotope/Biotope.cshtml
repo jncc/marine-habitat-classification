@@ -49,6 +49,7 @@
 <div class="grid-row">
     <div class="column-full">
         @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+        <p>@Model.Content.GetPropertyValue("description")</p>
         <h3>
             <a href="@Model.Content.Parent.Url">Full hierarchy</a>
             @for (int i = 1; i < Model.BiotopeHierarchy.Count + 1; i++)
