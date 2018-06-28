@@ -94,7 +94,11 @@ namespace website.Controllers
         {
             foreach (var species in speciesList)
             {
-                AbundanceCodes.TryGetValue(species.TypicalAbundance, out var fullTerm);
+                var fullTerm = "";
+                if (!string.IsNullOrWhiteSpace(species.TypicalAbundance))
+                {
+                    AbundanceCodes.TryGetValue(species.TypicalAbundance, out fullTerm);
+                }
                 species.TypicalAbundance = fullTerm;
             }
         }

@@ -276,25 +276,31 @@
                         {
                             <th>Typical abundance - (count per m<sup>2</sup>)</th>
                         }
-                        <th>% of core records where taxon was recorded</th>
+                        @if (Model.Species.All(s => s.Frequency != null))
+                        {
+                            <th>% of core records where taxon was recorded</th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var species in Model.Species)
                     {
-                        <tr>
-                            <td><i>@species.Name</i></td>
-                            <td>@species.SimilarityContribution</td>
-                            @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
-                            {
-                                <td>@species.TypicalAbundance</td>
-                            }
-                            @if (Model.Species.Any(s => s.Abundance != null))
-                            {
-                                <td>@species.Abundance</td>
-                            }
+                    <tr>
+                        <td><i>@species.Name</i></td>
+                        <td>@species.SimilarityContribution</td>
+                        @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
+                        {
+                            <td>@species.TypicalAbundance</td>
+                        }
+                        @if (Model.Species.Any(s => s.Abundance != null))
+                        {
+                            <td>@species.Abundance</td>
+                        }
+                        @if (Model.Species.Any(s => s.Frequency != null))
+                        {
                             <td>@species.Frequency</td>
-                        </tr>
+                        }
+                    </tr>
                     }
                 </tbody>
             </table>
