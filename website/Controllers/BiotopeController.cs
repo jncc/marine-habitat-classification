@@ -9,6 +9,7 @@ using Umbraco.Core.Models;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 using website.Models;
+using System.Linq;
 
 namespace website.Controllers
 {
@@ -72,9 +73,9 @@ namespace website.Controllers
             var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
             var habitatCorrelations = JsonConvert.DeserializeObject<List<HabitatCorrelation>>(jsonObject["HabitatCorrelations"].ToString());
             var photos = JsonConvert.DeserializeObject<List<Photo>>(jsonObject["Photos"].ToString());
-
+            
             PopulateFullTypicalAbundanceTerms(species);
-            species.Sort((species1, species2) => string.Compare(species1.Sort, species2.Sort, StringComparison.Ordinal));
+            species = species.OrderBy(s => s.Sort).ToList();
 
             var biotopeModel = new BiotopeModel(modelContent)
             {
