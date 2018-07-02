@@ -21,6 +21,7 @@ namespace microservices.Models
         public Nullable<short> contrib_similarity_STRENGTH { get; set; }
         public Nullable<int> SED_ABUND_SED_ABUND { get; set; }
         public string SORT { get; set; }
+        public Nullable<short> RELATIVE_FREQUENCY { get; set; }
     
         public virtual WEB_BIOTOPE WEB_BIOTOPE { get; set; }
     }
