@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/29/2018 1:39:19 PM"
@@ -12,7 +12,8 @@
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package1"
-  DTS:VersionGUID="{D5A76799-D672-41F2-A855-9B22C1A41542}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{16C23929-0B7E-4737-99F2-A03CA49A3961}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -33,7 +34,7 @@
       DTS:ObjectName="SourceConnectionOLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=D:\workspace\C20180618_marbiotope-deepsea_MPcleaned_FORWEB.mdb;OLE DB SERVICES=0;Provider=Microsoft.ACE.OLEDB.12.0;Persist Security Info=False;" />
+          DTS:ConnectionString="Data Source=D:\workspace\marbiotope-deepsea_MPcleaned.mdb;Provider=Microsoft.ACE.OLEDB.12.0;Persist Security Info=False;OLE DB Services=0;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -247,46 +248,47 @@
                     <inputColumn
                       refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
                       cachedDataType="wstr"
-                      cachedLength="16"
+                      cachedLength="255"
                       cachedName="BIOTOPE_KEY"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]" />
                     <inputColumn
                       refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].Columns[FREQ]"
                       cachedDataType="wstr"
-                      cachedLength="10"
+                      cachedLength="255"
                       cachedName="FREQ"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].ExternalColumns[FREQ]"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[FREQ]" />
                     <inputColumn
                       refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].Columns[ABUND]"
                       cachedDataType="wstr"
-                      cachedLength="10"
+                      cachedLength="255"
                       cachedName="ABUND"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].ExternalColumns[ABUND]"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[ABUND]" />
                     <inputColumn
                       refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].Columns[ITEM_NAME]"
                       cachedDataType="wstr"
-                      cachedLength="60"
+                      cachedLength="255"
                       cachedName="ITEM_NAME"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[ITEM_NAME]" />
                     <inputColumn
                       refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].Columns[contrib_similarity_STRENGTH]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="contrib_similarity_STRENGTH"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[contrib_similarity_STRENGTH]" />
                     <inputColumn
                       refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].Columns[SED_ABUND_SED_ABUND]"
-                      cachedDataType="i4"
+                      cachedDataType="wstr"
+                      cachedLength="255"
                       cachedName="SED_ABUND_SED_ABUND"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[SED_ABUND_SED_ABUND]" />
                     <inputColumn
                       refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].Columns[RELATIVE_FREQUENCY]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="RELATIVE_FREQUENCY"
                       externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES.Inputs[Destination Input].ExternalColumns[RELATIVE_FREQUENCY]"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[RELATIVE_FREQUENCY]" />
@@ -1215,7 +1217,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
-                      length="16"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY"
                       truncationRowDisposition="FailComponent" />
@@ -1225,7 +1227,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[FREQ]"
-                      length="10"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[FREQ]"
                       name="FREQ"
                       truncationRowDisposition="FailComponent" />
@@ -1235,7 +1237,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[ABUND]"
-                      length="10"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[ABUND]"
                       name="ABUND"
                       truncationRowDisposition="FailComponent" />
@@ -1245,13 +1247,13 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[ITEM_NAME]"
-                      length="60"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[ITEM_NAME]"
                       name="ITEM_NAME"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[contrib_similarity_STRENGTH]"
-                      dataType="i4"
+                      dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
@@ -1260,16 +1262,17 @@
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[SED_ABUND_SED_ABUND]"
-                      dataType="i4"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[SED_ABUND_SED_ABUND]"
                       name="SED_ABUND_SED_ABUND"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].Columns[RELATIVE_FREQUENCY]"
-                      dataType="i4"
+                      dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[RELATIVE_FREQUENCY]"
@@ -1292,34 +1295,35 @@
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
-                      length="16"
+                      length="255"
                       name="BIOTOPE_KEY" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[FREQ]"
                       dataType="wstr"
-                      length="10"
+                      length="255"
                       name="FREQ" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[ABUND]"
                       dataType="wstr"
-                      length="10"
+                      length="255"
                       name="ABUND" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[ITEM_NAME]"
                       dataType="wstr"
-                      length="60"
+                      length="255"
                       name="ITEM_NAME" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
-                      dataType="i4"
+                      dataType="r8"
                       name="contrib_similarity_STRENGTH" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
-                      dataType="i4"
+                      dataType="wstr"
+                      length="255"
                       name="SED_ABUND_SED_ABUND" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[RELATIVE_FREQUENCY]"
-                      dataType="i4"
+                      dataType="r8"
                       name="RELATIVE_FREQUENCY" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Output].ExternalColumns[SORT]"
@@ -1342,40 +1346,41 @@
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
-                      length="16"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[FREQ]"
                       dataType="wstr"
-                      length="10"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[FREQ]"
                       name="FREQ" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[ABUND]"
                       dataType="wstr"
-                      length="10"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[ABUND]"
                       name="ABUND" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[ITEM_NAME]"
                       dataType="wstr"
-                      length="60"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[ITEM_NAME]"
                       name="ITEM_NAME" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[contrib_similarity_STRENGTH]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[contrib_similarity_STRENGTH]"
                       name="contrib_similarity_STRENGTH" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[SED_ABUND_SED_ABUND]"
-                      dataType="i4"
+                      dataType="wstr"
+                      length="255"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[SED_ABUND_SED_ABUND]"
                       name="SED_ABUND_SED_ABUND" />
                     <outputColumn
                       refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[RELATIVE_FREQUENCY]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES.Outputs[OLE DB Source Error Output].Columns[RELATIVE_FREQUENCY]"
                       name="RELATIVE_FREQUENCY" />
                     <outputColumn
@@ -3044,4 +3049,260 @@
       DTS:ObjectName="{A9B58D56-D894-4B01-9DDD-78EB9EF123C8}"
       DTS:To="Package\Preparation SQL Task 2" />
   </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\Data Flow Task 1"
+          TopLeft="22,107.5" />
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\Data Flow Task 2"
+          TopLeft="22,311.5" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Preparation SQL Task 1"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Preparation SQL Task 2"
+          TopLeft="5.50000000000003,209.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{2BCF0443-8628-4A9C-A23B-EEC462A93699\}]"
+          TopLeft="104,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{5F87CBC5-48CC-42CE-8DCE-0B3B874EAE4E\}]"
+          TopLeft="104,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{A9B58D56-D894-4B01-9DDD-78EB9EF123C8\}]"
+          TopLeft="104,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="233,42"
+          Id="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE"
+          TopLeft="693,107.5" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION"
+          TopLeft="16,5.49999999999989" />
+        <NodeLayout
+          Size="283,42"
+          Id="Package\Data Flow Task 1\Source 3 - WEB_BIOTOPE_HIERARCHY"
+          TopLeft="339,5.49999999999989" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Data Flow Task 1\Source 2 - WEB_BIOTOPE"
+          TopLeft="703.5,5.49999999999989" />
+        <NodeLayout
+          Size="304,42"
+          Id="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY"
+          TopLeft="328.5,107.5" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES"
+          TopLeft="1363,107.5" />
+        <NodeLayout
+          Size="316,42"
+          Id="Package\Data Flow Task 1\Destination 4 - WEB_HABITAT_CORRELATION"
+          TopLeft="986.5,107.5" />
+        <NodeLayout
+          Size="295,42"
+          Id="Package\Data Flow Task 1\Source 4 - WEB_HABITAT_CORRELATION"
+          TopLeft="997,5.49999999999977" />
+        <NodeLayout
+          Size="262,42"
+          Id="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION"
+          TopLeft="5.5,107.5" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES"
+          TopLeft="1373,5.49999999999977" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output4]"
+          TopLeft="1144.5,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output3]"
+          TopLeft="480.5,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output2]"
+          TopLeft="809.5,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output1]"
+          TopLeft="1494.5,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
+          TopLeft="136.5,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
