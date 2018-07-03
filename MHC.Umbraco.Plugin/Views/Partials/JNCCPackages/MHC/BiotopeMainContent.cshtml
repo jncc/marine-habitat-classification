@@ -50,7 +50,10 @@
             <thead>
                 <tr>
                     <th>Taxon</th>
-                    <th>Relative importance of taxon for defining this community (%)</th>
+                    @if (Model.Species.All(s => s.SimilarityContribution != null))
+                    {
+                        <th>Relative importance of taxon for defining this community (%)</th>
+                    }
                     @if (!Model.Species.Any(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
                     {
                         <th>Typical abundance - <a href="http://jncc.defra.gov.uk/page-2684" target="_blank">SACFOR scale</a></th>
@@ -59,25 +62,42 @@
                     {
                         <th>Typical abundance - (count per m<sup>2</sup>)</th>
                     }
-                    <th>% of core records where taxon was recorded</th>
+                    @if (Model.Species.All(s => s.Frequency != null))
+                    {
+                        <th>% of core records where taxon was recorded</th>
+                    }
+                    @if (Model.Species.All(s => s.RelativeFrequency != null))
+                    {
+                        <th>Relative frequency %</th>
+                    }
                 </tr>
             </thead>
             <tbody>
                 @foreach (var species in Model.Species)
                 {
-                    <tr>
-                        <td><i>@species.Name</i></td>
+                <tr>
+                    <td><i>@species.Name</i></td>
+                    @if (Model.Species.Any(s => s.SimilarityContribution != null))
+                    {
                         <td>@species.SimilarityContribution</td>
-                        @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
-                        {
-                            <td>@species.TypicalAbundance</td>
-                        }
-                        @if (Model.Species.Any(s => s.Abundance != null))
-                        {
-                            <td>@species.Abundance</td>
-                        }
+                    }
+                    @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
+                    {
+                        <td>@species.TypicalAbundance</td>
+                    }
+                    @if (Model.Species.Any(s => s.Abundance != null))
+                    {
+                        <td>@species.Abundance</td>
+                    }
+                    @if (Model.Species.All(s => s.Frequency != null))
+                    {
                         <td>@species.Frequency</td>
-                    </tr>
+                    }
+                    @if (Model.Species.All(s => s.RelativeFrequency != null))
+                    {
+                        <td>@species.RelativeFrequency</td>
+                    }
+                </tr>
                 }
             </tbody>
         </table>
