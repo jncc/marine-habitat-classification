@@ -7,6 +7,7 @@
 <div class="grid-row">
     <div class="column-full">
         @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+        <p>@Model.Content.GetPropertyValue("description")</p>
         @{Html.RenderPartial("~/Views/Partials/JNCCPackages/MHC/BiotopeTitle.cshtml");}
     </div>
 </div>

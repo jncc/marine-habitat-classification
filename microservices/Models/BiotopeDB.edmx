@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="WEB_BIOT_RELATION">
           <Key>
             <PropertyRef Name="BIOTOPE_RELATION_KEY" />
@@ -25,6 +25,7 @@
           <Property Name="ABUND" Type="char" MaxLength="1" />
           <Property Name="contrib_similarity_STRENGTH" Type="smallint" />
           <Property Name="SED_ABUND_SED_ABUND" Type="int" />
+          <Property Name="RELATIVE_FREQUENCY" Type="smallint" />
           <Property Name="SORT" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="WEB_BIOT_SPECIES_OBSERVATION">
@@ -38,6 +39,7 @@
           <Property Name="ABUND" Type="char" MaxLength="1" />
           <Property Name="contrib_similarity_STRENGTH" Type="smallint" />
           <Property Name="SED_ABUND_SED_ABUND" Type="int" />
+          <Property Name="RELATIVE_FREQUENCY" Type="smallint" />
           <Property Name="SORT" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="WEB_BIOTOPE">
@@ -84,7 +86,7 @@
           <Property Name="BIOTOPE_KEY" Type="char" MaxLength="16" Nullable="false" />
           <Property Name="RELATED_CLASSIFICATION_SYSTEM" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="RELATED_NAME" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="RELATIONSHIP_TYPE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RELATIONSHIP_TYPE" Type="varchar" MaxLength="255" />
           <Property Name="CLASSIFICATION_SYSTEM_URL" Type="ntext" />
         </EntityType>
         <EntityType Name="WEB_OLD_CODE">
@@ -262,8 +264,7 @@
             <End Role="WEB_PHOTO" EntitySet="WEB_PHOTO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -291,6 +292,7 @@
           <Property Name="SED_ABUND_SED_ABUND" Type="Int32" />
           <Property Name="SORT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WBSG_BIOTOPE_KEY" FromRole="WEB_BIOT_SPECIES_GRAB" ToRole="WEB_BIOTOPE" />
+          <Property Name="RELATIVE_FREQUENCY" Type="Int16" />
         </EntityType>
         <EntityType Name="WEB_BIOT_SPECIES_OBSERVATION">
           <Key>
@@ -305,6 +307,7 @@
           <Property Name="SED_ABUND_SED_ABUND" Type="Int32" />
           <Property Name="SORT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WBSO_BIOTOPE_KEY" FromRole="WEB_BIOT_SPECIES_OBSERVATION" ToRole="WEB_BIOTOPE" />
+          <Property Name="RELATIVE_FREQUENCY" Type="Int16" />
         </EntityType>
         <EntityType Name="WEB_BIOTOPE">
           <Key>
@@ -361,7 +364,7 @@
           <Property Name="BIOTOPE_KEY" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="RELATED_CLASSIFICATION_SYSTEM" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RELATED_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RELATIONSHIP_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RELATIONSHIP_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="CLASSIFICATION_SYSTEM_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="WEB_BIOTOPE" Relationship="Self.FK_WHC_BIOTOPE_KEY" FromRole="WEB_HABITAT_CORRELATION" ToRole="WEB_BIOTOPE" />
         </EntityType>
@@ -561,6 +564,7 @@
           <EntitySetMapping Name="WEB_BIOT_SPECIES_GRAB">
             <EntityTypeMapping TypeName="Model.WEB_BIOT_SPECIES_GRAB">
               <MappingFragment StoreEntitySet="WEB_BIOT_SPECIES_GRAB">
+                <ScalarProperty Name="RELATIVE_FREQUENCY" ColumnName="RELATIVE_FREQUENCY" />
                 <ScalarProperty Name="BIOTOPE_KEY" ColumnName="BIOTOPE_KEY" />
                 <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
                 <ScalarProperty Name="FREQ" ColumnName="FREQ" />
@@ -574,6 +578,7 @@
           <EntitySetMapping Name="WEB_BIOT_SPECIES_OBSERVATION">
             <EntityTypeMapping TypeName="Model.WEB_BIOT_SPECIES_OBSERVATION">
               <MappingFragment StoreEntitySet="WEB_BIOT_SPECIES_OBSERVATION">
+                <ScalarProperty Name="RELATIVE_FREQUENCY" ColumnName="RELATIVE_FREQUENCY" />
                 <ScalarProperty Name="BIOTOPE_KEY" ColumnName="BIOTOPE_KEY" />
                 <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
                 <ScalarProperty Name="FREQ" ColumnName="FREQ" />

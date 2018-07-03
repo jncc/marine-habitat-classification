@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="2/16/2018 12:35:45 PM"
+  DTS:CreationDate="7/2/2018 11:30:29 AM"
   DTS:CreationName=""
   DTS:CreatorComputerName="CATHY-JIN"
   DTS:CreatorName="GREEN\Cathy.Jin"
   DTS:Description="DTS Wizard-generated package"
-  DTS:DTSID="{BA7B99C6-4CA3-4152-ABAD-51DCF590257A}"
+  DTS:DTSID="{D55E5974-BAA8-409A-9574-CFE3A1926C56}"
   DTS:ExecutableType=""
   DTS:LastModifiedProductVersion="14.0.0800.98"
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package2"
-  DTS:VersionGUID="{E78EBD85-2B0D-48A5-8970-384E078E3459}">
+  DTS:VersionGUID="{22312A92-5021-4348-9D81-46413B7F4A58}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{CB20B6B4-8DA0-49F5-9C04-8623763CA04C}"
+      DTS:DTSID="{1A717FC2-A33D-4A72-A2B6-BFAF580A5502}"
       DTS:ObjectName="DestinationConnectionOLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -29,11 +29,11 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SourceConnectionAdoNET]"
       DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-      DTS:DTSID="{562ACB41-92A9-4B0C-92C3-D158EBAFDE25}"
+      DTS:DTSID="{90C412A5-4266-4666-8DFF-15C42A0CE0D4}"
       DTS:ObjectName="SourceConnectionAdoNET">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=(localdb)\ProjectsV13;Initial Catalog=biotope-db;" />
+          DTS:ConnectionString="Data Source=(localdb)\ProjectsV13;Initial Catalog=biotope-db;Integrated Security=True;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -43,7 +43,7 @@
       DTS:refId="Package\Data Flow Task 1"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:DelayValidation="True"
-      DTS:DTSID="{92B475DC-FED2-40F9-A547-EDA5CF055501}"
+      DTS:DTSID="{0720E7C4-DFC1-45B8-A2B2-4D940D22A2C4}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -56,161 +56,11 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION"
+              refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Destination - WEB_BIOT_RELATION"
-              usesDispositions="true"
-              validateExternalMetadata="False"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">WEB_BIOT_RELATION</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[BIOTOPE_RELATION_KEY]"
-                      cachedDataType="wstr"
-                      cachedLength="16"
-                      cachedName="BIOTOPE_RELATION_KEY"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_RELATION_KEY]"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_RELATION_KEY]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
-                      cachedDataType="wstr"
-                      cachedLength="16"
-                      cachedName="BIOTOPE_KEY"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[RELATED_BIOTOPE_KEY]"
-                      cachedDataType="wstr"
-                      cachedLength="16"
-                      cachedName="RELATED_BIOTOPE_KEY"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[RELATED_BIOTOPE_KEY]"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[RELATED_BIOTOPE_KEY]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[COMMENT]"
-                      cachedDataType="nText"
-                      cachedName="COMMENT"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[COMMENT]"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[COMMENT]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_RELATION_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      name="BIOTOPE_RELATION_KEY" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      name="BIOTOPE_KEY" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[RELATED_BIOTOPE_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      name="RELATED_BIOTOPE_KEY" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[COMMENT]"
-                      dataType="nText"
-                      name="COMMENT" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="Destination 1 - WEB_BIOT_SPECIES_GRAB"
+              name="Destination - WEB_BIOT_SPECIES_GRAB"
               usesDispositions="true"
               validateExternalMetadata="False"
               version="4">
@@ -264,7 +114,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
                   connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -272,92 +122,102 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input]"
+                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
                       cachedDataType="wstr"
                       cachedLength="16"
                       cachedName="BIOTOPE_KEY"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[ITEM_NAME]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="ITEM_NAME"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ITEM_NAME]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ITEM_NAME]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[FREQ]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[FREQ]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="FREQ"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[FREQ]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[FREQ]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[FREQ]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[FREQ]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[ABUND]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[ABUND]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="ABUND"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ABUND]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ABUND]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ABUND]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[contrib_similarity_STRENGTH]"
                       cachedDataType="i2"
                       cachedName="contrib_similarity_STRENGTH"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[SED_ABUND_SED_ABUND]"
                       cachedDataType="i4"
                       cachedName="SED_ABUND_SED_ABUND"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[SORT]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[RELATIVE_FREQUENCY]"
+                      cachedDataType="i2"
+                      cachedName="RELATIVE_FREQUENCY"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[RELATIVE_FREQUENCY]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[RELATIVE_FREQUENCY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].Columns[SORT]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="SORT"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SORT]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SORT]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SORT]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SORT]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="16"
                       name="BIOTOPE_KEY" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
                       dataType="wstr"
                       length="100"
                       name="ITEM_NAME" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[FREQ]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[FREQ]"
                       dataType="wstr"
                       length="10"
                       name="FREQ" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ABUND]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[ABUND]"
                       dataType="wstr"
                       length="1"
                       name="ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
                       dataType="i2"
                       name="contrib_similarity_STRENGTH" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
                       name="SED_ABUND_SED_ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SORT]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      name="RELATIVE_FREQUENCY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input].ExternalColumns[SORT]"
                       dataType="wstr"
                       length="255"
                       name="SORT" />
@@ -366,22 +226,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input]">
+                  synchronousInputId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -390,11 +250,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION"
+              refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Destination 2 - WEB_BIOT_SPECIES_OBSERVATION"
+              name="Destination 1 - WEB_BIOT_SPECIES_OBSERVATION"
               usesDispositions="true"
               validateExternalMetadata="False"
               version="4">
@@ -448,7 +308,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
                   connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -456,92 +316,102 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input]"
+                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
                       cachedDataType="wstr"
                       cachedLength="16"
                       cachedName="BIOTOPE_KEY"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[ITEM_NAME]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="ITEM_NAME"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ITEM_NAME]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ITEM_NAME]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[FREQ]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[FREQ]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="FREQ"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[FREQ]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[FREQ]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[FREQ]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[FREQ]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[ABUND]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[ABUND]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="ABUND"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ABUND]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ABUND]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ABUND]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[contrib_similarity_STRENGTH]"
                       cachedDataType="i2"
                       cachedName="contrib_similarity_STRENGTH"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[SED_ABUND_SED_ABUND]"
                       cachedDataType="i4"
                       cachedName="SED_ABUND_SED_ABUND"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]" />
                     <inputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[SORT]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[RELATIVE_FREQUENCY]"
+                      cachedDataType="i2"
+                      cachedName="RELATIVE_FREQUENCY"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[RELATIVE_FREQUENCY]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[RELATIVE_FREQUENCY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].Columns[SORT]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="SORT"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SORT]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SORT]" />
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SORT]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SORT]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="16"
                       name="BIOTOPE_KEY" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ITEM_NAME]"
                       dataType="wstr"
                       length="100"
                       name="ITEM_NAME" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[FREQ]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[FREQ]"
                       dataType="wstr"
                       length="10"
                       name="FREQ" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ABUND]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[ABUND]"
                       dataType="wstr"
                       length="1"
                       name="ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[contrib_similarity_STRENGTH]"
                       dataType="i2"
                       name="contrib_similarity_STRENGTH" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
                       name="SED_ABUND_SED_ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SORT]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      name="RELATIVE_FREQUENCY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input].ExternalColumns[SORT]"
                       dataType="wstr"
                       length="255"
                       name="SORT" />
@@ -550,22 +420,172 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input]">
+                  synchronousInputId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination 2 - WEB_BIOT_RELATION"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">WEB_BIOT_RELATION</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[BIOTOPE_RELATION_KEY]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="BIOTOPE_RELATION_KEY"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_RELATION_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_RELATION_KEY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[BIOTOPE_KEY]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="BIOTOPE_KEY"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[RELATED_BIOTOPE_KEY]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="RELATED_BIOTOPE_KEY"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[RELATED_BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[RELATED_BIOTOPE_KEY]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].Columns[COMMENT]"
+                      cachedDataType="nText"
+                      cachedName="COMMENT"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[COMMENT]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[COMMENT]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_RELATION_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      name="BIOTOPE_RELATION_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      name="BIOTOPE_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[RELATED_BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      name="RELATED_BIOTOPE_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input].ExternalColumns[COMMENT]"
+                      dataType="nText"
+                      name="COMMENT" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -894,170 +914,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION"
+              refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
-              name="Source - WEB_BIOT_RELATION"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement used by the component to extract data."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">30</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
-                  name="AllowImplicitStringConversion">true</property>
-                <property
-                  dataType="System.String"
-                  description="The Source database table name."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOT_RELATION"</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the mode to retrieve external column information"
-                  name="AccessMode"
-                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Connections[IDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SourceConnectionAdoNET]"
-                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionAdoNET]"
-                  description="Managed connection manager"
-                  name="IDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output]"
-                  name="ADO NET Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_RELATION_KEY]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_RELATION_KEY]"
-                      length="16"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_RELATION_KEY]"
-                      name="BIOTOPE_RELATION_KEY"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
-                      length="16"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
-                      name="BIOTOPE_KEY"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[RELATED_BIOTOPE_KEY]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[RELATED_BIOTOPE_KEY]"
-                      length="16"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[RELATED_BIOTOPE_KEY]"
-                      name="RELATED_BIOTOPE_KEY"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[COMMENT]"
-                      dataType="nText"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[COMMENT]"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[COMMENT]"
-                      name="COMMENT"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_RELATION_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      name="BIOTOPE_RELATION_KEY" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      name="BIOTOPE_KEY" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[RELATED_BIOTOPE_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      name="RELATED_BIOTOPE_KEY" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[COMMENT]"
-                      dataType="nText"
-                      name="COMMENT" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output]"
-                  isErrorOut="true"
-                  name="ADO NET Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_RELATION_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_RELATION_KEY]"
-                      name="BIOTOPE_RELATION_KEY" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
-                      name="BIOTOPE_KEY" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[RELATED_BIOTOPE_KEY]"
-                      dataType="wstr"
-                      length="16"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[RELATED_BIOTOPE_KEY]"
-                      name="RELATED_BIOTOPE_KEY" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[COMMENT]"
-                      dataType="nText"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[COMMENT]"
-                      name="COMMENT" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
-              name="Source 1 - WEB_BIOT_SPECIES_GRAB"
+              name="Source - WEB_BIOT_SPECIES_GRAB"
               usesDispositions="true"
               version="4">
               <properties>
@@ -1092,7 +953,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Connections[IDbConnection]"
+                  refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Connections[IDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SourceConnectionAdoNET]"
                   connectionManagerRefId="Package.ConnectionManagers[SourceConnectionAdoNET]"
                   description="Managed connection manager"
@@ -1100,170 +961,188 @@
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output]"
+                  refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output]"
                   name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
                       length="16"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
                       length="100"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
                       name="ITEM_NAME"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[FREQ]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[FREQ]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
                       length="10"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[FREQ]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[FREQ]"
                       name="FREQ"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ABUND]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ABUND]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
                       length="1"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[ABUND]"
                       name="ABUND"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
                       dataType="i2"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
                       name="contrib_similarity_STRENGTH"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
                       name="SED_ABUND_SED_ABUND"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SORT]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[RELATIVE_FREQUENCY]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[RELATIVE_FREQUENCY]"
+                      name="RELATIVE_FREQUENCY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SORT]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SORT]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].Columns[SORT]"
                       name="SORT"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="16"
                       name="BIOTOPE_KEY" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
                       dataType="wstr"
                       length="100"
                       name="ITEM_NAME" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
                       dataType="wstr"
                       length="10"
                       name="FREQ" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
                       dataType="wstr"
                       length="1"
                       name="ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
                       dataType="i2"
                       name="contrib_similarity_STRENGTH" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
                       name="SED_ABUND_SED_ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      name="RELATIVE_FREQUENCY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
                       dataType="wstr"
                       length="255"
                       name="SORT" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output]"
+                  refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output]"
                   isErrorOut="true"
                   name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="16"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
                       dataType="wstr"
                       length="100"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
                       name="ITEM_NAME" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[FREQ]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[FREQ]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[FREQ]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[FREQ]"
                       name="FREQ" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ABUND]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ABUND]"
                       dataType="wstr"
                       length="1"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ABUND]"
                       name="ABUND" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
                       dataType="i2"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
                       name="contrib_similarity_STRENGTH" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
                       name="SED_ABUND_SED_ABUND" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SORT]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[RELATIVE_FREQUENCY]"
+                      name="RELATIVE_FREQUENCY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SORT]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SORT]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[SORT]"
                       name="SORT" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1272,11 +1151,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION"
+              refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION"
               componentClassID="Microsoft.ManagedComponentHost"
               contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
-              name="Source 2 - WEB_BIOT_SPECIES_OBSERVATION"
+              name="Source 1 - WEB_BIOT_SPECIES_OBSERVATION"
               usesDispositions="true"
               version="4">
               <properties>
@@ -1311,7 +1190,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Connections[IDbConnection]"
+                  refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Connections[IDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SourceConnectionAdoNET]"
                   connectionManagerRefId="Package.ConnectionManagers[SourceConnectionAdoNET]"
                   description="Managed connection manager"
@@ -1319,170 +1198,347 @@
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output]"
+                  refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output]"
                   name="ADO NET Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
                       length="16"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
                       length="100"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ITEM_NAME]"
                       name="ITEM_NAME"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[FREQ]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[FREQ]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
                       length="10"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[FREQ]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[FREQ]"
                       name="FREQ"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ABUND]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ABUND]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
                       length="1"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[ABUND]"
                       name="ABUND"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
                       dataType="i2"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[contrib_similarity_STRENGTH]"
                       name="contrib_similarity_STRENGTH"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SED_ABUND_SED_ABUND]"
                       name="SED_ABUND_SED_ABUND"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SORT]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[RELATIVE_FREQUENCY]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[RELATIVE_FREQUENCY]"
+                      name="RELATIVE_FREQUENCY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SORT]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SORT]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].Columns[SORT]"
                       name="SORT"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="16"
                       name="BIOTOPE_KEY" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ITEM_NAME]"
                       dataType="wstr"
                       length="100"
                       name="ITEM_NAME" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[FREQ]"
                       dataType="wstr"
                       length="10"
                       name="FREQ" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[ABUND]"
                       dataType="wstr"
                       length="1"
                       name="ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[contrib_similarity_STRENGTH]"
                       dataType="i2"
                       name="contrib_similarity_STRENGTH" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
                       name="SED_ABUND_SED_ABUND" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      name="RELATIVE_FREQUENCY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output].ExternalColumns[SORT]"
                       dataType="wstr"
                       length="255"
                       name="SORT" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output]"
+                  refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output]"
                   isErrorOut="true"
                   name="ADO NET Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
                       dataType="wstr"
                       length="16"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
                       name="BIOTOPE_KEY" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
                       dataType="wstr"
                       length="100"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ITEM_NAME]"
                       name="ITEM_NAME" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[FREQ]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[FREQ]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[FREQ]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[FREQ]"
                       name="FREQ" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ABUND]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ABUND]"
                       dataType="wstr"
                       length="1"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ABUND]"
                       name="ABUND" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
                       dataType="i2"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[contrib_similarity_STRENGTH]"
                       name="contrib_similarity_STRENGTH" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SED_ABUND_SED_ABUND]"
                       name="SED_ABUND_SED_ABUND" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SORT]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[RELATIVE_FREQUENCY]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[RELATIVE_FREQUENCY]"
+                      name="RELATIVE_FREQUENCY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SORT]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SORT]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[SORT]"
                       name="SORT" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Source 2 - WEB_BIOT_RELATION"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."WEB_BIOT_RELATION"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_RELATION_KEY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_RELATION_KEY]"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_RELATION_KEY]"
+                      name="BIOTOPE_RELATION_KEY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[BIOTOPE_KEY]"
+                      name="BIOTOPE_KEY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[RELATED_BIOTOPE_KEY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[RELATED_BIOTOPE_KEY]"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[RELATED_BIOTOPE_KEY]"
+                      name="RELATED_BIOTOPE_KEY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[COMMENT]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[COMMENT]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].Columns[COMMENT]"
+                      name="COMMENT"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_RELATION_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      name="BIOTOPE_RELATION_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      name="BIOTOPE_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[RELATED_BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      name="RELATED_BIOTOPE_KEY" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output].ExternalColumns[COMMENT]"
+                      dataType="nText"
+                      name="COMMENT" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_RELATION_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_RELATION_KEY]"
+                      name="BIOTOPE_RELATION_KEY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[BIOTOPE_KEY]"
+                      name="BIOTOPE_KEY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[RELATED_BIOTOPE_KEY]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[RELATED_BIOTOPE_KEY]"
+                      name="RELATED_BIOTOPE_KEY" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[COMMENT]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[COMMENT]"
+                      name="COMMENT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1848,19 +1904,19 @@
           <paths>
             <path
               refId="Package\Data Flow Task 1.Paths[ADO NET Source Output]"
-              endId="Package\Data Flow Task 1\Destination - WEB_BIOT_RELATION.Inputs[Destination Input]"
+              endId="Package\Data Flow Task 1\Destination - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input]"
               name="ADO NET Source Output"
-              startId="Package\Data Flow Task 1\Source - WEB_BIOT_RELATION.Outputs[ADO NET Source Output]" />
+              startId="Package\Data Flow Task 1\Source - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output]" />
             <path
               refId="Package\Data Flow Task 1.Paths[ADO NET Source Output1]"
-              endId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_GRAB.Inputs[Destination Input]"
+              endId="Package\Data Flow Task 1\Destination 1 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input]"
               name="ADO NET Source Output"
-              startId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_GRAB.Outputs[ADO NET Source Output]" />
+              startId="Package\Data Flow Task 1\Source 1 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output]" />
             <path
               refId="Package\Data Flow Task 1.Paths[ADO NET Source Output2]"
-              endId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_SPECIES_OBSERVATION.Inputs[Destination Input]"
+              endId="Package\Data Flow Task 1\Destination 2 - WEB_BIOT_RELATION.Inputs[Destination Input]"
               name="ADO NET Source Output"
-              startId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_SPECIES_OBSERVATION.Outputs[ADO NET Source Output]" />
+              startId="Package\Data Flow Task 1\Source 2 - WEB_BIOT_RELATION.Outputs[ADO NET Source Output]" />
             <path
               refId="Package\Data Flow Task 1.Paths[ADO NET Source Output3]"
               endId="Package\Data Flow Task 1\Destination 3 - WEB_BIOTOPE_HIERARCHY.Inputs[Destination Input]"
@@ -1879,7 +1935,7 @@
       DTS:refId="Package\Data Flow Task 2"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:DelayValidation="True"
-      DTS:DTSID="{8C46CFA9-081C-4519-993A-D4DC9D863579}"
+      DTS:DTSID="{8C2794EC-349C-4B44-83CB-7767C3E13D38}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -3353,7 +3409,7 @@
     <DTS:Executable
       DTS:refId="Package\Preparation SQL Task 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DTSID="{07A46E57-E1A0-4DCB-8103-970CD3947403}"
+      DTS:DTSID="{99760F3A-099B-4D57-8A64-A43E06E4E610}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -3363,14 +3419,14 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{CB20B6B4-8DA0-49F5-9C04-8623763CA04C}"
-          SQLTask:SqlStatementSource="CREATE TABLE `WEB_BIOT_RELATION` (&#xA;`BIOTOPE_RELATION_KEY` VarChar(16) NOT NULL,&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`RELATED_BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`COMMENT` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_BIOT_SPECIES_GRAB` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`ITEM_NAME` LongText NOT NULL,&#xA;`FREQ` LongText,&#xA;`ABUND` VarChar(1),&#xA;`contrib_similarity_STRENGTH` Short,&#xA;`SED_ABUND_SED_ABUND` Long,&#xA;`SORT` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_BIOT_SPECIES_OBSERVATION` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`ITEM_NAME` LongText NOT NULL,&#xA;`FREQ` LongText,&#xA;`ABUND` VarChar(1),&#xA;`contrib_similarity_STRENGTH` Short,&#xA;`SED_ABUND_SED_ABUND` Long,&#xA;`SORT` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_BIOTOPE_HIERARCHY` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`BIOTOPE_PARENT_KEY` VarChar(16) NOT NULL,&#xA;`LEVEL` Long NOT NULL,&#xA;`HIGHERLEVEL` Long NOT NULL&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_OLD_CODE` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`OLD_CODE` LongText NOT NULL,&#xA;`VERSION` LongText,&#xA;`PREVIOUS_FULLNAME` LongText,&#xA;`RELATIONSHIP_TYPE` LongText,&#xA;`MODIFICATIONS` LongText&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{1A717FC2-A33D-4A72-A2B6-BFAF580A5502}"
+          SQLTask:SqlStatementSource="CREATE TABLE `WEB_BIOT_SPECIES_GRAB` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`ITEM_NAME` LongText NOT NULL,&#xA;`FREQ` LongText,&#xA;`ABUND` VarChar(1),&#xA;`contrib_similarity_STRENGTH` Short,&#xA;`SED_ABUND_SED_ABUND` Long,&#xA;`RELATIVE_FREQUENCY` Short,&#xA;`SORT` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_BIOT_SPECIES_OBSERVATION` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`ITEM_NAME` LongText NOT NULL,&#xA;`FREQ` LongText,&#xA;`ABUND` VarChar(1),&#xA;`contrib_similarity_STRENGTH` Short,&#xA;`SED_ABUND_SED_ABUND` Long,&#xA;`RELATIVE_FREQUENCY` Short,&#xA;`SORT` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_BIOT_RELATION` (&#xA;`BIOTOPE_RELATION_KEY` VarChar(16) NOT NULL,&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`RELATED_BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`COMMENT` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_BIOTOPE_HIERARCHY` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`BIOTOPE_PARENT_KEY` VarChar(16) NOT NULL,&#xA;`LEVEL` Long NOT NULL,&#xA;`HIGHERLEVEL` Long NOT NULL&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_OLD_CODE` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`OLD_CODE` LongText NOT NULL,&#xA;`VERSION` LongText,&#xA;`PREVIOUS_FULLNAME` LongText,&#xA;`RELATIONSHIP_TYPE` LongText,&#xA;`MODIFICATIONS` LongText&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Preparation SQL Task 2"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DTSID="{0B50F005-B722-4D5C-8D04-0078A18A87B1}"
+      DTS:DTSID="{6B0D6CD1-14F2-4D83-9926-29D93AC6BFD0}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -3380,35 +3436,35 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{CB20B6B4-8DA0-49F5-9C04-8623763CA04C}"
+          SQLTask:Connection="{1A717FC2-A33D-4A72-A2B6-BFAF580A5502}"
           SQLTask:SqlStatementSource="CREATE TABLE `WEB_HABITAT_CORRELATION` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`RELATED_CLASSIFICATION_SYSTEM` LongText NOT NULL,&#xA;`RELATED_NAME` LongText NOT NULL,&#xA;`RELATIONSHIP_TYPE` LongText,&#xA;`CLASSIFICATION_SYSTEM_URL` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_PHOTO` (&#xA;`ID` Long NOT NULL,&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`PHOTO_PATH` LongText NOT NULL,&#xA;`PHOTO_CAPTION` LongText&#xA;)&#xA;GO&#xA;CREATE TABLE `WEB_BIOTOPE` (&#xA;`BIOTOPE_KEY` VarChar(16) NOT NULL,&#xA;`ORIGINAL_CODE` LongText NOT NULL,&#xA;`FULL_TERM` LongText NOT NULL,&#xA;`DESCRIPTION` LongText NOT NULL,&#xA;`SPECIAL_FEATURES` LongText,&#xA;`TEMPORAL_VARIATION` LongText,&#xA;`SITUATION` LongText,&#xA;`FREQUENCY_KEY` Short,&#xA;`FREQUENCY` LongText,&#xA;`LANDSCAPE` LongText,&#xA;`SALINITY` LongText,&#xA;`HEIGHT` LongText,&#xA;`EXPOSURE` LongText,&#xA;`TIDAL_STREAMS` LongText,&#xA;`SUBZONE` LongText,&#xA;`SUBSTRATUM` LongText,&#xA;`SORT_CODE` Short,&#xA;`SENSITIVITY_ASSESSMENT` LongText,&#xA;`DERIVED_FROM` LongText,&#xA;`FAUNAL_GROUP` LongText&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{4CD16936-C601-4B09-8BEC-70E694CB0CBF\}]"
+      DTS:refId="Package.PrecedenceConstraints[{49EFF48D-4E03-4782-B81C-4BC0490939D6\}]"
       DTS:CreationName=""
-      DTS:DTSID="{4CD16936-C601-4B09-8BEC-70E694CB0CBF}"
-      DTS:From="Package\Preparation SQL Task 2"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="{4CD16936-C601-4B09-8BEC-70E694CB0CBF}"
-      DTS:To="Package\Data Flow Task 2" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{C73BF9D7-90F8-4012-A8B6-F0A8B5D14414\}]"
-      DTS:CreationName=""
-      DTS:DTSID="{C73BF9D7-90F8-4012-A8B6-F0A8B5D14414}"
-      DTS:From="Package\Data Flow Task 1"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="{C73BF9D7-90F8-4012-A8B6-F0A8B5D14414}"
-      DTS:To="Package\Preparation SQL Task 2" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{CBAF2998-63AE-405E-94D0-6D7853C8A74F\}]"
-      DTS:CreationName=""
-      DTS:DTSID="{CBAF2998-63AE-405E-94D0-6D7853C8A74F}"
+      DTS:DTSID="{49EFF48D-4E03-4782-B81C-4BC0490939D6}"
       DTS:From="Package\Preparation SQL Task 1"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="{CBAF2998-63AE-405E-94D0-6D7853C8A74F}"
+      DTS:ObjectName="{49EFF48D-4E03-4782-B81C-4BC0490939D6}"
       DTS:To="Package\Data Flow Task 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{644F0B05-CB00-4F4C-898A-2ED763635772\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{644F0B05-CB00-4F4C-898A-2ED763635772}"
+      DTS:From="Package\Preparation SQL Task 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{644F0B05-CB00-4F4C-898A-2ED763635772}"
+      DTS:To="Package\Data Flow Task 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{6A69EED9-936C-4E69-ACFE-CF291B7A34B6\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{6A69EED9-936C-4E69-ACFE-CF291B7A34B6}"
+      DTS:From="Package\Data Flow Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{6A69EED9-936C-4E69-ACFE-CF291B7A34B6}"
+      DTS:To="Package\Preparation SQL Task 2" />
   </DTS:PrecedenceConstraints>
 </DTS:Executable>

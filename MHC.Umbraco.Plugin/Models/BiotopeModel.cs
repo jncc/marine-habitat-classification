@@ -61,6 +61,7 @@ namespace MHC.Umbraco.Plugin.Models
         public string TypicalAbundance { get; set; }
         public short? SimilarityContribution { get; set; }
         public int? Abundance { get; set; }
+        public int? RelativeFrequency { get; set; }
         public string Sort { get; set; }
     }
 

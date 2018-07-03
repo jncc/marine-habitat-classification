@@ -147,6 +147,7 @@ namespace microservices.Controllers
                     TypicalAbundance = species.ABUND,
                     SimilarityContribution = species.contrib_similarity_STRENGTH,
                     Abundance = species.SED_ABUND_SED_ABUND,
+                    RelativeFrequency = species.RELATIVE_FREQUENCY,
                     Sort = species.SORT
                 });
             }
@@ -160,6 +161,7 @@ namespace microservices.Controllers
                     TypicalAbundance = species.ABUND,
                     SimilarityContribution = species.contrib_similarity_STRENGTH,
                     Abundance = species.SED_ABUND_SED_ABUND,
+                    RelativeFrequency = species.RELATIVE_FREQUENCY,
                     Sort = species.SORT
                 });
             }

@@ -74,9 +74,9 @@ namespace MHC.Umbraco.Plugin.Controllers
             var oldCodes = JsonConvert.DeserializeObject<List<OldCode>>(jsonObject["OldCodes"].ToString());
             var habitatCorrelations = JsonConvert.DeserializeObject<List<HabitatCorrelation>>(jsonObject["HabitatCorrelations"].ToString());
             var photos = JsonConvert.DeserializeObject<List<Photo>>(jsonObject["Photos"].ToString());
-
+            
             PopulateFullTypicalAbundanceTerms(species);
-            species.Sort((species1, species2) => string.Compare(species1.Sort, species2.Sort, StringComparison.Ordinal));
+            species = species.OrderBy(s => s.Sort).ToList();
 
             var biotopeModel = new BiotopeModel(modelContent)
             {
@@ -97,7 +97,10 @@ namespace MHC.Umbraco.Plugin.Controllers
             foreach (var species in speciesList)
             {
                 var fullTerm = "";
-                AbundanceCodes.TryGetValue(species.TypicalAbundance, out fullTerm);
+                if (!string.IsNullOrWhiteSpace(species.TypicalAbundance))
+                {
+                    AbundanceCodes.TryGetValue(species.TypicalAbundance, out fullTerm);
+                }
                 species.TypicalAbundance = fullTerm;
             }
         }
