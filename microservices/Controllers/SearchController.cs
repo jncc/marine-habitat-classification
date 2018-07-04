@@ -45,7 +45,7 @@ namespace microservices.Controllers
                     db.WEB_BIOTOPE.ForEach(b => CreateBiotopeDocuments(b, baseUrl));
                 }
             }
-            catch (WebException we)
+            catch (WebException)
             {
                 failures++;
             }
