@@ -29,3 +29,10 @@ Development
 ### Local run ###
 * Right click the microservices project and set as start up project, then start it in Visual Studio (Ctrl+F5)
 * Right click the website project and set as start up project, then start it in Visual Studio (Ctrl+F5)
+
+### Local build (as on build/deployment server) ###
+As well as Visual Studio 2017,  I installed https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017
+
+Open the Developer Command Prompt for VS2017.
+
+    msbuild /p:Configuration=Release /p:RunOctoPack=true /p:OctoPackPackageVersion=0.0.0.0 /p:OctoPackPublishPackageToHttp=http://deployment-srv/nuget/packages /p:OctoPackPublishingApiKey=API-BLAH

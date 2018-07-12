@@ -537,9 +537,11 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props'))" />
     <Error Condition="!Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets'))" />
+    <Error Condition="!Exists('..\packages\OctoPack.3.6.3\build\OctoPack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OctoPack.3.6.3\build\OctoPack.targets'))" />
   </Target>
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <Import Project="..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets" Condition="Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets')" />
+  <Import Project="..\packages\OctoPack.3.6.3\build\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.6.3\build\OctoPack.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
