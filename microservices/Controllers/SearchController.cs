@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
@@ -45,7 +44,7 @@ namespace microservices.Controllers
                     db.WEB_BIOTOPE.ForEach(b => CreateBiotopeDocuments(b, baseUrl));
                 }
             }
-            catch (WebException we)
+            catch (WebException)
             {
                 failures++;
             }

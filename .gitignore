@@ -293,5 +293,3 @@ website/Umbraco/**
 website/Umbraco_Client/**
 website/config/**
 
-/microservices/microserviceConnectionStrings.config
-/website/umbracoConnectionStrings.config
