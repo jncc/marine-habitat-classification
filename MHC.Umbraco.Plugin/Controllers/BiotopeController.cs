@@ -55,6 +55,7 @@ namespace MHC.Umbraco.Plugin.Controllers
             {
 //                return View("Error", Umbraco.GetErrorPage());
                 //TODO: error page handling?
+                throw;
             }
 
             return CurrentTemplate(biotopeModel);
