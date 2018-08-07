@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>MarineHabitatClassification</id>
-    <version>1.0.0</version>
+    <id>Jncc.MhcMicrosite.Plugin</id>
+    <version>0.0.1</version>
     <authors>JNCC</authors>
     <owners>JNCC</owners>
     <licenseUrl>http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</licenseUrl>
     <projectUrl>https://github.com/jncc/marine-habitat-classification</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-	  <description>Marine Habitat Classification database services plugin</description>
-    <releaseNotes>Initial release</releaseNotes>
-    <copyright>Copyright 2018</copyright>
+	  <description>Marine Habitat Classification Umbraco plugin</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2018 JNCC</copyright>
     <dependencies>
       <dependency id="UmbracoCms.Core" version="7.10.4"/>
       <dependency id="UmbracoCms" version="7.10.4"/>
