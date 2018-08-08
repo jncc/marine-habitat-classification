@@ -1,5 +1,27 @@
-# marine-habitat-classification
-Marine Habitat Classification subsite
+
+Marine Habitat Classification (MHC) Microsite
+=============================================
+
+This project was turned into an Umbraco plugin for the main JNCC website.
+
+This project contains a host **website** which is an empty Umbraco website. The actual code is in the **plugin** project.
+
+To produce a new release, you must **increment the version number** in the `.nuspec` file and commit it.
+We push a new version into Nuget.org (the package repo needs to be public so that the website contractors can also dev locally)
+
+cd to the plugin folder. The nuget.exe executable is saved there in source control so it can be run from the command line.
+
+The build server creates the Nuget package:
+
+    nuget pack -OutputDirectory nupkg
+
+(Currently you get a load of warnings which appear to be spurious https://github.com/NuGet/Home/issues/6001 )
+
+Nuget.org unfortunately requires us to use a key which **expires annually**. It is easy to recreate by logging in.
+
+Then it publishes it to Nuget.org:
+
+    nuget push nupkg\Jncc.MhcMicrosite.Plugin.0.0.1.nupkg -Source https://api.nuget.org/v3/index.json
 
 
 Development
