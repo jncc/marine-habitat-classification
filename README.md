@@ -11,7 +11,8 @@ We push a new version into Nuget.org (the package repo needs to be public so tha
 
 cd to the plugin folder. The nuget.exe executable is saved there in source control so it can be run from the command line.
 
-The build server creates the Nuget package:
+
+To create the Nuget package:
 
     nuget pack -OutputDirectory nupkg
 
@@ -19,7 +20,7 @@ The build server creates the Nuget package:
 
 Nuget.org unfortunately requires us to use a key which **expires annually**. It is easy to recreate by logging in.
 
-Then it publishes it to Nuget.org:
+Then publish to Nuget.org:
 
     nuget push nupkg\Jncc.MhcMicrosite.Plugin.0.0.1.nupkg -Source https://api.nuget.org/v3/index.json
 
