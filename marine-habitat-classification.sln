@@ -7,8 +7,6 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "access-importer", "access-i
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "microservices", "microservices\microservices.csproj", "{695159BA-FAFA-4950-AD1C-51091D46A1D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "microservices.Tests", "microservices.Tests\microservices.Tests.csproj", "{CEA5BE08-CC11-441F-B685-0D551B9F2D36}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "biotope-db", "biotope-db\biotope-db.sqlproj", "{962BBBEC-B12E-485D-82EC-E6FE304A8CAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "website", "website\website.csproj", "{3534CA31-11BA-47DB-B8D5-D53D05349C45}"
@@ -31,11 +29,6 @@ Global
 		{695159BA-FAFA-4950-AD1C-51091D46A1D3}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{695159BA-FAFA-4950-AD1C-51091D46A1D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{695159BA-FAFA-4950-AD1C-51091D46A1D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CEA5BE08-CC11-441F-B685-0D551B9F2D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEA5BE08-CC11-441F-B685-0D551B9F2D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CEA5BE08-CC11-441F-B685-0D551B9F2D36}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEA5BE08-CC11-441F-B685-0D551B9F2D36}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{CEA5BE08-CC11-441F-B685-0D551B9F2D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{962BBBEC-B12E-485D-82EC-E6FE304A8CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{962BBBEC-B12E-485D-82EC-E6FE304A8CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{962BBBEC-B12E-485D-82EC-E6FE304A8CAC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
