@@ -355,6 +355,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\bootstrap-treeview.min.css" />
     <Content Include="css\bootstrap-glyphicons.css" />
+    <Content Include="css\cookieconsent2\3.1.0\cookieconsent.min.css" />
     <Content Include="css\govuk_elements\_styles.css" />
     <Content Include="css\govuk_template\fonts-ie8.css" />
     <Content Include="css\govuk_template\fonts.css" />
@@ -433,6 +434,7 @@
     <Content Include="css\govuk_frontend_toolkit\_typography.scss" />
     <Content Include="css\govuk_frontend_toolkit\_url-helpers.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\cookieconsent2\3.1.0\cookieconsent.js" />
     <Content Include="Scripts\govuk-template.js" />
     <Content Include="Scripts\ie.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
