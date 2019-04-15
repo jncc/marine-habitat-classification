@@ -433,6 +433,7 @@
     <Content Include="css\govuk_frontend_toolkit\_shims.scss" />
     <Content Include="css\govuk_frontend_toolkit\_typography.scss" />
     <Content Include="css\govuk_frontend_toolkit\_url-helpers.scss" />
+    <Content Include="IISRewriteRules.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cookieconsent2\3.1.0\cookieconsent.js" />
     <Content Include="Scripts\govuk-template.js" />
