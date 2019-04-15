@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "b230e55c48e8d48")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.3")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "3391eeceac7475b8")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -402,9 +402,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// Description
 		///</summary>
 		[ImplementPropertyType("description")]
-		public string Description
+		public IHtmlString Description
 		{
-			get { return this.GetPropertyValue<string>("description"); }
+			get { return this.GetPropertyValue<IHtmlString>("description"); }
 		}
 
 		///<summary>
