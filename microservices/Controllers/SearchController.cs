@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 using System.Web.Mvc;
 using microservices.Models;
+using WebGrease.Css.Extensions;
 
 namespace microservices.Controllers
 {
@@ -40,10 +41,7 @@ namespace microservices.Controllers
                     db.Configuration.LazyLoadingEnabled = true;
                     db.Configuration.ProxyCreationEnabled = true;
 
-                    foreach (var doc in db.WEB_BIOTOPE)
-                    {
-                        CreateBiotopeDocuments(doc, baseUrl);
-                    }
+                    db.WEB_BIOTOPE.ForEach(b => CreateBiotopeDocuments(b, baseUrl));
                 }
             }
             catch (WebException)
