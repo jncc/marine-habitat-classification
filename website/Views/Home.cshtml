@@ -59,7 +59,6 @@
     }
 
 }
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <script type="text/javascript">
     var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
     var itemsPerPage = @itemsPerPage;
@@ -78,69 +77,72 @@
         window.location.search = paramString;
     }
 </script>
-<section class="section">
+<div class="visual-section" style="background-image: url(/frontend/images/arun-valley.jpg);">
     <div class="container">
+        <h1>@Umbraco.TypedContentAtRoot().FirstOrDefault().Name</h1>
+        <form action="@query" role="search" class="search-form input-group" id="search-form" style="position: static; max-width: 100%" data-animate="hinge-in-from-top spin-out">
+            <label for="search-field" class="show-for-sr" accesskey="4">Search for a biotope</label>
+            <input autofocus type="search" name="q" placeholder="Search for a biotope" class="input-group-field" id="search-field">
+            <button class="input-group-button" onclick="search(1)"><i class="icon-search"></i></button>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <br />
 
-        <div class="grid-row">
-            <div class="column-full">
-                @Model.Content.GetPropertyValue("bodyText")
-            </div>
+    @if (string.IsNullOrEmpty(query))
+    {
+        <p>@Model.Content.GetPropertyValue("bodyText")</p>
+    }
+
+    <div class="search-results">
+        <div id="noOfResults" class="search-result">
+            @if (!string.IsNullOrEmpty(query) && searchResults.Count == 1)
+            {
+                <span>1 result found</span>
+            }
+            else if (!string.IsNullOrEmpty(query))
+            {
+                <span>@result["totalAvailable"] results found</span>
+            }
         </div>
-        
-        <br />
-
-        <div class="grid-row">
-            <div class="column-two-thirds">
-                <div class="search-field">
-                    <input id="searchBox" type="search" placeholder="Search for a biotope" aria-label="Search for a biotope" value="@query"/>
-                    <button class="button" onclick="search(1)"><span class="glyphicon glyphicon-search"></span></button>
+        <div id="searchResults" class="search-result">
+            @foreach (var pair in searchResults)
+            {
+                <div class="search-result">
+                    <h3>
+                        <span class="icon" style="background-color: @levelColours[int.Parse(pair["fields"]["hierarchyLevel"].ToString())]">&nbsp;&nbsp;</span>
+                        <span class="biotope-code">@pair["fields"]["originalCode"].ToString().Replace(' ', '.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
+                    </h3>
+                    <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
                 </div>
-            </div>
+            }
         </div>
-        <div class="grid-row">
-            <div class="column-full">
-                <div id="noOfResults" class="search-result">
-                    @if (!string.IsNullOrEmpty(query) && searchResults.Count == 1)
-                    {
-                        <span>1 result found</span>
-                    } else if (!string.IsNullOrEmpty(query))
-                    {
-                        <span>@result["totalAvailable"] results found</span>
-                    }
-                </div>
-                <div id="searchResults" class="search-result">
-                    @foreach (var pair in searchResults)
-                    {
-                        <div class="search-result">
-                            <h3>
-                                <span class="icon" style="background-color: @levelColours[int.Parse(pair["fields"]["hierarchyLevel"].ToString())]">&nbsp;&nbsp;</span>
-                                <span class="biotope-code">@pair["fields"]["originalCode"].ToString().Replace(' ','.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
-                            </h3>
-                            <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
-                        </div>
-                    }
-                </div>
-                <div id="pageNav" class="pagination">
-                    @if (totalResults > itemsPerPage)
-                    {
-                        if (page != 1) {
-                            <span class="page link-page" onClick="search(@page-1)">«</span>
-                        }
+        <div id="pageNav" class="pagination">
+            @if (totalResults > itemsPerPage)
+            {
+                if (page != 1)
+                {
+                    <span class="page link-page" onClick="search(@page - 1)">«</span>
+                }
 
-                        for (var x = 1; x <= totalPages; x++) {
-                            if (page == x) {
-                                <span class="page">@x</span>
-                            } else {
-                                <span class="page link-page" onClick="search(@x)">@x</span>
-                            }
-                        }
-
-                        if (page != totalPages) {
-                            <span class="page link-page" onClick="search(@page+1)">»</span>
-                        }
+                for (var x = 1; x <= totalPages; x++)
+                {
+                    if (page == x)
+                    {
+                        <span class="page">@x</span>
                     }
-                </div>
-            </div>
+                    else
+                    {
+                        <span class="page link-page" onClick="search(@x)">@x</span>
+                    }
+                }
+
+                if (page != totalPages)
+                {
+                    <span class="page link-page" onClick="search(@page + 1)">»</span>
+                }
+            }
         </div>
     </div>
-</section>
+</div>

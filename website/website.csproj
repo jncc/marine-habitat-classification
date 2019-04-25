@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props" Condition="Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -319,9 +319,6 @@
     <Compile Include="Controllers\ErrorHandlingExtension.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BiotopeController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Models\BiotopeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -375,34 +372,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="css\main.scss" />
-    <Content Include="css\main.css">
-      <DependentUpon>main.scss</DependentUpon>
+    <Content Include="config\umbracoSettings.config">
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="css\main.min.css">
-      <DependentUpon>main.css</DependentUpon>
+    <Content Include="config\trees.config">
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="default.aspx" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Media\1005\loading_map.png" />
-    <Content Include="Media\1005\loading_map_thumb.png" />
-    <Content Include="Media\1006\jncclogo_white.png" />
-    <Content Include="Media\1006\jncclogo_white_thumb.png" />
-    <Content Include="Scripts\bootstrap-treeview.js" />
-    <Content Include="Scripts\bootstrap-treeview.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="config\imageprocessor\security.config" />
-    <Content Include="config\imageprocessor\processing.config" />
-    <Content Include="config\imageprocessor\cache.config" />
-    <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
-    <Content Include="Media\Web.config" />
-    <Content Include="config\umbracoSettings.config" />
-    <Content Include="config\trees.config" />
     <Content Include="config\tinyMceConfig.config" />
     <Content Include="config\scripting.config" />
     <Content Include="config\metablogConfig.config" />
@@ -418,6 +393,327 @@
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
+    <None Include="css\main.scss" />
+    <Content Include="css\main.css">
+      <DependentUpon>main.scss</DependentUpon>
+    </Content>
+    <Content Include="css\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="frontend\css\app.css" />
+    <Content Include="frontend\css\foundation-icons.css" />
+    <Content Include="frontend\css\foundation-icons.svg" />
+    <Content Include="frontend\css\svgs\fi-address-book.svg" />
+    <Content Include="frontend\css\svgs\fi-alert.svg" />
+    <Content Include="frontend\css\svgs\fi-align-center.svg" />
+    <Content Include="frontend\css\svgs\fi-align-justify.svg" />
+    <Content Include="frontend\css\svgs\fi-align-left.svg" />
+    <Content Include="frontend\css\svgs\fi-align-right.svg" />
+    <Content Include="frontend\css\svgs\fi-anchor.svg" />
+    <Content Include="frontend\css\svgs\fi-annotate.svg" />
+    <Content Include="frontend\css\svgs\fi-archive.svg" />
+    <Content Include="frontend\css\svgs\fi-arrow-down.svg" />
+    <Content Include="frontend\css\svgs\fi-arrow-left.svg" />
+    <Content Include="frontend\css\svgs\fi-arrow-right.svg" />
+    <Content Include="frontend\css\svgs\fi-arrow-up.svg" />
+    <Content Include="frontend\css\svgs\fi-arrows-compress.svg" />
+    <Content Include="frontend\css\svgs\fi-arrows-expand.svg" />
+    <Content Include="frontend\css\svgs\fi-arrows-in.svg" />
+    <Content Include="frontend\css\svgs\fi-arrows-out.svg" />
+    <Content Include="frontend\css\svgs\fi-asl.svg" />
+    <Content Include="frontend\css\svgs\fi-asterisk.svg" />
+    <Content Include="frontend\css\svgs\fi-at-sign.svg" />
+    <Content Include="frontend\css\svgs\fi-background-color.svg" />
+    <Content Include="frontend\css\svgs\fi-battery-empty.svg" />
+    <Content Include="frontend\css\svgs\fi-battery-full.svg" />
+    <Content Include="frontend\css\svgs\fi-battery-half.svg" />
+    <Content Include="frontend\css\svgs\fi-bitcoin-circle.svg" />
+    <Content Include="frontend\css\svgs\fi-bitcoin.svg" />
+    <Content Include="frontend\css\svgs\fi-blind.svg" />
+    <Content Include="frontend\css\svgs\fi-bluetooth.svg" />
+    <Content Include="frontend\css\svgs\fi-bold.svg" />
+    <Content Include="frontend\css\svgs\fi-book-bookmark.svg" />
+    <Content Include="frontend\css\svgs\fi-book.svg" />
+    <Content Include="frontend\css\svgs\fi-bookmark.svg" />
+    <Content Include="frontend\css\svgs\fi-braille.svg" />
+    <Content Include="frontend\css\svgs\fi-burst-new.svg" />
+    <Content Include="frontend\css\svgs\fi-burst-sale.svg" />
+    <Content Include="frontend\css\svgs\fi-burst.svg" />
+    <Content Include="frontend\css\svgs\fi-calendar.svg" />
+    <Content Include="frontend\css\svgs\fi-camera.svg" />
+    <Content Include="frontend\css\svgs\fi-check.svg" />
+    <Content Include="frontend\css\svgs\fi-checkbox.svg" />
+    <Content Include="frontend\css\svgs\fi-clipboard-notes.svg" />
+    <Content Include="frontend\css\svgs\fi-clipboard-pencil.svg" />
+    <Content Include="frontend\css\svgs\fi-clipboard.svg" />
+    <Content Include="frontend\css\svgs\fi-clock.svg" />
+    <Content Include="frontend\css\svgs\fi-closed-caption.svg" />
+    <Content Include="frontend\css\svgs\fi-cloud.svg" />
+    <Content Include="frontend\css\svgs\fi-comment-minus.svg" />
+    <Content Include="frontend\css\svgs\fi-comment-quotes.svg" />
+    <Content Include="frontend\css\svgs\fi-comment-video.svg" />
+    <Content Include="frontend\css\svgs\fi-comment.svg" />
+    <Content Include="frontend\css\svgs\fi-comments.svg" />
+    <Content Include="frontend\css\svgs\fi-compass.svg" />
+    <Content Include="frontend\css\svgs\fi-contrast.svg" />
+    <Content Include="frontend\css\svgs\fi-credit-card.svg" />
+    <Content Include="frontend\css\svgs\fi-crop.svg" />
+    <Content Include="frontend\css\svgs\fi-crown.svg" />
+    <Content Include="frontend\css\svgs\fi-css3.svg" />
+    <Content Include="frontend\css\svgs\fi-database.svg" />
+    <Content Include="frontend\css\svgs\fi-die-five.svg" />
+    <Content Include="frontend\css\svgs\fi-die-four.svg" />
+    <Content Include="frontend\css\svgs\fi-die-one.svg" />
+    <Content Include="frontend\css\svgs\fi-die-six.svg" />
+    <Content Include="frontend\css\svgs\fi-die-three.svg" />
+    <Content Include="frontend\css\svgs\fi-die-two.svg" />
+    <Content Include="frontend\css\svgs\fi-dislike.svg" />
+    <Content Include="frontend\css\svgs\fi-dollar-bill.svg" />
+    <Content Include="frontend\css\svgs\fi-dollar.svg" />
+    <Content Include="frontend\css\svgs\fi-download.svg" />
+    <Content Include="frontend\css\svgs\fi-eject.svg" />
+    <Content Include="frontend\css\svgs\fi-elevator.svg" />
+    <Content Include="frontend\css\svgs\fi-euro.svg" />
+    <Content Include="frontend\css\svgs\fi-eye.svg" />
+    <Content Include="frontend\css\svgs\fi-fast-forward.svg" />
+    <Content Include="frontend\css\svgs\fi-female-symbol.svg" />
+    <Content Include="frontend\css\svgs\fi-female.svg" />
+    <Content Include="frontend\css\svgs\fi-filter.svg" />
+    <Content Include="frontend\css\svgs\fi-first-aid.svg" />
+    <Content Include="frontend\css\svgs\fi-flag.svg" />
+    <Content Include="frontend\css\svgs\fi-folder-add.svg" />
+    <Content Include="frontend\css\svgs\fi-folder-lock.svg" />
+    <Content Include="frontend\css\svgs\fi-folder.svg" />
+    <Content Include="frontend\css\svgs\fi-foot.svg" />
+    <Content Include="frontend\css\svgs\fi-foundation.svg" />
+    <Content Include="frontend\css\svgs\fi-graph-bar.svg" />
+    <Content Include="frontend\css\svgs\fi-graph-horizontal.svg" />
+    <Content Include="frontend\css\svgs\fi-graph-pie.svg" />
+    <Content Include="frontend\css\svgs\fi-graph-trend.svg" />
+    <Content Include="frontend\css\svgs\fi-guide-dog.svg" />
+    <Content Include="frontend\css\svgs\fi-hearing-aid.svg" />
+    <Content Include="frontend\css\svgs\fi-heart.svg" />
+    <Content Include="frontend\css\svgs\fi-home.svg" />
+    <Content Include="frontend\css\svgs\fi-html5.svg" />
+    <Content Include="frontend\css\svgs\fi-indent-less.svg" />
+    <Content Include="frontend\css\svgs\fi-indent-more.svg" />
+    <Content Include="frontend\css\svgs\fi-info.svg" />
+    <Content Include="frontend\css\svgs\fi-italic.svg" />
+    <Content Include="frontend\css\svgs\fi-key.svg" />
+    <Content Include="frontend\css\svgs\fi-laptop.svg" />
+    <Content Include="frontend\css\svgs\fi-layout.svg" />
+    <Content Include="frontend\css\svgs\fi-lightbulb.svg" />
+    <Content Include="frontend\css\svgs\fi-like.svg" />
+    <Content Include="frontend\css\svgs\fi-link.svg" />
+    <Content Include="frontend\css\svgs\fi-list-bullet.svg" />
+    <Content Include="frontend\css\svgs\fi-list-number.svg" />
+    <Content Include="frontend\css\svgs\fi-list-thumbnails.svg" />
+    <Content Include="frontend\css\svgs\fi-list.svg" />
+    <Content Include="frontend\css\svgs\fi-lock.svg" />
+    <Content Include="frontend\css\svgs\fi-loop.svg" />
+    <Content Include="frontend\css\svgs\fi-magnifying-glass.svg" />
+    <Content Include="frontend\css\svgs\fi-mail.svg" />
+    <Content Include="frontend\css\svgs\fi-male-female.svg" />
+    <Content Include="frontend\css\svgs\fi-male-symbol.svg" />
+    <Content Include="frontend\css\svgs\fi-male.svg" />
+    <Content Include="frontend\css\svgs\fi-map.svg" />
+    <Content Include="frontend\css\svgs\fi-marker.svg" />
+    <Content Include="frontend\css\svgs\fi-megaphone.svg" />
+    <Content Include="frontend\css\svgs\fi-microphone.svg" />
+    <Content Include="frontend\css\svgs\fi-minus-circle.svg" />
+    <Content Include="frontend\css\svgs\fi-minus.svg" />
+    <Content Include="frontend\css\svgs\fi-mobile-signal.svg" />
+    <Content Include="frontend\css\svgs\fi-mobile.svg" />
+    <Content Include="frontend\css\svgs\fi-monitor.svg" />
+    <Content Include="frontend\css\svgs\fi-mountains.svg" />
+    <Content Include="frontend\css\svgs\fi-music.svg" />
+    <Content Include="frontend\css\svgs\fi-next.svg" />
+    <Content Include="frontend\css\svgs\fi-no-dogs.svg" />
+    <Content Include="frontend\css\svgs\fi-no-smoking.svg" />
+    <Content Include="frontend\css\svgs\fi-page-add.svg" />
+    <Content Include="frontend\css\svgs\fi-page-copy.svg" />
+    <Content Include="frontend\css\svgs\fi-page-csv.svg" />
+    <Content Include="frontend\css\svgs\fi-page-delete.svg" />
+    <Content Include="frontend\css\svgs\fi-page-doc.svg" />
+    <Content Include="frontend\css\svgs\fi-page-edit.svg" />
+    <Content Include="frontend\css\svgs\fi-page-export-csv.svg" />
+    <Content Include="frontend\css\svgs\fi-page-export-doc.svg" />
+    <Content Include="frontend\css\svgs\fi-page-export-pdf.svg" />
+    <Content Include="frontend\css\svgs\fi-page-export.svg" />
+    <Content Include="frontend\css\svgs\fi-page-filled.svg" />
+    <Content Include="frontend\css\svgs\fi-page-multiple.svg" />
+    <Content Include="frontend\css\svgs\fi-page-pdf.svg" />
+    <Content Include="frontend\css\svgs\fi-page-remove.svg" />
+    <Content Include="frontend\css\svgs\fi-page-search.svg" />
+    <Content Include="frontend\css\svgs\fi-page.svg" />
+    <Content Include="frontend\css\svgs\fi-paint-bucket.svg" />
+    <Content Include="frontend\css\svgs\fi-paperclip.svg" />
+    <Content Include="frontend\css\svgs\fi-pause.svg" />
+    <Content Include="frontend\css\svgs\fi-paw.svg" />
+    <Content Include="frontend\css\svgs\fi-paypal.svg" />
+    <Content Include="frontend\css\svgs\fi-pencil.svg" />
+    <Content Include="frontend\css\svgs\fi-photo.svg" />
+    <Content Include="frontend\css\svgs\fi-play-circle.svg" />
+    <Content Include="frontend\css\svgs\fi-play-video.svg" />
+    <Content Include="frontend\css\svgs\fi-play.svg" />
+    <Content Include="frontend\css\svgs\fi-plus.svg" />
+    <Content Include="frontend\css\svgs\fi-pound.svg" />
+    <Content Include="frontend\css\svgs\fi-power.svg" />
+    <Content Include="frontend\css\svgs\fi-previous.svg" />
+    <Content Include="frontend\css\svgs\fi-price-tag.svg" />
+    <Content Include="frontend\css\svgs\fi-pricetag-multiple.svg" />
+    <Content Include="frontend\css\svgs\fi-print.svg" />
+    <Content Include="frontend\css\svgs\fi-prohibited.svg" />
+    <Content Include="frontend\css\svgs\fi-projection-screen.svg" />
+    <Content Include="frontend\css\svgs\fi-puzzle.svg" />
+    <Content Include="frontend\css\svgs\fi-quote.svg" />
+    <Content Include="frontend\css\svgs\fi-record.svg" />
+    <Content Include="frontend\css\svgs\fi-refresh.svg" />
+    <Content Include="frontend\css\svgs\fi-results-demographics.svg" />
+    <Content Include="frontend\css\svgs\fi-results.svg" />
+    <Content Include="frontend\css\svgs\fi-rewind-ten.svg" />
+    <Content Include="frontend\css\svgs\fi-rewind.svg" />
+    <Content Include="frontend\css\svgs\fi-rss.svg" />
+    <Content Include="frontend\css\svgs\fi-safety-cone.svg" />
+    <Content Include="frontend\css\svgs\fi-save.svg" />
+    <Content Include="frontend\css\svgs\fi-share.svg" />
+    <Content Include="frontend\css\svgs\fi-sheriff-badge.svg" />
+    <Content Include="frontend\css\svgs\fi-shield.svg" />
+    <Content Include="frontend\css\svgs\fi-shopping-bag.svg" />
+    <Content Include="frontend\css\svgs\fi-shopping-cart.svg" />
+    <Content Include="frontend\css\svgs\fi-shuffle.svg" />
+    <Content Include="frontend\css\svgs\fi-skull.svg" />
+    <Content Include="frontend\css\svgs\fi-social-500px.svg" />
+    <Content Include="frontend\css\svgs\fi-social-adobe.svg" />
+    <Content Include="frontend\css\svgs\fi-social-amazon.svg" />
+    <Content Include="frontend\css\svgs\fi-social-android.svg" />
+    <Content Include="frontend\css\svgs\fi-social-apple.svg" />
+    <Content Include="frontend\css\svgs\fi-social-behance.svg" />
+    <Content Include="frontend\css\svgs\fi-social-bing.svg" />
+    <Content Include="frontend\css\svgs\fi-social-blogger.svg" />
+    <Content Include="frontend\css\svgs\fi-social-delicious.svg" />
+    <Content Include="frontend\css\svgs\fi-social-designer-news.svg" />
+    <Content Include="frontend\css\svgs\fi-social-deviant-art.svg" />
+    <Content Include="frontend\css\svgs\fi-social-digg.svg" />
+    <Content Include="frontend\css\svgs\fi-social-dribbble.svg" />
+    <Content Include="frontend\css\svgs\fi-social-drive.svg" />
+    <Content Include="frontend\css\svgs\fi-social-dropbox.svg" />
+    <Content Include="frontend\css\svgs\fi-social-evernote.svg" />
+    <Content Include="frontend\css\svgs\fi-social-facebook.svg" />
+    <Content Include="frontend\css\svgs\fi-social-flickr.svg" />
+    <Content Include="frontend\css\svgs\fi-social-forrst.svg" />
+    <Content Include="frontend\css\svgs\fi-social-foursquare.svg" />
+    <Content Include="frontend\css\svgs\fi-social-game-center.svg" />
+    <Content Include="frontend\css\svgs\fi-social-github.svg" />
+    <Content Include="frontend\css\svgs\fi-social-google-plus.svg" />
+    <Content Include="frontend\css\svgs\fi-social-hacker-news.svg" />
+    <Content Include="frontend\css\svgs\fi-social-hi5.svg" />
+    <Content Include="frontend\css\svgs\fi-social-instagram.svg" />
+    <Content Include="frontend\css\svgs\fi-social-joomla.svg" />
+    <Content Include="frontend\css\svgs\fi-social-lastfm.svg" />
+    <Content Include="frontend\css\svgs\fi-social-linkedin.svg" />
+    <Content Include="frontend\css\svgs\fi-social-medium.svg" />
+    <Content Include="frontend\css\svgs\fi-social-myspace.svg" />
+    <Content Include="frontend\css\svgs\fi-social-orkut.svg" />
+    <Content Include="frontend\css\svgs\fi-social-path.svg" />
+    <Content Include="frontend\css\svgs\fi-social-picasa.svg" />
+    <Content Include="frontend\css\svgs\fi-social-pinterest.svg" />
+    <Content Include="frontend\css\svgs\fi-social-rdio.svg" />
+    <Content Include="frontend\css\svgs\fi-social-reddit.svg" />
+    <Content Include="frontend\css\svgs\fi-social-skillshare.svg" />
+    <Content Include="frontend\css\svgs\fi-social-skype.svg" />
+    <Content Include="frontend\css\svgs\fi-social-smashing-mag.svg" />
+    <Content Include="frontend\css\svgs\fi-social-snapchat.svg" />
+    <Content Include="frontend\css\svgs\fi-social-spotify.svg" />
+    <Content Include="frontend\css\svgs\fi-social-squidoo.svg" />
+    <Content Include="frontend\css\svgs\fi-social-stack-overflow.svg" />
+    <Content Include="frontend\css\svgs\fi-social-steam.svg" />
+    <Content Include="frontend\css\svgs\fi-social-stumbleupon.svg" />
+    <Content Include="frontend\css\svgs\fi-social-treehouse.svg" />
+    <Content Include="frontend\css\svgs\fi-social-tumblr.svg" />
+    <Content Include="frontend\css\svgs\fi-social-twitter.svg" />
+    <Content Include="frontend\css\svgs\fi-social-vimeo.svg" />
+    <Content Include="frontend\css\svgs\fi-social-windows.svg" />
+    <Content Include="frontend\css\svgs\fi-social-xbox.svg" />
+    <Content Include="frontend\css\svgs\fi-social-yahoo.svg" />
+    <Content Include="frontend\css\svgs\fi-social-yelp.svg" />
+    <Content Include="frontend\css\svgs\fi-social-youtube.svg" />
+    <Content Include="frontend\css\svgs\fi-social-zerply.svg" />
+    <Content Include="frontend\css\svgs\fi-social-zurb.svg" />
+    <Content Include="frontend\css\svgs\fi-sound.svg" />
+    <Content Include="frontend\css\svgs\fi-star.svg" />
+    <Content Include="frontend\css\svgs\fi-stop.svg" />
+    <Content Include="frontend\css\svgs\fi-strikethrough.svg" />
+    <Content Include="frontend\css\svgs\fi-subscript.svg" />
+    <Content Include="frontend\css\svgs\fi-superscript.svg" />
+    <Content Include="frontend\css\svgs\fi-tablet-landscape.svg" />
+    <Content Include="frontend\css\svgs\fi-tablet-portrait.svg" />
+    <Content Include="frontend\css\svgs\fi-target-two.svg" />
+    <Content Include="frontend\css\svgs\fi-target.svg" />
+    <Content Include="frontend\css\svgs\fi-telephone-accessible.svg" />
+    <Content Include="frontend\css\svgs\fi-telephone.svg" />
+    <Content Include="frontend\css\svgs\fi-text-color.svg" />
+    <Content Include="frontend\css\svgs\fi-thumbnails.svg" />
+    <Content Include="frontend\css\svgs\fi-ticket.svg" />
+    <Content Include="frontend\css\svgs\fi-torso-business.svg" />
+    <Content Include="frontend\css\svgs\fi-torso-female.svg" />
+    <Content Include="frontend\css\svgs\fi-torso.svg" />
+    <Content Include="frontend\css\svgs\fi-torsos-all-female.svg" />
+    <Content Include="frontend\css\svgs\fi-torsos-all.svg" />
+    <Content Include="frontend\css\svgs\fi-torsos-female-male.svg" />
+    <Content Include="frontend\css\svgs\fi-torsos-male-female.svg" />
+    <Content Include="frontend\css\svgs\fi-torsos.svg" />
+    <Content Include="frontend\css\svgs\fi-trash.svg" />
+    <Content Include="frontend\css\svgs\fi-trees.svg" />
+    <Content Include="frontend\css\svgs\fi-trophy.svg" />
+    <Content Include="frontend\css\svgs\fi-underline.svg" />
+    <Content Include="frontend\css\svgs\fi-universal-access.svg" />
+    <Content Include="frontend\css\svgs\fi-unlink.svg" />
+    <Content Include="frontend\css\svgs\fi-unlock.svg" />
+    <Content Include="frontend\css\svgs\fi-upload-cloud.svg" />
+    <Content Include="frontend\css\svgs\fi-upload.svg" />
+    <Content Include="frontend\css\svgs\fi-usb.svg" />
+    <Content Include="frontend\css\svgs\fi-video.svg" />
+    <Content Include="frontend\css\svgs\fi-volume-none.svg" />
+    <Content Include="frontend\css\svgs\fi-volume-strike.svg" />
+    <Content Include="frontend\css\svgs\fi-volume.svg" />
+    <Content Include="frontend\css\svgs\fi-web.svg" />
+    <Content Include="frontend\css\svgs\fi-wheelchair.svg" />
+    <Content Include="frontend\css\svgs\fi-widget.svg" />
+    <Content Include="frontend\css\svgs\fi-wrench.svg" />
+    <Content Include="frontend\css\svgs\fi-x-circle.svg" />
+    <Content Include="frontend\css\svgs\fi-x.svg" />
+    <Content Include="frontend\css\svgs\fi-yen.svg" />
+    <Content Include="frontend\css\svgs\fi-zoom-in.svg" />
+    <Content Include="frontend\css\svgs\fi-zoom-out.svg" />
+    <Content Include="frontend\favicon.ico" />
+    <Content Include="frontend\fonts\icomoon.svg" />
+    <Content Include="frontend\images\arun-valley.jpg" />
+    <Content Include="frontend\images\img-2.jpg" />
+    <Content Include="frontend\images\img-3.jpg" />
+    <Content Include="frontend\images\img-4.jpg" />
+    <Content Include="frontend\images\logo.png" />
+    <Content Include="frontend\js\app.js" />
+    <Content Include="frontend\js\lib\foundation-6.5.0.min.js" />
+    <Content Include="frontend\js\lib\jquery-3.3.1.min.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Media\1005\loading_map.png" />
+    <Content Include="Media\1005\loading_map_thumb.png" />
+    <Content Include="Media\1006\jncclogo_white.png" />
+    <Content Include="Media\1006\jncclogo_white_thumb.png" />
+    <Content Include="Scripts\bootstrap-treeview.js" />
+    <Content Include="Scripts\bootstrap-treeview.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\imageprocessor\security.config" />
+    <Content Include="config\imageprocessor\processing.config" />
+    <Content Include="config\imageprocessor\cache.config" />
+    <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="compilerconfig.json" />
     <Content Include="css\govuk_frontend_toolkit\.gitkeep" />
     <Content Include="css\govuk_frontend_toolkit\colours\_organisation.scss" />
@@ -454,6 +750,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="frontend\css\.fontcustom-data" />
+    <Content Include="frontend\css\foundation-icons.eot" />
+    <Content Include="frontend\css\foundation-icons.ttf" />
+    <Content Include="frontend\css\foundation-icons.woff" />
+    <Content Include="frontend\fonts\icomoon.eot" />
+    <Content Include="frontend\fonts\icomoon.ttf" />
+    <Content Include="frontend\fonts\icomoon.woff" />
+    <Content Include="Media\Web.config" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -477,30 +781,24 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
-    <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
-    <Content Include="Views\Partials\Grid\Editors\Media.cshtml" />
-    <Content Include="Views\Partials\Grid\Editors\Macro.cshtml" />
-    <Content Include="Views\Partials\Grid\Editors\Embed.cshtml" />
-    <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
-    <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Views\Biotope.cshtml" />
     <Content Include="Views\Partials\SectionHeader.cshtml" />
     <Content Include="Views\Master.cshtml" />
@@ -521,6 +819,16 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Media.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Macro.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Embed.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
+    <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
+    <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
+    <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
+    <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -574,13 +882,13 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\OctoPack.3.6.3\build\OctoPack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OctoPack.3.6.3\build\OctoPack.targets'))" />
     <Error Condition="!Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.7.6\build\UmbracoCms.props'))" />
     <Error Condition="!Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets'))" />
-    <Error Condition="!Exists('..\packages\OctoPack.3.6.3\build\OctoPack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OctoPack.3.6.3\build\OctoPack.targets'))" />
   </Target>
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
-  <Import Project="..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets" Condition="Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets')" />
   <Import Project="..\packages\OctoPack.3.6.3\build\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.6.3\build\OctoPack.targets')" />
+  <Import Project="..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets" Condition="Exists('..\packages\UmbracoCms.7.7.6\build\UmbracoCms.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
