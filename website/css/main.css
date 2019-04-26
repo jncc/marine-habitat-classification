@@ -98,7 +98,8 @@
   font-size: medium; }
 
 .biomap ul {
-  padding-left: 1.2em; }
+  padding-left: 1.2em;
+  margin-left: 0em; }
 
 .biomap ul li:nth-child(1) {
   color: red;

@@ -14,7 +14,7 @@
                 <li class="active"><a href="@home.Url"><i class="fas fa-database fa-fw"></i> @home.Name</a></li>
                 @foreach (var item in children)
                 {
-                    <li><a class="@(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
+                    <li><a href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
                 }
             </ul>
         </div>
@@ -26,10 +26,10 @@ else
         <div class="container">
             <ul class="vertical medium-horizontal menu dropdown">
                 <li><a href="#"><i class="fas fa-chevron-left fa-fw"></i> Main site</a></li>
-                <li class="active"><a href="@home.Url"><i class="fas fa-database fa-fw"></i> @home.Name</a></li>
+                <li><a href="@home.Url"><i class="fas fa-database fa-fw"></i> @home.Name</a></li>
                 @foreach (var item in children)
                 {
-                    <li><a class="@(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
+                    <li class="@(item.IsAncestorOrSelf(Model.Content) ? "active" : null)"><a href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
                 }
             </ul>
         </div>

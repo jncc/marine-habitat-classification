@@ -1,0 +1,60 @@
+﻿@inherits UmbracoViewPage<dynamic>
+@using Umbraco.Web.Templates
+@using Newtonsoft.Json.Linq
+
+@* 
+    Razor helpers located at the bottom of this file
+*@
+
+@if (Model != null && Model.sections != null)
+{
+    foreach (var section in Model.sections) {
+        foreach (var row in section.rows) {
+            @renderRow(row);
+        }
+    }
+}
+
+@helper renderRow(dynamic row){
+    foreach ( var area in row.areas ) {
+        foreach (var control in area.controls) {
+            if (control !=null && control.editor != null && control.editor.view != null ) {
+                <text>@Html.Partial("grid/editors/base", (object)control)</text>
+            }
+        }
+     }
+}
+
+@functions {
+    public static MvcHtmlString RenderElementAttributes(dynamic contentItem)
+    {
+        var attrs = new List<string>();
+        JObject cfg = contentItem.config;
+
+        if(cfg != null)
+            foreach (JProperty property in cfg.Properties())
+            {
+                var propertyValue = HttpUtility.HtmlAttributeEncode(property.Value.ToString());
+                attrs.Add(property.Name + "=\"" + propertyValue + "\"");
+            }
+
+        JObject style = contentItem.styles;
+
+        if (style != null) {
+            var cssVals = new List<string>();
+            foreach (JProperty property in style.Properties())
+            {
+                var propertyValue = property.Value.ToString();
+                if (string.IsNullOrWhiteSpace(propertyValue) == false)
+                {
+                    cssVals.Add(property.Name + ":" + propertyValue + ";");
+                }
+            }
+
+            if (cssVals.Any())
+                attrs.Add("style='" + HttpUtility.HtmlAttributeEncode(string.Join(" ", cssVals)) + "'");
+        }
+
+        return new MvcHtmlString(string.Join(" ", attrs));
+    }
+}

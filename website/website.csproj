@@ -808,7 +808,9 @@
     <Content Include="Views\ContentPage.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Partials\CategoryLinks.cshtml" />
-    <Content Include="umbracoConnectionStrings.config" />
+    <Content Include="umbracoConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Biotope\Biotope.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -829,6 +831,7 @@
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
+    <Content Include="Views\Partials\Grid\Foundation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
