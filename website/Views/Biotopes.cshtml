@@ -10,16 +10,15 @@
     biotopeNodeMap = GetOrderedParentChildNodeMap(json);
     fullTermMap = GetFullTermMap(json);
 
-    var treeString = GenerateJavascriptTreeString();
-
 
     var nodeColoursSetting = Model.Content.GetPropertyValue<string>("LevelColour");
-    var levelColours = nodeColoursSetting.Split(',');
+    levelColours = nodeColoursSetting.Split(',');
 }
 @functions
 {
     private Dictionary<string, List<string>> biotopeNodeMap;
     private Dictionary<string, string> fullTermMap;
+    private string[] levelColours;
 
     private JArray GetJsonFromApi()
     {
@@ -71,64 +70,94 @@
         return fullTermMap;
     }
 
-    private string GenerateJavascriptTreeString()
+    private string GenerateBiotopeNodeTree()
     {
         var treeSB = new StringBuilder();
-        treeSB.Append("[");
+
+        treeSB.Append("<li node-level=\"0\">");
+        treeSB.Append("<a href=\"#\">");
+        treeSB.Append("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
+        treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[0]));
+        treeSB.Append("Marine</a>");
+
+        treeSB.Append("<ul>");
+
         foreach (var pair in biotopeNodeMap)
         {
             if (IsRootNode(pair.Value, pair.Key))
             {
+
                 List<string> childrenWithoutSelf;
                 childrenWithoutSelf = pair.Value;
                 childrenWithoutSelf.Remove(pair.Key);
 
                 string fullTerm;
                 fullTermMap.TryGetValue(pair.Key, out fullTerm);
-                treeSB.Append("{text:'").Append(fullTerm).Append("',");
-                treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, pair.Key)).Append("'");
-                treeSB = GenerateTree(childrenWithoutSelf, treeSB, 1);
-                treeSB.Append("}");
-                if (!biotopeNodeMap.Last().Key.Equals(pair.Key))
+
+                
+                treeSB.Append("<li node-level=\"1\">");
+                if (childrenWithoutSelf.Count > 0)
                 {
-                    treeSB.Append(",");
+                    treeSB.Append("<a href=\"#\">");
+                    treeSB.Append("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
+                    treeSB.Append("</a>");
                 }
+                treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[1]));
+                treeSB.Append("<a href=\"");
+                treeSB.Append(string.Format("{0}biotope/{1}", Model.Content.Url, pair.Key));
+                treeSB.Append("\">");
+                treeSB.Append(fullTerm);
+                treeSB.Append("</a>");
+                treeSB.Append(GenerateTree(childrenWithoutSelf, 1));
+                treeSB.Append("</li>");
             }
         }
-        treeSB.Append("]");
+        treeSB.Append("</ul>");
+        treeSB.Append("</li>");
 
         return treeSB.ToString();
     }
 
-    private StringBuilder GenerateTree(List<string> children, StringBuilder treeSB, int level)
+    private string GenerateTree(List<string> children, int level)
     {
         if (children == null || children.Count < 1)
-            return treeSB;
+            return null;
 
-        treeSB.Append(", nodes:[");
+        var treeSB = new StringBuilder();
 
+        treeSB.Append("<ul>");
         foreach (var child in children)
         {
             string fullTerm;
             fullTermMap.TryGetValue(child, out fullTerm);
-            treeSB.Append("{text:'").Append(fullTerm).Append("',");
-            treeSB.Append("href:'").Append(string.Format("{0}biotope/{1}", Model.Content.Url, child)).Append("'");
 
             List<string> grandChildren;
             biotopeNodeMap.TryGetValue(child, out grandChildren);
+
+            treeSB.Append("<li node-level=\"");
+            treeSB.Append(level);
+            treeSB.Append("\">");
+            if (grandChildren != null && grandChildren.Count > 0)
+            {
+                treeSB.Append("<a href=\"#\">");
+                treeSB.Append("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
+                treeSB.Append("</a>");
+            }
+            treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[level]));
+            treeSB.Append("<a href=\"");
+            treeSB.Append(string.Format("{0}biotope/{1}", Model.Content.Url, child));
+            treeSB.Append("\">");
+            treeSB.Append(fullTerm);
+            treeSB.Append("</a>");
             if (grandChildren != null)
             {
-                treeSB = GenerateTree(grandChildren, treeSB, level+1);
+                treeSB.Append(GenerateTree(grandChildren, level + 1));
             }
-            treeSB.Append("}");
-            if (!children.Last().Equals(child))
-            {
-                treeSB.Append(",");
-            }
+            treeSB.Append("</li>");
         }
-        treeSB.Append("]");
+        treeSB.Append("</ul>");
 
-        return treeSB;
+        return treeSB.ToString();
     }
 
     private bool IsRootNode(List<string> children, string key)
@@ -137,25 +166,10 @@
     }
 }
 
+<script src="/Scripts/jquery-3.0.0.min.js"></script>
 
-<head><link rel="stylesheet" media="all" href="/css/bootstrap-treeview.min.css" /></head>
-<script src="/Scripts/bootstrap.min.js"></script>
-<script src="/Scripts/bootstrap-treeview.js"></script>
 <script type="text/javascript">
-    $(function() {
-        var myTree = [{ text: "Marine", nodes: @Html.Raw(HttpUtility.HtmlDecode(treeString))}];
-        $('#tree').treeview({
-            data: myTree,
-            levels: 6,
-            enableLinks: true,
-            collapseIcon: "glyphicon glyphicon-chevron-down",
-            expandIcon: "glyphicon glyphicon-chevron-right",
-            nodeIcon: "vocabful-colour-edge",
-            highlightSelected: false,
-            levelColors: ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"]
-        });
-        $('#tree').treeview('expandToLevel', 2, { silent: true });
-    });
+
 
     var expanded = false;
 
@@ -193,8 +207,13 @@
             <input class="button colour-button" style="background-color: @levelColours[5]" type="submit" value="Level 6" onclick="expandLevel(6)" />
         </p>
     </div>
-    <div class="row">
-        <div id="tree"></div>
-    </div>
+    @*<div class="row">
+            <div id="tree"></div>
+        </div>*@
+    <ul class="mtree" style="opacity: 1;">
+        @Html.Raw(GenerateBiotopeNodeTree())
+    </ul>
+    <script src="/Scripts/velocity/velocity.min.js"></script>
+    <script src="/Scripts/mtree/mtree.js"></script>
     <br />
 </div>

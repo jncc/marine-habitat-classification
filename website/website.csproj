@@ -700,6 +700,7 @@
     <Content Include="frontend\js\lib\foundation-6.5.0.min.js" />
     <Content Include="frontend\js\lib\jquery-3.3.1.min.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\mtree\mtree.js" />
     <Content Include="Global.asax" />
     <Content Include="Media\1005\loading_map.png" />
     <Content Include="Media\1005\loading_map_thumb.png" />
@@ -758,6 +759,7 @@
     <Content Include="frontend\fonts\icomoon.ttf" />
     <Content Include="frontend\fonts\icomoon.woff" />
     <Content Include="Media\Web.config" />
+    <Content Include="css\mtree\_mtree.scss" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -781,6 +783,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\velocity\velocity.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

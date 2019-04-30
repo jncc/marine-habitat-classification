@@ -244,25 +244,17 @@
 }
 
 /*
-    Taken from Topcat
+    Modified from Topcat
 */
 .tag {
     white-space: nowrap;
-    display: inline-block;
     background-color: white;
     padding-right: 0.5em;
-    margin: 0 0.8em 0.45em 0;
+    margin: 0 0.8em 0.45em 0.4em;
 
     > .vocabful-colour-edge {
-        display: inline-block;
         width: 7px;
         margin-right: 2px;
-    }
-
-    > .vocabless-colour-edge {
-        display: inline-block;
-        width: 0;
-        margin-right: 0.15em;
     }
 
     position: relative; // so that the squashed-tag::after element can be positioned absolute
