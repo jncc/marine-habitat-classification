@@ -7,10 +7,9 @@
     
     // Only apply if mtree list exists
     if ($('ul.mtree').length) {
-        console.log("doing something");
 
         // Settings
-        var collapsed = false; // Start with collapsed menu (only level 1 items visible)
+        var start_level = 2; // Start with collapsed menu (only level 1 items visible)
         var close_same_level = false; // Close elements on same level when opening new node.
         var duration = 400; // Animation duration should be tweaked according to easing.
         var listAnim = false; // Animate separate list items on open/close element (velocity.js only).
@@ -18,14 +17,17 @@
 
 
         // Set initial styles 
-        $('.mtree ul').css({ 'overflow': 'hidden', 'height': (collapsed) ? 0 : 'auto', 'display': (collapsed) ? 'none' : 'block' });
+        $('.mtree ul').css({ 'overflow': 'hidden', 'height': 0, 'display': 'none' });
 
         // Get node elements, and add classes for styling
         var node = $('.mtree li:has(ul)');
         node.each(function (index, val) {
-            $(this).children(':first-child').css('cursor', 'pointer')
-            $(this).addClass('mtree-node mtree-' + ((collapsed) ? 'closed' : 'open'));
-            $(this).children('ul').addClass('mtree-level-' + ($(this).parentsUntil($('ul.mtree'), 'ul').length + 1));
+            var nodeLevel = $(this).parentsUntil($('ul.mtree'), 'ul').length + 1;
+            $(this).children(':first-child').css('cursor', 'pointer');
+            $(this).addClass('mtree-node mtree-' + ((start_level <= nodeLevel) ? 'closed' : 'open'));
+            $(this).children('a').first().children('span').first().addClass(((start_level <= nodeLevel) ? 'closed' : 'open'));
+            $(this).children('ul').addClass('mtree-level-' + nodeLevel);
+            $(this).children('ul').css({ 'overflow': 'hidden', 'height': (start_level < nodeLevel + 1) ? 0 : 'auto', 'display': (start_level < nodeLevel + 1) ? 'none' : 'block' });
         });
 
         // Set mtree-active class on list items for last opened element
@@ -87,10 +89,13 @@
                     queue: false,
                     duration: duration,
                     easing: easing,
-                    display: isOpen ? 'none' : 'block',
+                    display: isOpen ? 'none' : 'block'
+                }, {
                     begin: setNodeClass($(this).parent(), isOpen),
                     complete: function () {
-                        if (!isOpen) $(this).css('height', 'auto');
+                        if (!isOpen) {
+                            $(this).css('height', 'auto');
+                        }
                     }
                 });
 
@@ -133,8 +138,12 @@
     function setNodeClass(el, isOpen) {
         if (isOpen) {
             el.removeClass('mtree-open').addClass('mtree-closed');
+            el.children('a').first().children('span').first().removeClass('open').addClass('closed');
         } else {
             el.removeClass('mtree-closed').addClass('mtree-open');
+            el.children('a').first().children('span').first().removeClass('closed').addClass('open');
         }
     }
+
+
 }(jQuery, this, this.document));
