@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace website.Controllers
 {
-    public class BiotopeController : RenderMvcController
+    public class BiotopesController : RenderMvcController
     {
         // GET: Biotope
         public override ActionResult Index(RenderModel model)
@@ -21,8 +21,8 @@ namespace website.Controllers
             return Json("some json data", JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Biotope/biotopeKey
-        public ActionResult Biotope(RenderModel model, string key)
+        // GET: Biotopes/biotopeKey
+        public ActionResult Biotopes(RenderModel model, string key)
         {
             var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/" + key;
             var request = (HttpWebRequest)WebRequest.Create(url);

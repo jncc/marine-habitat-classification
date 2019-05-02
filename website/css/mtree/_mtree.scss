@@ -10,7 +10,7 @@
 ul.mtree {
     opacity: 0; // Set to 0 and let mtree display after initialization
     margin-left: 0; // Lets just remove default left margin on root element shall we ...
-    padding-top: 0.5em; // Set a nice padding if your design requires it
+    padding-top: 0em; // Set a nice padding if your design requires it
     // background: #333; // Set a background for the menu
     // Styles for all <ul> submenu list elements except ul.mtree root.
     ul {

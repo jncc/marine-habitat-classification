@@ -1,0 +1,135 @@
+﻿@inherits UmbracoTemplatePage
+@using System.Configuration
+@using System.Text
+@using Newtonsoft.Json.Linq
+@{
+    Layout = "Master.cshtml";
+
+    var umbracoBiotopeUrl = Umbraco.TypedContentAtRoot().FirstOrDefault().Url + "biotopes/";
+
+    // Getting the Biotopes node which will have the level colours, this shouldn't change
+    var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
+    var levelColours = nodeColoursSetting.Split(',');
+
+    var result = new JObject();
+    var searchResults = new JArray();
+    var totalResults = 0;
+    var totalPages = 0;
+
+    var query = Request.QueryString["q"];
+    int page;
+    int.TryParse(Request.QueryString["p"], out page);
+
+    if (!string.IsNullOrEmpty(query))
+    {
+        if (page <= 1)
+        {
+            page = 1;
+        }
+
+        result = Search(query, page);
+        searchResults = JArray.FromObject(result["documents"]);
+        totalResults = result["totalAvailable"].ToObject<int>();
+        totalPages = (int)Math.Ceiling((double)totalResults / itemsPerPage);
+    }
+}
+@functions {
+    private int itemsPerPage = 15;
+
+    private JObject Search(string query, int page)
+    {
+        var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
+        // Special formatting for original code because the standard tokenizer doesn't split by full stops
+        var searchQuery = @"anyof(fullTerm,'" + query + "', -boost '50') or anyof(originalCode,'" + query.Trim().Replace('.', ' ') + "', -boost '45') or anyof(description,'" + query + "', -boost '10')";
+        var requestString = searchUrl + "?c=*&q=" + searchQuery + "&count=" + itemsPerPage + "&skip=" + itemsPerPage * (page - 1);
+
+        var request = (HttpWebRequest)WebRequest.Create(requestString);
+        request.Method = "GET";
+
+        var response = (HttpWebResponse)request.GetResponse();
+        string content;
+        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+        {
+            content = sr.ReadToEnd();
+        }
+
+        return JObject.Parse(JObject.Parse(content)["data"].ToString());
+    }
+}
+<script src="/Scripts/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+    var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
+    var itemsPerPage = @itemsPerPage;
+
+    function search(query, page) {
+        var paramString = '&q=' + query + '&p=' + page;
+        window.location.search = paramString;
+    }
+</script>
+<div class="container">
+    <br />
+
+    @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+    <p>@Model.Content.GetPropertyValue("content")</p>
+
+    <form action="" class="search-form input-group" id="search-form" style="position: static; max-width: 100%" data-animate="hinge-in-from-top spin-out">
+        <label for="search-field" class="show-for-sr" accesskey="4">Search for a biotope</label>
+        <input autofocus type="search" name="q" placeholder="Search for a biotope" class="input-group-field" id="search-field" value="@query">
+        <button class="input-group-button"><i class="icon-search"></i></button>
+    </form>
+
+    <div class="search-results">
+        @if (!string.IsNullOrEmpty(query))
+        {
+            <div id="noOfResults" class="search-result">
+                <br />
+                @if (searchResults.Count == 1)
+                {
+                    <p>1 result for '@query'</p>
+                }
+                else
+                {
+                    <p>@result["totalAvailable"] results for '@query'</p>
+                }
+            </div>
+        }
+        <div id="searchResults" class="search-result">
+            @foreach (var pair in searchResults)
+            {
+                <div class="search-result">
+                    <h3>
+                        <span class="icon" style="background-color: @levelColours[int.Parse(pair["fields"]["hierarchyLevel"].ToString())]">&nbsp;&nbsp;</span>
+                        <span class="biotope-code">@pair["fields"]["originalCode"].ToString().Replace(' ', '.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
+                    </h3>
+                    <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
+                </div>
+            }
+        </div>
+        <div id="pageNav" class="pagination">
+            @if (totalResults > itemsPerPage)
+            {
+                if (page != 1)
+                {
+                    <span class="page link-page" onClick="search('@query', @page - 1)">«</span>
+                }
+
+                for (var x = 1; x <= totalPages; x++)
+                {
+                    if (page == x)
+                    {
+                        <span class="page">@x</span>
+                    }
+                    else
+                    {
+                        <span class="page link-page" onClick="search('@query', @x)">@x</span>
+                    }
+                }
+
+                if (page != totalPages)
+                {
+                    <span class="page link-page" onClick="search('@query', @page + 1)">»</span>
+                }
+            }
+        </div>
+    </div>
+</div>

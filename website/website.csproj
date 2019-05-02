@@ -318,7 +318,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ErrorHandlingExtension.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\BiotopeController.cs" />
+    <Compile Include="Controllers\BiotopesController.cs" />
     <Compile Include="Models\BiotopeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -783,7 +783,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Scripts\velocity\velocity.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -802,7 +801,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Biotope.cshtml" />
     <Content Include="Views\Partials\SectionHeader.cshtml" />
     <Content Include="Views\Master.cshtml" />
     <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
@@ -814,7 +812,6 @@
     <Content Include="umbracoConnectionStrings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Biotope\Biotope.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -835,6 +832,7 @@
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Views\Partials\Grid\Foundation.cshtml" />
+    <Content Include="Views\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

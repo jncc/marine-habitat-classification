@@ -16,13 +16,36 @@
 }
 
 @helper renderRow(dynamic row){
-    foreach ( var area in row.areas ) {
-        foreach (var control in area.controls) {
-            if (control !=null && control.editor != null && control.editor.view != null ) {
-                <text>@Html.Partial("grid/editors/base", (object)control)</text>
+    if (row.areas.Count > 1)
+    {
+        <div class="row">
+            @foreach ( var area in row.areas ) {
+            <div class="column large-@area.grid">
+                @foreach (var control in area.controls)
+                {
+                    if (control != null && control.editor != null && control.editor.view != null)
+                    {
+                        <text>@Html.Partial("grid/editors/base", (object)control)</text>
+                    }
+                }
+            </div>
+            }
+        </div>
+    }
+    else
+    {
+        foreach (var area in row.areas)
+        {
+            foreach (var control in area.controls)
+            {
+                if (control != null && control.editor != null && control.editor.view != null)
+                {
+                    <text>@Html.Partial("grid/editors/base", (object) control)</text>
+                }
             }
         }
-     }
+    }
+
 }
 
 @functions {

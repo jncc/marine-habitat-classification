@@ -16,9 +16,9 @@ namespace website.App_Start
             ApplicationContext applicationContext)
         {
             RouteTable.Routes.MapUmbracoRoute(
-                "Biotope",
-                "biotopes/biotope/{key}",
-                new {controller = "Biotope", action = "Biotope", key = UrlParameter.Optional},
+                "Biotopes",
+                "biotopes/{key}",
+                new {controller = "Biotopes", action = "Biotopes", key = UrlParameter.Optional},
                 new BiotopeRouteHandler()
             );
         }

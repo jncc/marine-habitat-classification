@@ -1,48 +1,27 @@
 ﻿@inherits UmbracoTemplatePage
 @using System.Configuration
+@using System.Text
 @using Newtonsoft.Json.Linq
 @{
     Layout = "Master.cshtml";
 
-    var umbracoBiotopeUrl = CurrentPage.UrlWithDomain() + "biotopes/biotope/";
+    var json = GetJsonFromApi();
 
-    // Getting the Biotopes node which will have the level colours, this shouldn't change
+    biotopeNodeMap = GetOrderedParentChildNodeMap(json);
+    fullTermMap = GetFullTermMap(json);
+
     var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
-    var levelColours = nodeColoursSetting.Split(',');
-
-    var result = new JObject();
-    var searchResults = new JArray();
-    var totalResults = 0;
-    var totalPages = 0;
-
-    var query = Request.QueryString["q"];
-    int page;
-    int.TryParse(Request.QueryString["p"], out page);
-
-    if (!string.IsNullOrEmpty(query))
-    {
-        if (page <= 1)
-        {
-            page = 1;
-        }
-
-        result = Search(query, page);
-        searchResults = JArray.FromObject(result["documents"]);
-        totalResults = result["totalAvailable"].ToObject<int>();
-        totalPages = (int)Math.Ceiling((double)totalResults/itemsPerPage);
-    }
+    levelColours = nodeColoursSetting.Split(',');
 }
 @functions {
-    private int itemsPerPage = 15;
+    private Dictionary<string, List<string>> biotopeNodeMap;
+    private Dictionary<string, string> fullTermMap;
+    private string[] levelColours;
 
-    private JObject Search(string query, int page)
+    private JArray GetJsonFromApi()
     {
-        var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
-        // Special formatting for original code because the standard tokenizer doesn't split by full stops
-        var searchQuery = @"anyof(fullTerm,'" + query + "', -boost '50') or anyof(originalCode,'" + query.Trim().Replace('.',' ') + "', -boost '45') or anyof(description,'" + query + "', -boost '10')";
-        var requestString = searchUrl + "?c=*&q=" + searchQuery + "&count=" + itemsPerPage + "&skip=" + itemsPerPage * (page - 1);
-
-        var request = (HttpWebRequest)WebRequest.Create(requestString);
+        var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/";
+        var request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "GET";
 
         var response = (HttpWebResponse)request.GetResponse();
@@ -52,25 +31,155 @@
             content = sr.ReadToEnd();
         }
 
-        return JObject.Parse(JObject.Parse(content)["data"].ToString());
+        return JArray.Parse(content);
     }
 
+    private Dictionary<string, List<string>> GetOrderedParentChildNodeMap(JArray json)
+    {
+        biotopeNodeMap = new Dictionary<string, List<string>>();
+        foreach (var pair in json.OrderBy(p => p["SortCode"]))
+        {
+            var biotopeKey = pair["BiotopeKey"].ToString();
+            var biotopeParentKey = pair["BiotopeParentKey"].ToString();
+
+            if (!biotopeNodeMap.ContainsKey(biotopeParentKey))
+            {
+                biotopeNodeMap.Add(biotopeParentKey, new List<string> { biotopeKey });
+            }
+            else
+            {
+                var node = new List<string>();
+                biotopeNodeMap.TryGetValue(biotopeParentKey, out node);
+                node.Add(biotopeKey);
+            }
+        }
+
+        return biotopeNodeMap;
+    }
+
+    private Dictionary<string, string> GetFullTermMap(JArray json)
+    {
+        fullTermMap = new Dictionary<string, string>();
+        foreach (var pair in json)
+        {
+            fullTermMap.Add(pair["BiotopeKey"].ToString(), pair["FullTerm"].ToString());
+        }
+
+        return fullTermMap;
+    }
+
+    private string GenerateBiotopeNodeTree()
+    {
+        var treeSB = new StringBuilder();
+
+        treeSB.Append("<li>");
+        treeSB.Append("<a href=\"#\"><span></span>");
+        treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[0]));
+        treeSB.Append("Marine</a>");
+
+        treeSB.Append("<ul>");
+
+        foreach (var pair in biotopeNodeMap)
+        {
+            if (IsRootNode(pair.Value, pair.Key))
+            {
+
+                List<string> childrenWithoutSelf;
+                childrenWithoutSelf = pair.Value;
+                childrenWithoutSelf.Remove(pair.Key);
+
+                string fullTerm;
+                fullTermMap.TryGetValue(pair.Key, out fullTerm);
+
+
+                treeSB.Append("<li>");
+                if (childrenWithoutSelf.Count > 0)
+                {
+                    treeSB.Append("<a href=\"#\">");
+                    treeSB.Append("<span></span>");
+                    treeSB.Append("</a>");
+                }
+                treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[1]));
+                treeSB.Append("<a href=\"");
+                treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, pair.Key.ToLower()));
+                treeSB.Append("\">");
+                treeSB.Append(fullTerm);
+                treeSB.Append("</a>");
+                treeSB.Append(GenerateTree(childrenWithoutSelf, 1));
+                treeSB.Append("</li>");
+            }
+        }
+        treeSB.Append("</ul>");
+        treeSB.Append("</li>");
+
+        return treeSB.ToString();
+    }
+
+    private string GenerateTree(List<string> children, int level)
+    {
+        if (children == null || children.Count < 1)
+            return null;
+
+        var treeSB = new StringBuilder();
+
+        treeSB.Append("<ul>");
+        foreach (var child in children)
+        {
+            string fullTerm;
+            fullTermMap.TryGetValue(child, out fullTerm);
+
+            List<string> grandChildren;
+            biotopeNodeMap.TryGetValue(child, out grandChildren);
+
+            treeSB.Append("<li>");
+            if (grandChildren != null && grandChildren.Count > 0)
+            {
+                treeSB.Append("<a href=\"#\">");
+                treeSB.Append("<span></span>");
+                treeSB.Append("</a>");
+            }
+            treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[level + 1]));
+            treeSB.Append("<a href=\"");
+            treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, child.ToLower()));
+            treeSB.Append("\">");
+            treeSB.Append(fullTerm);
+            treeSB.Append("</a>");
+            if (grandChildren != null)
+            {
+                treeSB.Append(GenerateTree(grandChildren, level + 1));
+            }
+            treeSB.Append("</li>");
+        }
+        treeSB.Append("</ul>");
+
+        return treeSB.ToString();
+    }
+
+    private bool IsRootNode(List<string> children, string key)
+    {
+        return children.Contains(key);
+    }
 }
+<script src="/Scripts/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
     var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
-    var itemsPerPage = @itemsPerPage;
 
-    function search(query, page) {
-        var paramString = '&q=' + query + '&p=' + page;
-        window.location.search = paramString;
+    function expandLevel(level) {
+        $('.mtree li:has(ul)').each(function (index, val) {
+            var nodeLevel = $(this).parentsUntil($('ul.mtree'), 'ul').length + 1;
+
+            $(this).attr('class', 'mtree-node mtree-' + ((level <= nodeLevel) ? 'closed' : 'open'));
+            $(this).children('a').first().children('span').first().attr('class', (level <= nodeLevel) ? 'closed' : 'open');
+            $(this).children('ul').css({ 'overflow': 'hidden', 'height': (level < nodeLevel + 1) ? 0 : 'auto', 'display': (level < nodeLevel + 1) ? 'none' : 'block' });
+        });
     }
 </script>
 <div class="visual-section" style="background-image: url(/frontend/images/arun-valley.jpg);">
     <div class="container">
-        <h1>@Umbraco.TypedContentAtRoot().FirstOrDefault().Name</h1>
-        <form role="search" class="search-form input-group" id="search-form" style="position: static; max-width: 100%" data-animate="hinge-in-from-top spin-out">
+        <h1>@Model.Content.GetPropertyValue("PageTitle")</h1>
+        <form action="search" role="search" class="search-form input-group" id="search-form" style="position: static; max-width: 100%" data-animate="hinge-in-from-top spin-out">
             <label for="search-field" class="show-for-sr" accesskey="4">Search for a biotope</label>
-            <input autofocus type="search" name="q" placeholder="Search for a biotope" class="input-group-field" id="search-field" value="@query">
+            <input autofocus type="search" name="q" placeholder="Search for a biotope" class="input-group-field" id="search-field">
             <button class="input-group-button"><i class="icon-search"></i></button>
         </form>
     </div>
@@ -78,66 +187,21 @@
 <div class="container">
     <br />
 
-    @if (string.IsNullOrEmpty(query))
-    {
-        <p>@Model.Content.GetPropertyValue("bodyText")</p>
-        <br />
-    }
-    else
-    {
-        <div class="search-results">
-            @if (!string.IsNullOrEmpty(query))
-            {
-                <div id="noOfResults" class="search-result">
-                    <h2>Search results</h2>
-                    @if (searchResults.Count == 1)
-                    {
-                        <span>1 result for '@query'</span>
-                    }
-                    else
-                    {
-                        <span>@result["totalAvailable"] results for '@query'</span>
-                    }
-                </div>
-            }
-            <div id="searchResults" class="search-result">
-                @foreach (var pair in searchResults)
-                {
-                    <div class="search-result">
-                        <h3>
-                            <span class="icon" style="background-color: @levelColours[int.Parse(pair["fields"]["hierarchyLevel"].ToString())]">&nbsp;&nbsp;</span>
-                            <span class="biotope-code">@pair["fields"]["originalCode"].ToString().Replace(' ', '.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
-                        </h3>
-                        <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
-                    </div>
-                }
-            </div>
-            <div id="pageNav" class="pagination">
-                @if (totalResults > itemsPerPage)
-                {
-                    if (page != 1)
-                    {
-                        <span class="page link-page" onClick="search('@query', @page - 1)">«</span>
-                    }
-
-                    for (var x = 1; x <= totalPages; x++)
-                    {
-                        if (page == x)
-                        {
-                            <span class="page">@x</span>
-                        }
-                        else
-                        {
-                            <span class="page link-page" onClick="search('@query', @x)">@x</span>
-                        }
-                    }
-
-                    if (page != totalPages)
-                    {
-                        <span class="page link-page" onClick="search('@query', @page + 1)">»</span>
-                    }
-                }
-            </div>
-        </div>
-    }
+    <p>@Model.Content.GetPropertyValue("bodyText")</p>
+    <br />
+    <div class="row">
+        <p>
+            <input class="button colour-button" style="background-color: @levelColours[0]" type="submit" value="Level 1" onclick="expandLevel(1)" />
+            <input class="button colour-button" style="background-color: @levelColours[1]" type="submit" value="Level 2" onclick="expandLevel(2)" />
+            <input class="button colour-button" style="background-color: @levelColours[2]" type="submit" value="Level 3" onclick="expandLevel(3)" />
+            <input class="button colour-button" style="background-color: @levelColours[3]" type="submit" value="Level 4" onclick="expandLevel(4)" />
+            <input class="button colour-button" style="background-color: @levelColours[4]" type="submit" value="Level 5" onclick="expandLevel(5)" />
+            <input class="button colour-button" style="background-color: @levelColours[5]" type="submit" value="Level 6" onclick="expandLevel(6)" />
+        </p>
+    </div>
+    <ul class="mtree" style="opacity: 1;">
+        @Html.Raw(GenerateBiotopeNodeTree())
+    </ul>
+    <script src="/Scripts/mtree/mtree.js"></script>
+    <br />
 </div>
