@@ -109,10 +109,8 @@
 
 
 .biomap {
-    .loading {
-        width: 450px;
-        height: 600px;
-        background: transparent url('/media/1005/loading_map.png') no-repeat center;
+    img {
+        object-fit: contain;
     }
 
     .legend {

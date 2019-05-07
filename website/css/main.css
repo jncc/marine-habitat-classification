@@ -117,10 +117,8 @@ ul.mtree a {
   to {
     opacity: 1; } }
 
-.biomap .loading {
-  width: 450px;
-  height: 600px;
-  background: transparent url("/media/1005/loading_map.png") no-repeat center; }
+.biomap img {
+  object-fit: contain; }
 
 .biomap .legend {
   color: black;

@@ -18,9 +18,9 @@
 @helper renderRow(dynamic row){
     if (row.areas.Count > 1)
     {
-        <div class="row">
+        <div class="grid-x grid-margin-x">
             @foreach ( var area in row.areas ) {
-            <div class="column large-@area.grid">
+            <div class="cell medium-@area.grid">
                 @foreach (var control in area.controls)
                 {
                     if (control != null && control.editor != null && control.editor.view != null)
