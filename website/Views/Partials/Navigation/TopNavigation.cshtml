@@ -3,19 +3,35 @@
 @{
     var home = Umbraco.TypedContentAtRoot().FirstOrDefault();
     var children = home.Children.Where(x => x.IsVisible());
+    var currentPage = Umbraco.TypedContent(UmbracoContext.Current.PageId);
 }
-<div class="header-proposition">
-    <div class="content">
-        <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
-        <nav id="proposition-menu">
-            <a href="@home.Url" id="proposition-name">@home.Name</a>
-            <ul id="proposition-links">
+
+@if (home.Name.Equals(currentPage.Name)) {
+    <nav class="top-bar nav" id="menu" data-animate="hinge-in-from-top spin-out" aria-label="main-navigation">
+        <div class="container">
+            <ul class="vertical medium-horizontal menu dropdown">
+                <li><a href="#"><i class="fas fa-chevron-left fa-fw"></i> Main site</a></li>
+                <li class="active"><a href="@home.Url"><i class="fas fa-database fa-fw"></i> @home.Name</a></li>
                 @foreach (var item in children)
                 {
-                    <li><a class="@(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
+                    <li><a href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
                 }
             </ul>
-        </nav>
-
-    </div>
-</div>
+        </div>
+    </nav>
+}
+else
+{
+    <nav class="top-bar nav no-page-hero" id="menu" data-animate="hinge-in-from-top spin-out" aria-label="main-navigation">
+        <div class="container">
+            <ul class="vertical medium-horizontal menu dropdown">
+                <li><a href="#"><i class="fas fa-chevron-left fa-fw"></i> Main site</a></li>
+                <li class="@(currentPage.Name.Equals("Biotopes") ? "active" : null)"><a href="@home.Url"><i class="fas fa-database fa-fw"></i> @home.Name</a></li>
+                @foreach (var item in children)
+                {
+                    <li class="@(!currentPage.Name.Equals("Biotopes") && item.IsAncestorOrSelf(Model.Content) ? "active" : null)"><a href="@item.Url">@item.GetPropertyValue("pageTitle")</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+}

@@ -1,0 +1,78 @@
+﻿
+// ul.mtree : root <ul> list element.
+// li.mtree-node : All <li> list items with children.
+// li.mtree-open : <li> list items that are open
+// li.mtree-closed : <li> list items that are closed
+// ul.mtree-level-1 : Style <ul> list elements at different levels (depth)
+// li.mtree-active : Class for last active <li> list item (experimental)
+
+// All classes listed, with sensible defaults applied
+ul.mtree {
+    opacity: 0; // Set to 0 and let mtree display after initialization
+    margin-left: 0; // Lets just remove default left margin on root element shall we ...
+    padding-top: 0em; // Set a nice padding if your design requires it
+    // background: #333; // Set a background for the menu
+    // Styles for all <ul> submenu list elements except ul.mtree root.
+    ul {
+        margin-left: 1em; // Set default indent level (or set 0)
+    }
+    // Styles for all <li> list items.
+    li {
+        list-style: none; // Lets remove default bullets for all elements
+        margin-left: 1em;
+    }
+    // Styles for all link elements, change to '* >:first-child' if not using anchor <a>
+    a {
+        @extend %mtree-transition;
+    }
+    // li.mtree-node : All <li> list items that have children (node)
+    li.mtree-node {
+        // Anchor element for list elements that have children
+        > a {
+            font-weight: bold;
+        }
+    }
+    // li.mtree-open : <li> list items that are open
+    li.mtree-open {
+        margin-left: 0em;
+
+        span.open::after {
+            font-family: "Glyphicons Halflings";
+            content: "\e114";
+        }
+    }
+    // li.mtree-closed : <li> list items that are closed
+    li.mtree-closed {
+        margin-left: 0em;
+
+        span.closed::after {
+            font-family: "Glyphicons Halflings";
+            content: "\e080";
+        }
+    }
+    // Level classes <ul> submenu elements with recursive styles.
+    ul.mtree-level-1 {
+        // smaller font-size for child elements from level 1
+        // li { font-size: .9em; }
+    }
+
+    ul.mtree-level-2 {
+    }
+
+    ul.mtree-level-3 {
+    }
+    //ul.mtree-level-[DEPTH] { }
+    // [EXPERIMENTAL] Class for last active <li> list item.
+    li.mtree-active {
+        // > a { background: #CCC; }
+    }
+}
+
+// Some simple anim for hover, better add with Bourbon or Compass perhaps
+%mtree-transition {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
