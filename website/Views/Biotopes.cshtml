@@ -16,6 +16,12 @@
     var slideIndex = 1;
 
     $(function () {
+        $('img.map').on('load',
+            function () {
+                $('div.map-loader').css('display', 'none');
+                $('div.biomap').css('display', 'block');
+            });
+
         showSlides(slideIndex);
     });
 
@@ -183,28 +189,39 @@
     </div>
 
     <div class="cell large-6">
-        <div class="biomap">
-            <img class="map" alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
-                 src="@biomapUrl" />
-            <br />
-            <ul>
-                <li><span class="legend">Records used to define the biotope (core records)</span></li>
-                <li><span class="legend">Other records assigned to this biotope, marked as 'certain'</span></li>
-                <li><span class="legend">Other records assigned to this biotope, marked as 'uncertain'</span></li>
-                @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
-                {
-                    <li><span class="legend">Predicted extent of the level 3 (for sublittoral rock & deep sea) or 4 (for sublittoral sediment) habitat</span></li>
-                }
-            </ul>
-            <p>
-                <span class="legend">
-                    Point data based on records in the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder Snapshot</a>.
-                    @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
-                    {
-                        <span>Predicted habitat extent is from <a href="http://jncc.defra.gov.uk/page-7354" target="_blank">UKSeaMap</a>.</span>
-                    }
-                </span>
-            </p>
+        <div class="grid-x">
+            <div class="cell auto">
+                <div class="biomap">
+                    <img class="map" alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
+                         src="@biomapUrl" />
+
+                    <br />
+                    <br />
+                    <ul>
+                        <li><span class="legend">Records used to define the biotope (core records)</span></li>
+                        <li><span class="legend">Other records assigned to this biotope, marked as 'certain'</span></li>
+                        <li><span class="legend">Other records assigned to this biotope, marked as 'uncertain'</span></li>
+                        @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+                        {
+                            <li><span class="legend">Predicted extent of the level 3 (for sublittoral rock & deep sea) or 4 (for sublittoral sediment) habitat</span></li>
+                        }
+                    </ul>
+                    <p>
+                        <span class="legend">
+                            Point data based on records in the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder Snapshot</a>.
+                            @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+                            {
+                                <span>Predicted habitat extent is from <a href="http://jncc.defra.gov.uk/page-7354" target="_blank">UKSeaMap</a>.</span>
+                            }
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="grid-x grid-margin-y">
+            <div class="cell small-2 small-offset-5">
+                <div class="map-loader"></div>
+            </div>
         </div>
     </div>
 </div>

@@ -107,8 +107,35 @@
     }
 }
 
+// https://www.w3schools.com/howto/howto_css_loader.asp
+.map-loader {
+    margin: 8em 0 3em 0;
+
+    @media (max-width: 768px) {
+        margin: 3em 0 4em 0;
+    }
+
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #2d7a29; /* Green */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .biomap {
+    display: none; //display after the image has loaded
+
     img {
         object-fit: contain;
     }
