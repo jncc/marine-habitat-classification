@@ -50,7 +50,7 @@
                     "domain": ".jncc.gov.uk"
                 },
                 "content": {
-                    "message": "The Marine Habitat Classification uses cookies to make the site simpler.",
+                    "message": "The @Umbraco.TypedContentAtRoot().FirstOrDefault().Name uses cookies to make the site simpler.",
                     "link": "Find out more about cookies.",
                     "href": "http://jncc.gov.uk/cookies"
                 },
@@ -75,11 +75,11 @@
 
     <noscript><div>Javascript must be enabled for the correct page display</div></noscript>
     <div id="wrapper">
-        <a class="accessibility" href="https://jncc.gov.uk" accesskey="S">Skip to Content</a>
+        <a class="accessibility" href="jncc.gov.uk" accesskey="S">Skip to Content</a>
         <header id="header">
             <div class="container">
                 <strong class="logo">
-                    <a href="https://jncc.gov.uk" accesskey="1"><img src="/frontend/images/logo.png" alt="JNCC"></a>
+                    <a href="jncc.gov.uk" accesskey="1"><img src="/frontend/images/logo.png" alt="JNCC"></a>
                 </strong>
                 @*<form action="http://beta-website.jncc.gov.uk/search" role="search" class="top-bar search-form input-group" id="search-form" data-animate="hinge-in-from-top spin-out">
                     <label for="search-field" class="show-for-sr" accesskey="4">Search:</label>
@@ -98,7 +98,7 @@
             @Html.Partial("~/Views/Partials/Navigation/TopNavigation.cshtml")
         </header>
         <p class="container show-for-small-only" style="margin-bottom: 1.5rem;">
-            <i class="fas fa-database fa-fw"></i> Marine Habitat Classification
+            <i class="fas fa-database fa-fw"></i> @Umbraco.TypedContentAtRoot().FirstOrDefault().Name
         </p>
         <main id="main">
             @RenderBody()
