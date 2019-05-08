@@ -310,7 +310,7 @@
         foreach (var biotope in Model.SimilarBiotopes)
         {
             <p>
-                <h5><a href="@string.Format(" {0}biotope/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h5>
+                <h5><a href="@string.Format(" {0}biotopes/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h5>
                 @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
             </p>
         }
