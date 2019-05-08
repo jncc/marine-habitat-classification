@@ -47,358 +47,368 @@
 </script>
 
 <div class="container">
-    <br />
-    @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
-    <p>@Model.Content.GetPropertyValue("content")</p>
-    <h3>
-        <a href="@Model.Content.Parent.Url">Full hierarchy</a>
-        @for (int i = 1; i < Model.BiotopeHierarchy.Count + 1; i++)
+<br />
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+<p>@Model.Content.GetPropertyValue("content")</p>
+<h3>
+    <a href="@Model.Content.Parent.Url">Full hierarchy</a>
+    @for (int i = 1; i < Model.BiotopeHierarchy.Count + 1; i++)
+    {
+        BiotopeLevel biotopeCode;
+
+        Model.BiotopeHierarchy.TryGetValue(i, out biotopeCode);
+        <span>&#10095;</span>
+        <span class="icon" style="background-color: @levelColours[i]">&nbsp;&nbsp;</span>
+        if (i == Model.BiotopeHierarchy.Count)
         {
-            BiotopeLevel biotopeCode;
-
-            Model.BiotopeHierarchy.TryGetValue(i, out biotopeCode);
-            <span>&#10095;</span>
-            <span class="icon" style="background-color: @levelColours[i]">&nbsp;&nbsp;</span>
-            if (i == Model.BiotopeHierarchy.Count)
-            {
-                @biotopeCode.OriginalCode
-            }
-            else
-            {
-                <a href="@string.Format("{0}biotopes/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey)">@biotopeCode.OriginalCode</a>
-            }
+            @biotopeCode.OriginalCode
         }
-    </h3>
-    <h2><span class="icon" style="background-color: @levelColours[Model.BiotopeHierarchy.Count]">&nbsp;&nbsp;</span> @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h2>
+        else
+        {
+            <a href="@string.Format("{0}biotopes/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey)">@biotopeCode.OriginalCode</a>
+        }
+    }
+</h3>
+<h2><span class="icon" style="background-color: @levelColours[Model.BiotopeHierarchy.Count]">&nbsp;&nbsp;</span> @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h2>
 
-    
-    @if (Model.Photos != null && Model.Photos.Count > 0)
-    {
-        <div class="grid-x">
-            <div class="cell large-12">
-                <div class="slideshow-container">
-                    @foreach (var photo in Model.Photos)
+
+@if (Model.Photos != null && Model.Photos.Count > 0)
+{
+    <div class="grid-x">
+        <div class="cell large-12">
+            <div class="slideshow-container">
+                @foreach (var photo in Model.Photos)
+                {
+                    <div class="mySlides fade" style="background-image: url('@photo.PhotoPath')">
+                        <div class="text">@photo.PhotoCaption</div>
+                    </div>
+                }
+
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div style="text-align: center">
+                    @for (var i = 0; i < Model.Photos.Count; i++)
                     {
-                        <div class="mySlides fade" style="background-image: url('@photo.PhotoPath')">
-                            <div class="text">@photo.PhotoCaption</div>
-                        </div>
+                        <span class="dot" onclick="currentSlide(@i)"></span>
                     }
-
-                    <!-- Next and previous buttons -->
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                    <div style="text-align: center">
-                        @for (var i = 0; i < Model.Photos.Count; i++)
-                        {
-                            <span class="dot" onclick="currentSlide(@i)"></span>
-                        }
-                    </div>
                 </div>
             </div>
         </div>
-    }
-        <div class="grid-x grid-margin-x">
-            <div class="cell large-6">
-                @* Habitat description *@
+    </div>
+}
+<div class="grid-x grid-margin-x">
+    <div class="cell large-6">
+        @* Habitat description *@
 
-                <br />
-                <h3>Habitat (physical) description</h3>
-                <p>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Salinity</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Salinity))</td>
-                            </tr>
-                            <tr>
-                                <th>Wave exposure</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Exposure))</td>
-                            </tr>
-                            <tr>
-                                <th>Tidal streams</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TidalStreams))</td>
-                            </tr>
-                            <tr>
-                                <th>Substratum</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Substratum))</td>
-                            </tr>
-                            <tr>
-                                <th>Zone</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Subzone))</td>
-                            </tr>
-                            <tr>
-                                <th>Depth Band</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Height))</td>
-                            </tr>
-                            <tr>
-                                <th>Other Features</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.SpecialFeatures))</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </p>
-
-                @* Derived using data from and faunal group *@
-
-                @if (!string.IsNullOrWhiteSpace(Model.Biotope.DerivedFrom) && !string.IsNullOrWhiteSpace(Model.Biotope.FaunalGroup))
-                {
-                    <p>
-                        <h3>Biotope origin</h3>
-                        <table>
-                            <thead>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Derived using data from</td>
-                                    <td>@Model.Biotope.DerivedFrom</td>
-                                </tr>
-                                <tr>
-                                    <td>Faunal group</td>
-                                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FaunalGroup))</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </p>
-                }
-
-                @* Sensitivity assessment *@
-
-                @if (!string.IsNullOrWhiteSpace(Model.Biotope.SensitivityAssessment))
-                {
-                    <div class="row">
-                        <p><a href="@Model.Biotope.SensitivityAssessment" target="_blank">View sensitivity assessment</a>. A sensitivity assessment for this biotope against different pressures can be found on the MarLIN website.</p>
-                    </div>
-                }
-
-                @* Comparative data *@
-
-                <p>
-                    <a href="http://jncc.defra.gov.uk/default.aspx?page=3249" target="_blank">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
-                </p>
+        <br />
+        <h3>Habitat (physical) description</h3>
+        <p>
+            <div class="table-scroll">
+            <table>
+                <tbody>
+                <tr>
+                    <th>Salinity</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Salinity))</td>
+                </tr>
+                <tr>
+                    <th>Wave exposure</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Exposure))</td>
+                </tr>
+                <tr>
+                    <th>Tidal streams</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TidalStreams))</td>
+                </tr>
+                <tr>
+                    <th>Substratum</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Substratum))</td>
+                </tr>
+                <tr>
+                    <th>Zone</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Subzone))</td>
+                </tr>
+                <tr>
+                    <th>Depth Band</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Height))</td>
+                </tr>
+                <tr>
+                    <th>Other Features</th>
+                    <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.SpecialFeatures))</td>
+                </tr>
+                </tbody>
+            </table>
             </div>
+        </p>
 
-            <div class="cell large-6">
-                <div class="biomap">
-                    <img class="map" alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
-                         src="@biomapUrl" />
-                    <br />
-                    <ul>
-                        <li><span class="legend">Records used to define the biotope (core records)</span></li>
-                        <li><span class="legend">Other records assigned to this biotope, marked as 'certain'</span></li>
-                        <li><span class="legend">Other records assigned to this biotope, marked as 'uncertain'</span></li>
-                        @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
-                        {
-                            <li><span class="legend">Predicted extent of the level 3 (for sublittoral rock & deep sea) or 4 (for sublittoral sediment) habitat</span></li>
-                        }
-                    </ul>
-                    <p>
-                        <span class="legend">
-                            Point data based on records in the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder Snapshot</a>.
-                            @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
-                            {
-                                <span>Predicted habitat extent is from <a href="http://jncc.defra.gov.uk/page-7354" target="_blank">UKSeaMap</a>.</span>
-                            }
-                        </span>
-                    </p>
-                </div>
+        @* Derived using data from and faunal group *@
+
+        @if (!string.IsNullOrWhiteSpace(Model.Biotope.DerivedFrom) && !string.IsNullOrWhiteSpace(Model.Biotope.FaunalGroup))
+        {
+        <p>
+            <h3>Biotope origin</h3>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Derived using data from</td>
+                        <td>@Model.Biotope.DerivedFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Faunal group</td>
+                        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FaunalGroup))</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+        </p>
+        }
+
+        @* Sensitivity assessment *@
+
+        @if (!string.IsNullOrWhiteSpace(Model.Biotope.SensitivityAssessment))
+        {
+            <div class="row">
+                <p><a href="@Model.Biotope.SensitivityAssessment" target="_blank">View sensitivity assessment</a>. A sensitivity assessment for this biotope against different pressures can be found on the MarLIN website.</p>
+            </div>
+        }
+
+        @* Comparative data *@
+
+        <p>
+            <a href="http://jncc.defra.gov.uk/default.aspx?page=3249" target="_blank">Download comparative physical and biological data</a>. The comparative tables enable a rapid comparison of the species composition and principal physical characteristics between a given set of biotopes.
+        </p>
+    </div>
+
+    <div class="cell large-6">
+        <div class="biomap">
+            <img class="map" alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
+                 src="@biomapUrl" />
+            <br />
+            <ul>
+                <li><span class="legend">Records used to define the biotope (core records)</span></li>
+                <li><span class="legend">Other records assigned to this biotope, marked as 'certain'</span></li>
+                <li><span class="legend">Other records assigned to this biotope, marked as 'uncertain'</span></li>
+                @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+                {
+                    <li><span class="legend">Predicted extent of the level 3 (for sublittoral rock & deep sea) or 4 (for sublittoral sediment) habitat</span></li>
+                }
+            </ul>
+            <p>
+                <span class="legend">
+                    Point data based on records in the <a href="http://jncc.defra.gov.uk/page-1599" target="_blank">UK Marine Recorder Snapshot</a>.
+                    @if (!Model.Biotope.OriginalCode.StartsWith("LS") && !Model.Biotope.OriginalCode.StartsWith("LR"))
+                    {
+                        <span>Predicted habitat extent is from <a href="http://jncc.defra.gov.uk/page-7354" target="_blank">UKSeaMap</a>.</span>
+                    }
+                </span>
+            </p>
         </div>
+    </div>
+</div>
 
-    @* Description *@
-    <h3>Description</h3>
-    @if (string.IsNullOrWhiteSpace(Model.Biotope.Description))
-    {
-        <p>No description available.</p>
-    }
-    else
-    {
-        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
-    }
+@* Description *@
+<h3>Description</h3>
+@if (string.IsNullOrWhiteSpace(Model.Biotope.Description))
+{
+    <p>No description available.</p>
+}
+else
+{
+    <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Description))</p>
+}
 
-    @* Situation *@
-    <h3>Situation</h3>
-    @if (string.IsNullOrWhiteSpace(Model.Biotope.Situation))
-    {
-        <p>No situation data available.</p>
-    }
-    else
-    {
-        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Situation))</p>
-    }
+@* Situation *@
+<h3>Situation</h3>
+@if (string.IsNullOrWhiteSpace(Model.Biotope.Situation))
+{
+    <p>No situation data available.</p>
+}
+else
+{
+    <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Situation))</p>
+}
 
-    @* Temporal variation *@
-    <h3>Temporal variation</h3>
-    @if (string.IsNullOrWhiteSpace(Model.Biotope.TemporalVariation))
-    {
-        <p>No temporal variation data available</p>
-    }
-    else
-    {
-        <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TemporalVariation))</p>
-    }
+@* Temporal variation *@
+<h3>Temporal variation</h3>
+@if (string.IsNullOrWhiteSpace(Model.Biotope.TemporalVariation))
+{
+    <p>No temporal variation data available</p>
+}
+else
+{
+    <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TemporalVariation))</p>
+}
 
-    @* Characterising species *@
-    <h3>Characterising Species</h3>
-    @if (Model.Species != null && Model.Species.Count > 0)
-    {
+@* Characterising species *@
+<h3>Characterising Species</h3>
+@if (Model.Species != null && Model.Species.Count > 0)
+{
+    <div class="table-scroll">
         <table>
             <thead>
+            <tr>
+                <th>Taxon</th>
+                @if (Model.Species.All(s => s.SimilarityContribution != null))
+                {
+                    <th>Relative importance of taxon for defining this community (%)</th>
+                }
+                @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
+                {
+                    <th>Typical abundance - <a href="http://jncc.defra.gov.uk/page-2684" target="_blank">SACFOR scale</a></th>
+                }
+                @if (Model.Species.All(s => s.Abundance != null))
+                {
+                    <th>Typical abundance - (count per m<sup>2</sup>)</th>
+                }
+                @if (Model.Species.All(s => s.Frequency != null))
+                {
+                    <th>% of core records where taxon was recorded</th>
+                }
+                @if (Model.Species.All(s => s.RelativeFrequency != null))
+                {
+                    <th>Relative frequency %</th>
+                }
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var species in Model.Species)
+            {
                 <tr>
-                    <th>Taxon</th>
+                    <td><i>@species.Name</i></td>
                     @if (Model.Species.All(s => s.SimilarityContribution != null))
                     {
-                        <th>Relative importance of taxon for defining this community (%)</th>
+                        <td>@species.SimilarityContribution</td>
                     }
                     @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
                     {
-                        <th>Typical abundance - <a href="http://jncc.defra.gov.uk/page-2684" target="_blank">SACFOR scale</a></th>
+                        <td>@species.TypicalAbundance</td>
                     }
                     @if (Model.Species.All(s => s.Abundance != null))
                     {
-                        <th>Typical abundance - (count per m<sup>2</sup>)</th>
+                        <td>@species.Abundance</td>
                     }
                     @if (Model.Species.All(s => s.Frequency != null))
                     {
-                        <th>% of core records where taxon was recorded</th>
+                        <td>@species.Frequency</td>
                     }
                     @if (Model.Species.All(s => s.RelativeFrequency != null))
                     {
-                        <th>Relative frequency %</th>
+                        <td>@species.RelativeFrequency</td>
                     }
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var species in Model.Species)
-                {
-                    <tr>
-                        <td><i>@species.Name</i></td>
-                        @if (Model.Species.All(s => s.SimilarityContribution != null))
-                        {
-                            <td>@species.SimilarityContribution</td>
-                        }
-                        @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
-                        {
-                            <td>@species.TypicalAbundance</td>
-                        }
-                        @if (Model.Species.All(s => s.Abundance != null))
-                        {
-                            <td>@species.Abundance</td>
-                        }
-                        @if (Model.Species.All(s => s.Frequency != null))
-                        {
-                            <td>@species.Frequency</td>
-                        }
-                        @if (Model.Species.All(s => s.RelativeFrequency != null))
-                        {
-                            <td>@species.RelativeFrequency</td>
-                        }
-                    </tr>
-                }
+            }
             </tbody>
         </table>
-    }
-    else
-    {
-        <p>Characterising species data not applicable.</p>
-    }
+    </div>
+}
+else
+{
+    <p>Characterising species data not applicable.</p>
+}
 
-    @* Similar biotopes *@
-    <h3>Similar biotopes</h3>
-    @if (Model.SimilarBiotopes != null && Model.SimilarBiotopes.Count > 0)
+@* Similar biotopes *@
+<h3>Similar biotopes</h3>
+@if (Model.SimilarBiotopes != null && Model.SimilarBiotopes.Count > 0)
+{
+    foreach (var biotope in Model.SimilarBiotopes)
     {
-        foreach (var biotope in Model.SimilarBiotopes)
-        {
-            <p>
-                <h5><a href="@string.Format(" {0}biotopes/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h5>
-                @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
-            </p>
-        }
+        <p>
+            <h5><a href="@string.Format(" {0}biotopes/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h5>
+            @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
+        </p>
     }
-    else
-    {
-        <p>Not applicable or unknown.</p>
-    }
+}
+else
+{
+    <p>Not applicable or unknown.</p>
+}
 
-    @* Habitat correlations *@
-    @if (Model.HabitatCorrelations != null && Model.HabitatCorrelations.Count > 0)
-    {
-        <h3>Habitat correlations</h3>
+@* Habitat correlations *@
+@if (Model.HabitatCorrelations != null && Model.HabitatCorrelations.Count > 0)
+{
+    <h3>Habitat correlations</h3>
+    <div class="table-scroll">
         <table>
             <thead>
+            <tr>
+                <th>Relationship type</th>
+                <th>Related habitat classification system</th>
+                <th>Related habitat name</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var habitat in Model.HabitatCorrelations)
+            {
                 <tr>
-                    <th>Relationship type</th>
-                    <th>Related habitat classification system</th>
-                    <th>Related habitat name</th>
+                    <td>@habitat.RelationshipType</td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(@habitat.ClassificationSystemUrl))
+                        {
+                            <a href="@habitat.ClassificationSystemUrl" target="_blank">@habitat.RelatedClassificationSystem</a>
+                        }
+                        else
+                        {
+                            @habitat.RelatedClassificationSystem
+                        }
+                    </td>
+                    <td>@habitat.RelatedName</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var habitat in Model.HabitatCorrelations)
-                {
-                    <tr>
-                        <td>@habitat.RelationshipType</td>
-                        <td>
-                            @if (!string.IsNullOrWhiteSpace(@habitat.ClassificationSystemUrl))
-                            {
-                                <a href="@habitat.ClassificationSystemUrl" target="_blank">@habitat.RelatedClassificationSystem</a>
-                            }
-                            else
-                            {
-                                @habitat.RelatedClassificationSystem
-                            }
-                        </td>
-                        <td>@habitat.RelatedName</td>
-                    </tr>
-                }
+            }
             </tbody>
         </table>
-    }
+    </div>
+}
 
-    @* Biotope history *@
-    @if (Model.OldCodes != null && Model.OldCodes.Count > 0)
-    {
-        <h3>Biotope history</h3>
+@* Biotope history *@
+@if (Model.OldCodes != null && Model.OldCodes.Count > 0)
+{
+    <h3>Biotope history</h3>
+    <div class="table-scroll">
         <table>
             <thead>
+            <tr>
+                <th>Classification</th>
+                <th>Habitat code</th>
+                @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.PreviousFullname)))
+                {
+                    <th>Habitat name</th>
+                }
+                @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.RelationshipType)))
+                {
+                    <th>Relationship type</th>
+                }
+                @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.Modifications)))
+                {
+                    <th>Modifications</th>
+                }
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var oldCode in Model.OldCodes)
+            {
                 <tr>
-                    <th>Classification</th>
-                    <th>Habitat code</th>
+                    <td>@oldCode.Version</td>
+                    <td>@oldCode.OriginalCode</td>
                     @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.PreviousFullname)))
                     {
-                        <th>Habitat name</th>
+                        <td>@oldCode.PreviousFullname</td>
                     }
                     @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.RelationshipType)))
                     {
-                        <th>Relationship type</th>
+                        <td>@oldCode.RelationshipType</td>
                     }
                     @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.Modifications)))
                     {
-                        <th>Modifications</th>
+                        <td>@oldCode.Modifications</td>
                     }
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var oldCode in Model.OldCodes)
-                {
-                    <tr>
-                        <td>@oldCode.Version</td>
-                        <td>@oldCode.OriginalCode</td>
-                        @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.PreviousFullname)))
-                        {
-                            <td>@oldCode.PreviousFullname</td>
-                        }
-                        @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.RelationshipType)))
-                        {
-                            <td>@oldCode.RelationshipType</td>
-                        }
-                        @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.Modifications)))
-                        {
-                            <td>@oldCode.Modifications</td>
-                        }
-                    </tr>
-                }
+            }
             </tbody>
         </table>
-    }
+    </div>
+}
 </div>
 <br />
