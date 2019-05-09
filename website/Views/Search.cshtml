@@ -100,7 +100,7 @@
                     <h3>
                         @{ int level = int.Parse(pair["fields"]["hierarchyLevel"].ToString()); }
                         <span class="icon" style="background-color: @levelColours[level]" aria-label="Level @(level+1))">&nbsp;&nbsp;</span>
-                        <span class="biotope-code">@pair["fields"]["originalCode"].ToString().Replace(' ', '.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
+                        <span>@pair["fields"]["originalCode"].ToString().Replace(' ', '.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
                     </h3>
                     <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
                 </div>
