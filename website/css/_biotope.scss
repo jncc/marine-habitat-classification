@@ -1,8 +1,9 @@
-﻿/*
+﻿$jncc-green: #2d7a29;
+
+/*
     W3 slideshow
     https://www.w3schools.com/howto/howto_js_slideshow.asp
 */
-
 * {
     box-sizing: border-box
 }
@@ -122,7 +123,7 @@
     }
 
     border: 5px solid #f3f3f3; /* Light grey */
-    border-top: 5px solid #2d7a29; /* Green */
+    border-top: 5px solid $jncc-green; /* Green */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -209,10 +210,6 @@
 
 .search-result {
     margin-bottom: 2em;
-
-    .biotope-code {
-        color: black;
-    }
 
     .description {
         overflow: hidden;

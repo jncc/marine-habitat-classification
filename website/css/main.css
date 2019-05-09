@@ -187,8 +187,6 @@ ul.mtree a {
 
 .search-result {
   margin-bottom: 2em; }
-  .search-result .biotope-code {
-    color: black; }
   .search-result .description {
     overflow: hidden;
     text-overflow: ellipsis;
