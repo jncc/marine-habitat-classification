@@ -73,8 +73,8 @@
         var treeSB = new StringBuilder();
 
         treeSB.Append("<li>");
-        treeSB.Append("<a href=\"#\"><span></span>");
-        treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[0]));
+        treeSB.Append("<a href=\"#\" aria-label=\"Expand or collapse\"><span></span>");
+        treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level 1\"></span>", levelColours[0]));
         treeSB.Append("Marine</a>");
 
         treeSB.Append("<ul>");
@@ -95,11 +95,11 @@
                 treeSB.Append("<li>");
                 if (childrenWithoutSelf.Count > 0)
                 {
-                    treeSB.Append("<a href=\"#\">");
+                    treeSB.Append("<a href=\"#\" aria-label=\"Expand or collapse\">");
                     treeSB.Append("<span></span>");
                     treeSB.Append("</a>");
                 }
-                treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[1]));
+                treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level 2\"></span>", levelColours[1]));
                 treeSB.Append("<a href=\"");
                 treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, pair.Key.ToLower()));
                 treeSB.Append("\">");
@@ -134,11 +134,11 @@
             treeSB.Append("<li>");
             if (grandChildren != null && grandChildren.Count > 0)
             {
-                treeSB.Append("<a href=\"#\">");
+                treeSB.Append("<a href=\"#\" aria-label=\"Expand or collapse\">");
                 treeSB.Append("<span></span>");
                 treeSB.Append("</a>");
             }
-            treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\"></span>", levelColours[level + 1]));
+            treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level {1}\"></span>", levelColours[level + 1], level+2));
             treeSB.Append("<a href=\"");
             treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, child.ToLower()));
             treeSB.Append("\">");
@@ -180,7 +180,7 @@
         <form action="search" role="search" class="search-form input-group" style="position: static; max-width: 100%" data-animate="hinge-in-from-top spin-out">
             <label for="search-field" class="show-for-sr" accesskey="4">Search for a biotope</label>
             <input autofocus type="search" name="q" placeholder="Search for a biotope" class="input-group-field" id="search-field">
-            <button class="input-group-button"><i class="icon-search"></i></button>
+            <button class="input-group-button" aria-label="Search"><i class="icon-search"></i></button>
         </form>
     </div>
 </div>
@@ -191,15 +191,13 @@
     <br />
     <div class="row">
         <p>
-            <input class="button colour-button" style="background-color: @levelColours[0]" type="submit" value="Level 1" onclick="expandLevel(1)" />
-            <input class="button colour-button" style="background-color: @levelColours[1]" type="submit" value="Level 2" onclick="expandLevel(2)" />
-            <input class="button colour-button" style="background-color: @levelColours[2]" type="submit" value="Level 3" onclick="expandLevel(3)" />
-            <input class="button colour-button" style="background-color: @levelColours[3]" type="submit" value="Level 4" onclick="expandLevel(4)" />
-            <input class="button colour-button" style="background-color: @levelColours[4]" type="submit" value="Level 5" onclick="expandLevel(5)" />
-            <input class="button colour-button" style="background-color: @levelColours[5]" type="submit" value="Level 6" onclick="expandLevel(6)" />
+            @for (int i = 0; i < levelColours.Length; i++)
+            {
+            <input class="button colour-button" style="background-color: @levelColours[i]" type="submit" value="Level @(i+1)" onclick="expandLevel(@(i+1))" aria-label="Open level @(i+1)" />
+            }
         </p>
     </div>
-    <ul class="mtree" style="opacity: 1;">
+    <ul class="mtree" style="opacity: 1;" aria-label="Biotope hierarchy navigation">
         @Html.Raw(GenerateBiotopeNodeTree())
     </ul>
     <script src="/Scripts/mtree/mtree.js"></script>

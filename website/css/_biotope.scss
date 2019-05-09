@@ -9,7 +9,6 @@
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 1000px;
     height: 30em;
     position: relative;
     margin-top: 1em;
@@ -19,10 +18,18 @@
 /* Hide the images by default */
 .mySlides {
     display: none;
-    background-size: cover;
-    background-position: center;
     height: 30em;
     margin-bottom: 0.5em;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { //IE only
+            font-family: 'object-fit: cover;';
+        }
+    }
 }
 
 /* Next & previous buttons */
@@ -54,7 +61,6 @@
 /* Caption text */
 .text {
     color: #f2f2f2;
-    font-size: 15px;
     padding: 8px 12px;
     position: absolute;
     bottom: 8px;
@@ -115,12 +121,12 @@
         margin: 3em 0 4em 0;
     }
 
-    border: 4px solid #f3f3f3; /* Light grey */
-    border-top: 4px solid #2d7a29; /* Green */
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #2d7a29; /* Green */
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    animation: spin 2s linear infinite;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
@@ -137,11 +143,15 @@
     display: none; //display after the image has loaded
 
     img {
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { //IE only
+            max-width: 500px;
+        }
+
         object-fit: contain;
     }
 
     .legend {
-        color: black;
+        color: #666262;
         font-size: medium;
     }
 

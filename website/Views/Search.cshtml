@@ -75,7 +75,7 @@
     <form action="" class="search-form input-group" style="position: static; max-width: 100%" data-animate="hinge-in-from-top spin-out">
         <label for="search-field" class="show-for-sr" accesskey="4">Search for a biotope</label>
         <input autofocus type="search" name="q" placeholder="Search for a biotope" class="input-group-field" id="search-field" value="@query">
-        <button class="input-group-button"><i class="icon-search"></i></button>
+        <button class="input-group-button" aria-label="Search"><i class="icon-search"></i></button>
     </form>
 
     <div class="search-results">
@@ -98,38 +98,39 @@
             {
                 <div class="search-result">
                     <h3>
-                        <span class="icon" style="background-color: @levelColours[int.Parse(pair["fields"]["hierarchyLevel"].ToString())]">&nbsp;&nbsp;</span>
+                        @{ int level = int.Parse(pair["fields"]["hierarchyLevel"].ToString()); }
+                        <span class="icon" style="background-color: @levelColours[level]" aria-label="Level @(level+1))">&nbsp;&nbsp;</span>
                         <span class="biotope-code">@pair["fields"]["originalCode"].ToString().Replace(' ', '.')</span>&nbsp;&nbsp;<a href="@umbracoBiotopeUrl@pair["id"]">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["fullTerm"].ToString()))</a>
                     </h3>
                     <div class="description">@Html.Raw(HttpUtility.HtmlDecode(pair["fields"]["description"].ToString()))</div>
                 </div>
             }
         </div>
-        <div id="pageNav" class="pagination">
+        <nav class="pagination" aria-label="Pagination navigation">
             @if (totalResults > itemsPerPage)
             {
                 if (page != 1)
                 {
-                    <span class="page link-page" onClick="search('@query', @page - 1)">«</span>
+                    <a class="page link-page" href="?q=@query&p=@(page - 1)" aria-label="Previous page">«</a>
                 }
 
                 for (var x = 1; x <= totalPages; x++)
                 {
                     if (page == x)
                     {
-                        <span class="page">@x</span>
+                        <a class="page" aria-current="page">@x</a>
                     }
                     else
                     {
-                        <span class="page link-page" onClick="search('@query', @x)">@x</span>
+                        <a class="page link-page" href="?q=@query&p=@x" aria-label="Page @x">@x</a>
                     }
                 }
 
                 if (page != totalPages)
                 {
-                    <span class="page link-page" onClick="search('@query', @page + 1)">»</span>
+                    <a class="page link-page" href="?q=@query&p=@(page + 1)" aria-label="Next page">»</a>
                 }
             }
-        </div>
+        </nav>
     </div>
 </div>

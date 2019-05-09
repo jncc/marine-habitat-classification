@@ -5,11 +5,12 @@
 @{
     Layout = "~/Views/Master.cshtml";
 
-    string biomapUrl = "http://213.122.160.75/scripts/mapserv.exe?map=D:/Websites/MESHAtlantic/map/MESHAtlantic.map&SERVICE=WMS&REQUEST=GetMap&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=450&HEIGHT=600&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
+    string biomapUrl = "http://213.122.160.75/scripts/mapserv.exe?map=D:/Websites/MESHAtlantic/map/MESHAtlantic.map&SERVICE=WMS&REQUEST=GetMap&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=750&HEIGHT=1000&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
     var nodeColoursSetting = Model.Content.GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
 }
 <script src="/Scripts/jquery-3.0.0.min.js"></script>
+<script src="/Scripts/object-fit-images/ofi.min.js"></script>
 <script type="text/javascript">
     // W3 slideshow https://www.w3schools.com/howto/howto_js_slideshow.asp
 
@@ -23,6 +24,8 @@
             });
 
         showSlides(slideIndex);
+
+        objectFitImages();
     });
 
     // Next/previous controls
@@ -38,17 +41,19 @@
     function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+        if (slides.length > 0) {
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" dot-active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " dot-active";
         }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" dot-active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " dot-active";
     }
 </script>
 
@@ -56,46 +61,51 @@
 <br />
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 <p>@Model.Content.GetPropertyValue("content")</p>
-<h3>
-    <a href="@Model.Content.Parent.Url">Full hierarchy</a>
-    @for (int i = 1; i < Model.BiotopeHierarchy.Count + 1; i++)
-    {
-        BiotopeLevel biotopeCode;
+<nav aria-label="Biotope hierarchy">
+    <h3>
+        <a href="@Model.Content.Parent.Url">Full hierarchy</a>
+        @for (int i = 1; i < Model.BiotopeHierarchy.Count + 1; i++)
+        {
+            BiotopeLevel biotopeCode;
 
-        Model.BiotopeHierarchy.TryGetValue(i, out biotopeCode);
-        <span>&#10095;</span>
-        <span class="icon" style="background-color: @levelColours[i]">&nbsp;&nbsp;</span>
-        if (i == Model.BiotopeHierarchy.Count)
-        {
-            @biotopeCode.OriginalCode
+            Model.BiotopeHierarchy.TryGetValue(i, out biotopeCode);
+            <span aria-hidden="true">&#10095;</span>
+            <span class="icon" style="background-color: @levelColours[i]" aria-label="Level @i">&nbsp;&nbsp;</span>
+            if (i == Model.BiotopeHierarchy.Count)
+            {
+                @biotopeCode.OriginalCode
+            }
+            else
+            {
+                <a href="@string.Format("{0}biotopes/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey.ToLower())">@biotopeCode.OriginalCode</a>
+            }
         }
-        else
-        {
-            <a href="@string.Format("{0}biotopes/{1}", Model.Content.Parent.Url, biotopeCode.BiotopeKey)">@biotopeCode.OriginalCode</a>
-        }
-    }
-</h3>
-<h2><span class="icon" style="background-color: @levelColours[Model.BiotopeHierarchy.Count]">&nbsp;&nbsp;</span> @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))</h2>
+    </h3>
+</nav>
+<h2>
+    <span class="icon" style="background-color: @levelColours[Model.BiotopeHierarchy.Count]" aria-lavel="Level @Model.BiotopeHierarchy.Count">&nbsp;&nbsp;</span> @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))
+</h2>
 
 
 @if (Model.Photos != null && Model.Photos.Count > 0)
 {
     <div class="grid-x">
         <div class="cell large-12">
-            <div class="slideshow-container">
+            <div class="slideshow-container" aria-label="Biotope images">
                 @foreach (var photo in Model.Photos)
                 {
-                    <div class="mySlides fade" style="background-image: url('@photo.PhotoPath')">
+                    <div class="mySlides fade">
+                        <img src="@photo.PhotoPath" title="@photo.PhotoCaption" alt="@photo.PhotoCaption"/>
                         <div class="text">@photo.PhotoCaption</div>
                     </div>
                 }
 
                 <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                <a class="prev" onclick="plusSlides(-1)" aria-label="Previous image">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)" aria-label="Next image">&#10095;</a>
 
                 <div style="text-align: center">
-                    @for (var i = 0; i < Model.Photos.Count; i++)
+                    @for (var i = 1; i < Model.Photos.Count+1; i++)
                     {
                         <span class="dot" onclick="currentSlide(@i)"></span>
                     }
@@ -194,7 +204,6 @@
                 <div class="biomap">
                     <img class="map" alt="Distribution of habitat @Model.Biotope.OriginalCode @Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.FullTerm))"
                          src="@biomapUrl" />
-
                     <br />
                     <br />
                     <ul>
@@ -252,7 +261,7 @@ else
 <h3>Temporal variation</h3>
 @if (string.IsNullOrWhiteSpace(Model.Biotope.TemporalVariation))
 {
-    <p>No temporal variation data available</p>
+    <p>No temporal variation data available.</p>
 }
 else
 {
@@ -333,7 +342,7 @@ else
     foreach (var biotope in Model.SimilarBiotopes)
     {
         <p>
-            <h5><a href="@string.Format(" {0}biotopes/{1}", Model.Content.Parent.Url, biotope.BiotopeKey)">@biotope.OriginalCode</a></h5>
+            <h5><a href="@string.Format(" {0}biotopes/{1}", Model.Content.Parent.Url, biotope.BiotopeKey.ToLower())">@biotope.OriginalCode</a></h5>
             @Html.Raw(HttpUtility.HtmlDecode(biotope.Comment))
         </p>
     }
