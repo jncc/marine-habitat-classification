@@ -293,3 +293,5 @@ website/Umbraco/**
 website/Umbraco_Client/**
 website/config/**
 
+
+.env
