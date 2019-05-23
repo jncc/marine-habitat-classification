@@ -401,6 +401,9 @@
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
+    <None Include=".env.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="css\main.scss" />
     <Content Include="css\main.css">
       <DependentUpon>main.scss</DependentUpon>
