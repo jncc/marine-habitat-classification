@@ -1,0 +1,7 @@
+﻿@using System.Text.RegularExpressions
+@using website.Models
+@inherits UmbracoViewPage<BiotopeModel>
+@{
+    var biotopeName = Regex.Replace(Model.Biotope.FullTerm, "<.*?>", String.Empty);
+}
+<title>@biotopeName - JNCC @Umbraco.TypedContentAtRoot().FirstOrDefault().Name</title>

@@ -2,9 +2,10 @@
 @using System.Configuration
 @using System.Text
 @using Newtonsoft.Json.Linq
+@using website.Models
 @{
     Layout = "Master.cshtml";
-
+    
     var umbracoBiotopeUrl = Umbraco.TypedContentAtRoot().FirstOrDefault().Url + "biotopes/";
 
     // Getting the Biotopes node which will have the level colours, this shouldn't change
@@ -35,10 +36,11 @@
 }
 @functions {
     private int itemsPerPage = 15;
+    private Env env = new Env();
 
     private JObject Search(string query, int page)
     {
-        var searchUrl = ConfigurationManager.AppSettings["FlexSearchUrl"] + "/indices/biotope/search";
+        var searchUrl = env.FLEXSEARCH_URL + "/indices/biotope/search";
         // Special formatting for original code because the standard tokenizer doesn't split by full stops
         var searchQuery = @"anyof(fullTerm,'" + query + "', -boost '50') or anyof(originalCode,'" + query.Trim().Replace('.', ' ') + "', -boost '45') or anyof(description,'" + query + "', -boost '10')";
         var requestString = searchUrl + "?c=*&q=" + searchQuery + "&count=" + itemsPerPage + "&skip=" + itemsPerPage * (page - 1);

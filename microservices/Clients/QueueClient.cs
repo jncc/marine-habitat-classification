@@ -10,12 +10,7 @@ using microservices.Models;
 
 namespace microservices.Clients
 {
-    public interface IQueueClient
-    {
-        Task Send(string message);
-    }
-
-    public class QueueClient : IQueueClient, IDisposable
+    public class QueueClient : IDisposable
     {
         private readonly Env env;
         private readonly AmazonS3Client s3;
@@ -25,8 +20,8 @@ namespace microservices.Clients
         public QueueClient(Env env)
         {
             this.env = env;
-            var credentials = new BasicAWSCredentials(env.QUEUE_AWS_ACCESSKEY, env.QUEUE_AWS_SECRETACCESSKEY);
-            var region = RegionEndpoint.GetBySystemName(env.QUEUE_AWS_REGION);
+            var credentials = new BasicAWSCredentials(env.SEARCH_AWS_ACCESSKEY, env.SEARCH_AWS_SECRETACCESSKEY);
+            var region = RegionEndpoint.GetBySystemName(env.SEARCH_AWS_REGION);
 
             this.s3 = new AmazonS3Client(credentials, region);
             this.sqs = new AmazonSQSClient(credentials, region);

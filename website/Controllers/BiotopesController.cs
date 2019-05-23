@@ -15,11 +15,6 @@ namespace website.Controllers
 {
     public class BiotopesController : RenderMvcController
     {
-        // GET: Biotope
-        public override ActionResult Index(RenderModel model)
-        {
-            return Json("some json data", JsonRequestBehavior.AllowGet);
-        }
 
         // GET: Biotopes/biotopeKey
         public ActionResult Biotopes(RenderModel model, string key)

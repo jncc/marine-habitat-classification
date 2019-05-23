@@ -1,36 +1,26 @@
-﻿using microservices.Clients;
+﻿using microservices.Indexing;
 using microservices.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using BiotopeDB = microservices.Models.BiotopeDB;
 
 namespace microservices.Controllers
 {
     public class SearchController : Controller
     {
-        // GET: Search
-        public string Index()
-        {
-            return "Search home";
-        }
-        
         [HttpPost]
-        [Route("search/index/mhc")]
+        [Route("search/index_mhc")]
         public string RefreshMhcIndex()
         {
-            var baseUrl = ConfigurationManager.AppSettings["FlexSearchUrl"];
-            
-            DeleteAllDocuments(baseUrl);
-            DeleteCurrentIndex(baseUrl);
-            CreateBiotopeIndex(baseUrl);
+            var mhcIndexService = new MhcIndexService();
+
+            mhcIndexService.ResetIndex();
 
             using (var db = new BiotopeDB())
             {
@@ -39,155 +29,94 @@ namespace microservices.Controllers
 
                 foreach (var biotope in db.WEB_BIOTOPE)
                 {
-                    CreateBiotopeDocuments(biotope, baseUrl);
+                    // Replace " with \" or the json will break
+                    var jsonSafeDescription = biotope.DESCRIPTION.Replace("\"", "\\\"");
+
+                    // Replacing full stops in original code with spaces because I can't figure out how to use a lettertokenizer
+                    var biotopeDoc = $@"{{
+                        ""fields"": {{
+                            ""originalCode"": ""{biotope.ORIGINAL_CODE.Trim().Replace('.', ' ')}"",
+                            ""fullTerm"": ""{biotope.FULL_TERM}"",
+                            ""description"": ""{jsonSafeDescription}"",
+                            ""hierarchyLevel"": ""{biotope.WEB_BIOTOPE_HIERARCHY.Count}""
+                        }},
+                        ""id"": ""{biotope.BIOTOPE_KEY}"",
+                        indexName: ""biotope""
+                    }}";
+
+                    mhcIndexService.AddBiotope(biotopeDoc);
                 }
 
                 return $"Indexing completed successfully, {db.WEB_BIOTOPE.Count()} biotopes indexed";
             }
         }
 
+        private static string htmlTagRegex = "<.*?>";
+
         [HttpPost]
-        [Route("search/index/jncc")]
-        public async Task<string> RefreshJnccIndex()
+        [Route("search/clear_jncc_index")]
+        public async Task<string> ClearJnccIndex()
         {
-            await AddBiotopesToQueue();
-            return "Indexing completed successfully";
+            var jnccIndexService = new JnccIndexService();
+            await jnccIndexService.ClearIndex();
+
+            return "JNCC index cleared successfully";
         }
 
-        private void DeleteAllDocuments(string baseUrl)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(baseUrl + "/indices/biotope/documents");
-            request.Method = "DELETE";
-
-            request.GetResponse();
-        }
-
-        private void DeleteCurrentIndex(string baseUrl)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(baseUrl + "/indices/biotope");
-            request.Method = "DELETE";
-
-            request.GetResponse();
-        }
-
-        private void CreateBiotopeIndex(string baseUrl)
-        {
-            var biotopeIndex = @"{
-                ""indexName"": ""biotope"",
-                ""fields"": [
-                {
-                    ""fieldName"": ""originalCode""
-                },
-                {
-                    ""fieldName"": ""fullTerm""
-                },
-                {
-                    ""fieldName"": ""description""
-                },
-                {
-                    ""fieldName"": ""hierarchyLevel"",
-                    ""fieldType"": ""Stored""
-                }
-                ]
-            }";
-
-            var request = (HttpWebRequest)WebRequest.Create(baseUrl + "/indices");
-            request.Method = "POST";
-
-            var encoding = new ASCIIEncoding();
-            byte[] bytes = encoding.GetBytes(biotopeIndex);
-            using (var requestStream = request.GetRequestStream())
-            {
-                requestStream.Write(bytes, 0, bytes.Length);
-            }
-
-            request.GetResponse();
-        }
-
-        private void CreateBiotopeDocuments(WEB_BIOTOPE biotope, string baseUrl)
-        {
-            // Replace " with \" or the json will break
-            var jsonSafeDescription = biotope.DESCRIPTION.Replace("\"", "\\\"");
-
-            // Replacing full stops in original code with spaces because I can't figure out how to use a lettertokenizer
-            var biotopeDoc = $@"{{
-                ""fields"": {{
-                    ""originalCode"": ""{biotope.ORIGINAL_CODE.Trim().Replace('.', ' ')}"",
-                    ""fullTerm"": ""{biotope.FULL_TERM}"",
-                    ""description"": ""{jsonSafeDescription}"",
-                    ""hierarchyLevel"": ""{biotope.WEB_BIOTOPE_HIERARCHY.Count}""
-                }},
-                ""id"": ""{biotope.BIOTOPE_KEY}"",
-                indexName: ""biotope""
-            }}";
-
-
-            var request = (HttpWebRequest)WebRequest.Create(baseUrl + "/indices/biotope/documents");
-            request.Method = "POST";
-
-            var encoding = new ASCIIEncoding();
-            byte[] bytes = encoding.GetBytes(biotopeDoc);
-            using (var requestStream = request.GetRequestStream())
-            {
-                requestStream.Write(bytes, 0, bytes.Length);
-            }
-
-            request.GetResponse();
-        }
-
-        private async Task AddBiotopesToQueue()
+        [HttpPost]
+        [Route("search/populate_jncc_index")]
+        public async Task<string> PopulateJnccIndex()
         {
             var env = new Env();
+            var jnccIndexService = new JnccIndexService();
+            var biotopesList = new List<string>();
 
             using (var db = new BiotopeDB())
             {
-                db.Configuration.LazyLoadingEnabled = true;
-                db.Configuration.ProxyCreationEnabled = true;
-
-                using (var client = new QueueClient(env))
+                foreach (var biotope in db.WEB_BIOTOPE)
                 {
-                    var htmlTagRegex = "<.*?>";
-                    foreach (var biotope in db.WEB_BIOTOPE)
+                    var formattedTitle = Regex.Replace(biotope.FULL_TERM, htmlTagRegex, String.Empty);
+                    var formattedDescription = string.IsNullOrWhiteSpace(biotope.DESCRIPTION) ? null : Regex.Replace(biotope.DESCRIPTION, htmlTagRegex, String.Empty);
+                    var formattedSituation = string.IsNullOrWhiteSpace(biotope.SITUATION) ? null : Regex.Replace(biotope.SITUATION, htmlTagRegex, String.Empty);
+
+                    var message = new
                     {
-                        var formattedTitle = Regex.Replace(biotope.FULL_TERM, htmlTagRegex, String.Empty);
-                        var formattedDescription = string.IsNullOrWhiteSpace(biotope.DESCRIPTION) ? null : Regex.Replace(biotope.DESCRIPTION, htmlTagRegex, String.Empty);
-                        var formattedSituation = string.IsNullOrWhiteSpace(biotope.SITUATION) ? null : Regex.Replace(biotope.SITUATION, htmlTagRegex, String.Empty);
-
-                        var message = new
+                        verb = "upsert",
+                        index = env.SEARCH_INDEX,
+                        document = new
                         {
-                            verb = "upsert",
-                            index = env.QUEUE_INDEX,
-                            document = new
-                            {
-                                id = biotope.BIOTOPE_KEY,
-                                site = env.SITE,
-                                title = $"{biotope.ORIGINAL_CODE} {formattedTitle}",
-                                content = $"{formattedDescription} {formattedSituation} {GetSpeciesString(biotope, htmlTagRegex)}",
-                                url = env.BIOTOPE_BASE_URL + biotope.BIOTOPE_KEY.ToLower(),
-                                resource_type = "dataset",
-                                keywords = GetKeywords(biotope),
-                                published_date = "2015-03"
-                            }
-                        };
+                            id = biotope.BIOTOPE_KEY,
+                            site = env.SITE,
+                            title = $"{biotope.ORIGINAL_CODE} {formattedTitle}",
+                            content = $"{formattedDescription} {formattedSituation} {GetSpeciesString(biotope)}",
+                            url = env.BIOTOPE_BASE_URL + biotope.BIOTOPE_KEY.ToLower(),
+                            resource_type = "dataset",
+                            keywords = GetKeywords(biotope),
+                            published_date = "2015-03"
+                        }
+                    };
 
-                        var jsonString = JsonConvert.SerializeObject(message, new JsonSerializerSettings
-                        {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver()
-                        });
+                    var jsonString = JsonConvert.SerializeObject(message, new JsonSerializerSettings
+                    {
+                        ContractResolver = new CamelCasePropertyNamesContractResolver()
+                    });
 
-                        await client.Send(jsonString);
-                    }
+                    biotopesList.Add(jsonString);
                 }
             }
+
+            await jnccIndexService.AddBiotopes(biotopesList);
+
+            return "JNCC indexing completed successfully";
         }
 
-        private string GetSpeciesString(WEB_BIOTOPE biotope, string regex)
+        private string GetSpeciesString(WEB_BIOTOPE biotope)
         {
             var species = new List<string>();
 
             foreach (var grabSpecies in biotope.WEB_BIOT_SPECIES_GRAB)
             {
-                var formattedSpecies = Regex.Replace(grabSpecies.ITEM_NAME, regex, String.Empty);
+                var formattedSpecies = Regex.Replace(grabSpecies.ITEM_NAME, htmlTagRegex, String.Empty);
 
                 if (!species.Contains(formattedSpecies))
                 {
@@ -197,7 +126,7 @@ namespace microservices.Controllers
 
             foreach (var observationSpecies in biotope.WEB_BIOT_SPECIES_OBSERVATION)
             {
-                var formattedSpecies = Regex.Replace(observationSpecies.ITEM_NAME, regex, String.Empty);
+                var formattedSpecies = Regex.Replace(observationSpecies.ITEM_NAME, htmlTagRegex, String.Empty);
 
                 if (!species.Contains(formattedSpecies))
                 {
@@ -246,7 +175,7 @@ namespace microservices.Controllers
             {
                 if (level.HIGHERLEVEL == 1)
                 {
-                    return level.BIOTOPE_PARENT_KEY;
+                    return Regex.Replace(level.WEB_BIOTOPE1.FULL_TERM, htmlTagRegex, String.Empty);
                 }
             }
 

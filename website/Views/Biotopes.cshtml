@@ -5,7 +5,9 @@
 @{
     Layout = "~/Views/Master.cshtml";
 
-    string biomapUrl = "http://213.122.160.75/scripts/mapserv.exe?map=D:/Websites/MESHAtlantic/map/MESHAtlantic.map&SERVICE=WMS&REQUEST=GetMap&LAYERS=World,HabitatsCeltNorth_MNCR,Marine_recorder&FORMAT=AGGpng&TRANSPARENT=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG:900913&BBOX=-1713570.8712341,6194116.7632935,487815.54307256,9129298.6490359&WIDTH=750&HEIGHT=1000&map.layer[World].class[0].style[0]=OUTLINECOLOR+180+180+180+COLOR+255+255+255&MNCRCode=" + Model.Biotope.OriginalCode;
+    var env = new Env();
+
+    string biomapUrl = env.MAPPER_URL + Model.Biotope.OriginalCode;
     var nodeColoursSetting = Model.Content.GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
 }

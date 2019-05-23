@@ -59,6 +59,9 @@
     <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.3.21.6\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
     <Reference Include="businesslogic, Version=1.0.6528.26351, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.7.7.6\lib\net45\businesslogic.dll</HintPath>
     </Reference>
@@ -73,6 +76,9 @@
     </Reference>
     <Reference Include="controls, Version=1.0.6528.26353, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.7.7.6\lib\net45\controls.dll</HintPath>
+    </Reference>
+    <Reference Include="dotenv.net, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotenv.net.1.0.4\lib\netstandard2.0\dotenv.net.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -132,6 +138,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.2.2\lib\net45\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
@@ -310,16 +322,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\ApiHelper.cs" />
     <Compile Include="App_Start\AppEventHandler.cs" />
     <Compile Include="App_Start\BiotopeRouteHandler.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ErrorHandlingExtension.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BiotopesController.cs" />
     <Compile Include="Models\BiotopeModel.cs" />
+    <Compile Include="Models\Env.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -705,8 +714,6 @@
     <Content Include="Media\1005\loading_map_thumb.png" />
     <Content Include="Media\1006\jncclogo_white.png" />
     <Content Include="Media\1006\jncclogo_white_thumb.png" />
-    <Content Include="Scripts\bootstrap-treeview.js" />
-    <Content Include="Scripts\bootstrap-treeview.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -833,6 +840,8 @@
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Views\Partials\Grid\Foundation.cshtml" />
     <Content Include="Views\Search.cshtml" />
+    <Content Include="Views\Partials\HeaderTitle\ContentPageTitle.cshtml" />
+    <Content Include="Views\Partials\HeaderTitle\BiotopePageTitle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -850,7 +859,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
