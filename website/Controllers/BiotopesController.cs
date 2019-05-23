@@ -15,16 +15,12 @@ namespace website.Controllers
 {
     public class BiotopesController : RenderMvcController
     {
-        // GET: Biotope
-        public override ActionResult Index(RenderModel model)
-        {
-            return Json("some json data", JsonRequestBehavior.AllowGet);
-        }
 
         // GET: Biotopes/biotopeKey
         public ActionResult Biotopes(RenderModel model, string key)
         {
-            var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/" + key;
+            var env = new Env();
+            var url = env.MICROSERVICE_URL + "/biotope/" + key;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 
