@@ -19,7 +19,8 @@ namespace website.Controllers
         // GET: Biotopes/biotopeKey
         public ActionResult Biotopes(RenderModel model, string key)
         {
-            var url = ConfigurationManager.AppSettings["MicroserviceUrl"] + "/Biotope/" + key;
+            var env = new Env();
+            var url = env.MICROSERVICE_URL + "/biotope/" + key;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 
