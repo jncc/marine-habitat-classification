@@ -702,10 +702,7 @@
     <Content Include="frontend\css\svgs\fi-zoom-out.svg" />
     <Content Include="frontend\favicon.ico" />
     <Content Include="frontend\fonts\icomoon.svg" />
-    <Content Include="frontend\images\arun-valley.jpg" />
-    <Content Include="frontend\images\img-2.jpg" />
-    <Content Include="frontend\images\img-3.jpg" />
-    <Content Include="frontend\images\img-4.jpg" />
+    <Content Include="frontend\images\jc136_dive287_00250_web.jpg" />
     <Content Include="frontend\images\logo.png" />
     <Content Include="frontend\js\app.js" />
     <Content Include="frontend\js\lib\foundation-6.5.0.min.js" />
@@ -769,6 +766,7 @@
     <Content Include="frontend\fonts\icomoon.woff" />
     <Content Include="Media\Web.config" />
     <Content Include="css\mtree\_mtree.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -843,8 +841,8 @@
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Views\Partials\Grid\Foundation.cshtml" />
     <Content Include="Views\Search.cshtml" />
-    <Content Include="Views\Partials\HeaderTitle\ContentPageTitle.cshtml" />
-    <Content Include="Views\Partials\HeaderTitle\BiotopePageTitle.cshtml" />
+    <Content Include="Views\Partials\Header\ContentPageHeader.cshtml" />
+    <Content Include="Views\Partials\Header\BiotopePageHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

@@ -3,5 +3,7 @@
 @inherits UmbracoViewPage<BiotopeModel>
 @{
     var biotopeName = Regex.Replace(Model.Biotope.FullTerm, "<.*?>", String.Empty);
+    var biotopeDescription = Regex.Replace(Model.Biotope.Description, "<.*?>", String.Empty);
 }
+<meta name="description" content="@biotopeDescription">
 <title>@biotopeName - JNCC @Umbraco.TypedContentAtRoot().FirstOrDefault().Name</title>

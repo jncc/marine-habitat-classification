@@ -4,6 +4,7 @@
     var home = Umbraco.TypedContentAtRoot().FirstOrDefault();
     var currentPage = Umbraco.TypedContent(UmbracoContext.Current.PageId);
 }
+<meta name="description" content="@currentPage.GetPropertyValue("seoMetaDescription")">
 @if (home.Name.Equals(currentPage.Name))
 {
     <title>JNCC @Umbraco.TypedContentAtRoot().FirstOrDefault().Name</title>
