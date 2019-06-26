@@ -47,7 +47,7 @@ namespace website.Controllers
 
                 biotopeModel = GetBiotopeModel(content, model.Content);
             }
-            catch (WebException)
+            catch (Exception)
             {
                 return View("Error", Umbraco.GetErrorPage());
             }
