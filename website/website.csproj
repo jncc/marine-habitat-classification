@@ -332,6 +332,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="400.aspx" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
@@ -412,6 +413,7 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="default.aspx" />
+    <Content Include="500.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="frontend\css\app.css" />
@@ -791,7 +793,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="500.html" />
+    <Content Include="500.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
