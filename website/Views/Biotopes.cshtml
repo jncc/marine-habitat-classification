@@ -285,7 +285,7 @@ else
                 }
                 @if (!Model.Species.All(s => string.IsNullOrWhiteSpace(s.TypicalAbundance)))
                 {
-                    <th>Typical abundance - <a href="http://jncc.defra.gov.uk/page-2684" target="_blank">SACFOR scale</a></th>
+                    <th>Typical abundance - <a href="/resources#sacfor" target="_blank">SACFOR scale</a></th>
                 }
                 @if (Model.Species.All(s => s.Abundance != null))
                 {
