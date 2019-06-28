@@ -4,5 +4,5 @@
     Redirect to the 500 page
 --%>
 <%@ Page validateRequest="false" %>
-<% Response.StatusCode = 400; %>
+<% Response.StatusCode = 500; %>
 <!-- #include file="500.html" -->
