@@ -291,6 +291,7 @@ __pycache__/
 website/App_Data/**
 website/Umbraco/**
 website/Umbraco_Client/**
+website/Media/**
 
 
 .env

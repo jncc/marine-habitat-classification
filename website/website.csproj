@@ -712,10 +712,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\mtree\mtree.js" />
     <Content Include="Global.asax" />
-    <Content Include="Media\1005\loading_map.png" />
-    <Content Include="Media\1005\loading_map_thumb.png" />
-    <Content Include="Media\1006\jncclogo_white.png" />
-    <Content Include="Media\1006\jncclogo_white_thumb.png" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -766,7 +762,6 @@
     <Content Include="frontend\fonts\icomoon.eot" />
     <Content Include="frontend\fonts\icomoon.ttf" />
     <Content Include="frontend\fonts\icomoon.woff" />
-    <Content Include="Media\Web.config" />
     <Content Include="css\mtree\_mtree.scss" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
@@ -862,6 +857,9 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Media\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
