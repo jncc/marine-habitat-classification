@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Text;
 using microservices.Models;
 
@@ -21,8 +22,11 @@ namespace microservices.Indexing
 
         public void ResetIndex()
         {
-            DeleteAllDocuments();
-            DeleteCurrentIndex();
+            if (BiotopeIndexExists())
+            {
+                DeleteAllDocuments();
+                DeleteCurrentIndex();
+            }
             CreateBiotopeIndex();
         }
 
@@ -39,6 +43,23 @@ namespace microservices.Indexing
             }
 
             request.GetResponse();
+        }
+
+        private bool BiotopeIndexExists()
+        {
+            try
+            {
+                var request = (HttpWebRequest) WebRequest.Create(env.FLEXSEARCH_URL + "/indices/biotope");
+                request.Method = "GET";
+
+                var response = (HttpWebResponse) request.GetResponse();
+
+                return response.StatusCode == HttpStatusCode.OK;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         private void DeleteAllDocuments()

@@ -358,18 +358,10 @@
     <Content Include="config\Lang\ru-RU.user.xml" />
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\bootstrap-glyphicons.css" />
     <Content Include="css\cookieconsent2\3.1.0\cookieconsent.min.css" />
     <Content Include="css\svg\legend_rectangle.svg" />
     <Content Include="css\_biotope.scss" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="config\umbracoSettings.config">
       <SubType>Designer</SubType>
     </Content>
@@ -394,6 +386,7 @@
     <None Include=".env.template">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="App_Code\Shared.cshtml" />
     <None Include="css\main.scss" />
     <Content Include="css\main.css">
       <DependentUpon>main.scss</DependentUpon>
@@ -698,7 +691,7 @@
     <Content Include="frontend\js\app.js" />
     <Content Include="frontend\js\lib\foundation-6.5.0.min.js" />
     <Content Include="frontend\js\lib\jquery-3.3.1.min.js" />
-    <Content Include="Content\Site.css" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\mtree\mtree.js" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -812,6 +805,7 @@
     <Content Include="Views\Search.cshtml" />
     <Content Include="Views\Partials\Header\ContentPageHeader.cshtml" />
     <Content Include="Views\Partials\Header\BiotopePageHeader.cshtml" />
+    <Content Include="Views\XmlSiteMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

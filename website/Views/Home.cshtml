@@ -1,40 +1,22 @@
 ﻿@inherits UmbracoTemplatePage
-@using System.Configuration
 @using System.Text
 @using Newtonsoft.Json.Linq
-@using website.Models
 @{
     Layout = "Master.cshtml";
 
-    var json = GetJsonFromApi();
+    var json = Shared.GetJsonFromApi();
 
     biotopeNodeMap = GetOrderedParentChildNodeMap(json);
     fullTermMap = GetFullTermMap(json);
 
-    var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
+    var xpath = string.Format("//{0}[@nodeName = '{1}']", "biotopes", "Biotopes");
+    var nodeColoursSetting = Umbraco.TypedContentAtXPath(xpath).FirstOrDefault().GetPropertyValue<string>("LevelColour");
     levelColours = nodeColoursSetting.Split(',');
 }
 @functions {
     private Dictionary<string, List<string>> biotopeNodeMap;
     private Dictionary<string, string> fullTermMap;
     private string[] levelColours;
-    private Env env = new Env();
-
-    private JArray GetJsonFromApi()
-    {
-        var url = env.MICROSERVICE_URL + "/Biotope/";
-        var request = (HttpWebRequest)WebRequest.Create(url);
-        request.Method = "GET";
-
-        var response = (HttpWebResponse)request.GetResponse();
-        string content;
-        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-        {
-            content = sr.ReadToEnd();
-        }
-
-        return JArray.Parse(content);
-    }
 
     private Dictionary<string, List<string>> GetOrderedParentChildNodeMap(JArray json)
     {

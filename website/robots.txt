@@ -1,0 +1,11 @@
+﻿Sitemap: https://mhc.jncc.gov.uk/sitemap.xml
+User-Agent: *
+Disallow: /bin/
+Disallow: /config/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /frontend/
+Disallow: /Media/
+Disallow: /Scripts/
+Disallow: /Umbraco/
+Disallow: /Umbraco_Client/

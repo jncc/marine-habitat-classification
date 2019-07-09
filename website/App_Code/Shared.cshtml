@@ -1,0 +1,21 @@
+﻿@using Newtonsoft.Json.Linq
+@using website.Models
+
+@functions {
+    public static JArray GetJsonFromApi()
+    {
+        var env = new Env();
+        var url = env.MICROSERVICE_URL + "/Biotope/";
+        var request = (HttpWebRequest) WebRequest.Create(url);
+        request.Method = "GET";
+
+        var response = (HttpWebResponse) request.GetResponse();
+        string content;
+        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+        {
+            content = sr.ReadToEnd();
+        }
+
+        return JArray.Parse(content);
+    }
+}

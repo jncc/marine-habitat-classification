@@ -43,7 +43,7 @@
     {
         var searchUrl = env.FLEXSEARCH_URL + "/indices/biotope/search";
         // Special formatting for original code because the standard tokenizer doesn't split by full stops
-        var searchQuery = @"like(fullTerm,'*" + query + "*', -boost '50') or like(originalCode,'*" + query.Trim().Replace('.', ' ') + "*', -boost '45') or anyof(description,'" + query + "', -boost '10')";
+        var searchQuery = @"allOf(fullTerm,'" + query + "', -boost '45') or fuzzy(fullTerm,'" + query + "', -boost '30', -slop '1') or allOf(originalCode,'" + query.Trim().Replace('.', ' ') + "', -boost '50') or like(originalCode,'*" + query + "*', -boost '50') or allOf(description,'" + query + "', -boost '10')";
         var requestString = searchUrl + "?c=*&q=" + searchQuery + "&count=" + itemsPerPage + "&skip=" + itemsPerPage * (page - 1);
 
         var request = (HttpWebRequest)WebRequest.Create(requestString);
