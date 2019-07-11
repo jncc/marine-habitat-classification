@@ -12,6 +12,7 @@
     var levelColours = nodeColoursSetting.Split(',');
 }
 <script src="/Scripts/jquery-3.0.0.min.js"></script>
+<script src="/Scripts/hammer/hammer.min.js"></script>
 <script src="/Scripts/object-fit-images/ofi.min.js"></script>
 <div class="container">
     <br />
@@ -405,6 +406,7 @@
         showSlides(slideIndex);
 
         window.objectFitImages();
+        swipeablePhotos();
     }
 
     // Next/previous controls
@@ -432,6 +434,23 @@
             }
             slides[slideIndex - 1].style.display = "block";
             dots[slideIndex - 1].className += " dot-active";
+        }
+    }
+
+    function swipeablePhotos() {
+        if (document.getElementsByClassName("slideshow-container").length > 0) {
+            var slideContainer = document.getElementsByClassName("slideshow-container")[0];
+
+            var hammer = new window.Hammer(slideContainer);
+            hammer.on("swipeleft",
+                function() {
+                    plusSlides(1);
+                });
+
+            hammer.on("swiperight",
+                function () {
+                    plusSlides(-1);
+                });
         }
     }
 </script>
