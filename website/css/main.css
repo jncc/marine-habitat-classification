@@ -121,6 +121,7 @@ ul.mtree a {
     opacity: 1; } }
 
 .map-loader {
+  display: block;
   margin: 8em 0 3em 0;
   border: 5px solid #f3f3f3;
   /* Light grey */

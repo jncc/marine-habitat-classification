@@ -13,56 +13,10 @@
 }
 <script src="/Scripts/jquery-3.0.0.min.js"></script>
 <script src="/Scripts/object-fit-images/ofi.min.js"></script>
-<script type="text/javascript">
-    // W3 slideshow https://www.w3schools.com/howto/howto_js_slideshow.asp
-
-    var slideIndex = 1;
-
-    $(function () {
-        $('img.map').on('load',
-            function() {
-                $('div.map-loader').css('display', 'none');
-                $('div.biomap').css('display', 'block');
-            });
-
-        showSlides(slideIndex);
-
-        objectFitImages();
-    });
-
-    // Next/previous controls
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    // Thumbnail image controls
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        if (slides.length > 0) {
-            var dots = document.getElementsByClassName("dot");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" dot-active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += " dot-active";
-        }
-    }
-</script>
-
 <div class="container">
     <br />
     @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
-    <p>@Model.Content.GetPropertyValue("content")</p>
+    @Model.Content.GetPropertyValue("content")
     <nav aria-label="Biotope hierarchy">
         <h3>
             <a href="@Model.Content.Parent.Url">Full hierarchy</a>
@@ -94,42 +48,40 @@
 
             <br />
             <h3>Habitat (physical) description</h3>
-            <p>
-                <div class="table-scroll">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Salinity</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Salinity))</td>
-                            </tr>
-                            <tr>
-                                <th>Wave exposure</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Exposure))</td>
-                            </tr>
-                            <tr>
-                                <th>Tidal streams</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TidalStreams))</td>
-                            </tr>
-                            <tr>
-                                <th>Substratum</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Substratum))</td>
-                            </tr>
-                            <tr>
-                                <th>Zone</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Subzone))</td>
-                            </tr>
-                            <tr>
-                                <th>Depth Band</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Height))</td>
-                            </tr>
-                            <tr>
-                                <th>Other Features</th>
-                                <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.SpecialFeatures))</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </p>
+            <div class="table-scroll">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Salinity</th>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Salinity))</td>
+                        </tr>
+                        <tr>
+                            <th>Wave exposure</th>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Exposure))</td>
+                        </tr>
+                        <tr>
+                            <th>Tidal streams</th>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.TidalStreams))</td>
+                        </tr>
+                        <tr>
+                            <th>Substratum</th>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Substratum))</td>
+                        </tr>
+                        <tr>
+                            <th>Zone</th>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Subzone))</td>
+                        </tr>
+                        <tr>
+                            <th>Depth Band</th>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.Height))</td>
+                        </tr>
+                        <tr>
+                            <th>Other Features</th>
+                            <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Biotope.SpecialFeatures))</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             @* Derived using data from and faunal group *@
 
@@ -442,3 +394,44 @@
     }
 </div>
 <br />
+<script type="text/javascript">
+    // W3 slideshow https://www.w3schools.com/howto/howto_js_slideshow.asp
+
+    var slideIndex = 1;
+    
+    window.onpageshow = function () {
+        $('div.map-loader').css('display', 'none');
+        $('div.biomap').css('display', 'block');
+        showSlides(slideIndex);
+
+        window.objectFitImages();
+    }
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        if (slides.length > 0) {
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" dot-active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " dot-active";
+        }
+    }
+</script>
