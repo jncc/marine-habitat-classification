@@ -1,5 +1,4 @@
 ﻿@inherits UmbracoTemplatePage
-@using System.Text
 @using Newtonsoft.Json.Linq
 @{
     Layout = "Master.cshtml";
@@ -52,98 +51,58 @@
         return fullTermMap;
     }
 
-    private string GenerateBiotopeNodeTree()
-    {
-        var treeSB = new StringBuilder();
-
-        treeSB.Append("<li>");
-        treeSB.Append("<a href=\"#\" aria-label=\"Expand or collapse\"><span></span>");
-        treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level 1\"></span>", levelColours[0]));
-        treeSB.Append("Marine</a>");
-
-        treeSB.Append("<ul>");
-
-        foreach (var pair in biotopeNodeMap)
-        {
-            if (IsRootNode(pair.Value, pair.Key))
-            {
-
-                List<string> childrenWithoutSelf;
-                childrenWithoutSelf = pair.Value;
-                childrenWithoutSelf.Remove(pair.Key);
-
-                string fullTerm;
-                fullTermMap.TryGetValue(pair.Key, out fullTerm);
-
-
-                treeSB.Append("<li>");
-                if (childrenWithoutSelf.Count > 0)
-                {
-                    treeSB.Append("<a href=\"#\" aria-label=\"Expand or collapse\">");
-                    treeSB.Append("<span></span>");
-                    treeSB.Append("</a>");
-                }
-                treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level 2\"></span>", levelColours[1]));
-                treeSB.Append("<a href=\"");
-                treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, pair.Key.ToLower()));
-                treeSB.Append("\">");
-                treeSB.Append(fullTerm);
-                treeSB.Append("</a>");
-                treeSB.Append(GenerateTree(childrenWithoutSelf, 1));
-                treeSB.Append("</li>");
-            }
-        }
-        treeSB.Append("</ul>");
-        treeSB.Append("</li>");
-
-        return treeSB.ToString();
-    }
-
-    private string GenerateTree(List<string> children, int level)
-    {
-        if (children == null || children.Count < 1)
-            return null;
-
-        var treeSB = new StringBuilder();
-
-        treeSB.Append("<ul>");
-        foreach (var child in children)
-        {
-            string fullTerm;
-            fullTermMap.TryGetValue(child, out fullTerm);
-
-            List<string> grandChildren;
-            biotopeNodeMap.TryGetValue(child, out grandChildren);
-
-            treeSB.Append("<li>");
-            if (grandChildren != null && grandChildren.Count > 0)
-            {
-                treeSB.Append("<a href=\"#\" aria-label=\"Expand or collapse\">");
-                treeSB.Append("<span></span>");
-                treeSB.Append("</a>");
-            }
-            treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level {1}\"></span>", levelColours[level + 1], level+2));
-            treeSB.Append("<a href=\"");
-            treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, child.ToLower()));
-            treeSB.Append("\">");
-            treeSB.Append(fullTerm);
-            treeSB.Append("</a>");
-            if (grandChildren != null)
-            {
-                treeSB.Append(GenerateTree(grandChildren, level + 1));
-            }
-            treeSB.Append("</li>");
-        }
-        treeSB.Append("</ul>");
-
-        return treeSB.ToString();
-    }
-
     private bool IsRootNode(List<string> children, string key)
     {
         return children.Contains(key);
     }
 }
+@helper GenerateTree()
+{
+    <li>
+        <a href="#" aria-label="Expand or collapse"><span></span><span class="tag vocabful-colour-edge" style="background-color: @levelColours[0]" aria-label="Level 1"></span>Marine</a>
+        <ul>
+            @{
+                var rootNodes = new List<string>();
+
+                foreach (var pair in biotopeNodeMap)
+                {
+                    if (IsRootNode(pair.Value, pair.Key))
+                    {
+                        List<string> childrenWithoutSelf;
+                        childrenWithoutSelf = pair.Value;
+                        childrenWithoutSelf.Remove(pair.Key);
+                        rootNodes.Add(pair.Key);
+                    }
+                }
+
+                @GenerateTreeNode(rootNodes, 0);
+            }
+        </ul>
+    </li>
+}
+@helper GenerateTreeNode(List<string> children, int level) {
+    foreach (var child in children)
+    {
+        string fullTerm;
+        fullTermMap.TryGetValue(child, out fullTerm);
+
+        List<string> grandChildren;
+        biotopeNodeMap.TryGetValue(child, out grandChildren);
+
+        <li>
+            @if (grandChildren != null && grandChildren.Count > 0)
+            {
+                <a href="#" aria-label="Expand or collapse"><span></span></a>
+            }
+            <span class="tag vocabful-colour-edge" style="background-color: @levelColours[level + 1]" aria-label="Level @( level + 2)"></span><a href="@(Model.Content.Url + "biotopes/" + child.ToLower())" target="_blank">@Html.Raw(HttpUtility.HtmlDecode(fullTerm))</a>
+            @if (grandChildren != null && grandChildren.Count > 0)
+            {
+                <ul>@GenerateTreeNode(grandChildren, level + 1)</ul>
+            }
+        </li>
+    }
+}
+
 <script src="/Scripts/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
     var levelColors = ["@Html.Raw(HttpUtility.HtmlDecode(string.Join("\",\"", levelColours)))"];
@@ -182,7 +141,7 @@
         </p>
     </div>
     <ul class="mtree" style="opacity: 1;" aria-label="Biotope hierarchy navigation">
-        @Html.Raw(GenerateBiotopeNodeTree())
+        @GenerateTree()
     </ul>
     <script src="/Scripts/mtree/mtree.js"></script>
     <br />
