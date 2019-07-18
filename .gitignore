@@ -289,8 +289,8 @@ __pycache__/
 
 # Umbraco
 website/App_Data/**
-website/Umbraco/**
-website/Umbraco_Client/**
+website/Umbraco
+website/Umbraco_Client
 website/Media
 
 

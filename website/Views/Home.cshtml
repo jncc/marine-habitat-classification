@@ -1,40 +1,22 @@
 ﻿@inherits UmbracoTemplatePage
-@using System.Configuration
 @using System.Text
 @using Newtonsoft.Json.Linq
-@using website.Models
 @{
     Layout = "Master.cshtml";
 
-    var json = GetJsonFromApi();
+    var json = Shared.GetJsonFromApi();
 
     biotopeNodeMap = GetOrderedParentChildNodeMap(json);
     fullTermMap = GetFullTermMap(json);
 
-    var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
+    var xpath = string.Format("//{0}[@nodeName = '{1}']", "biotopes", "Biotopes");
+    var nodeColoursSetting = Umbraco.TypedContentAtXPath(xpath).FirstOrDefault().GetPropertyValue<string>("LevelColour");
     levelColours = nodeColoursSetting.Split(',');
 }
 @functions {
     private Dictionary<string, List<string>> biotopeNodeMap;
     private Dictionary<string, string> fullTermMap;
     private string[] levelColours;
-    private Env env = new Env();
-
-    private JArray GetJsonFromApi()
-    {
-        var url = env.MICROSERVICE_URL + "/Biotope/";
-        var request = (HttpWebRequest)WebRequest.Create(url);
-        request.Method = "GET";
-
-        var response = (HttpWebResponse)request.GetResponse();
-        string content;
-        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-        {
-            content = sr.ReadToEnd();
-        }
-
-        return JArray.Parse(content);
-    }
 
     private Dictionary<string, List<string>> GetOrderedParentChildNodeMap(JArray json)
     {
@@ -104,7 +86,7 @@
                 treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level 2\"></span>", levelColours[1]));
                 treeSB.Append("<a href=\"");
                 treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, pair.Key.ToLower()));
-                treeSB.Append("\">");
+                treeSB.Append("\" target=\"_blank\">");
                 treeSB.Append(fullTerm);
                 treeSB.Append("</a>");
                 treeSB.Append(GenerateTree(childrenWithoutSelf, 1));
@@ -143,7 +125,7 @@
             treeSB.Append(string.Format("<span class=\"tag vocabful-colour-edge\" style=\"background-color: {0}\" aria-label=\"Level {1}\"></span>", levelColours[level + 1], level+2));
             treeSB.Append("<a href=\"");
             treeSB.Append(string.Format("{0}biotopes/{1}", Model.Content.Url, child.ToLower()));
-            treeSB.Append("\">");
+            treeSB.Append("\" target=\"_blank\">");
             treeSB.Append(fullTerm);
             treeSB.Append("</a>");
             if (grandChildren != null)

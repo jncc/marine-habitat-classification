@@ -5,11 +5,12 @@
 @using website.Models
 @{
     Layout = "Master.cshtml";
-    
+
     var umbracoBiotopeUrl = Umbraco.TypedContentAtRoot().FirstOrDefault().Url + "biotopes/";
 
     // Getting the Biotopes node which will have the level colours, this shouldn't change
-    var nodeColoursSetting = Umbraco.TypedContent("11054").GetPropertyValue<string>("LevelColour");
+    var xpath = string.Format("//{0}[@nodeName = '{1}']", "biotopes", "Biotopes");
+    var nodeColoursSetting = Umbraco.TypedContentAtXPath(xpath).FirstOrDefault().GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
 
     var result = new JObject();
@@ -42,7 +43,7 @@
     {
         var searchUrl = env.FLEXSEARCH_URL + "/indices/biotope/search";
         // Special formatting for original code because the standard tokenizer doesn't split by full stops
-        var searchQuery = @"anyof(fullTerm,'" + query + "', -boost '50') or anyof(originalCode,'" + query.Trim().Replace('.', ' ') + "', -boost '45') or anyof(description,'" + query + "', -boost '10')";
+        var searchQuery = @"allOf(fullTerm,'" + query + "', -boost '45') or fuzzy(fullTerm,'" + query + "', -boost '30', -slop '1') or allOf(originalCode,'" + query.Trim().Replace('.', ' ') + "', -boost '50') or like(originalCode,'*" + query + "*', -boost '50') or allOf(description,'" + query + "', -boost '10')";
         var requestString = searchUrl + "?c=*&q=" + searchQuery + "&count=" + itemsPerPage + "&skip=" + itemsPerPage * (page - 1);
 
         var request = (HttpWebRequest)WebRequest.Create(requestString);

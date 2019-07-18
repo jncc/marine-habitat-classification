@@ -116,6 +116,7 @@
 
 // https://www.w3schools.com/howto/howto_css_loader.asp
 .map-loader {
+    display: block;
     margin: 8em 0 3em 0;
 
     @media (max-width: 768px) {
