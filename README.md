@@ -6,9 +6,15 @@ Development
 -----------
 
 ### Database set up ###
-* Set up a local SQL server (we used SSDT for Visual Studio) and create a database named biotope-db
+* Set up a local SQL server (we used SSDT for Visual Studio, for VS 2019 you'll need the "Data storage and processing" workload with the "SQL Server Integrated Services Project" extension) and create a database named biotope-db
 * Run the table creation SQL scripts found under the biotope-db project against the biotope-db database
-* Create the umbraco-cms database by restoring it from the backup found under `website\App_Data\MSSQL Backup`
+* Create the umbraco-cms database by restoring it from the backup found under `website\App_Data\MSSQL_Backup` using the below SQL
+
+`EXEC sp_configure 'contained', 1;
+RECONFIGURE;
+
+RESTORE DATABASE "umbraco-cms"
+FROM DISK = 'D:\workspace\marine-habitat-classification\website\App_Data\MSSQL_Backup\umbraco-cms_db_20180205.bak';`
 
 ### Local configuration ###
 * The file `microservices\microserviceConnectionStrings.config` contains an entity framework connection string
