@@ -7,7 +7,7 @@
 
     var env = new Env();
 
-    string biomapUrl = env.MAPPER_URL + Model.Biotope.OriginalCode;
+    string biomapUrl = "/frontend/images/maps/" + Model.Biotope.OriginalCode.Replace(".", "-") + ".png";
     var nodeColoursSetting = Model.Content.GetPropertyValue<string>("LevelColour");
     var levelColours = nodeColoursSetting.Split(',');
 }
