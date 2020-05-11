@@ -90,7 +90,6 @@ namespace microservices.Controllers
                             title = $"{biotope.ORIGINAL_CODE} {formattedTitle}",
                             content = $"{formattedDescription} {formattedSituation} {GetSpeciesString(biotope)}",
                             url = env.BIOTOPE_BASE_URL + biotope.BIOTOPE_KEY.ToLower(),
-                            resource_type = "dataset",
                             keywords = GetKeywords(biotope),
                             published_date = "2015-03"
                         }
