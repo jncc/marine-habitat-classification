@@ -688,6 +688,7 @@
     <Content Include="frontend\fonts\icomoon.svg" />
     <Content Include="frontend\images\jc136_dive287_00250_web.jpg" />
     <Content Include="frontend\images\logo.png" />
+    <Content Include="frontend\images\maps\*.png" />
     <Content Include="frontend\js\app.js" />
     <Content Include="frontend\js\lib\foundation-6.5.0.min.js" />
     <Content Include="frontend\js\lib\jquery-3.3.1.min.js" />
