@@ -87,7 +87,7 @@ namespace microservices.Controllers
                         {
                             id = biotope.BIOTOPE_KEY,
                             site = env.SITE,
-                            title = $"{biotope.ORIGINAL_CODE} {formattedTitle}",
+                            title = $"{biotope.ORIGINAL_CODE.Trim()} {formattedTitle}",
                             content = $"{formattedDescription} {formattedSituation} {GetSpeciesString(biotope)}",
                             url = env.BIOTOPE_BASE_URL + biotope.BIOTOPE_KEY.ToLower(),
                             resource_type = "dataset",
