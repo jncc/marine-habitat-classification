@@ -48,7 +48,7 @@
             @* Habitat description *@
 
             <br />
-            <h3>Habitat (physical) description</h3>
+            <h3>Physical habitat description</h3>
             <div class="table-scroll">
                 <table>
                     <tbody>
@@ -196,7 +196,7 @@
     }
 
     @* Characterising species *@
-    <h3>Characterising Species</h3>
+    <h3>Characterising species</h3>
     @if (Model.Species != null && Model.Species.Count > 0)
     {
         <div class="table-scroll">
@@ -263,7 +263,7 @@
     }
 
     @* Similar biotopes *@
-    <h3>Similar biotopes</h3>
+    <h3>Similar biotopes or habitat types</h3>
     @if (Model.SimilarBiotopes != null && Model.SimilarBiotopes.Count > 0)
     {
         foreach (var biotope in Model.SimilarBiotopes)
@@ -315,16 +315,16 @@
         </div>
     }
 
-    @* Biotope history *@
+    @* Classification history *@
     @if (Model.OldCodes != null && Model.OldCodes.Count > 0)
     {
-        <h3>Biotope history</h3>
+        <h3>Classification history of this biotope or habitat type</h3>
         <div class="table-scroll">
             <table>
                 <thead>
                     <tr>
-                        <th>Classification</th>
-                        <th>Habitat code</th>
+                        <th>Classification version</th>
+                        <th>Code</th>
                         @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.PreviousFullname)))
                         {
                             <th>Habitat name</th>
