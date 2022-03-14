@@ -401,6 +401,7 @@
     <Content Include="frontend\css\app.css" />
     <Content Include="frontend\css\foundation-icons.css" />
     <Content Include="frontend\css\foundation-icons.svg" />
+    <Content Include="frontend\css\cookie-control.css" />
     <Content Include="frontend\css\svgs\fi-address-book.svg" />
     <Content Include="frontend\css\svgs\fi-alert.svg" />
     <Content Include="frontend\css\svgs\fi-align-center.svg" />
