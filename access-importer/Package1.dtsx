@@ -8,12 +8,12 @@
   DTS:Description="DTS Wizard-generated package"
   DTS:DTSID="{DE0729E2-DD79-454E-85AA-270974B669E9}"
   DTS:ExecutableType=""
-  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package1"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{26C3089A-D4F7-4B46-9613-EBE436745D21}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{EE036EBC-D13C-4FC7-BDE4-AD94A820AAAF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -34,7 +34,9 @@
       DTS:ObjectName="SourceConnectionOLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=D:\workspace\marbiotope-deepsea_MPcleaned.mdb;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;OLE DB Services=0;" />
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=C:\workspace\mhc_master_202204.mdb;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;OLE DB Services=0;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -3150,7 +3152,7 @@
     design-time-name="Package\Data Flow Task 1">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="233,42"
           Id="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE"
@@ -3210,7 +3212,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3232,7 +3236,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3254,7 +3260,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3276,7 +3284,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3298,7 +3308,73 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 2">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Source 6 - WEB_PHOTO"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 2.Paths[OLE DB Source Output]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 2.Paths[OLE DB Source Output1]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
