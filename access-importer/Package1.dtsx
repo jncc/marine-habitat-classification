@@ -8,12 +8,12 @@
   DTS:Description="DTS Wizard-generated package"
   DTS:DTSID="{DE0729E2-DD79-454E-85AA-270974B669E9}"
   DTS:ExecutableType=""
-  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package1"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{26C3089A-D4F7-4B46-9613-EBE436745D21}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{9476447D-DC19-4712-B71E-C734F3D7DC67}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -34,7 +34,9 @@
       DTS:ObjectName="SourceConnectionOLEDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=D:\workspace\marbiotope-deepsea_MPcleaned.mdb;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;OLE DB Services=0;" />
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=C:\workspace\mhc_master_202204.mdb;Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;OLE DB Services=0;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -3002,7 +3004,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{B5FD7A71-4441-486C-8885-AAD8DE35E59D}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_RELATION&quot; (&#xA;&quot;BIOTOPE_RELATION_KEY&quot; nvarchar(16),&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;COMMENT&quot; nvarchar(max),&#xA;&quot;RELATED_KEY&quot; nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_SPECIES&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;FREQ&quot; nvarchar(10),&#xA;&quot;ABUND&quot; nvarchar(10),&#xA;&quot;ITEM_NAME&quot; nvarchar(60),&#xA;&quot;contrib_similarity_STRENGTH&quot; int,&#xA;&quot;SED_ABUND_SED_ABUND&quot; int,&#xA;&quot;RELATIVE_FREQUENCY&quot; int,&#xA;&quot;SORT&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;FULL_TERM&quot; nvarchar(200),&#xA;&quot;DESCRIPTION&quot; nvarchar(max),&#xA;&quot;SPECIAL_FEATURES&quot; nvarchar(max),&#xA;&quot;TEMPORAL_VARIATION&quot; nvarchar(max),&#xA;&quot;SITUATION&quot; nvarchar(max),&#xA;&quot;FREQUENCY_KEY&quot; float,&#xA;&quot;FREQUENCY&quot; nvarchar(255),&#xA;&quot;LANDSCAPE&quot; nvarchar(255),&#xA;&quot;SALINITY&quot; nvarchar(255),&#xA;&quot;HEIGHT&quot; nvarchar(255),&#xA;&quot;EXPOSURE&quot; nvarchar(255),&#xA;&quot;TIDAL_STREAMS&quot; nvarchar(255),&#xA;&quot;SUBZONE&quot; nvarchar(255),&#xA;&quot;SUBSTRATUM&quot; nvarchar(max),&#xA;&quot;SORT_CODE&quot; smallint,&#xA;&quot;SENSITIVITY_ASSESSMENT&quot; nvarchar(max),&#xA;&quot;DERIVED_FROM&quot; nvarchar(255),&#xA;&quot;FAUNAL_GROUP&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE_HIERARCHY&quot; (&#xA;&quot;originalcode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY&quot; nvarchar(255),&#xA;&quot;highercode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY1&quot; nvarchar(255),&#xA;&quot;originallevel&quot; float,&#xA;&quot;higherlevel&quot; float&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_HABITAT_CORRELATION&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255),&#xA;&quot;RELATIONSHIP_TYPE&quot; nvarchar(255),&#xA;&quot;RELATED_CLASSIFICATION_SYSTEM&quot; nvarchar(255),&#xA;&quot;RELATED_NAME&quot; nvarchar(255),&#xA;&quot;CLASSIFICATION_SYSTEM_URL&quot; nvarchar(max)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_RELATION&quot; (&#xA;&quot;BIOTOPE_RELATION_KEY&quot; nvarchar(16),&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;COMMENT&quot; nvarchar(max),&#xA;&quot;RELATED_KEY&quot; nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_SPECIES&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;FREQ&quot; nvarchar(10),&#xA;&quot;ABUND&quot; nvarchar(10),&#xA;&quot;ITEM_NAME&quot; nvarchar(60),&#xA;&quot;contrib_similarity_STRENGTH&quot; int,&#xA;&quot;SED_ABUND_SED_ABUND&quot; int,&#xA;&quot;RELATIVE_FREQUENCY&quot; decimal(3,1),&#xA;&quot;SORT&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;FULL_TERM&quot; nvarchar(200),&#xA;&quot;DESCRIPTION&quot; nvarchar(max),&#xA;&quot;SPECIAL_FEATURES&quot; nvarchar(max),&#xA;&quot;TEMPORAL_VARIATION&quot; nvarchar(max),&#xA;&quot;SITUATION&quot; nvarchar(max),&#xA;&quot;FREQUENCY_KEY&quot; float,&#xA;&quot;FREQUENCY&quot; nvarchar(255),&#xA;&quot;LANDSCAPE&quot; nvarchar(255),&#xA;&quot;SALINITY&quot; nvarchar(255),&#xA;&quot;HEIGHT&quot; nvarchar(255),&#xA;&quot;EXPOSURE&quot; nvarchar(255),&#xA;&quot;TIDAL_STREAMS&quot; nvarchar(255),&#xA;&quot;SUBZONE&quot; nvarchar(255),&#xA;&quot;SUBSTRATUM&quot; nvarchar(max),&#xA;&quot;SORT_CODE&quot; smallint,&#xA;&quot;SENSITIVITY_ASSESSMENT&quot; nvarchar(max),&#xA;&quot;DERIVED_FROM&quot; nvarchar(255),&#xA;&quot;FAUNAL_GROUP&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE_HIERARCHY&quot; (&#xA;&quot;originalcode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY&quot; nvarchar(255),&#xA;&quot;highercode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY1&quot; nvarchar(255),&#xA;&quot;originallevel&quot; float,&#xA;&quot;higherlevel&quot; float&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_HABITAT_CORRELATION&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255),&#xA;&quot;RELATIONSHIP_TYPE&quot; nvarchar(255),&#xA;&quot;RELATED_CLASSIFICATION_SYSTEM&quot; nvarchar(255),&#xA;&quot;RELATED_NAME&quot; nvarchar(255),&#xA;&quot;CLASSIFICATION_SYSTEM_URL&quot; nvarchar(max)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable

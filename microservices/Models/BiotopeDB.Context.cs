@@ -26,12 +26,12 @@ namespace microservices.Models
         }
     
         public virtual DbSet<WEB_BIOT_RELATION> WEB_BIOT_RELATION { get; set; }
-        public virtual DbSet<WEB_BIOT_SPECIES_GRAB> WEB_BIOT_SPECIES_GRAB { get; set; }
-        public virtual DbSet<WEB_BIOT_SPECIES_OBSERVATION> WEB_BIOT_SPECIES_OBSERVATION { get; set; }
         public virtual DbSet<WEB_BIOTOPE> WEB_BIOTOPE { get; set; }
         public virtual DbSet<WEB_BIOTOPE_HIERARCHY> WEB_BIOTOPE_HIERARCHY { get; set; }
         public virtual DbSet<WEB_HABITAT_CORRELATION> WEB_HABITAT_CORRELATION { get; set; }
         public virtual DbSet<WEB_OLD_CODE> WEB_OLD_CODE { get; set; }
         public virtual DbSet<WEB_PHOTO> WEB_PHOTO { get; set; }
+        public virtual DbSet<WEB_BIOT_SPECIES_GRAB> WEB_BIOT_SPECIES_GRAB { get; set; }
+        public virtual DbSet<WEB_BIOT_SPECIES_OBSERVATION> WEB_BIOT_SPECIES_OBSERVATION { get; set; }
     }
 }

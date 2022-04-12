@@ -72,6 +72,7 @@ namespace website.Controllers
             
             PopulateFullTypicalAbundanceTerms(species);
             species = species.OrderBy(s => s.Sort).ToList();
+            oldCodes = oldCodes.OrderByDescending(o => o.Version).ToList();
 
             var biotopeModel = new BiotopeModel(modelContent)
             {
