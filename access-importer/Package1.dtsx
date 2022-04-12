@@ -12,8 +12,8 @@
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Package1"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{DDDF7104-0A6F-46FC-BE6F-C71D449810D9}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{EE036EBC-D13C-4FC7-BDE4-AD94A820AAAF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3004,7 +3004,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{B5FD7A71-4441-486C-8885-AAD8DE35E59D}"
-          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_RELATION&quot; (&#xA;&quot;BIOTOPE_RELATION_KEY&quot; nvarchar(16),&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;COMMENT&quot; nvarchar(max),&#xA;&quot;RELATED_KEY&quot; nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_SPECIES&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;FREQ&quot; nvarchar(10),&#xA;&quot;ABUND&quot; nvarchar(10),&#xA;&quot;ITEM_NAME&quot; nvarchar(60),&#xA;&quot;contrib_similarity_STRENGTH&quot; int,&#xA;&quot;SED_ABUND_SED_ABUND&quot; int,&#xA;&quot;RELATIVE_FREQUENCY&quot; decimal(3,1),&#xA;&quot;SORT&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;FULL_TERM&quot; nvarchar(200),&#xA;&quot;DESCRIPTION&quot; nvarchar(max),&#xA;&quot;SPECIAL_FEATURES&quot; nvarchar(max),&#xA;&quot;TEMPORAL_VARIATION&quot; nvarchar(max),&#xA;&quot;SITUATION&quot; nvarchar(max),&#xA;&quot;FREQUENCY_KEY&quot; float,&#xA;&quot;FREQUENCY&quot; nvarchar(255),&#xA;&quot;LANDSCAPE&quot; nvarchar(255),&#xA;&quot;SALINITY&quot; nvarchar(255),&#xA;&quot;HEIGHT&quot; nvarchar(255),&#xA;&quot;EXPOSURE&quot; nvarchar(255),&#xA;&quot;TIDAL_STREAMS&quot; nvarchar(255),&#xA;&quot;SUBZONE&quot; nvarchar(255),&#xA;&quot;SUBSTRATUM&quot; nvarchar(max),&#xA;&quot;SORT_CODE&quot; smallint,&#xA;&quot;SENSITIVITY_ASSESSMENT&quot; nvarchar(max),&#xA;&quot;DERIVED_FROM&quot; nvarchar(255),&#xA;&quot;FAUNAL_GROUP&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE_HIERARCHY&quot; (&#xA;&quot;originalcode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY&quot; nvarchar(255),&#xA;&quot;highercode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY1&quot; nvarchar(255),&#xA;&quot;originallevel&quot; float,&#xA;&quot;higherlevel&quot; float&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_HABITAT_CORRELATION&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255),&#xA;&quot;RELATIONSHIP_TYPE&quot; nvarchar(255),&#xA;&quot;RELATED_CLASSIFICATION_SYSTEM&quot; nvarchar(255),&#xA;&quot;RELATED_NAME&quot; nvarchar(255),&#xA;&quot;CLASSIFICATION_SYSTEM_URL&quot; nvarchar(max)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.schemas WHERE name = N'dbo')&#xA;BEGIN&#xA;EXEC(N'CREATE SCHEMA &quot;dbo&quot;')&#xA;END&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_RELATION&quot; (&#xA;&quot;BIOTOPE_RELATION_KEY&quot; nvarchar(16),&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;COMMENT&quot; nvarchar(max),&#xA;&quot;RELATED_KEY&quot; nvarchar(16)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOT_SPECIES&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;FREQ&quot; nvarchar(10),&#xA;&quot;ABUND&quot; nvarchar(10),&#xA;&quot;ITEM_NAME&quot; nvarchar(60),&#xA;&quot;contrib_similarity_STRENGTH&quot; int,&#xA;&quot;SED_ABUND_SED_ABUND&quot; int,&#xA;&quot;RELATIVE_FREQUENCY&quot; int,&#xA;&quot;SORT&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(16),&#xA;&quot;ORIGINAL_CODE&quot; nvarchar(30),&#xA;&quot;FULL_TERM&quot; nvarchar(200),&#xA;&quot;DESCRIPTION&quot; nvarchar(max),&#xA;&quot;SPECIAL_FEATURES&quot; nvarchar(max),&#xA;&quot;TEMPORAL_VARIATION&quot; nvarchar(max),&#xA;&quot;SITUATION&quot; nvarchar(max),&#xA;&quot;FREQUENCY_KEY&quot; float,&#xA;&quot;FREQUENCY&quot; nvarchar(255),&#xA;&quot;LANDSCAPE&quot; nvarchar(255),&#xA;&quot;SALINITY&quot; nvarchar(255),&#xA;&quot;HEIGHT&quot; nvarchar(255),&#xA;&quot;EXPOSURE&quot; nvarchar(255),&#xA;&quot;TIDAL_STREAMS&quot; nvarchar(255),&#xA;&quot;SUBZONE&quot; nvarchar(255),&#xA;&quot;SUBSTRATUM&quot; nvarchar(max),&#xA;&quot;SORT_CODE&quot; smallint,&#xA;&quot;SENSITIVITY_ASSESSMENT&quot; nvarchar(max),&#xA;&quot;DERIVED_FROM&quot; nvarchar(255),&#xA;&quot;FAUNAL_GROUP&quot; nvarchar(255)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_BIOTOPE_HIERARCHY&quot; (&#xA;&quot;originalcode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY&quot; nvarchar(255),&#xA;&quot;highercode&quot; nvarchar(255),&#xA;&quot;FirstOfBIOTOPE_LIST_ITEM_KEY1&quot; nvarchar(255),&#xA;&quot;originallevel&quot; float,&#xA;&quot;higherlevel&quot; float&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;dbo&quot;.&quot;WEB_HABITAT_CORRELATION&quot; (&#xA;&quot;BIOTOPE_KEY&quot; nvarchar(255),&#xA;&quot;RELATIONSHIP_TYPE&quot; nvarchar(255),&#xA;&quot;RELATED_CLASSIFICATION_SYSTEM&quot; nvarchar(255),&#xA;&quot;RELATED_NAME&quot; nvarchar(255),&#xA;&quot;CLASSIFICATION_SYSTEM_URL&quot; nvarchar(max)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -3152,7 +3152,7 @@
     design-time-name="Package\Data Flow Task 1">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="233,42"
           Id="Package\Data Flow Task 1\Destination 2 - WEB_BIOTOPE"
@@ -3212,7 +3212,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3234,7 +3236,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3256,7 +3260,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3278,7 +3284,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3300,7 +3308,73 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 2">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Source 6 - WEB_PHOTO"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Destination 6 - WEB_PHOTO"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Destination 5 - WEB_OLD_CODE"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package\Data Flow Task 2\Source 5 - WEB_OLD_CODE"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 2.Paths[OLE DB Source Output]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task 2.Paths[OLE DB Source Output1]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="{assembly:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <assembly:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
