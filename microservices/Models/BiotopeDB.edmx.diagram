@@ -6,8 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e807fca398a64bfea14355cc5134eccf" Name="Diagram1">
         <EntityTypeShape EntityType="Model.WEB_BIOT_RELATION" Width="1.5" PointX="3" PointY="20.5" />
-        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_GRAB" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_OBSERVATION" Width="1.5" PointX="3" PointY="17" />
         <EntityTypeShape EntityType="Model.WEB_BIOTOPE" Width="1.5" PointX="0.75" PointY="9" />
         <EntityTypeShape EntityType="Model.WEB_BIOTOPE_HIERARCHY" Width="1.5" PointX="3" PointY="14.125" />
         <EntityTypeShape EntityType="Model.WEB_HABITAT_CORRELATION" Width="1.5" PointX="3" PointY="5" />
@@ -15,13 +13,15 @@
         <EntityTypeShape EntityType="Model.WEB_PHOTO" Width="1.5" PointX="3" PointY="11.375" />
         <AssociationConnector Association="Model.FK_WBR_BIOTOPE_KEY" />
         <AssociationConnector Association="Model.FK_WBR_RELATED_BIOTOPE_KEY" />
-        <AssociationConnector Association="Model.FK_WBSG_BIOTOPE_KEY" />
-        <AssociationConnector Association="Model.FK_WBSO_BIOTOPE_KEY" />
         <AssociationConnector Association="Model.FK_BIOTOPE_KEY" />
         <AssociationConnector Association="Model.FK_BIOTOPE_PARENT_KEY" />
         <AssociationConnector Association="Model.FK_WHC_BIOTOPE_KEY" />
         <AssociationConnector Association="Model.FK_WOC_BIOTOPE_KEY" />
         <AssociationConnector Association="Model.FK_WP_BIOTOPE_KEY" />
+        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_GRAB" Width="1.5" PointX="3" PointY="24.125" />
+        <EntityTypeShape EntityType="Model.WEB_BIOT_SPECIES_OBSERVATION" Width="1.5" PointX="3" PointY="27.625" />
+        <AssociationConnector Association="Model.FK_WBSG_BIOTOPE_KEY" />
+        <AssociationConnector Association="Model.FK_WBSO_BIOTOPE_KEY" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

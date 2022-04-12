@@ -19,13 +19,13 @@ namespace microservices.Models
         {
             this.WEB_BIOT_RELATION = new HashSet<WEB_BIOT_RELATION>();
             this.WEB_BIOT_RELATION1 = new HashSet<WEB_BIOT_RELATION>();
-            this.WEB_BIOT_SPECIES_GRAB = new HashSet<WEB_BIOT_SPECIES_GRAB>();
-            this.WEB_BIOT_SPECIES_OBSERVATION = new HashSet<WEB_BIOT_SPECIES_OBSERVATION>();
             this.WEB_BIOTOPE_HIERARCHY = new HashSet<WEB_BIOTOPE_HIERARCHY>();
             this.WEB_BIOTOPE_HIERARCHY1 = new HashSet<WEB_BIOTOPE_HIERARCHY>();
             this.WEB_HABITAT_CORRELATION = new HashSet<WEB_HABITAT_CORRELATION>();
             this.WEB_OLD_CODE = new HashSet<WEB_OLD_CODE>();
             this.WEB_PHOTO = new HashSet<WEB_PHOTO>();
+            this.WEB_BIOT_SPECIES_GRAB = new HashSet<WEB_BIOT_SPECIES_GRAB>();
+            this.WEB_BIOT_SPECIES_OBSERVATION = new HashSet<WEB_BIOT_SPECIES_OBSERVATION>();
         }
     
         public string BIOTOPE_KEY { get; set; }
@@ -54,10 +54,6 @@ namespace microservices.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WEB_BIOT_RELATION> WEB_BIOT_RELATION1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WEB_BIOT_SPECIES_GRAB> WEB_BIOT_SPECIES_GRAB { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WEB_BIOT_SPECIES_OBSERVATION> WEB_BIOT_SPECIES_OBSERVATION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WEB_BIOTOPE_HIERARCHY> WEB_BIOTOPE_HIERARCHY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WEB_BIOTOPE_HIERARCHY> WEB_BIOTOPE_HIERARCHY1 { get; set; }
@@ -67,5 +63,9 @@ namespace microservices.Models
         public virtual ICollection<WEB_OLD_CODE> WEB_OLD_CODE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WEB_PHOTO> WEB_PHOTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WEB_BIOT_SPECIES_GRAB> WEB_BIOT_SPECIES_GRAB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WEB_BIOT_SPECIES_OBSERVATION> WEB_BIOT_SPECIES_OBSERVATION { get; set; }
     }
 }
