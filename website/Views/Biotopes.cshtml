@@ -347,7 +347,7 @@
                             <td>@oldCode.OriginalCode</td>
                             @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.PreviousFullname)))
                             {
-                                <td>@oldCode.PreviousFullname</td>
+                                <td>@Html.Raw(HttpUtility.HtmlDecode(oldCode.PreviousFullname))</td>
                             }
                             @if (!Model.OldCodes.All(c => string.IsNullOrWhiteSpace(c.RelationshipType)))
                             {
