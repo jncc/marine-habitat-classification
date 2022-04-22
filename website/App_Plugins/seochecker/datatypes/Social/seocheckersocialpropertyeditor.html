@@ -1,0 +1,104 @@
+﻿<div ng-controller="seoChecker.seoCheckerSocialPropertyEditorController">
+  <div ng-hide="editMode">
+    <div class="seocheckerSocialBox">
+      <div class="seocheckersocialPreview">
+        <div class="seocheckersocialPreviewOptionsBar">
+          <span class="social socialbutton social-facebook activeSocialbutton"></span>
+          <span class="social socialbutton social-twitter "></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="editMode">
+    <seochecker-licenseinfo></seochecker-licenseinfo>
+    <div class="sc-row">
+      <label class="control-label"><localize key="seoCheckerSocialDataType_socialPreview"></localize></label>
+      <div class="snippetContainer">
+        <div class="seocheckerSocialBox">
+          <div class="seocheckersocialPreview">
+            <div class="seocheckersocialPreviewOptionsBar">
+              <div ng-repeat="o in model.value.config.socialNetworkOptionsConfig" ng-class="setClass(o)" ng-click="setActive(o, model.value.config.socialNetworkOptionsConfig)"></div>
+            </div>
+            <div ng-show="model.activeNetwork.alias==='facebook'">
+              <div class="seoCheckerFaceBookPreview seoCheckerFaceBookPreviewLandscape" ng-show="socialImageOrientation ==='Landscape' || socialImageOrientation ==='' ||socialImageOrientation ===null ">
+                <div class="seoCheckerFaceBookImageLandscape"><img ng-src="{{socialFacebookImage}}" ng-show="socialImageOrientation ==='Landscape'"/></div>
+                <div class="seoCheckerFaceBookText">
+                  <div class="seoCheckerFaceBookTitle" ng-bind-html-unsafe="formatOgTitle()"></div>
+                  <div class="seoCheckerFaceBookDescription" ng-bind-html-unsafe="formatOgDescription()"></div>
+                  <div class="seoCheckerFaceBookUrl">{{model.value.domain}}</div>
+                </div>
+              </div>
+              <div class="seoCheckerFaceBookPreview seoCheckerFaceBookPreviewPortrait" ng-show="socialImageOrientation ==='Portrait'">
+                <div class="seoCheckerFaceBookImagePortrait"><img ng-src="{{socialFacebookImage}}"/></div>
+                <div class="seoCheckerFaceBookText">
+                  <div class="seoCheckerFaceBookTitle" ng-bind-html-unsafe="formatOgTitle()"></div>
+                  <div class="seoCheckerFaceBookDescriptionPortrait" ng-bind-html-unsafe="formatOgDescription()"></div>
+                  <div class="seoCheckerFaceBookUrl">{{model.value.domain}}</div>
+                </div>
+              </div>
+            </div>
+            <div ng-show="model.activeNetwork.alias==='twitter'">
+              <div ng-show="model.activeNetwork.previewType==='summary_large_image'" class="seoCheckerTwitterLargePreview">
+                <div class="seoCheckerTwitterLargeImage"><img ng-src="{{socialTwitterLargeImage}}"/></div>
+                <div class="seoCheckerTwitterLargeContent">
+                  <div class="seoCheckerTwitterTitle" ng-bind-html-unsafe="formatTwitterTitle()"></div>
+                  <div class="seoCheckerTwitterLargeDesciption" ng-bind-html-unsafe="formatTwitterDescription()"></div>
+                  <div class="seoCheckerTwitterUrl">{{model.value.domain}}</div>
+                </div>
+              </div>
+              <div ng-show="model.activeNetwork.previewType==='summary'" class="seoCheckerTwitterPreview">
+                <div class="seoCheckerTwitterImage"><img ng-src="{{socialTwitterImage}}"/></div>
+                <div class="seoCheckerTwitterContent">
+                  <div class="seoCheckerTwitterTitle" ng-bind-html-unsafe="formatTwitterTitle()"></div>
+                  <div class="seoCheckerTwitterDesciption" ng-bind-html-unsafe="formatTwitterDescription()"></div>
+                  <div class="seoCheckerTwitterUrl">{{model.value.domain}}</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div ng-hide="model.value.config.hasSocialNetWorks" class="seoCheckerSocialNetworksError">
+            <p><localize key="seoCheckerSocialDataType_configurationError">Error</localize></p>.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div ng-show="model.activeNetwork.alias==='facebook'">
+      <div class="sc-row" ng-show="model.value.config.showTitle">
+        <label class="control-label"><localize key="seoCheckerSocialDataType_socialOGTitle"></localize><small><localize key="seoCheckerSocialDataType_socialOGTitleDescription"></localize></small></label>
+        <div class="sc-control">
+          <input type="text" class="umb-editor umb-textstring" ng-model="model.value.ogTitle"/>
+        </div>
+      </div>
+
+      <div class="sc-row" ng-show="model.value.config.showDescription">
+        <label class="control-label"><localize key="seoCheckerSocialDataType_socialOGDescription"></localize><small><localize key="seoCheckerSocialDataType_socialOGDescriptionDescription"></localize></small></label>
+        <div class="sc-control">
+          <textarea class="umb-editor umb-textarea" rows="10" ng-model="model.value.ogDescription" />
+        </div>
+      </div>
+    </div>
+    <div ng-show="model.activeNetwork.alias==='twitter'">
+      <div class="sc-row" ng-show="model.value.config.showTitle">
+        <label class="control-label"><localize key="seoCheckerSocialDataType_socialTwitterTitle"></localize><small><localize key="seoCheckerSocialDataType_socialTwitterDescription"></localize></small></label>
+        <div class="sc-control">
+          <input type="text" class="umb-editor umb-textstring" ng-model="model.value.twitterTitle"/>
+        </div>
+      </div>
+
+      <div class="sc-row" ng-show="model.value.config.showDescription">
+        <label class="control-label"><localize key="seoCheckerSocialDataType_socialTwitterDescription"></localize><small><localize key="seoCheckerSocialDataType_socialTwitterDescriptionDescription"></localize></small></label>
+        <div class="sc-control">
+          <textarea class="umb-editor umb-textarea" rows="10" ng-model="model.value.twitterDescription" />
+        </div>
+      </div>
+    </div>
+    <div class="sc-row" ng-show="model.value.config.hasSocialNetWorks">
+      <label class="control-label"><localize key="seoCheckerSocialDataType_socialImage"></localize><small><localize key="seoCheckerSocialDataType_socialImageDescription"></localize></small></label>
+      <div class="sc-control">
+        <umb-editor model="imagePicker.model"></umb-editor>
+      </div>
+    </div>
+  </div>
+</div>

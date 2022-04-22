@@ -1,0 +1,29 @@
+﻿<div class="umb-panel" ng-controller="seoChecker.DeleteConfigurationIssuesController" ng-cloak>
+    <umb-load-indicator ng-if="!loaded"></umb-load-indicator>
+    <form name="frm" ng-show="loaded" novalidate
+          val-form-manager>
+        <umb-editor-view>
+
+            <umb-editor-header name="model.pageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <p class="umb-abstract"><localize key="seoCheckerBulkActions_bulkActionDeleteConfirmMessage"></localize></p>
+                
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <umb-confirm on-confirm="confirm"
+                                 on-cancel="cancel">
+                    </umb-confirm>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+
+        </umb-editor-view>
+    </form>
+</div>

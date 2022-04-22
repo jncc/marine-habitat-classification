@@ -1,0 +1,40 @@
+﻿<div ng-controller="seoChecker.emailSettingsController" ng-cloak>
+    <form ng-show="loaded">
+        <umb-editor-view>
+
+            <umb-editor-header name="model.pageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <seochecker-licenseinfo></seochecker-licenseinfo>
+                <div class="alert alert-error" ng-if="model.isInValid">
+                    <ul>
+                        <li ng-repeat="validationMessage in model.validationMessages">{{validationMessage}}</li>
+                    </ul>
+                </div>
+                <p class="umb-abstract" ng-bind-html="model.intro">
+
+                </p>
+                <umb-tabs-content class="form-horizontal" view="true">
+                        <umb-property property="property"
+                                      ng-repeat="property in model.tabs[0].properties">
+                            <umb-editor model="property"></umb-editor>
+                        </umb-property>
+                </umb-tabs-content>
+
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <a class="btn btn-success" ng-click="save()"><localize key="buttons_save">Save</localize></a>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+
+        </umb-editor-view>
+
+    </form>
+</div>

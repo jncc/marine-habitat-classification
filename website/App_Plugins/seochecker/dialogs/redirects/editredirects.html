@@ -1,0 +1,45 @@
+﻿<div class="umb-panel" ng-controller="seoChecker.EditRedirectsController" ng-cloak>
+    <umb-load-indicator ng-if="!loaded"></umb-load-indicator>
+    <form name="frm" ng-show="loaded" novalidate
+          val-form-manager>
+        <umb-editor-view>
+
+            <umb-editor-header name="model.pageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               tabs="model.tabs"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <div class="alert alert-error" ng-if="model.isInValid">
+                    <ul>
+                        <li ng-repeat="validationMessage in model.validationMessages">{{validationMessage}}</li>
+                    </ul>
+                </div>
+                <umb-tabs-content>
+                  <umb-tab id="tab{{tab.id}}" ng-repeat="tab in model.tabs" rel="{{tab.id}}">
+                    <umb-property ng-repeat="property in tab.properties" property="property">
+                      <umb-editor model="property"></umb-editor>
+                    </umb-property>
+                  </umb-tab>
+                </umb-tabs-content>
+
+                
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <div class="umb-pane btn-toolbar umb-btn-toolbar">
+                        <div class="control-group umb-control-group">
+                            <a href class="btn btn-link" ng-click="onCancel()"><localize key="general_cancel">Cancel</localize></a>
+                            <a href class="btn btn-primary" ng-click="save()"><localize key="buttons_save">Save</localize></a>
+                        </div>
+                    </div>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+
+        </umb-editor-view>
+    </form>
+</div>

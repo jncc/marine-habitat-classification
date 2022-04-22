@@ -1,0 +1,9 @@
+﻿<div>
+    <div class="sc-first-row"><label class="control-label"><localize key="seoCheckerRobotsTxtDataType_robotsIndex"></localize><small><localize key="seoCheckerRobotsTxtDataType_robotsIndexDescription"></localize></small></label>
+        <select ng-model="model.value.index.selectedValue" ng-options="c.value as c.name for c in model.value.index.values"></select>
+    </div>
+    <div class="sc-row">
+        <label class="control-label"><localize key="seoCheckerRobotsTxtDataType_robotsNoFollow"></localize><small><localize key="seoCheckerRobotsTxtDataType_robotsNoFollowDescription"></localize></small></label>
+        <select ng-model="model.value.follow.selectedValue" ng-options="c.value as c.name for c in model.value.follow.values"></select>
+    </div>
+ </div>

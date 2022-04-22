@@ -1,0 +1,39 @@
+﻿@model SEOChecker.Core.Models.Mail.NotificationModel
+@{
+    <html>
+    <body style="font-family: Verdana; font-size: 12px;">
+    Hi @Model.User,
+    <p>On @Model.Executed SEO Checker found some issues on your site. Please login to your Umbraco installation and fix the issues. Open issues:
+    </p>
+    <table>
+        <tr>
+            <td style="font-family: Verdana; font-size: 12px;">Validation issues</td>
+            <td style="font-family: Verdana; font-size: 12px;">
+                @Model.ValidationIssuesCount
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Verdana; font-size: 12px;">Configuration issues</td>
+            <td style="font-family: Verdana; font-size: 12px;">
+                @Model.ConfigurationIssuesCount
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family: Verdana; font-size: 12px;">Inbound link issues</td>
+            <td style="font-family: Verdana; font-size: 12px;">
+                @Model.InboundLinkIssuesCount
+            </td>
+        </tr>
+    </table>
+        @if (Model.ValidationQueueCount > 0)
+        {
+            <p>
+                The validation queue contained @Model.ValidationQueueCount item(s) at the moment of sending this email.
+            </p>
+        }
+  
+    <p>Thanks,</p>
+    <p>SEO Checker bot</p>
+    </body>
+    </html>
+}

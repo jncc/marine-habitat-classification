@@ -1,0 +1,26 @@
+﻿@model SEOChecker.Core.Models.Mail.ScheduledTaskNotificationModel
+<html>
+<body style="font-family:Verdana;font-size:12px;">
+    Hi,
+    <p>
+        This is an automated mail to inform you that the scheduled validation task <strong>@Model.TaskName</strong> executed on @Model.Executed.<br />
+        @if (Model.Includechildren)
+        {
+            <text>Document</text> <strong>@Model.RootNodeName </strong>  <text> and children are added to the validation queue. </text>
+        }
+        else
+        {
+            <text>Document</text> <strong>@Model.RootNodeName </strong>  <text> is added to the validation queue. </text>
+        }
+
+    </p>
+    @if (Model.ItemsInValidationQueue > 0)
+    {
+        <p>
+            The validation queue contained @Model.ItemsInValidationQueue item(s) at the moment of sending this email.
+        </p>
+    }
+    <p>Thanks,</p>
+    <p>SEO Checker bot</p>
+</body>
+</html>

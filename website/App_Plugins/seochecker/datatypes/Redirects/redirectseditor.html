@@ -1,0 +1,44 @@
+﻿<div ng-controller="seoChecker.redirectsController" ng-cloack>
+    <div ng-hide="editMode">
+        <h3><localize key="redirectDataType_overviewTitle"></localize></h3>
+        <p><localize key="redirectDataType_overviewIntro"></localize></p>
+        <p ng-hide="redirects" ><localize key="redirectDataType_overviewNoResult"></localize></p>
+        <table class="seoOverviewTable" ng-show="redirects">
+            <thead>
+                <tr>
+                    <td><localize key="redirectDataType_overviewUrlHeader"></localize></td>
+                    <td><localize key="redirectDataType_overviewRedirectHeader"></localize></td>
+                    <td><localize key="redirectDataType_overviewLastReferer"></localize></td>
+                    <td><localize key="redirectDataType_overviewAccessedHeader"></localize></td>
+                    <td><localize key="redirectDataType_overviewLastTimeAccessedHeader"></localize></td>
+                    <td>&nbsp;</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="redirect in redirects" ng-class-even="'seoOverviewRowAlt'" ng-class-odd="'seoOverviewRow'">
+                    <td><a href="/{{redirect.url}}" target="_blank">/{{redirect.url}}</a></td>
+                    <td><a href="{{redirect.niceUrl}}" target="_blank">{{redirect.niceUrl}}</a></td>
+                    <td><a href="{{redirect.lastReferer}}" target="_blank">{{redirect.lastReferer}}</a></td>
+                    <td>{{redirect.timesAccessed}}</td>
+                    <td>{{redirect.lastTimeAccessed}}</td>
+                    <td><div class ="actionColumn"><span class="icon-edit actionButton" ng-click="setEditMode(redirect.notFoundId)">&nbsp;</span> <span class="icon-delete actionButton" ng-click="deleteRedirect(redirect.notFoundId)">&nbsp;</span></div></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <a class="btn" ng-click="setEditMode(0)"><localize key="redirectDataType_overviewCreateButton"></localize></a>
+    </div>
+    <div ng-show="editMode">
+        <input type="hidden" ng-model="model.value.notFoundId" />
+        <h3><localize key="redirectDataType_editTitle"></localize></h3>
+        <p><localize key="redirectDataType_editIntro"></localize></p>
+        <strong><span class="formError" val-msg-for="urlTextBox" ng-show="validationResult.redirectExists"><localize key="redirectDataType_editurlExistsError"></localize></span></strong>
+        <div class="sc-row">
+            <label class="sc-label" for="urlTextBox"><localize key="redirectDataType_editOldUrlField"></localize><small><localize key="redirectDataType_editOldUrlFieldDescription"></localize></small></label>
+            <input type="text" name="urlTextBox" ng-model="model.value.url" class="umb-editor umb-textstring"  val-showerror="validationResult.urlInvalid"/><span class="formError" val-msg-for="urlTextBox" ng-show="validationResult.urlInvalid" ><localize key="redirectDataType_editUrlRequiredError"></localize></span>
+        </div>
+        <div class="sc-row">
+            <a class="btn btn-success" ng-click="submitRedirect()"><localize key="buttons_save"></localize></a> <a class="btn" ng-click="cancelEditMode()"><localize key="general_cancel"></localize></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿<div ng-controller="seoChecker.seoCheckerPropertyEditorController" class="seoCheckerPropertyEditor" ng-cloack>
+    <div ng-show="editMode">
+        <seochecker-licenseinfo></seochecker-licenseinfo>
+        <div class="sc-row">
+            <label class="control-label"><localize key="seoCheckerDataType_googleSnippet"></localize></label>
+            <div class="snippetContainer">
+                <a class="snippetTitle" href="{{model.value.snippetUrl}}" ng-bind-html-unsafe="formatTitle()"></a><br />
+                <a target="_blank" href="{{model.value.snippetUrl}}" class="snippetUrl" ng-bind-html-unsafe="formatSnippetUrl()"></a>
+                <br><span class="snippetDescription" ng-bind-html-unsafe="formatDescription()"></span>
+            </div>
+        </div>
+        <div class="sc-row">
+            <label class="control-label"><localize key="seoCheckerDataType_focusKeyword"></localize><small><localize key="seoCheckerDataType_focusKeywordDescription"></localize></small></label>
+            <div class="sc-control">
+                <input type="text" class="umb-editor umb-textstring" ng-model="model.value.focusKeyword" /><a ng-click="openKeywordSelectionTool()" class="keywordSelectionButton"><i class="icon-info"></i></a>
+            </div>
+        </div>
+        <!--<div class="sc-row" ng-show="model.config.showTitle">-->
+        <div class="sc-row" ng-show="model.value.config.showTitle">
+            <label class="control-label"><localize key="seoCheckerDataType_seoTitle"></localize><small><localize key="seoCheckerDataType_seoTitleDescription"></localize></small></label>
+            <div class="sc-control">
+                <input type="text" class="umb-editor umb-textstring" ng-model="model.value.seoTitle" ng-change="validateTitleLength()" />
+                <div class="sc-caption" ng-show="titleLengthVisible()">
+                    <div class="seoCharacterValidation">
+                        <small><span ng-bind="seoTitleLength" ng-class="seoTitleLengthClass"></span> {{model.config.titleCharCountSuffix}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sc-row" ng-show="model.value.config.showKeywords">
+            <label class="control-label"><localize key="seoCheckerDataType_seoKeywords"></localize><small><localize key="seoCheckerDataType_seoKeywordsDescription"></localize></small></label>
+            <div class="sc-control">
+                <input type="text" class="umb-editor umb-textstring" ng-model="model.value.seoKeywords" />
+            </div>
+        </div>
+        <div class="sc-row" ng-show="model.value.config.showDescription">
+            <label class="control-label"><localize key="seoCheckerDataType_seoDescription"></localize><small><localize key="seoCheckerDataType_seoDescriptionDescription"></localize></small></label>
+            <div class="sc-control">
+                <textarea class="umb-editor umb-textarea" rows="10" ng-model="model.value.seoDescription" ng-change="validateDescriptionLength()" />
+                <div class="sc-caption" ng-show="descriptionLengthVisible()">
+                    <div class="seoCharacterValidation">
+                        <small><span ng-bind="seoDescriptionLength" ng-class="seoDescriptionLengthClass"></span> {{model.config.descriptionCharCountSuffix}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sc-row">
+            <label class="control-label sc-label"><span ng-show="showValidationResult"><localize key="seoCheckerDataType_validationResult"></localize></span></label>
+            <div ng-show="validatingPage" class="seoLoader"></div>
+            <div ng-show="validationResult">
+                <ul class="keywordValidation">
+                    <li ng-repeat="item in validationResult" class="{{item.css}}" ng-bind-html-unsafe="item.message"></li>
+                </ul>
+            </div>
+            <div class="sc-control"><span class="btn" ng-click="doValidatePage()" ng-hide="validatingPage"><localize key="seoCheckerDataType_seoValidateButton"></localize></span></div>
+        </div>
+    </div>
+    <div ng-hide="editMode">
+        <a class="snippetTitle" href="#"><strong>SEO</strong> Checker Property</a><br />
+        <a target="_blank" href="#" class="snippetUrl">http://www.soetemansoftware.nl/</a>
+        <br><span class="snippetDescription">Use SEOChecker property editor for Google preview and Validation feedback</span>
+    </div>
+</div>

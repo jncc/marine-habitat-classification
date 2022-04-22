@@ -1,0 +1,86 @@
+﻿<div ng-controller="seoChecker.dashboardController" ng-cloak>
+    <div ng-if="model.showLicenseDashboard">
+        <h3>Thank you for trying SEO Checker</h3>
+        <p>To purchase this product, simply go to the <a href="https://soetemansoftware.nl/seo-checker" target="_blank" class="seocheckerInfoLink">our website</a> and you're up and running in minutes!<br/>
+            If you've already purchased a license, you can install it by downloading it <a href="https://soetemansoftware.nl/myprofile" target="_blank"  class="seocheckerInfoLink">from your profile</a> and upload it below, or add it manually to the /app_plugins/seochecker/config/ folder of the Umbraco installation.</p>
+        <div class="alert alert-error" ng-if="model.isInValid">
+            <ul>
+                <li ng-repeat="validationMessage in model.validationMessages"><span ng-bind-html="validationMessage"> </span></li>
+            </ul>
+        </div>
+        <p><input type="file" file-model="model.value" id="selectLicenseFile" /></p>
+        <p><br/><button class="btn btn-success" ng-click="upload()">Upload license</button></p>
+    </div>
+    <div class="seocheckerDashboardRow">
+        <h3>SEO Checker online resources</h3>
+        <p>Have a question, want to give know every feature of the product, give feedback or report a bug. Use the resources below</p>
+        <div class="seocheckerDashboardColumn">
+            <a href="https://soetemansoftware.nl/seo-checker/documentation" target="_blank" class="seocheckerDashboardBox">
+
+                <div class="seocheckerDashboardBoxTitle">Documentation</div>
+
+                <div class="seocheckerDashboardBoxDescription">Download the SEOChecker user manual and get to know all the features</div>
+
+            </a>
+        </div>
+        <div class="seocheckerDashboardColumn">
+            <a href="https://our.umbraco.org/projects/website-utilities/seo-checker/" target="_blank" class="seocheckerDashboardBox">
+
+                <div class="seocheckerDashboardBoxTitle">Forum</div>
+
+                <div class="seocheckerDashboardBoxDescription">Have a question? Just ask on the our.umbraco.org forums.</div>
+
+            </a>
+        </div>
+        <div class="seocheckerDashboardColumn">
+            <a href="mailto:support@soetemansoftware.nl"  class="seocheckerDashboardBox">
+
+                <div class="seocheckerDashboardBoxTitle">Need support?</div>
+
+                <div class="seocheckerDashboardBoxDescription">Just send us an email and we will get back to you.</div>
+
+            </a>
+        </div>
+        <div class="seocheckerDashboardColumn">
+            <a href="https://soetemansoftware.nl/seo-checker/release-notes" target="_blank" class="seocheckerDashboardBox">
+
+                <div class="seocheckerDashboardBoxTitle">Release notes</div>
+
+                <div class="seocheckerDashboardBoxDescription">Check the release notes to find out about the latest changes</div>
+
+            </a>
+        </div>
+    </div>
+    <div class="seocheckerDashboardRow">
+        <h3>Tutorials</h3>
+        <p>We've recorded several video's that shows you how SEOChecker</p>
+        <div class="seocheckerDashboardColumn">
+            <a href="https://player.vimeo.com/video/270038894" target="_blank" class="seocheckerDashboardBox">
+                <div class="seocheckerDashboardBoxTitle">SEO Checker for content editors</div>
+                <div class="seocheckerDashboardBoxDescription"><img src="https://i.vimeocdn.com/video/701084934_780x439.jpg" width="200" height="127" border="0"/>
+                </div>
+            </a>
+        </div>
+        <div class="seocheckerDashboardColumn">
+            <a href="https://vimeo.com/270047687" target="_blank" class="seocheckerDashboardBox">
+                <div class="seocheckerDashboardBoxTitle">Validate pages</div>
+                <div class="seocheckerDashboardBoxDescription"><img src="https://i.vimeocdn.com/video/701095678_780x439.jpg" width="200" height="127" border="0"/>
+                </div>
+            </a>
+        </div>
+        <div class="seocheckerDashboardColumn">
+            <a href="https://vimeo.com/270053671" target="_blank" class="seocheckerDashboardBox">
+                <div class="seocheckerDashboardBoxTitle">Fix inbound link errors</div>
+                <div class="seocheckerDashboardBoxDescription"><img src="https://i.vimeocdn.com/video/701102512_780x439.jpg" width="200" height="127" border="0"/>
+                </div>
+            </a>
+        </div>
+        <div class="seocheckerDashboardColumn">
+            <a href="https://vimeo.com/270051141" target="_blank" class="seocheckerDashboardBox">
+                <div class="seocheckerDashboardBoxTitle">Redirect manager</div>
+                <div class="seocheckerDashboardBoxDescription"><img src="https://i.vimeocdn.com/video/701099400_780x439.jpg" width="200" height="127" border="0"/>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
