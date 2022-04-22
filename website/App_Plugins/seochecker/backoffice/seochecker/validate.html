@@ -1,0 +1,56 @@
+﻿<div ng-controller="seoChecker.validateController" ng-cloak>
+    <umb-load-indicator ng-if="!loaded"></umb-load-indicator>
+    <form ng-show="loaded">
+        <umb-editor-view>
+
+            <umb-editor-header name="model.displayPageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <seochecker-licenseinfo></seochecker-licenseinfo>
+                <div class="alert alert-error" ng-if="model.isInValid">
+                    <ul>
+                        <li ng-repeat="validationMessage in model.validationMessages">{{validationMessage}}</li>
+                    </ul>
+                </div>
+                <p class="umb-abstract">
+                    <localize key="seoCheckerValidate_validationIntro">Adds the selected documents to validation queue. Only documents that are published and have a template assigned will be validated!</localize>
+                </p>
+                <umb-tabs-content class="form-horizontal" view="true">
+                    <umb-property property="property"
+                                  ng-repeat="property in model.tabs[0].properties">
+                        <umb-editor model="property"></umb-editor>
+                    </umb-property>
+                    <div ng-show="model.scheduledValidation">
+                        <h4 class="seocheckerSubTitle">Scheduled validation options</h4>
+                        <umb-property property="property"
+                                      ng-repeat="property in model.tabs[1].properties">
+                            <umb-editor model="property"></umb-editor>
+                        </umb-property>
+                    </div>
+                </umb-tabs-content>
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <div ng-hide="model.scheduledValidation">
+                        <umb-button-group ng-if="buttonGroup"
+                                          default-button="buttonGroup.defaultButton"
+                                          sub-buttons="buttonGroup.subButtons"
+                                          direction="up"
+                                          float="right">
+                        </umb-button-group>
+                    </div>
+                    <div ng-show="model.scheduledValidation">
+                        <a  class="btn btn-primary" ng-click="save()"><localize key="buttons_save">Save</localize></a>
+                    </div>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+
+        </umb-editor-view>
+    </form>
+</div>

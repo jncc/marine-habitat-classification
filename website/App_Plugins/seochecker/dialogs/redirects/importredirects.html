@@ -1,0 +1,77 @@
+﻿<div class="umb-panel" ng-controller="seoChecker.ImportRedirectsController" ng-cloak>
+    <umb-load-indicator ng-if="!loaded"></umb-load-indicator>
+    <form name="frm" ng-show="loaded" novalidate
+          val-form-manager>
+        <umb-editor-view>
+
+            <umb-editor-header name="model.pageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <seochecker-licenseinfo></seochecker-licenseinfo>
+                <div class="alert alert-error" ng-if="model.isInValid">
+                    <ul>
+                        <li ng-repeat="validationMessage in model.validationMessages">{{validationMessage}}</li>
+                    </ul>
+                </div>
+                <umb-tabs-content>
+                    <div ng-hide="showResult()">
+                        <div ng-hide="model.fileSelected">
+                            <umb-property property="property"
+                                          ng-repeat="property in getTabByName('defaultTab').properties">
+                                <umb-editor model="property"></umb-editor>
+                            </umb-property>
+                            <div ng-show="model.showCsvOptions">
+                                <umb-property property="property"
+                                              ng-repeat="property in getTabByName('datasourcePropertiesCsv').properties">
+                                    <umb-editor model="property"></umb-editor>
+                                </umb-property>
+                            </div>
+
+                        </div>
+                        <div ng-show="model.fileSelected">
+                            <div ng-show="model.showExcelOptions">
+                                <umb-property property="property"
+                                              ng-repeat="property in getTabByName('datasourcePropertiesExcel').properties">
+                                    <umb-editor model="property"></umb-editor>
+                                </umb-property>
+                            </div>
+                            <umb-property property="property"
+                                          ng-repeat="property in getTabByName('mappingProperties').properties">
+                                <umb-editor model="property"></umb-editor>
+                            </umb-property>
+                        </div>
+                    </div>
+                    <div ng-show="showResult()" class="seocheckerDialogTextMargin">
+                        <h4><localize key="seoCheckerImportRedirects_redirectImportedResultMessage">Imported</localize></h4>
+                        <strong><localize key="seoCheckerImportRedirects_ImportedResult">Imported</localize>:</strong>{{model.recordsImported}}
+                        <div ng-show="hasImportErrors()">
+                            <strong><localize key="seoCheckerImportRedirects_ImportedErrors">Export</localize>:</strong>{{model.importErrors}}<br/>
+                            <p><br /><localize key="seoCheckerImportRedirects_ImportedErrorsDescription">Export</localize></p>
+                            <p><br/><button ng-click="exportErrors()"><localize key="seoCheckerImportRedirects_ExportErrorsButton">Export</localize></button></p>
+                        </div>
+                    </div>
+                </umb-tabs-content>
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <div class="umb-pane btn-toolbar umb-btn-toolbar">
+                        <div class="control-group umb-control-group">
+                            <a href class="btn btn-link" ng-click="onCancel()" ng-hide="showResult()"><localize key="general_cancel">Cancel</localize></a>
+                            <a href class="btn btn-primary" ng-click="upload()" ng-show="showUploadButton()"><localize key="seoCheckerImportRedirects_uploadButton">Upload</localize></a>
+                            <a href class="btn btn-primary" ng-click="import()" ng-show="showImportButton()"><localize key="seoCheckerImportRedirects_importButton">Import</localize></a>
+                            <a href class="btn btn-primary" ng-click="close()" ng-show="showResult()"><localize key="seoCheckerGeneral_close">Close</localize></a>
+
+                        </div>
+                    </div>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+
+        </umb-editor-view>
+    </form>
+</div>

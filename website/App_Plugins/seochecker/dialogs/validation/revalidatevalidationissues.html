@@ -1,0 +1,30 @@
+﻿<div class="umb-panel" ng-controller="seoChecker.RevalidateValidationIssuesController" ng-cloak>
+    <umb-load-indicator ng-if="!loaded"></umb-load-indicator>
+    <form name="frm" ng-show="loaded" novalidate
+          val-form-manager>
+        <umb-editor-view>
+
+            <umb-editor-header name="model.pageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <p ng-bind-html="model.displayMessage"></p>
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <div class="umb-pane btn-toolbar umb-btn-toolbar">
+                        <div class="control-group umb-control-group">
+                            <a href class="btn btn-link" ng-click="onCancel()"><localize key="general_cancel">Cancel</localize></a>
+                        </div>
+                    </div>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+
+        </umb-editor-view>
+    </form>
+</div>

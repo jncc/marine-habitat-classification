@@ -1,0 +1,16 @@
+﻿<div ng-controller="seoChecker.propertySelectorController" noDirtyCheck>
+    <table border="0" cellpadding="5" cellspacing="0">
+        <tbody>
+        <tr>
+            <td>
+                <select size="8" name="availableProperties" noDirtyCheck multiple="multiple" style="width: 275px;height:162px;" ng-model="properties.selectItems" ng-options="prop.propertyAlias for prop in properties.availableProperties"></select>
+            </td>
+            <td><span class="icon-arrow-right SEOCheckerIconButton" ng-click="selectItems()"></span><br><br><span class="icon-arrow-left SEOCheckerIconButton" ng-click="deSelectItems()"></span></td>
+            <td>
+                <select size="8" name="selectedProperties" noDirtyCheck multiple="multiple" style="width: 275px;height:162px;" ng-model="properties.deselectItems" ng-options="prop.propertyAlias for prop in properties.selectedProperties"></select>
+            </td>
+            <td><span class="icon-arrow-up SEOCheckerIconButton" ng-click="moveUp()"></span><br><br><span class="icon-arrow-down SEOCheckerIconButton" ng-click="moveDown()"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

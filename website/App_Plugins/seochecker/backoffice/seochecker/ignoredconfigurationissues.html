@@ -1,0 +1,98 @@
+﻿<div ng-controller="seoChecker.ignoredConfigurationController" ng-cloak>
+    <umb-load-indicator ng-if="!loaded"></umb-load-indicator>
+    <form ng-if="loaded">
+        <umb-editor-view>
+
+            <umb-editor-header name="model.pageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+
+            <umb-editor-container>
+                <seochecker-licenseinfo></seochecker-licenseinfo>
+                <div class="alert alert-error" ng-if="model.isInValid">
+                    <ul>
+                        <li ng-repeat="validationMessage in model.validationMessages">{{validationMessage}}</li>
+                    </ul>
+                </div>
+                <div class="flex justify-end seoSearchActionBar">
+                    <div ng-if="anyItemSelected()">
+                        <umb-button type="button"
+                                    button-style="link"
+                                    label-key="@delete"
+                                    icon="icon-trash"
+                                    action="deleteSelected()"
+                                    disabled="actionInProgress">
+                        </umb-button>
+                    </div>
+                    <div ng-if="!anyItemSelected()">
+                        <input class="form-control search-input"
+                               ng-if="showResult()"
+                               type="text"
+                               localize="placeholder"
+                               placeholder="@general_typeToSearch"
+                               ng-model="model.filter"
+                               ng-change="filter()"
+                               prevent-enter-submit
+                               no-dirty-check>
+                    </div>
+                </div>
+                <div ng-if="model.hasRecords">
+                    <div class="umb-table">
+                        <div class="umb-table-head">
+                            <div class="umb-table-row">
+                                <div class="umb-table-cell"><input type="checkbox" ng-model="model.selectAll" ng-change="handleSelectAll()" /></div>
+                                <div class="umb-table-cell" ng-click="sort('documentTitle')">
+                                    <localize key="seoCheckerConfigurationIssues_overviewIssueTitle"></localize>
+                                    <i class="umb-table-head__icon icon" ng-class="{'icon-navigation-up': isSortDirection('documentTitle', 'asc'), 'icon-navigation-down': isSortDirection('documentTitle', 'desc')}"></i>
+                                </div>
+                                <div class="umb-table-cell " ng-click="sort('errorDescription')">
+                                    <localize key="seoCheckerConfigurationIssues_overviewIssueDescription"></localize>
+                                    <i class="umb-table-head__icon icon" ng-class="{'icon-navigation-up': isSortDirection('errorDescription', 'asc'), 'icon-navigation-down': isSortDirection('errorDescription', 'desc')}"></i>
+                                </div>
+                                <div class="umb-table-cell seocheckersmallColumn" ng-click="sort('category')">
+                                    <localize key="seoCheckerConfigurationIssues_overviewIssueCategory"></localize>
+                                    <i class="umb-table-head__icon icon" ng-class="{'icon-navigation-up': isSortDirection('category', 'asc'), 'icon-navigation-down': isSortDirection('category', 'desc')}"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="umb-table-body">
+                            <div class="umb-table-row" ng-repeat="entry in model.data">
+                                <div class="umb-table-cell"><input type="checkbox" ng-model="entry.selected" ng-checked="entry.selected" /></div>
+                                <div class="umb-table-cell" ng-bind-html="entry.title"></div>
+                                <div class="umb-table-cell">
+                                    <div class="seocheckerMultilineTableColumn" ng-bind-html="entry.errorDescription"></div>
+                                </div>
+                                <div class="umb-table-cell seocheckersmallColumn">{{entry.category}}</div>
+                            </div>
+                        </div>
+                        <div>
+
+                        </div>
+
+                    </div>
+                    <div class="flex justify-end">
+                        <umb-pagination ng-if="model.paging.pageCount"
+                                        page-number="model.paging.currentPage"
+                                        total-pages="model.paging.pageCount"
+                                        on-next="goToPage"
+                                        on-prev="goToPage"
+                                        on-go-to-page="goToPage">
+                        </umb-pagination>
+                        <div class="seocheckerRecordCount">
+                            <div ng-show="model.allowRecordCountChange"><select name="recordcountDropdown" class="seocheckerPagingDropdown" ng-change="setRecordCount()" ng-model="model.paging.recordsPerPage" ng-options="c.maxRecords as c.description for c in model.paging.recordsPerPageList" /> records per page</div>
+                        </div>
+                    </div>
+                </div>
+                <umb-empty-state ng-if="model.hasRecords ===false "
+                                 position="center">
+                    {{model.noRecordsMessage}}
+                </umb-empty-state>
+            </umb-editor-container>
+
+
+        </umb-editor-view>
+    </form>
+</div>

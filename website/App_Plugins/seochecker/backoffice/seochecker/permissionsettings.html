@@ -1,0 +1,52 @@
+﻿<div ng-controller="seoChecker.permissionSettingsController" ng-cloak>
+    <form name="frm" ng-show="loaded" novalidate
+          val-form-manager>
+        <umb-editor-view>
+
+            <umb-editor-header name="model.pageName"
+                               name-locked="true"
+                               hide-icon="true"
+                               tabs="model.tabs"
+                               hide-description="true"
+                               hide-alias="true">
+            </umb-editor-header>
+            <umb-editor-container>
+                <seochecker-licenseinfo></seochecker-licenseinfo>
+                <div class="alert alert-error" ng-if="model.isInValid">
+                    <ul>
+                        <li ng-repeat="validationMessage in model.validationMessages">{{validationMessage}}</li>
+                    </ul>
+                </div>
+                <p class="umb-abstract"><localize key="seoCheckerPermissionSettings_intro"></localize></p>
+                <div class="umb-table">
+                    <div class="umb-table-head">
+                        <div class="umb-table-row">
+                            <div class="umb-table-cell">&nbsp;</div>
+                            <div class="umb-table-cell">&nbsp;</div>
+                            <div class="umb-table-cell"  ng-repeat="role in model.roles">
+                                {{role}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="umb-table-body">
+                        <div class="umb-table-row -solid" ng-repeat="pt in model.permissionTypes">
+                            <div class="umb-table-cell">&nbsp;</div>
+                            <div class="umb-table-cell">{{pt.name}}</div>
+                            <div class="umb-table-cell" ng-repeat="role in pt.roles">
+                                <input type="checkbox" ng-model="role.hasAccess" no-Dirty-Check/>                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </umb-editor-container>
+
+            <umb-editor-footer>
+                <umb-editor-footer-content-right>
+                    <a class="btn btn-success" ng-click="save()"><localize key="buttons_save">Save</localize></a>
+                </umb-editor-footer-content-right>
+            </umb-editor-footer>
+
+        </umb-editor-view>
+    </form>
+</div>

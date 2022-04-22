@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="nl" intName="Dutch" localName="Nederlands" lcid="19" culture="nl-NL">
+	<creator>
+		<name>Soeteman software</name>
+		<link>https://github.com/rsoeteman/seochecker-resources</link>
+	</creator>
+	<area alias="sections">
+		<key alias="seochecker">SEO Checker</key>
+	</area>
+	<area alias="seoCheckerGeneral">
+		<key alias="defaultTab">Default</key>
+		<key alias="nodePickerChoose">Selecteer...</key>
+		<key alias="notificationError">Fout</key>
+		<key alias="notificationSaved">Saved</key>
+		<key alias="notificationProcessed">Processed</key>
+		<key alias="requiredSuffix">is verplicht</key>
+		<key alias="invalidSuffix">is niet correct ingevuld</key>
+		<key alias="crudLicenseError">Sorry you can't update without fixing the license issue first.</key>
+		<key alias="deleteConfirm">Weet u zeker dat u wilt verwijderen?</key>
+		<key alias="bulkActionIgnore">Ignore this issue next time.</key>
+		<key alias="currentSelectedFile">Geselecteerd bestand:</key>
+		<key alias="close">Sluiten</key>
+	</area>
+	<area alias="seoCheckerTree">
+		<key alias="Tree_Validation">Valideer documenten</key>
+		<key alias="Tree_Queue">Validatie wachtrij</key>
+		<key alias="Tree_Notifications">Mijn notificaties</key>
+		<key alias="Tree_RedirectManager">Redirect instellingen</key>
+		<key alias="Tree_Issues">Issues</key>
+		<key alias="Tree_Issues_ValidationIssues">Validatie fouten</key>
+		<key alias="Tree_Issues_InboundlinkIssues">Inkomende link fouten</key>
+		<key alias="Tree_Issues_ConfigurationIssues">Configuratie fouten</key>
+		<key alias="Tree_Issues_IgnoredValidationIssues">Genegeerde validatie fouten</key>
+		<key alias="Tree_Issues_IgnoredInboundlinkIssues">Genegeerde inkomende link fouten</key>
+		<key alias="Tree_Issues_IgnoredConfigurationIssues">Genegeerde configuratie fouten</key>
+		<key alias="Tree_Settings">Instellingen</key>
+		<key alias="Tree_Settings_IgnoreList"></key>
+		<key alias="Tree_Settings_GeneralSettings">Algemene instellingen</key>
+		<key alias="Tree_Settings_Email">Email instellingen</key>
+		<key alias="Tree_Settings_Email_ScheduledTask">Validatie emails</key>
+		<key alias="Tree_Settings_Email_UserNotification">Notificatie emails</key>
+		<key alias="Tree_Settings_Domain">Domein instellingen</key>
+		<key alias="Tree_Settings_Documenttype">Document type instellingen</key>
+		<key alias="Tree_Settings_SecuritySettings">Gebruikersgroep rechten</key>
+	</area>
+	<area alias="seoCheckerValidate">
+		<key alias="validationTitle">Valideer documenten</key>
+		<key alias="scheduledValidationTitle">Geplande validatie</key>
+		<key alias="validationIntro">Voeg de geselecteerde documenten toe aan de validatie wachtrij. Alleen documenten die gepubliceerd zijn en een geldige template gekoppeld hebben worden gevalideerd.</key>
+		<key alias="rootNode">Start locatie</key>
+		<key alias="validateChildren">Inclusief kinderen</key>
+		<key alias="validationStart">Valideer</key>
+		<key alias="notificationHeader">Pagina's toegevoegd</key>
+		<key alias="notificationDescription">De pagina's zijn toegevoegd aan de validatie wachtrij</key>
+		<key alias="rootnodeValidationError">Selecteer een start locatie</key>
+		<key alias="scheduleButton">Schedule</key>
+		<key alias="scheduledTaskName">Geplande taak naam</key>
+		<key alias="scheduledTaskNotifyEmailAddress">Notificatie emailadres</key>
+		<key alias="scheduledTaskNotifyEmailAddressDescription">Gebruik een komma gescheiden lijst van email adressen indien u de email naar meerdere personen wilt versturen.</key>
+		<key alias="scheduledTaskValidateEvery">Interval</key>
+		<key alias="scheduledTaskConfigWarning">De e-mail configuratie voor geplande validatie is niet ingesteld. Zonder het configureren van de e-mail, kan een bevestigingsmail niet worden verstuurd wanneer de geplande validatie taak is voltooid. Configureerde geplande validatie &lt;a href="settings/emailsettings.aspx?alias=scheduledtask"&gt;email hier.&lt;/a&gt;</key>
+		<key alias="scheduledTaskNotifyNameRequired">Taak naam is verplicht</key>
+		<key alias="scheduledTaskNotifyEmailAddressRequired">Email adres is verplicht</key>
+		<key alias="scheduledTaskNotifyEmailAddressInvalid">1 of meer email adressen zijn verkeerd ingevoerd</key>
+		<key alias="scheduledTaskDaysRequired">Selecteer minimaal 1 dag</key>
+		<key alias="scheduledTaskLastTimeExecuted">Laatste keer uitgevoerd</key>
+		<key alias="scheduledTaskNextRuntime">Volgende uitvoering</key>
+	</area>
+	<area alias="seoCheckerValidationQueue">
+		<key alias="title">Validatie wachtrij</key>
+		<key alias="introDocuments">&lt;br/&gt;&lt;br/&gt;Onderstaand vind u &lt;strong&gt;{0} documenten&lt;/strong&gt; die wachten op validatie.</key>
+		<key alias="clearQueue">Clear all</key>
+		<key alias="gridTitle">Document</key>
+		<key alias="gridUrl">Url</key>
+		<key alias="gridDate">Toegevoegd op</key>
+		<key alias="noRecords">De validatie wachtrij is leeg</key>
+		<key alias="confirmMessage">Weet u zeker dat u alle items wilt verwijderen?</key>
+		<key alias="clearedDescription">Alle items zijn verwijderd uit de validation queue</key>
+		<key alias="clearedHeader">Verwijderd..</key>
+		<key alias="queueException">Sorry,  maar een fout trad op tijdens het valideren van de pagina's .&lt;br/&gt;Neem contact op met Soeteman Software via  e-mail: &lt;a href="mailto:support@soetemansoftware.nl"&gt;support@soetemansoftware.nl&lt;/a&gt;</key>
+		<key alias="queueNotRunning">De Validatie HTTP Module draait momenteel niet, dit betekend dat pagina's niet gevalideerd kunnen worden. Raadpleeg de handleiding hoe dit opgelost kan worden.</key>  
+	</area>
+	<area alias="seoCheckerMyNotifications">
+		<key alias="title">Notificaties</key>
+		<key alias="intro">Wanneer u notificaties aanzet zult u email notificaties ontvangen op de ingestelde tijd.&lt;br/&gt; E-mails worden verstuurd naar het e-mailadres is toegewezen aan uw account '{0}'.</key>
+		<key alias="notificationHeader">Notificatie instellingen</key>
+		<key alias="notificationDescription">Notificatie instellingen opgeslagen</key>
+	</area>
+	<area alias="seoCheckerEmailSettings">
+		<key alias="scheduledValidationTitle">Geplande validatie email instellingen</key>
+		<key alias="scheduledValidationDescription">Wijzig e-mail instellingen voor de e-mail die wordt verstuurd wanneer een geplande validatie wordt uitgevoerd en documenten worden toegevoegd aan de validatie wachtrij.</key>
+		<key alias="notificationTitle">Notificatie email instellingen</key>
+		<key alias="notificationDescription">Wijzig e-mail instellingen wanneer een e-mailbericht naar de gebruiker wordt gestuurd.</key>
+		<key alias="settingsSaved">Email instellingen zijn opgeslagen.</key>
+		<key alias="fromName">Afzender</key>
+		<key alias="fromAddress">Afzender adres</key>
+		<key alias="emailSubject">Onderwerp</key>
+		<key alias="emailTemplate">Template</key>
+		<key alias="emailTemplateDescription">Selecteer een template voor het genereren van het email bericht.</key>
+		<key alias="defaultNotificationSubject">SEO fouten rapport</key>
+		<key alias="defaultScheduledTaskSubject">Geplande validatie taak uitgevoerd</key>
+	</area>  
+	<area alias="seoCheckerDomainSettings">
+		<key alias="title">Domein instellingen</key>
+		<key alias="canonicalDomainTab">Canonical instellingen</key>
+		<key alias="notFoundTab">404 instellingen</key>
+		<key alias="robotsTxtTab">Robots.txt bestand</key>
+		<key alias="canonicalDomain">Canonical domein</key>
+		<key alias="canonicalDomainDescription">Dit domein zal worden gebruikt om de &lt;a href="http://support.google.com/webmasters/bin/answer.py?hl=en&amp;answer=139394" target="_blank"&gt; Canonical meta tag te genereren &lt;/a&gt; . Zorg ervoor dat dit het productie domein bevat. &lt;br/&gt; Laat leeg als u geen Canonical domein wilt gebruiken.</key>
+		<key alias="notFoundPageDescription">Specificeer de 404 pagina voor {0}.</key>
+		<key alias="robotsTxt">Robots.txt</key>
+		<key alias="robotsTxtDescription">Wijzig de instellingen voor het robots.txt bestand. Indien ongewijzigd zal de standaard robots.txt temnplate gebruikt worden. Om meer te leren over de robots.txt bestand bezoek &lt;a href="http://www.robotstxt.org/" target="_blank"&gt; robotstxt.org &lt;/a&gt;.</key>
+		<key alias="notificationHeader">Domein instellingen</key>
+		<key alias="notificationDescription">Domein instellingen zijn opgeslagen</key>
+	</area>   
+	<area alias="seoCheckerDocumentTypeSettings">
+		<key alias="title">Document type eigenschappen</key>
+		<key alias="dataTypeMissing">SEO Checker datatype is missing from this document type. SEO Checker cannot analyze keywords when editing content without this data type.</key>
+		<key alias="metadataSettingsTab">Metadata instellingen</key>
+		<key alias="socialSettingsTab">Social settings</key>
+		<key alias="robotsSettingsTab">Robot instellingen</key>
+		<key alias="xmlSitemapSettingsTab">Sitemap.xml instellingen</key>
+		<key alias="metadataDatatypeMissing">Het SEO Checker datatype ontbreekt op dit document type. SEO Checker kan geen keyword analyze uitvoeren zonder dit data type.</key>
+		<key alias="defaultTitleProperties">Standaard SEO titel eigenschappen</key>
+		<key alias="defaultTitlePropertiesDescription">Wanneer de SEO titel leeg is zal SEOChecker de geselecteerde properties gebruiken om de SEO titel te vullen. Gebruik in ieder geval de node naam omdat deze altijd gevuld is.</key>
+		<key alias="defaultDescriptionProperties">Default SEO omschrijving properties</key>
+		<key alias="defaultDescriptionPropertiesDescription">Wanneer de SEO omschrijving niet is ingevuld zal SEOChecker de geselecteerde properties gebruiken om de SEO omschrijving te vullen. Alleen de eerste paragraaf van een tekstveld wordt gebruikt.</key>
+		<key alias="titleTemplate">SEO titel template</key>
+		<key alias="titleTemplateDescription">Gebruik een template om de SEO titel in een specifiek formaat te tonen met gebruik van het SEO datatype en de SEO Checker library&lt;br/&gt;
+Voorbeeld&lt;br/&gt;&lt;br/&gt;
+[#@seoTitle] | SEO Checker&lt;br/&gt;
+[#@seoTitle] | [$siteName] &amp;copy; 2013&lt;br/&gt;&lt;br/&gt;
+Placeholder syntax&lt;br/&gt;
+[# propertyAlias]&lt;br/&gt;
+[$ propertyAlias] (recursive)&lt;br/&gt;&lt;br/&gt;
+standaard properties:&lt;br/&gt;
+@nodeName (naam van de pagina)&lt;br/&gt;
+@seoTitle (de SEO titel)</key>
+<key alias="ogTemplate">OG:Title template</key>
+		<key alias="ogtitleTemplateDescription">Use a template to display the title property in a specific format, used in the Facebook Datatype and Library&lt;br/&gt;
+		Syntax is the same as the metadata title template. When left empty The metadata template will be used.
+		</key>
+		<key alias="defaultSocialImageProperties">Default image properties</key>
+		<key alias="defaultSocialImagePropertiesDescription">When the image for social media is not set SEOChecker will use the selected properties to render the social media image tags.</key>
+		<key alias="defaultTwitterCardType">Twitter Card type</key>
+		<key alias="defaultTwitterCardTypeDescription">The type of twitter card to render.</key>
+		<key alias="defaultTwitterCardTypeRequired">Twitter card type is required</key>
+		<key alias="defaultTwitterCardTypeSummaryOption">Summary</key>
+		<key alias="defaultTwitterCardTypeSummaryLargeImageOption">Summary Card with large image</key>
+		<key alias="twitterTemplate">Twitter:Title template</key>
+		<key alias="twitterTemplateDescription">Use a template to display the title property in a specific format, used in the Facebook Datatype and Library&lt;br/&gt;
+		Syntax is the same as the metadata title template. When left empty the metadata template will be used.</key>
+		<key alias="robotsIndex">Robots Index</key>
+		<key alias="robotsIndexDescription">Geeft een indicatie aan zoekmachines wat te doen met een pagina  gebaseerd op dit document type.&lt;br/&gt;&lt;br/&gt;
+index: neem het document op in de index&lt;br/&gt;
+noindex: neem het document niet op in de index</key>
+		<key alias="robotsFollow">Robots Follow</key>
+		<key alias="robotsFollowDescription">Geeft een indicatie aan zoekmachines wat te doen met een link voor pagina's gebaseerd op dit document type.&lt;br/&gt;&lt;br/&gt;
+follow volgt de link&lt;br/&gt;
+nofollow zal de link niet volgen.</key>
+		<key alias="xmlSitemapExcludeNavihide">Uitsluiten in XML sitemap</key>
+		<key alias="xmlSitemapExcludeNavihideDescription">Selecteer deze optie wanneer dit document type niet opgenomen mag worden in de XML-Sitemap</key>
+		<key alias="xmlSitemapPriority">XML sitemap prioriteit</key>
+		<key alias="xmlSitemapPriorityDescription">Selecteer de sitemap prioriteit van 0.1 (laagste prio) tot 1.0 (hoogste prio)</key>
+		<key alias="xmlSitemapChangeFrequency">Verander interval</key>
+		<key alias="xmlSitemapChangeFrequencyDescription">Specificeer hoe vaak pagina's gebaseerd op dit document type veranderen.</key>
+		<key alias="xmlSitemapChangeFrequencyOptionDaily">Dagelijks</key>
+		<key alias="xmlSitemapChangeFrequencyOptionHourly">Per uur</key>
+		<key alias="xmlSitemapChangeFrequencyOptionMonthly">Maandelijks</key>
+		<key alias="xmlSitemapChangeFrequencyOptionNever">Nooit</key>
+		<key alias="xmlSitemapChangeFrequencyOptionWeekly">Wekelijks</key>
+		<key alias="xmlSitemapChangeFrequencyOptionYearly">Jaarlijks</key>
+		<key alias="defaultOGTitleProperties">Default og:title properties</key>
+		<key alias="defaultOGTitlePropertiesDescription">When the og:title is empty SEOChecker will use the selected properties to render the og:title tag. Node Name is a good property to use since that property is always required&lt;br/&gt;When empty the SEO title is used</key>
+		<key alias="defaultOGDescriptionProperties">Default og:description tag properties</key>
+		<key alias="defaultOGDescriptionPropertiesDescription">When the og:description tag from content is empty it SEOChecker will use the selected properties to render the og:description tag. Only the first paragraph will be used in case this default description tag  property is used!&lt;br/&gt;When empty the SEO description is used</key>
+		<key alias="defaultOGImageProperties">Default og:image properties</key>
+		<key alias="defaultOGImagePropertiesDescription">When the og:image is not set SEOChecker will use the selected properties to render the og:image tag.</key>
+		<key alias="ogTemplate">OG:Title template</key>
+		<key alias="ogtitleTemplateDescription">Use a template to display the title property in a specific format, used in the Facebook Datatype and Library&lt;br/&gt;
+Sample&lt;br/&gt;&lt;br/&gt;
+[#@seoTitle] | SEO Checker&lt;br/&gt;
+[#@seoTitle] | [$siteName] &amp;copy; 2013&lt;br/&gt;&lt;br/&gt;
+Placeholder syntax&lt;br/&gt;
+[# propertyAlias]&lt;br/&gt;
+[$ propertyAlias] (recursive)&lt;br/&gt;&lt;br/&gt;
+Fixed properties:&lt;br/&gt;
+@nodeName (Name of page)&lt;br/&gt;
+@seoTitle (the seo title property)&lt;br/&gt;When empty the SEO template is used</key>
+	</area> 
+
+	<area alias="seoCheckerConfigSettings">
+		<key alias="title">Algemene configuratie instellingen</key>
+		<key alias="validationSettingsTab">Validatie instellingen</key>
+		<key alias="redirectSettingsTab">Redirect instellingen</key>
+		<key alias="urlRewritingSettingsTab">URL Rewriting</key>
+		<key alias="xmlSitemapSettingsTab">Xml Sitemap</key>
+		<key alias="robotsTab">Robots.txt</key>
+		<key alias="socialTab">Social</key>
+		<key alias="validateAfterPublish">Valideer na publiceren</key>
+		<key alias="validateAfterPublishDescription">Wanneer geselecteerd zal de pagina na publiceren gevalideerd worden en issues te zien zijn in de issues lijst.</key>
+		<key alias="validateEmptyAltAttributeOnImages">Valideer alt attributen in templates</key>
+		<key alias="validateEmptyAltAttributeOnImagesDescription">Standaard worden lege alt attributen alleen voor content items gevalideerd. Wanneer deze optie aanstaat geldt de validatie ook voor templates.</key>
+		<key alias="excludeUmbracoNaviHideXmlSitemap">Exclusief umbracoNaviHide</key>
+		<key alias="excludeUmbracoNaviHideXmlSitemapDescription">Wanneer geselecteerd worden alle documenten en kinderen niet meegenomen in de XML Sitemap.</key>
+		<key alias="xmlSitemapEnabled">Enable XmlSitemap</key>
+		<key alias="xmlSitemapEnabledDescription">When selected the a dynamic Xml Sitemap will available  for every site in the umbraco installation. When the sitemap contains more than 10000 documents an index file will be created automatically</key>
+		<key alias="xmlSitemapPreview">Preview sitemap.xml file</key>
+		<key alias="robotsTxtEnabled">Enable dynamic robots.txt file</key>
+		<key alias="robotsTxtEnabledDescription">When selected a dynamic robots.txt will be available for every site in the umbraco installation</key>
+		<key alias="robotsTxtPreview">Preview robots.txt file</key>
+		<key alias="rewriteWWWPrefix">Forceer www in domeinnaam</key>
+		<key alias="rewriteWWWPrefixDescription">Zoekmachines behandelen url's met en zonder www als verschillende url's.&lt;br/&gt;Dit kan duplicate content fouten tot gevolg hebben.</key>
+		<key alias="rewriteWWWOptionTrue">Forceer het gebruik van www in url's  (www.example.com)</key>
+		<key alias="rewriteWWWOptionFalse">Forceer het verwijderen  van www in url's  (example.com)</key>
+		<key alias="rewriteWWWOptionIgnore">Negeren (niet aanbevolen)</key>
+		<key alias="rewriteTrailingSlash">Slash in url</key>
+		<key alias="rewriteTrailingSlashDescription">Zoekmachines behandelen URL's met en zonder slash (/) op het eind als verschillende url's. &lt;br/&gt;Dit kan duplicate content fouten tot gevolg hebben.</key>
+		<key alias="rewriteTrailingSlashOptionTrue">Forceer het eindigen van url's met een slash(/) (www.example.com/url/)</key>
+		<key alias="rewriteTrailingSlashOptionFalse">Forceer het niet eindigen van url's met een slash(/) (www.example.com/url)</key>
+		<key alias="rewriteTrailingSlashOptionIgnore">Negeren (niet aanbevolen)</key>
+		<key alias="redirectStoreDomain">Gebruik domein</key>
+		<key alias="redirectStoreDomainDescription">Wanneer ingeschakeld zal het domein worden opgeslagen in het geval van een niet gevonden url. Dit stelt u in staat om redirecten naar een andere pagina voor de verschillende domeinen (www.example.com/contact en clients.example.com/contact). &lt;br/&gt; De domeinnaam kan worden verwijderd of gewijzigd bij het bewerken van de redirect.</key>  
+		<key alias="redirectStoreQueryString">Gebruik querystring voor niet gevonden urls</key>
+		<key alias="redirectStoreQueryStringDescription">Gebruik de query string bij een niet gevonden URL. Hierdoor kunt u dezelfde pagina redirect met een andere query string naar een andere Umbraco pagina. Bijvoorbeeld /page.php?id=234 omleiden naar / nieuws / en page.php? Id = 432 redirect naar / contact / &lt;br/&gt; De query string kan worden verwijderd of gewijzigd bij het bewerken van de redirect.</key>  
+		<key alias="redirectForwardQueryString">Stuur querystring door</key>
+		<key alias="redirectForwardQueryStringDescription">Wanneer geselecteerd zal de querystring van de originele pagina doorgegeven worden naar de pagina waarheen redirect gaat worden.</key>  
+		<key alias="redirectWhenNodeExists">Redirect wanneer node bestaat</key>
+		<key alias="redirectWhenNodeExistsDescription">Wanneer geactiveerd zal SEOChecker de redirect url voorrang geven op de normale url en daarmee dus altijd naar de redirect pagina gaan ook als de url bestaat.</key>  
+		<key alias="twitterAccount">Twitter account</key>
+		<key alias="twitterAccountDescription">Add the twitter account of the organization here. This will be used for twittercard.</key>
+			<key alias="useTwitter">Enable twitter options</key>
+		<key alias="useTwitterDescription">When selected twittercard properties will be generated and you can specify twittercard properties in SEOChecker datatype</key>
+		<key alias="useFaceBook">Enable Facebook options</key>
+		<key alias="useFaceBookDescription">When selected Opengraph properties will be generated and you can specify facebook properties in SEOChecker datatype</key>
+		<key alias="maxDescriptionLength">Max meta:description length</key>
+		<key alias="maxDescriptionLengthDescription">Leave this option to default ones. Some SEO staff like to use different values but if you are not sure leave it like this.</key>
+	</area>
+	<area alias="seoCheckerPermissionSettings">
+		<key alias="title">Permission settings</key>
+		<key alias="intro">Give usertypes access to certain area's of the SEOChecker section. Administrators will always have full control.</key>
+		<key alias="validationOption">Validation</key>
+		<key alias="redirectmanagementOption">Manage redirects</key>
+		<key alias="issuesOption">Issue management</key>
+		<key alias="settingsOption">Settings</key>
+	</area>
+	<area alias="seoCheckernotificationOptions">
+		<key alias="executeTime">Time</key>
+		<key alias="sendDays">Verstuur elke</key>
+		<key alias="mondayOption">Maandag</key>
+		<key alias="tuesdayOption">Dinsdag</key>
+		<key alias="wednesdayOption">Woensdag</key>
+		<key alias="thursdayOption">Donderdag</key>
+		<key alias="fridayOption">Vrijdag</key>		
+		<key alias="saturdayOption">Zaterdag</key>
+		<key alias="sundayOption">Zondag</key>
+	</area>
+	<area alias="seoCheckerDataType">
+		<key alias="googleSnippet">Google voorbeeld</key>
+		<key alias="focusKeyword">SEO Zoekwoord</key>
+		<key alias="focusKeywordDescription">Het zoekwoord waar u de pagina op gevonden wilt laten worden, BV:&lt;br/&gt;Umbraco beheerder</key>
+		<key alias="seoTitle">SEO titel</key>
+		<key alias="seoTitleDescription">Wanneer leeg, zal SEO checker de ingestelde standaard velden gebruiken.</key>
+		<key alias="seoKeywords">SEO zoekwoorden</key>
+		<key alias="seoKeywordsDescription">De SEO zoekwoorden worden genegeerd door meeste zoekmachines</key>
+		<key alias="seoDescription">SEO omschrijving</key>
+		<key alias="seoDescriptionDescription">Wanneer leeg, zal SEO checker de ingestelde standaard velden gebruiken.</key>
+		<key alias="validationResult">Validatie resultaat</key>
+		<key alias="seoValidateButton">Valideer SEO</key>
+		<key alias="newDocumentTitle">De standaard document titel wordt gebruikt na het eerste keer opslaan van het document.</key>
+		<key alias="newDocumentDescription">Standaard SEO omschrijving properties worden gebruikt na het eerste keer opslaan van het document.</key>
+		<key alias="defaultTitle">Lege SEO titel tag</key>
+		<key alias="defaultDescription">De SEO omschrijving is niet gevuld in properties of de template.</key>
+		<key alias="reportKeywordUsedSEOTitle">Het zoekwoord wordt gebruikt in de SEO titel.</key>
+		<key alias="reportKeywordUsedMetaDescription">Het zoekwoord wordt gebruikt in de SEO omschrijving.</key>
+		<key alias="reportKeywordUsedH1">Het zoekwoord is gebruikt in de pagina titel (H1).</key>
+		<key alias="reportKeywordUsedBodyText">Het zoekwoord is gebruikt in de document tekst.</key>
+	</area>
+	<area alias="redirectDataType">
+		<key alias="overviewNoResult">Geen redirects gevonden</key>
+		<key alias="overviewTitle">Bewerk redirects</key>
+		<key alias="overviewIntro">Maak, bewerkt of verwijder redirects naar deze pagina.</key>
+		<key alias="overviewUrlHeader">Url</key>
+		<key alias="overviewRedirectHeader">Redirect naar</key>
+		<key alias="overviewLastReferer">Laatste referentie</key>
+		<key alias="overviewAccessedHeader">Opgevraagd</key>
+		<key alias="overviewLastTimeAccessedHeader">Laatst opgevraagd</key>
+		<key alias="overviewCreateButton">Redirect maken</key>
+		<key alias="editTitle">Wijzig redirect</key>
+		<key alias="editIntro">Wijzig de oude url die naar deze pagina redirect.</key>
+		<key alias="editSpeechBubbleHeader">Opgeslagen</key>
+		<key alias="editSpeechBubbleBody">De geselecteerd items zijn gewijzigd</key>
+		<key alias="editUrlRequiredError">Oude url is verplicht</key>
+		<key alias="editurlExistsError">De url bestaat reeds in de database, een url kan slechts 1 keer voorkomen.</key>
+		<key alias="editOldUrlField">Oude url</key>
+		<key alias="editOldUrlFieldDescription">De oude url waar de redirect vandaan komt.</key>
+		<key alias="editRedirectRequiredError">Een url is verplicht. Selecteer een url via de picker of url tekst veld.</key>
+		<key alias="editRedirectNodeField">Redirect naar node</key>
+		<key alias="editRedirectNodeFieldDescription">Geef de node op waar naartoe verwezen moet worden. Gebruik het tekstveld indien de node niet bestaat.</key>
+		<key alias="editRedirectUrlField">Of redirect naar url</key>
+		<key alias="editRedirectUrlFieldDescription">Specificeer een url waarheen naartoe redirect mag worden. Gebruik dit veld alleen als de redirect niet via de node selectie gemaakt kan worden.</key>
+		<key alias="editAdvancedSettings">Geavanceerde instellingen</key>
+		<key alias="editExactDomainMatchField">Domein</key>
+		<key alias="editExactDomainMatchFieldDescription">Redirect alleen wanneer de url voor het gespecificeerde domain is.</key>
+		<key alias="editExactQuerystringMatchField">Querystring</key>
+		<key alias="editExactQuerystringMatchFieldDescription">Redirect alleen wanneer de querystring overeenkomt met de querystring uit de url</key>
+		<key alias="notificationDeleteTitle">Redirect verwijderd</key>
+		<key alias="notificationDeleteDescription">De redirect is verwijderd.</key>
+		<key alias="notificationSaveTitle">Redirect opslaan</key>
+		<key alias="notificationSaveDescription">De redirect is opgeslagen</key>
+	</area>
+	<area alias="seoCheckerRobotsTxtDataType">
+		<key alias="robotsIndex">Robots Index</key>
+		<key alias="robotsIndexDescription">Helpt zoekmachines beslissen of pagina;s gebaseerd op dit documenttype geindexeerd moeten worden:&lt;br/&gt;&lt;br/&gt;
+inherit gebruikt de waarde gespecificeerd in het document type.&lt;br/&gt;
+index neemt het document op in de index&lt;br/&gt;
+noindex neemt het document niet op in de index</key>
+		<key alias="robotsNoFollow">Robots Follow</key>
+		<key alias="robotsNoFollowDescription">Helpt zoekmachines beslissen of links op pagina's gebaseerd op dit documenttype gevolgd moeten worden:&lt;br/&gt;&lt;br/&gt;
+inherit gebruikt de waarde gespecificeerd in het document type.&lt;br/&gt;
+follow volgt de  links.&lt;br/&gt;
+nofollow volgt de links niet.&lt;br/&gt;</key>
+	</area>
+	<area alias="seoCheckerXmlSitemapDataType">
+		<key alias="xmlSitemapPrio">XML sitemap prioriteit</key>
+		<key alias="xmlSitemapPrioDescription">Specificeer de prioeriteit voor de XML Sitemap  van 0.1 (laagtse prioriteit) tot 1.0 (hoogste prioriteit).&lt;br/&gt;&lt;br/&gt;Inherit gebruikt de geconfigureerde waarde op het document type.</key>
+		<key alias="xmlSitemapChangeFrequency">Veranderd</key>
+		<key alias="xmlSitemapChangeFrequencyDescription">Specificeer hoe vaak pagina's gebaseerd op dit document type zullen wijzigen.&lt;br/&gt;&lt;br/&gt;Inherit gebruikt de geconfigureerde waarde op het document type.</key>
+	</area>
+	<area alias="seoCheckerValidationCategories">
+		<key alias="validationCategoryHeadings">HTML Heading fouten</key>
+		<key alias="validationCategoryBrokenLinks">Broken links</key>
+		<key alias="validationCategoryBrokenMedia">Media link issues</key>
+		<key alias="validationCategoryMetadata">Metadata issues</key>
+		<key alias="validationCategoryContent">Content fouten</key>
+		<key alias="validationCategoryGoogle">Google specifieke problemen</key>
+		<key alias="validationCategoryMarkup">HTML markup fouten</key>
+		<key alias="validationCategoryGeneral">Algemeen</key>
+		<key alias="validationCategorySEOCheckerConfiguration">SEO Checker configuratie</key>
+		<key alias="validationCategoryRewriteConfiguration">Url rewrite configuratie</key>
+		<key alias="validationCategoryKeyword">Zoekwoord fouten</key>
+		<key alias="validationCategoryLicense">Licentie issues</key>
+		<key alias="validationCategorySocial">Social</key>		
+	</area>
+	<area alias="seoCheckerReportIssues">
+	<key alias="reportIssueMetaDescriptionKeywordValidator">Het focus keyword komt niet voor in de SEO omschrijving.</key>
+	<key alias="reportIssueDescriptionMaxLengthValidator">De SEO omschrijving mag niet langer zijn dan 160 karakters.</key>
+	<key alias="reportIssueSEOTitleFocusKeywordValidator">Het focus keyword komt niet voor in de SEO titel.</key>
+	<key alias="reportIssueMaxTitleLengthValidator">De SEO titel mag niet langer zijn dan 65 karakters.</key>
+	<key alias="reportIssueUrlKeywordValidator">Het focus keyword komt niet voor in de url</key>
+	<key alias="reportIssueBrokenLink_404">De link naar url &lt;strong&gt;{0}&lt;/strong&gt; is fout.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;</key>
+	<key alias="reportIssueBrokenLink_500">De Url &lt;strong&gt;{0}&lt;/strong&gt; geeft een foutmelding.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;</key>
+	<key alias="reportIssueBrokenLink_502">De link naar url &lt;strong&gt;{0}&lt;/strong&gt; is fout.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;.Controleer of de domeinnaam klopt.</key>
+	<key alias="reportIssueBrokenMedia_404">De referentie naar media item &lt;strong&gt;{0}&lt;/strong&gt; is fout.</key>
+	<key alias="reportIssueH1Empty">Het H1 element op de pagina is leeg.</key>
+	<key alias="reportIssueInlineCSSValidator">De pagina bevat veel inline CSS.</key>
+	<key alias="reportIssueInlineScriptingValidator">De pagina bevat een hoop inline Javascript.</key>
+	<key alias="reportIssueLargeCommentValidator">De pagina bevat een groot blok HTML commentaar.</key>
+	<key alias="reportIssueLongViewstateValidator">De viewstate op de pagina is erg groot.</key>
+	<key alias="reportIssueMissingAltOnImages">Het alt attribuut mist voor media item &lt;strong&gt;{0}&lt;/strong&gt;.</key>
+	<key alias="reportIssueMissingDescriptionTag">De description meta tag mist in de template.</key>
+	<key alias="reportIssueMissingGoogleAnalyticsAccount">Google analytics is niet (correct) geconfigureerd in de template.</key>
+	<key alias="reportIssueMissingLinkTitle">Het titel attribuut voor de link &lt;strong&gt;{0}&lt;/strong&gt; ontbreekt.</key>
+	<key alias="reportIssueMultipleH1Found">Er zijn meerdere H1 elementent op de pagina gevonden. Hoewel dit valide is hoort een pagina slechts 1 H1 element te bevatten. </key>
+	<key alias="reportIssueRobotsTxtDescription">Het robots.txt bestand is niet gevonden. Activeer de robots.txt  optie  in het &lt;a href="../settings/config.aspx"&gt;confihuratie scherm&lt;/a&gt;, of voeg zelf een robots.txt bestand aan de site toe.</key>
+	<key alias="reportIssueRobotsTxtExists">Robots.txt bestand is niet gevonden.</key>
+	<key alias="reportIssueTemplateContainsIFrame">De template bevat een IFrame.</key>
+	<key alias="reportIssueTestContentValidator">Het document bevat "Lorem ipsum" test content.</key>
+	<key alias="reportIssueSEODescriptionMinLengthValidator">De SEO omschrijving dient beschrijvend te zijn en minimaal 50 karakters te bevatten.</key>
+	<key alias="reportIssueBrokenMedia_1001">De link naar media item &lt;strong&gt;{0}&lt;/strong&gt; werkt niet. Zorg ervoor dat de url met http(s):// begint.</key>
+	<key alias="reportIssueBrokenMedia_502">De link naar media item &lt;strong&gt;{0}&lt;/strong&gt; werkt niet. Zorg ervoor dat de url met http(s):// begint.</key>
+	<key alias="reportIssueUmbracoItemDescriptionTag">De SEO omschrijving bevat code</key>
+	<key alias="reportIssueUmbracoItemKeywordsTag">De SEO zoekwoorden tag bevat code</key>
+	<key alias="reportIssueBrokenLink_1001">De link naar url &lt;strong&gt;{0}&lt;/strong&gt; werkt niet. Zorg ervoor dat de url met http(s):// begint.</key>
+	<key alias="reportIssueBrokenLink_1100">De link naar media item &lt;strong&gt;{0}&lt;/strong&gt; werkt niet.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;&lt;br/&gt; Zorg ervoor dat de domeinnaam klopt.</key>
+	<key alias="reportIssueEmptyTitle">De SEO titel is leeg.</key>
+	<key alias="reportIssueMultipleTitleTag">Meerdere SEO titel tags gevonden, een pagina kan slechts 1 SEO titel bevatten.</key>
+	<key alias="reportIssueMissingPageTitleTag">De SEO titel &lt;title&gt; mist in de template.</key>
+	<key alias="reportIssue404PageMissing">De 404 pagina is niet ingesteld</key>
+	<key alias="reportIssue404PageMissingDescription">Wanneer een pagina niet gevonden kan worden vind de bezoeker een vriendelijke 404 pagina prettig.&lt;br/&gt;Maak een vriendelijke 404 pagina en koppel deze in de domein configuratie van SEO checker.</key>
+	<key alias="reportIssueSeoDataTypeConfigurationValidatorMissing">SEO datatype mist op &lt;br/&gt;{0}</key>
+	<key alias="reportIssueSeoDataTypeConfigurationValidatorMissingDescription">Het SEO datatype ontbreekt op document type  '{0}'.&lt;br/&gt;Het is niet mogelijk feedback te geven over zoekwoord gebruik zonder dit data type.</key>
+	<key alias="reportIssueEmptyDescriptionTag">De SEO omschrijving is leeg voor dit document.</key>
+	<key alias="reportIssueTrimAspxValidator">Aspx extensie</key>
+	<key alias="reportIssueTrimAspxValidatorDescription">De website is geconfigureerd voor het gebruik van directory url's.&lt;br/&gt;Zorg ervoor dat de URL Module draait of dat u URL rewriting gebruikt om de aspx extensie url's te redirecten naar een directory url.</key>
+	<key alias="reportIssueCanonicalHostname">Canonical domein</key>
+	<key alias="reportIssueCanonicalHostnameDescription">De url &lt;strong&gt;'{0}'&lt;/strong&gt; kan met en zonder www prefix benaderd worden.&lt;br/&gt; Dit kan duplicate content fouten tot gevolg hebben. Stel de  www prefix optie in via het &lt;a href="../settings/config.aspx"&gt;configuration scherm&lt;/a&gt;.</key>
+	<key alias="reportIssueCanonicalCanonicalHomePage">Canonical homepage</key>
+	<key alias="reportIssueCanonicalHomePageDescription">De root url &lt;strong&gt;'/'&lt;/strong&gt; kan ook als &lt;strong&gt;{0}&lt;/strong&gt; benaderd worden&lt;br/&gt; Dit kan duplicate content fouten tot gevolg hebben. Stel de  www prefix optie in via het &lt;a href="../settings/config.aspx"&gt;configuration scherm&lt;/a&gt;.</key>
+	<key alias="reportIssueLowercaseUrlValidator">Lower case url's</key>
+	<key alias="reportIssueLowercaseUrlValidatorDescription">De  url &lt;strong&gt;'{0}'&lt;/strong&gt; kan zowel met normal letters als kapitalen benaderd worden&lt;br/&gt; Dit kan duplicate content fouten tot gevolg hebben. Stel de  www prefix optie in via het &lt;a href="../settings/config.aspx"&gt;configuration scherm&lt;/a&gt;.</key>
+	<key alias="reportIssueTrailingSlashValidator">Url eindigend met /</key>
+	<key alias="reportIssueTrailingSlashValidatorDescription">De url &lt;strong&gt;'{0}'&lt;/strong&gt; kan met en zonder slash(/) op het eind benaderd worden.&lt;br/&gt; Dit kan duplicate content fouten tot gevolg hebben. Stel de  www prefix optie in via het &lt;a href="../settings/config.aspx"&gt;configuration scherm&lt;/a&gt;.</key>
+	<key alias="reportIssueBrokenMedia_1100">De link naar media item &lt;strong&gt;{0}&lt;/strong&gt; werkt niet. Zorg ervoor dat de domeinnaam klopt.</key>
+	<key alias="reportIssueCanonicalDefaultHomePage">Default.aspx</key>
+	<key alias="reportIssueCanonicalDefaultHomePageDescription">De standaard url &lt;strong&gt;'/'&lt;/strong&gt; kan ook via default.aspx benaderd worden &lt;br/&gt;Dit kan duplicate content fouten tot gevolg hebben. Stel de  www prefix optie in via het &lt;a href="../settings/config.aspx"&gt;configuration scherm&lt;/a&gt;.</key>
+	<key alias="reportIssueBrokenCSSUrlValidator">De link naar stylesheet &lt;strong&gt;{0}&lt;/strong&gt; werkt niet.</key>
+	<key alias="reportIssueBrokenJSUrlValidator">De link naar het  Javascript bestand &lt;strong&gt;{0}&lt;/strong&gt; werkt niet.</key>
+	<key alias="reportIssueEmptyDocumentValidator">De template genereerd alleen een lege pagina.</key>
+	<key alias="reportIssueMissingH1TagValidator">De H1 tag ontbreekt in de template</key>
+	<key alias="reportIssueLastUpdate">Oude content</key>
+	<key alias="reportIssueLastUpdateDescription">Zoekmachines houden van nieuwe content en het nieuwste item op de site is ouder dan een maand.</key>
+	<key alias="reportIssueSEODocumentTypeConfigurationMissing">Er zijn geen documen types geconfigureerd voor SEO Checker</key>
+	<key alias="reportIssueSEODocumentTypeConfigurationMissingDescription">Het is belangrijk om SEO settings per document type te configureren.&lt;br/&gt; Deze settings worden gebruikt voor het renderen van SEO Titel, omschrijving en het genreren van XML sitemaps. &lt;br/&gt;Configureer deze instellingen in het configuratie scherm.</key>
+	<key alias="reportIssueWebsiteNotConfiguredForHost">Hostname configuratie issue</key>
+	<key alias="reportIssueWebsiteNotConfiguredForHostDescription">De website is niet geconfigureerd voor  '&lt;strong&gt;{0}&lt;/strong&gt;'. Bezoekers kunnen de site met en zonder www. bezoeken.&lt;br/&gt; Pas de  IIS configuratie aan zodat het url's met en zonder www accepteert.</key>
+	<key alias="reportIssueFocusKeywordNotSpecified">Het zoekwoord is niet gespecificeerd</key>
+	<key alias="reportIssueFocusKeywordNotSpecifiedDescription">Om content te analyzeren is het verplicht 1 of meerdere zoekwoorden op te geven.</key>
+	<key alias="reportIssueH1KeywordFocusKeywordNotFound">Het zoekwoord is niet gevonden in de pagina titel (H1)</key>
+	<key alias="reportIssueSeoMetaDescriptionMinLengthPageValidatorDescription">De SEO Omschrijving moet beschrijvend zijn en minstens 80 karakters bevatten.</key>
+	<key alias="reportIssueBodyTextFocusKeywordNotFound">Het zoekwoord is niet gevonden in de document tekst.</key>
+	<key alias="reportIssueTrialModeDescription">SEO checker heeft  &lt;strong&gt;{0} (andere) fouten&lt;/strong&gt; gevonden op de pagina. In trial mode worden alleen zoekwoord fouten getoond.</key>
+	<key alias="reportIssueExceptionValidator">Fout tijdens het valideren van het document (waarschijnlijk een template fout). De details zijn gelogd in de Umbraco log.</key>
+	<key alias="reportIssueBrokenLink_1011">De link naar url &lt;strong&gt;{0}&lt;/strong&gt; is leeg.&lt;br/&gt; Zorg dat de link een url bevat.</key>
+	<key alias="reportIssueBrokenMedia_1011">De link naar media item &lt;strong&gt;{0}&lt;/strong&gt; is leeg.&lt;br/&gt; Zorg dat de het media item een link bevat.</key>
+	<key alias="reportIssueRobotsTxtBlockAllRequest">Het robots.txt bestand verhinderd het indexeren van pagina's.</key>
+	<key alias="reportIssueRobotsTxtBlockAllRequesttDescription">Het robots.txt bestand bevat :&lt;br/&gt;&lt;br/&gt;
+User-agent: *&lt;br/&gt;
+Disallow: /&lt;br/&gt;&lt;br/&gt;
+
+En bevat geen enkel &lt;strong&gt;Allow&lt;/strong&gt; element dat het indexeren van een specifieke folder toestaat.&lt;br/&gt; Dit betekend dat er geen enkele pagina geindexeerd wordt en er geen pagina's in de zoekresultaten worden opgenomen.</key>
+	<key alias="reportIssueRobotsTxtBlockGoogleRequest">Het robots.txt bestand verhinderd dat pagina's geindexeerd worden door Google.</key>
+	<key alias="reportIssueRobotsTxtBlockGoogleRequestDescription">Het robots.txt bestand bevat :&lt;br/&gt;&lt;br/&gt;
+User-agent: Googlebot&lt;br/&gt;
+Disallow: /&lt;br/&gt;&lt;br/&gt;
+
+En bevat geen enkel &lt;strong&gt;Allow&lt;/strong&gt; element dat het indexeren van een specifieke folder toestaat.&lt;br/&gt; Dit betekend dat er geen enkele pagina geindexeerd wordt en er geen pagina's in de zoekresultaten worden opgenomen.</key>
+	<key alias="reportIssueRootNodeContainsRobotNoFollow">De robots meta tag op de homepage zorgt ervoor dat er geen enkel onderliggend document geindexeerd wordt.</key>
+	<key alias="reportIssueRootNodeContainsRobotNoFollowDescription">De Robots meta tag (meta name="robots") bevat &lt;strong&gt;nofollow&lt;/strong&gt;.&lt;br/&gt; Dit betekend dat zoekmachines geen links volgen vanaf de homepage en deze ook niet in de zoekresultaten voor zullen komen.</key>
+	<key alias="reportIssueNoPublishedParentValidation">Minstens 1 bovenliggende node is niet gepubliceerd, daarom kan deze pagina niet gevalideerd worden.</key>
+	<key alias="reportIssueProtectedPageValidator">Deze pagina is beveiligd en kan daarom niet gevalideerd worden.</key>
+	<key alias="reportIssueBrokenLink_1103">De link naar url &lt;strong&gt;{0}&lt;/strong&gt; veroorzaakte een time out.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;.</key>
+	<key alias="reportIssueBrokenMedia_1103">De link naar media item &lt;strong&gt;{0}&lt;/strong&gt; veroorzaakte een time out.</key>
+		<key alias="reportIssueMissingOGTitleProperty">The og:title property is missing in the template. </key>
+		<key alias="reportIssueMissingOGTypeProperty">The og:type property is missing in the template. </key>
+		<key alias="reportIssueMissingOGDecriptionProperty">The og:description property is missing in the template. </key>
+		<key alias="reportIssueMissingOGUrlProperty">The og:url property is missing in the template. </key>
+		<key alias="reportIssueEmptyOGTitleProperty">The og:title property is empty. </key>
+		<key alias="reportIssueEmptyOGDescriptionProperty">The og:title property is empty. </key>
+		<key alias="reportIssueEmptyOGTypeProperty">The og:url property is empty. </key>
+		<key alias="reportIssueEmptyOGUrlProperty">The og:url property is empty. </key>
+		<key alias="reportIssueInvalidOGUrlProperty">The og:url property is relative, make sure url starts with http(s). </key>
+		<key alias="reportIssueMissingTwitterCardDescription">The twitter:description meta tag is missing in the template. </key>
+		<key alias="reportIssueMissingTwitterCardTitle">The twitter:title meta tag is missing in the template. </key>
+		<key alias="reportIssueMissingTwitterCardType">The twitter:card meta tag is missing in the template. </key>
+		<key alias="reportIssueMissingTwitterCardSite">The twitter:site meta tag is missing in the template. </key>
+		<key alias="reportIssueEmptyTwitterCardDescription">The twitter:description meta tag is empty. </key>
+		<key alias="reportIssueEmptyTwitterCardTitle">The twitter:title meta tag is empty. </key>
+		<key alias="reportIssueEmptyTwitterCardType">The twitter:card meta tag is empty. </key>
+		<key alias="reportIssueEmptyTwitterCardSite">The twitter:site meta tag is empty. </key>
+	</area>
+	<area alias="seoCheckerValidationIssues">
+		<key alias="title">Validatie fouten</key>
+		<key alias="noAdminWarning">SEO checker heeft wat issues gevonden die in de template opgelost moet worden. U heeft geen rechten tot de template sectie, vraag een ontwikkelaar deze issues op te lossen.</key>
+		<key alias="noResult">Geen validatie issues gevonden</key>
+		<key alias="validationQueueMessage">SEOChecker is nog steeds pagina's aan het valideren. Momenteel staan er &lt;strong&gt;{0} pagina's&lt;/strong&gt; in de validatie wachtrij.</key>
+		<key alias="overviewIssueDocument">Document</key>
+		<key alias="overviewIssueDescription">Description</key>
+		<key alias="overviewIssueCategory">Category</key>
+		<key alias="ignoredTitle">Te negeren validatie fouten</key>
+		<key alias="ignorednoResult">Geen te negeren validatie fouten gevonden</key>
+	</area>
+	<area alias="seoCheckerConfigurationIssues">
+		<key alias="title">Configuratie fouten</key>
+		<key alias="noResult">Er zijn geen configuratie issues gevonden</key>
+		<key alias="overviewIssueTitle">Issue</key>
+		<key alias="overviewIssueDescription">Description</key>
+		<key alias="overviewIssueCategory">Category</key>
+		<key alias="ignoredTitle">Te negeren inkomende link fouten</key>
+		<key alias="noIgnoredResult">Geen te negeren configuratie fouten gevonden</key>
+	</area>
+	<area alias="seoCheckerRedirectManager">
+		<key alias="title">Bewerk redirects</key>
+		<key alias="inboundLinkIssuesTitle">Inkomende link fouten</key>
+		<key alias="ignoredInboundLinkIssuesTitle">Te negeren inkomende link fouten</key>
+		<key alias="InboundLinkIssuesNoResult">Geen inbound link fouten gevonden</key>
+		<key alias="createButton">Redirect maken</key>
+		<key alias="showcontentOption">Toon content</key>
+		<key alias="showMediaOption">Toon media</key>
+		<key alias="overviewNoResult">Geen redirects gevonden</key>
+		<key alias="ignoredInboundLinkIssuesNoResult">Geen te negeren configuratie fouten gevonden</key>
+		<key alias="overviewTitle">Bewerk redirects</key>
+		<key alias="overviewIntro">Maak, bewerkt of verwijder redirects naar deze pagina.</key>
+		<key alias="overviewUrlHeader">Url</key>
+		<key alias="overviewRedirectHeader">Redirect naar</key>
+		<key alias="overviewLastReferer">Laatste referentie</key>
+		<key alias="overviewAccessedHeader">Opgevraagd</key>
+		<key alias="overviewLastTimeAccessedHeader">Laatst opgevraagd</key>
+		<key alias="overviewAccessedFormat">{0} keer</key>
+		<key alias="inboundLinkErrorMessage">De link naar &lt;a href="/{0}" target="_blank" title="{0}" &gt;{0}&lt;/a&gt; werkt niet.</key>
+	</area>
+	<area alias="seoCheckerRedirectManagerEditDialog">
+		<key alias="title">Wijzig redirect</key>
+		<key alias="createtitle">Redirect maken</key>
+		<key alias="oldUrl">Oude url</key>
+		<key alias="oldDescription">De oude url waar de redirect vandaan komt.</key>
+		<key alias="redirectToNode">Redirect naar node</key>
+		<key alias="redirectToNodeDescription">Geef de node op waar naartoe verwezen moet worden. Gebruik het tekstveld indien de node niet bestaat.</key>
+		<key alias="redirectToUrl">Of redirect naar url</key>
+		<key alias="redirectToUrlDescription">Specificeer een url waarheen naartoe redirect mag worden. Gebruik dit veld alleen als de redirect niet via de node selectie gemaakt kan worden.</key>
+		<key alias="wildcardUrl">Wildcard url</key>
+		<key alias="wildcardDescription">Wanneer geselecteerd worden alle onderliggende pagina's van de oude url ook naar de geselecteerde redirect geleid. Als de url /news was worden /news/newsitem ook naar de geselecteerde redirect geleid.</key>
+		<key alias="domain">Domein</key>
+		<key alias="domainDescription">Redirect alleen wanneer de url voor het gespecificeerde domain is.</key>
+		<key alias="querystring">Querystring</key>
+		<key alias="querystringDescription">Redirect alleen wanneer de querystring overeenkomt met de querystring uit de url</key>
+		<key alias="basicSettings">Standaard</key>
+		<key alias="advancedSettings">Geavanceerd</key>
+		<key alias="editUrlRequiredError">Oude url is verplicht</key>
+		<key alias="editRedirectRequiredError">Een url is verplicht. Selecteer een url via de picker of url tekst veld.</key>
+		<key alias="editUrlExistsError">De url bestaat reeds in de database, een url kan slechts 1 keer voorkomen.</key>
+	</area>
+	<area alias="seoCheckerExportRedirects">
+		<key alias="exportOptionButton">Exporteer redirects</key>
+		<key alias="exportButton">Exporteren</key>
+		<key alias="title">Redirects exporteren</key>
+		<key alias="exportField">Data om te exporteren</key>
+		<key alias="redirectsAndInboundLinksExportOption">Redirects en broken links</key>
+		<key alias="redirectsExportOption">Redirects</key>
+		<key alias="inboundlinksExportOption">Broken links</key>
+		<key alias="contentTypeField">Content types voor export</key>
+		<key alias="contentAndMediaContentTypeOption">Content en media</key>
+		<key alias="contentContentTypeOption">Content</key>
+		<key alias="mediaContentTypeOption">Media</key>
+	</area>
+	<area alias="seoCheckerImportRedirects">
+		<key alias="title">Importeer redirects</key>
+		<key alias="importOptionButton">Importeer redirects</key>
+		<key alias="uploadButton">Upload</key>
+		<key alias="importButton">Importeren</key>
+		<key alias="uploadFileField">Selecteer een bestand om te importeren</key>
+		<key alias="fileRequiredError">Geen bestand geselecteerd voor import.</key>
+		<key alias="fileExtensionError">De extension '{0}' kan niet gebruikt worden voor het importeren van redirects. Gebruik Csv of Excel extensie.</key>
+		<key alias="importProvider">Selecteer het type bestand</key>
+		<key alias="importProviderDescription">Selecteer het type bestand dat u wilt gebruiken voor de redirect import</key>
+		<key alias="csvFieldSeparator">Scheidings teken</key>
+		<key alias="csvTextIndicator">Tekst indicatie</key>
+		<key alias="csvTextIndicatorNoIndicatorOption">Geen tekst indicatie</key>
+		<key alias="excelWorksheetOption">Selecteer het Excel werkblad</key>
+		<key alias="mappingSourceColumn">Oude url kolom</key>
+		<key alias="mappingSourceColumnDescription">Selecteer de kolom van het bestand wat de oude url bevat.</key>
+		<key alias="mappingTargetColumn">Redirect url kolom</key>
+		<key alias="mappingTargetColumnDescription">Selecteer een kolom uit het bestand wat de redirect bevat.</key>
+		<key alias="mapAgainstNode">Probeer de redirect tegen een node te mappen</key>
+		<key alias="mapAgainstNodeDescription">Wanneer aangevinkt zal tijdens de import geprobeerd worden om tegen een node aan te mappen.</key>
+		<key alias="onlyImportWhenMatchNode">Importeer alleen wanneer de redirect met een node overeen komt.</key>
+		<key alias="onlyImportWhenMatchNodeDescription">Wanneer deze optie aangevinkt is zal de redirect alleen geimporteerd worden als er daadwerkelijk een node gevonden kan worden.</key>
+		<key alias="redirectImportedResultMessage">De redirects zijn geimporteerd</key>
+		<key alias="sourceAndTargetMappingError">Oude url kolom kan niet hetzelfde zijn als redirect kolom</key>
+		<key alias="ExportErrorsButton">Exporteer fouten</key>
+		<key alias="ImportedResult">De redirects zijn geimporteerd</key>
+		<key alias="ImportedErrors">Import fouten</key>
+		<key alias="ImportedErrorsDescription">Een aantal redirects konden niet geimporteerd worden. Gebruik de 'Export fouten' knop om de foutieve records als een nieuw Excel bestand te exporteren.</key>
+	</area>
+	<area alias="seoCheckerBulkActions">
+		<key alias="bulkActionDeleteConfirmMessage">Klik 'ok' om de geselecteerde items te verwijderen van de lijst.</key>
+		<key alias="bulkActionDeleteExecuted">De geselecteerde items zijn verwijderd.</key>
+		<key alias="bulkActionIgnoreListExecuted">De geselecteerde items zijn toegevoegd aan de te negeren lijst</key>
+		<key alias="bulkActionRemovedIgnoreListExecuted">De geselecteerde items zijn verwijderd van de te negeren lijst.</key>
+		<key alias="bulkActionRevalidate">Pagina's aan het valideren die de geselecteerde issues bevatten.</key>
+		<key alias="bulkActionInitializing">Initialiseren</key>
+		<key alias="bulkActionRevalidateCurrentPage">Valideren van &lt;strong&gt;'{0}'&lt;/strong&gt;.</key>
+		<key alias="bulkActionIgnoreOption">Negeer dit issue de volgende keer.</key>
+	</area>
+	<area alias="seoCheckerHealthChecks">
+		<key alias="inboundLinkErrorsSuccesMessage">Yeah no inbound link errors to fix!</key>
+		<key alias="inboundLinkErrorsFailedMessage">Uh Oh still some inbound link errors to fix. Go to the issues section of SEOChecker and fix them there.</key>
+		<key alias="validationErrorsSuccesMessage">Yeah no validation errors to fix!</key>
+		<key alias="validationErrorsFailedMessage">Uh Oh still some validation errors to fix. Go to the issues section of SEOChecker and fix them there.</key>
+		<key alias="configurationErrorsSuccesMessage">Yeah no configuration errors to fix!</key>
+		<key alias="configurationErrorsFailedMessage">Uh Oh still some configuration errors to fix. Go to the issues section of SEOChecker and fix them there.</key>
+	</area>
+</language>

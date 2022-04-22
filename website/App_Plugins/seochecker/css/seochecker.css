@@ -1,0 +1,143 @@
+﻿.seocheckerdialogPickerContainer {
+    margin-top: 5px;
+}
+.seocheckerdialogPickerSelected {
+    font-weight: 900;
+    margin-right: 5px;
+}
+.seocheckerdialogPickerDelete {
+    color: red;
+    margin-right: 5px;
+}
+.seocheckerdialogPickerSelecteButton {
+    color: #2e8aea;
+}
+.seocheckerfloatRight {
+    float: right;
+}
+.seocheckerLicenseInfo a {
+    text-decoration: underline;
+}
+
+.SEOCheckerDropdown {
+    width: 100px;
+}
+
+.seocheckerRecordCount {
+    width: 15%;
+    margin: 20px 5px 0 20%;
+}
+
+.seocheckerPagingDropdown {
+    width: 80px;
+    margin-right: 5px;
+}
+
+.SEOCheckerIconButton {
+    font-size: 20px;
+}
+
+.seocheckerMultilineTableColumn {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+
+.seocheckersmallColumn {
+    max-width: 12%;
+}
+
+.seocheckerActionColumns {
+    min-width: 8%;
+    max-width: 8%;
+}
+
+.seocheckerActionColumn {
+    display: none;
+}
+
+.umb-table-row:hover .seocheckerActionColumn {
+    display: block;
+}
+
+.seoSearchActionBar {
+    min-height: 40px;
+    max-height: 40px;
+    margin-bottom: 20px;
+}
+
+.seocheckerOverviewButton {
+    display: inline-block;
+    font-size: 16px !important;
+    padding: 4px 6px;
+    margin: 2px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #b6b6b6;
+    border-radius: 200px;
+    text-decoration: none !important;
+}
+
+    .seocheckerOverviewButton:hover {
+        color: white;
+        background: #2e8aea;
+        border-color: #2e8aea;
+        text-decoration: none;
+    }
+        .seocheckerOverviewButton:hover .icon {
+            color: white !important;
+        }
+.seocheckerErrorLink {
+    margin: 0 5px 0 5px;
+}
+
+.seocheckerDialogTextMargin {
+    width:95%;
+}
+ .seocheckerSubTitle {
+     margin:  40px 0 40px 0;
+
+ }
+ .seocheckerInfoLink {
+     text-decoration: underline;
+     color:#2e8aea;
+ }
+
+ .seocheckerDashboardRow {
+     clear: both;
+ }
+
+ .seocheckerDashboardColumn {
+     display: block;
+     float: left;
+     padding-right: 20px;
+     width:23%;
+ }
+ .seocheckerDashboardColumn .seocheckerDashboardBox {
+    background-color: #F2FCFC;
+    border-radius: 3px;
+    border: 2px solid transparent;
+    padding: 25px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: block;
+    color: #666;
+}
+
+.seocheckerDashboardColumn .seocheckerDashboardBox:hover {
+    border: 2px solid #00BEC1;
+    cursor: pointer;
+    transition: border-color 150ms ease-in-out;
+}
+
+.seocheckerDashboardColumn .seocheckerDashboardBoxTitle {
+    color: #00BEC1;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.seocheckerDashboardColumn .seocheckerDashboardBoxDescription {
+    text-align: center;
+    line-height: 1.4em;
+}

@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+	<creator>
+		<name>Soeteman software</name>
+		<link>https://github.com/rsoeteman/seochecker-resources</link>
+	</creator>
+	<area alias="sections">
+		<key alias="seochecker">SEO Checker</key>
+	</area>
+	<area alias="seoCheckerGeneral">
+		<key alias="nodePickerChoose">Select...</key>
+		<key alias="notificationError">Error</key>
+		<key alias="notificationSaved">Saved</key>
+		<key alias="notificationProcessed">Processed</key>
+		<key alias="crudLicenseError">Sorry you can't update without fixing the license issue first.</key>
+		<key alias="requiredSuffix">is required</key>
+		<key alias="invalidSuffix">is invalid</key>
+		<key alias="deleteConfirm">Are you sure you want to delete?</key>
+		<key alias="bulkActionIgnore">Ignore this issue next time.</key>
+		<key alias="currentSelectedFile">Selected file:</key>
+		<key alias="close">Close</key>
+	</area>
+	<area alias="seoCheckerTree">
+		<key alias="defaultTab">Default</key>
+		<key alias="Tree_Validation">Validate pages</key>
+		<key alias="Tree_Queue">Validation queue</key>
+		<key alias="Tree_RedirectManager">Redirect manager</key>
+		<key alias="Tree_Issues">Issues</key>
+		<key alias="Tree_Issues_ValidationIssues">Validation issues</key>
+		<key alias="Tree_Issues_InboundlinkIssues">Inbound link errors</key>
+		<key alias="Tree_Issues_ConfigurationIssues">Configuration issues</key>
+		<key alias="Tree_Issues_IgnoredValidationIssues">Ignored validation issues</key>
+		<key alias="Tree_Issues_IgnoredInboundlinkIssues">Ignored inbound link errors</key>
+		<key alias="Tree_Issues_IgnoredConfigurationIssues">Ignored configuration issues</key>
+		<key alias="Tree_Notifications">My notifications</key>
+		<key alias="Tree_Settings">Settings</key>
+		<key alias="Tree_Settings_GeneralSettings">General settings</key>
+		<key alias="Tree_Settings_IgnoreList">Ignore list</key>
+		<key alias="Tree_Settings_Email">Email settings</key>
+		<key alias="Tree_Settings_Email_ScheduledTask">Scheduled task emails</key>
+		<key alias="Tree_Settings_Email_UserNotification">Notification emails</key>
+		<key alias="Tree_Settings_Domain">Domain settings</key>
+		<key alias="Tree_Settings_Documenttype">Document type settings</key>
+		<key alias="Tree_Settings_SecuritySettings">Usertype permissions</key>
+	</area>
+	<area alias="seoCheckerValidate">
+		<key alias="validationTitle">Validate pages</key>
+		<key alias="scheduledValidationTitle">Scheduled validation</key>
+		<key alias="validationIntro">Add the selected documents to validation queue. Only documents that are published and have a template assigned will be validated!</key>
+		<key alias="rootNode">Start location</key>
+		<key alias="validateChildren">Include children</key>
+		<key alias="validationStart">Validate</key>
+		<key alias="notificationHeader">Pages added</key>
+		<key alias="notificationDescription">The selected page(s) are added to the validation queue</key>
+		<key alias="rootnodeValidationError">Select a start location</key>
+		<key alias="scheduleButton">Schedule</key>
+		<key alias="scheduledTaskName">Scheduled task name</key>
+		<key alias="scheduledTaskNotifyEmailAddress">Notify emailaddress</key>
+		<key alias="scheduledTaskNotifyEmailAddressDescription">To specify more than one emailaddress use a comma seperated list of email addresses.</key>
+		<key alias="scheduledTaskValidateEvery">Validate every</key>
+		<key alias="scheduledTaskConfigWarning">The email configuration for scheduled validation is not set. Without configuring the email, a confirmation email cannot be send when the scheduled validation task is finished. Configure the scheduled validation &lt;a href="settings/emailsettings.aspx?alias=scheduledtask"&gt;email here.&lt;/a&gt;</key>
+		<key alias="scheduledTaskNotifyNameRequired">Scheduled task name is required</key>
+		<key alias="scheduledTaskNotifyEmailAddressRequired">Notify emailaddress is required</key>
+		<key alias="scheduledTaskNotifyEmailAddressInvalid">One or more email addresses are invalid</key>
+		<key alias="scheduledTaskDaysRequired">Select at least one day</key>
+		<key alias="scheduledTaskLastTimeExecuted">Last time executed</key>
+		<key alias="scheduledTaskNextRuntime">Next run time</key>
+	</area>
+	<area alias="seoCheckerValidationQueue">
+		<key alias="title">Validation queue</key>
+		<key alias="introDocuments">&lt;br/&gt;&lt;br/&gt;Below you find the &lt;strong&gt;{0} documents&lt;/strong&gt; that are queued for validation.</key>
+		<key alias="clearQueue">Clear all</key>
+		<key alias="gridTitle">Document</key>
+		<key alias="gridUrl">Url</key>
+		<key alias="gridDate">Added</key>
+		<key alias="noRecords">The validation queue is empty</key>
+		<key alias="confirmMessage">Are you sure you want to remove all items from the validation queue?</key>
+		<key alias="clearedDescription">and process is canceled for remaining documents</key>
+		<key alias="clearedHeader">Items are removed from the validation queue</key>
+		<key alias="queueException">We are very sorry, an error occured while validating the pages.&lt;br/&gt;Please contact Soeteman Software via  e-mail: &lt;a href="mailto:support@soetemansoftware.nl"&gt;support@soetemansoftware.nl&lt;/a&gt;</key>
+		<key alias="queueNotRunning">The validation queue HTTP module is not running, this means validation tasks will not execute. Check the user manual how you can configure validation queue HTTP module manually.</key>
+	</area>
+	<area alias="seoCheckerMyNotifications">
+		<key alias="title">My notifications</key>
+		<key alias="intro">When you enable notifications you will receive email notifications when errors are found on the site at the scheduled time.&lt;br/&gt;Emails will be send to the email address assigned to your user account '{0}'.</key>
+		<key alias="notificationHeader">Notification settings</key>
+		<key alias="notificationDescription">Your notification options are saved</key>
+	</area>
+	<area alias="seoCheckerEmailSettings">
+		<key alias="scheduledValidationTitle">Scheduled validation email settings</key>
+		<key alias="scheduledValidationDescription">Change email settings for the email that gets sent when a scheduled validation occured and documents are added to the validation queue.</key>
+		<key alias="notificationTitle">User notification email settings</key>
+		<key alias="/umbraco/backoffice/seochecker/seocheckervalidateapi/initialize">Change email settings for the email that gets sent when a notification email is sent to the user.</key>
+		<key alias="settingsSaved">Email settings are saved.</key>
+		<key alias="fromName">From name</key>
+		<key alias="fromAddress">From address</key>
+		<key alias="emailSubject">Email subject</key>
+		<key alias="emailTemplate">Template</key>
+		<key alias="emailTemplateDescription">Select the mail template to render the body for the email</key>
+		<key alias="defaultNotificationSubject">SEO issue report</key>
+		<key alias="defaultScheduledTaskSubject">Scheduled validation finished</key>
+	</area>  
+	<area alias="seoCheckerDomainSettings">
+		<key alias="title">Domain settings</key>
+		<key alias="canonicalDomainTab">Canonical settings</key>
+		<key alias="notFoundTab">404 settings</key>
+		<key alias="robotsTxtTab">Robots.txt file</key>
+		<key alias="canonicalDomain">Canonical domain</key>
+		<key alias="canonicalDomainDescription">This domain will be used to generate the &lt;a href="http://support.google.com/webmasters/bin/answer.py?hl=en&amp;answer=139394" target="_blank"&gt;Canonical meta tag&lt;/a&gt;. Make sure to enter the production domain of the website.&lt;br/&gt;&lt;br/&gt; Leave empty if you don't want to use Canonical domains.</key>
+		<key alias="notFoundPageDescription">Specify a not found page the {0} language.</key>
+		<key alias="robotsTxt">Robots.txt</key>
+		<key alias="robotsTxtDescription">Add or remove entries to the robots.txt file for '{0}'. When not modified the default robots.txt template will be used. To learn more about the robots.txt file visit &lt;a href="http://www.robotstxt.org/" target="_blank"&gt;robotstxt.org&lt;/a&gt;.{1}</key>
+		<key alias="notificationHeader">Domain settings</key>
+		<key alias="notificationDescription">Domain settings are saved</key>
+	</area>  
+	<area alias="seoCheckerDocumentTypeSettings">
+		<key alias="title">Edit documenttype settings</key>
+		<key alias="dataTypeMissing">SEO Checker datatype is missing from this document type. SEO Checker cannot analyze keywords when editing content without this data type.</key>
+		<key alias="metadataSettingsTab">Metadata settings</key>
+		<key alias="socialSettingsTab">Social settings</key>
+		<key alias="robotsSettingsTab">Robot settings</key>
+		<key alias="xmlSitemapSettingsTab">Sitemap.xml settings</key>
+		<key alias="metadataDatatypeMissing">SEO Checker datatype is missing from this document type. SEO Checker cannot analyze keywords when editing content without this data type.</key>
+		<key alias="defaultTitleProperties">Default title properties</key>
+		<key alias="defaultTitlePropertiesDescription">When the title from content is empty SEOChecker will use the selected properties to render the title tag. Node Name is a good property to use since that property is always required</key>
+		<key alias="defaultDescriptionProperties">Default description tag properties</key>
+		<key alias="defaultDescriptionPropertiesDescription">When the description tag from content is empty it SEOChecker will use the selected properties to render the meta description tag. Only the first paragraph will be used in case this default description tag  property is used!</key>
+		<key alias="titleTemplate">Title template</key>
+		<key alias="titleTemplateDescription">Use a template to display the title property in a specific format, used in the SEO Datatype and Library
+Sample:
+[#@seoTitle] | SEO Checker
+[#@seoTitle] | [$siteName]
+
+Placeholder syntax
+[# propertyAlias]
+[$ propertyAlias] (recursive)
+
+Fixed properties:
+@nodeName (Name of page)
+@seoTitle (the seo title property)</key>
+		<key alias="robotsIndex">Robots Index</key>
+		<key alias="robotsIndexDescription">Helps search engines indicate if documents based on this documenttype need to be in the index:&lt;br/&gt;&lt;br/&gt;
+index will include the document&lt;br/&gt;
+noindex will not include the document</key>
+		<key alias="robotsFollow">Robots Follow</key>
+		<key alias="robotsFollowDescription">Helps search engines indicate if it needs to follow links for documents based on this documenttype need to be in the index:&lt;br/&gt;&lt;br/&gt;
+follow will follow the links&lt;br/&gt;
+nofollow will not follow the links</key>
+		<key alias="xmlSitemapExcludeNavihide">Exclude in XML sitemap</key>
+		<key alias="xmlSitemapExcludeNavihideDescription">Check this option if you always want to exclude this documenttype from the xml sitemap</key>
+		<key alias="xmlSitemapPriority">XML sitemap priority</key>
+		<key alias="xmlSitemapPriorityDescription">Specify the priority for the sitemap from 0.1 (lowest priority) to 1.0 (highest priority)</key>
+		<key alias="xmlSitemapChangeFrequency">Change frequency</key>
+		<key alias="xmlSitemapChangeFrequencyDescription">Specify how frequently pages based on this doctype will change.</key>
+		<key alias="xmlSitemapChangeFrequencyOptionDaily">Daily</key>
+		<key alias="xmlSitemapChangeFrequencyOptionHourly">Hourly</key>
+		<key alias="xmlSitemapChangeFrequencyOptionMonthly">Monthly</key>
+		<key alias="xmlSitemapChangeFrequencyOptionNever">Never</key>
+		<key alias="xmlSitemapChangeFrequencyOptionWeekly">Weekly</key>
+		<key alias="xmlSitemapChangeFrequencyOptionYearly">Yearly</key>
+		<key alias="defaultSocialImageProperties">Default image properties</key>
+		<key alias="defaultSocialImagePropertiesDescription">When the image for social media is not set SEOChecker will use the selected properties to render the social media image tags.</key>
+		<key alias="ogTemplate">OG:Title template</key>
+		<key alias="ogtitleTemplateDescription">Use a template to display the title property in a specific format, used in the Facebook Datatype and Library&lt;br/&gt;
+		Syntax is the same as the metadata title template. When left empty The metadata template will be used.
+		</key>
+		<key alias="defaultTwitterCardType">Twitter Card type</key>
+		<key alias="defaultTwitterCardTypeRequired">Twitter card type is required</key>
+		<key alias="defaultTwitterCardTypeDescription">The type of twitter card to render.</key>
+		<key alias="defaultTwitterCardTypeSummaryOption">Summary</key>
+		<key alias="defaultTwitterCardTypeSummaryLargeImageOption">Summary Card with large image</key>
+		<key alias="twitterTemplate">Twitter:Title template</key>
+		<key alias="twitterTemplateDescription">Use a template to display the title property in a specific format, used in the Facebook Datatype and Library&lt;br/&gt;
+		Syntax is the same as the metadata title template. When left empty the metadata template will be used.</key>
+	</area>    
+	<area alias="seoCheckerConfigSettings">
+		<key alias="title">General config settings</key>
+		<key alias="validationSettingsTab">Validation settings</key>
+		<key alias="redirectSettingsTab">Redirect settings</key>
+		<key alias="urlRewritingSettingsTab">URL Rewriting</key>
+		<key alias="xmlSitemapSettingsTab">Xml Sitemap</key>
+		<key alias="robotsTab">Robots.txt</key>
+		<key alias="socialTab">Social</key>
+		<key alias="validateAfterPublish">Validate a page when published</key>
+		<key alias="validateAfterPublishDescription">When selected the page will be validated after publish and issues will be added to the issues list</key>
+		<key alias="validateEmptyAltAttributeOnImages">Validate alt attributes on template</key>
+		<key alias="validateEmptyAltAttributeOnImagesDescription">By default only empty alt attributes on user edited content will be validated. When this option is enabled the check also occurs on images created in templates.</key>
+		<key alias="excludeUmbracoNaviHideXmlSitemap">Exclude umbracoNaviHide</key>
+		<key alias="excludeUmbracoNaviHideXmlSitemapDescription">When selected all documents (and children) with property umbracoNaviHide set to true will be excluded from the generated Xml Sitemap</key>
+		<key alias="xmlSitemapEnabled">Enable XmlSitemap</key>
+		<key alias="xmlSitemapEnabledDescription">When selected the a dynamic Xml Sitemap will available  for every site in the umbraco installation. When the sitemap contains more than 10000 documents an index file will be created automatically</key>
+		<key alias="xmlSitemapPreview">Preview sitemap.xml file</key>
+		<key alias="robotsTxtEnabled">Enable dynamic robots.txt file</key>
+		<key alias="robotsTxtEnabledDescription">When selected a dynamic robots.txt will be available for every site in the umbraco installation</key>
+		<key alias="robotsTxtPreview">Preview robots.txt file</key>
+		<key alias="rewriteWWWPrefix">www prefix</key>
+		<key alias="rewriteWWWPrefixDescription">Search engines treat the URLs with or without www as different. This is causing duplicate content issues. Only select ignore when you solve this issue using your own URLRewriting module!</key>
+		<key alias="rewriteWWWOptionTrue">Force using www in url's (www.example.com)</key>
+		<key alias="rewriteWWWOptionFalse">Force remove www from url's (example.com)</key>
+		<key alias="rewriteWWWOptionIgnore">Ignore (not recommended)</key>
+		<key alias="rewriteTrailingSlash">Trailing slash</key>
+		<key alias="rewriteTrailingSlashOptionTrue">Force using trailing slash in url's (www.example.com/url/)</key>
+		<key alias="rewriteTrailingSlashOptionFalse">Force remove trailing slash from url's (www.example.com/url)</key>
+		<key alias="rewriteTrailingSlashOptionIgnore">Ignore (not recommended)</key>
+		<key alias="rewriteTrailingSlashDescription">Search engines treat the URLs with or without trailing slash as different. This is causing duplicate content issues.Only select ignore when you solve this issue using URLRewriting!</key>
+		<key alias="redirectStoreDomain">Store domain for  not found urls</key>
+		<key alias="redirectStoreDomainDescription">When enabled the domain will be stored in case of a not found url. This allows you to redirect to a different page for different domains(www.example.com/contact and clients.example.com/contact).&lt;br/&gt;&lt;br/&gt;The domain can be removed or added manually when editing the redirect.</key>  
+		<key alias="redirectStoreQueryString">Store querystring for  not found urls</key>
+		<key alias="redirectStoreQueryStringDescription">When enabled the querystring from the original request will be stored in case of a not found url. This allows you to redirect the same page with a different querystring to a different umbraco page. For example /page.php?id=234 redirect to /news/ and page.php?id=432 redirects to /contact/&lt;br/&gt;&lt;br/&gt;The querystring can be removed or added manually when editing the redirect.</key>  
+		<key alias="redirectForwardQueryString">Forward querystring</key>
+		<key alias="redirectForwardQueryStringDescription">When enabled the querystring from the original request will be forwarded to the redirect page.</key>  
+		<key alias="redirectWhenNodeExists">Redirect when node exists</key>
+		<key alias="redirectWhenNodeExistsDescription">When enabled Seochecker will check for a redirect, even when the page exists. When not selected SEOChecker only checks for a redirect when the requested page could not be found.</key>  
+		<key alias="twitterAccount">Twitter account</key>
+		<key alias="twitterAccountDescription">Add the twitter account of the organization here. This will be used for twittercard.</key>
+		<key alias="fbAppId">Facebook App Id</key>
+		<key alias="fbAppIdDescription">When specified the Facebook App Id  be rendered as page metadata.</key>
+		<key alias="useTwitter">Enable twitter options</key>
+		<key alias="useTwitterDescription">When selected twittercard properties will be generated and you can specify twittercard properties in SEOChecker datatype</key>
+		<key alias="useFaceBook">Enable Facebook options</key>
+		<key alias="useFaceBookDescription">When selected Opengraph properties will be generated and you can specify facebook properties in SEOChecker datatype</key>
+		<key alias="maxDescriptionLength">Max meta:description length</key>
+		<key alias="maxDescriptionLengthDescription">Leave this option to default ones. Some SEO staff like to use different values but if you are not sure leave it like this.</key>
+	</area>
+	<area alias="seoCheckerPermissionSettings">
+		<key alias="title">Permission settings</key>
+		<key alias="intro">Give usertypes access to certain area's of the SEOChecker section. Administrators will always have full control.</key>
+		<key alias="validationOption">Validation</key>
+		<key alias="redirectmanagementOption">Manage redirects</key>
+		<key alias="issuesOption">Issue management</key>
+		<key alias="settingsOption">Settings</key>
+	</area>
+	<area alias="seoCheckernotificationOptions">
+		<key alias="executeTime">Time</key>
+		<key alias="sendDays">Send every</key>
+		<key alias="mondayOption">Monday</key>
+		<key alias="tuesdayOption">Tuesday</key>
+		<key alias="wednesdayOption">Wednesday</key>
+		<key alias="thursdayOption">Thursday</key>
+		<key alias="fridayOption">Friday</key>	
+		<key alias="saturdayOption">Saturday</key>
+		<key alias="sundayOption">Sunday</key>
+	</area>
+	<area alias="seoCheckerDataType">
+		<key alias="googleSnippet">Snippet preview</key>
+		<key alias="focusKeyword">Focus keyword</key>
+		<key alias="focusKeywordDescription">The keyword you want to rank this page for, example:&lt;br/&gt;Umbraco editor</key>
+		<key alias="seoTitle">SEO title</key>
+		<key alias="seoTitleDescription">When left empty the configured SEO title property for the document type will be used</key>
+		<key alias="seoKeywords">SEO keywords</key>
+		<key alias="seoKeywordsDescription">The keywords tag will be ignored by most search engines!</key>
+		<key alias="seoDescription">SEO description</key>
+		<key alias="seoDescriptionDescription">When left empty the configured SEO description property for the document type will be used</key>
+		<key alias="validationResult">Validation result</key>
+		<key alias="seoValidateButton">Validate SEO</key>
+		<key alias="newDocumentTitle">The default SEO title properties will be used after first save.</key>
+		<key alias="newDocumentDescription">The default SEO description properties will be used after first save of the document.</key>
+		<key alias="defaultTitle">Empty title tag</key>
+		<key alias="defaultDescription">The SEO description is missing from properties or the generated template.</key>
+		<key alias="reportKeywordUsedSEOTitle">The focus keyword is used in the SEO title.</key>
+		<key alias="reportKeywordUsedMetaDescription">The focus keyword is used in the SEO description.</key>
+		<key alias="reportKeywordUsedH1">The focus keyword is used in the page title (H1).</key>
+		<key alias="reportKeywordUsedBodyText">The focus keyword is used in the body text.</key>
+	</area>
+	<area alias="seoCheckerSocialDataType">
+		<key alias="configurationError">No social networks defined&lt;br/&gt;Enable options in SEOChecker configuration</key>
+		<key alias="socialPreview">Social preview</key>
+		<key alias="socialImage">Social Image</key>
+		<key alias="socialImageDescription">When left empty the configured Social image property for the document type will be used</key>
+		<key alias="socialOGTitle">Facebook title</key>
+		<key alias="socialOGTitleDescription">When left empty the configured Meta title property for the document type will be used</key>
+		<key alias="socialTwitterTitle">Twitter title</key>
+		<key alias="socialTwitterTitleDescription">When left empty the configured Meta title property for the document type will be used</key>
+		<key alias="socialOGDescription">Facebook description</key>
+		<key alias="socialOGDescriptionDescription">When left empty the configured Meta description property for the document type will be used</key>
+		<key alias="socialTwitterDescription">Facebook description</key>
+		<key alias="socialTwitterDescriptionDescription">When left empty the configured Meta description property for the document type will be used</key>
+	</area>
+	<area alias="redirectDataType">
+		<key alias="overviewNoResult">No redirects found</key>
+		<key alias="overviewTitle">Manage redirects</key>
+		<key alias="overviewIntro">Create, edit or delete redirects for this page.</key>
+		<key alias="overviewUrlHeader">Url</key>
+		<key alias="overviewRedirectHeader">Redirect to</key>
+		<key alias="overviewLastReferer">Last Referer</key>
+		<key alias="overviewAccessedHeader">Accessed</key>
+		<key alias="overviewLastTimeAccessedHeader">Last time accessed</key>
+		<key alias="overviewCreateButton">Create redirect</key>
+		<key alias="editTitle">Edit redirect</key>
+		<key alias="editIntro">Edit the old url that redirects to this page.</key>
+		<key alias="editSpeechBubbleHeader">Saved</key>
+		<key alias="editSpeechBubbleBody">The items are updated</key>
+		<key alias="editUrlRequiredError">Old url is required</key>
+		<key alias="editurlExistsError">The old url already exists in the database, you can only specify the old url once</key>
+		<key alias="editOldUrlField">Old url</key>
+		<key alias="editOldUrlFieldDescription">The old redirect where you want to redirect from.</key>
+		<key alias="editRedirectRequiredError">A url where you want to redirect to is required. Pick one using the url picker, or add a url to the  redirect to url field</key>
+		<key alias="editRedirectNodeField">Redirect to node</key>
+		<key alias="editRedirectNodeFieldDescription">Specify a node you want to redirect to. If the page you want to redirect to can't be selected via a node use the Redirect to Url textbox.</key>
+		<key alias="editRedirectUrlField">Or redirect to url</key>
+		<key alias="editRedirectUrlFieldDescription">Specify the url you want to redirect to. Only use this when the page you want to redirect to can't be selected via the node picker!</key>
+		<key alias="editAdvancedSettings">Advanced settings</key>
+		<key alias="editExactDomainMatchField">Domain</key>
+		<key alias="editExactDomainMatchFieldDescription">Only redirect when the url comes from the specified domain</key>
+		<key alias="editExactQuerystringMatchField">Querystring</key>
+		<key alias="editExactQuerystringMatchFieldDescription">Only redirect when the querystring from the url matches the specified querystring parameter(s)</key>
+		<key alias="notificationDeleteTitle">Redirect deleted</key>
+		<key alias="notificationDeleteDescription">The redirect is removed from the database</key>
+		<key alias="notificationSaveTitle">Redirect save</key>
+		<key alias="notificationSaveDescription">The redirect is saved in the database</key>
+	</area>
+	<area alias="seoCheckerRobotsTxtDataType">
+		<key alias="robotsIndex">Robots Index</key>
+		<key alias="robotsIndexDescription">Helps search engines indicate if documents based on this documenttype need to be in the index:&lt;br/&gt;&lt;br/&gt;
+inherit will use the configured value on the document type.&lt;br/&gt;
+index will include the document&lt;br/&gt;
+noindex will not include the document</key>
+		<key alias="robotsNoFollow">Robots Follow</key>
+		<key alias="robotsNoFollowDescription">Helps search engines indicate if it needs to follow links for documents based on this documenttype need to be in the index:&lt;br/&gt;&lt;br/&gt;
+inherit will use the configured value on the document type.&lt;br/&gt;
+follow will follow the links.&lt;br/&gt;
+nofollow will not follow the links.&lt;br/&gt;</key>
+	</area>
+	<area alias="seoCheckerXmlSitemapDataType">
+		<key alias="xmlSitemapPrio">XML sitemap priority</key>
+		<key alias="xmlSitemapPrioDescription">Specify the priority for the sitemap from 0.1 (lowest priority) to 1.0 (highest priority).&lt;br/&gt;&lt;br/&gt;Inherit will use the configured value on the document type.</key>
+		<key alias="xmlSitemapChangeFrequency">Change frequency</key>
+		<key alias="xmlSitemapChangeFrequencyDescription">Specify how frequently pages based on this doctype will change.&lt;br/&gt;&lt;br/&gt;Inherit will use the configured value on the document type.</key>
+	</area>
+	<area alias="seoCheckerValidationCategories">
+		<key alias="validationCategoryHeadings">Heading issues</key>
+		<key alias="validationCategoryBrokenLinks">Broken links</key>
+		<key alias="validationCategoryBrokenMedia">Broken media</key>
+		<key alias="validationCategoryMetadata">Metadata issues</key>
+		<key alias="validationCategoryContent">Content issues</key>
+		<key alias="validationCategoryGoogle">Google specific issues</key>
+		<key alias="validationCategoryMarkup">Markup issues</key>
+		<key alias="validationCategoryGeneral">General</key>
+		<key alias="validationCategorySEOCheckerConfiguration">SEO Checker configuration</key>
+		<key alias="validationCategoryRewriteConfiguration">Rewrite configuration</key>
+		<key alias="validationCategoryKeyword">Focus keyword issues</key>
+		<key alias="validationCategoryLicense">License issues</key>
+		<key alias="validationCategorySocial">Social</key>		
+	</area>
+	<area alias="seoCheckerReportIssues">
+		<key alias="reportIssueMetaDescriptionKeywordValidator">The SEO description doesn't contain the focus keyword</key>
+		<key alias="reportIssueDescriptionMaxLengthValidator">The SEO description should not be longer than 160 characters</key>
+		<key alias="reportIssueSEOTitleFocusKeywordValidator">The SEO title doesn't contain the focus keyword</key>
+		<key alias="reportIssueMaxTitleLengthValidator">The SEO title should not be longer than 65 characters</key>
+		<key alias="reportIssueUrlKeywordValidator">The url doesn't contain the focus keyword</key>
+		<key alias="reportIssueBrokenLink_404">The link to url &lt;strong&gt;{0}&lt;/strong&gt; is broken.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;</key>
+		<key alias="reportIssueBrokenLink_500">The url &lt;strong&gt;{0}&lt;/strong&gt; throws an exception.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;</key>
+		<key alias="reportIssueBrokenLink_502">The link to url &lt;strong&gt;{0}&lt;/strong&gt; is broken.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt; &lt;br/&gt;Make sure  the domain is correct</key>
+		<key alias="reportIssueBrokenMedia_404">The reference to media item &lt;strong&gt;{0}&lt;/strong&gt; is broken.</key>
+		<key alias="reportIssueH1Empty">The H1 tag for this page is empty.</key>
+		<key alias="reportIssueInlineCSSValidator">The template contains inline CSS.</key>
+		<key alias="reportIssueInlineScriptingValidator">Document contains a lot of inline javascript.</key>
+		<key alias="reportIssueLargeCommentValidator">Document contains a lot of comments.</key>
+		<key alias="reportIssueLongViewstateValidator">The viewstate on the page is too long.</key>
+		<key alias="reportIssueMissingAltOnImages">The alt attribute for media item &lt;strong&gt;{0}&lt;/strong&gt; is missing.</key>
+		<key alias="reportIssueMissingDescriptionTag">The Description meta tag  is missing in the template.</key>
+		<key alias="reportIssueMissingGoogleAnalyticsAccount">Google analytics isn't (correctly) setup for this template.</key>
+		<key alias="reportIssueMissingLinkTitle">The title attribute for the link to &lt;strong&gt;{0}&lt;/strong&gt; is missing.</key>
+		<key alias="reportIssueMultipleH1Found">Multiple H1 tags found on this page. Although it's valid, a page should ideally only have one H1 tag. Don't use the H1 tag too much.</key>
+		<key alias="reportIssueRobotsTxtDescription">The robots.txt file can not be found. Enable the auto robots.txt  option in the &lt;a href="../settings/config.aspx"&gt;configuration screen&lt;/a&gt;, or add a robots.txt file to the site.</key>
+		<key alias="reportIssueRobotsTxtExists">Robots.txt file could not be found.</key>
+		<key alias="reportIssueTemplateContainsIFrame">The template contains an Iframe.</key>
+		<key alias="reportIssueTestContentValidator">The document contains "Lorem ipsum" test content.</key>
+		<key alias="reportIssueSEODescriptionMinLengthValidator">The SEO description should be descriptive and should contain at least 50 characters</key>
+		<key alias="reportIssueBrokenMedia_1001">The reference to media item &lt;strong&gt;{0}&lt;/strong&gt; is broken. Make sure the the url starts with http(s)://</key>
+		<key alias="reportIssueBrokenMedia_502">The reference to media item &lt;strong&gt;{0}&lt;/strong&gt; is broken. Make sure  the url starts with http(s)://</key>
+		<key alias="reportIssueUmbracoItemDescriptionTag">Meta description contains code.</key>
+		<key alias="reportIssueUmbracoItemKeywordsTag">Meta keywords contains code.</key>
+		<key alias="reportIssueBrokenLink_1001">The link to url &lt;strong&gt;{0}&lt;/strong&gt; is broken.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;. &lt;br/&gt;Make sure the the url starts with http(s)://</key>
+		<key alias="reportIssueBrokenLink_1100">The link to url &lt;strong&gt;{0}&lt;/strong&gt; is broken.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;. &lt;br/&gt;Make sure the domain name is correct.</key>
+		<key alias="reportIssueEmptyTitle">The SEO Title &amp;lt;title&amp;gt; is empty.</key>
+		<key alias="reportIssueMultipleTitleTag">Multiple SEO Title tags &amp;lt;title&amp;gt; are found, a page can only have one.</key>
+		<key alias="reportIssueMissingPageTitleTag">The SEO Title &amp;lt;title&amp;gt; is missing in the template.</key>
+		<key alias="reportIssue404PageMissing">Not found page is missing.</key>
+		<key alias="reportIssue404PageMissingDescription">When a page can't be found Users like a friendly not found page, instead of the default ones.&lt;br/&gt;Create a custom not found page and select it in the domain configuration section of SEO Checker.</key>
+		<key alias="reportIssueSeoDataTypeConfigurationValidatorMissing">SEO Datatype missing on&lt;br/&gt;{0}</key>
+		<key alias="reportIssueSeoDataTypeConfigurationValidatorMissingDescription">The SEO Datatype is not configured for document type '{0}'.&lt;br/&gt; It's not possible to give feedback about keyword usage when editing content without this datatype.</key>
+		<key alias="reportIssueEmptyDescriptionTag">The SEO Description meta tag for this page is empty.</key>
+		<key alias="reportIssueTrimAspxValidator">Aspx Extension</key>
+		<key alias="reportIssueTrimAspxValidatorDescription">The site is configured to use directory url's.&lt;br/&gt;Make sure the URL Module is running or that you use URL rewriting</key>
+		<key alias="reportIssueCanonicalHostname">Canonical hostname</key>
+		<key alias="reportIssueCanonicalHostnameDescription">The url &lt;strong&gt;'{0}'&lt;/strong&gt; can be accessed with and without the www prefix.&lt;br/&gt; This can cause duplicate content issues. Set the www prefix option in the &lt;a href="../settings/config.aspx"&gt;configuration screen&lt;/a&gt;.</key>
+		<key alias="reportIssueCanonicalCanonicalHomePage">Canonical homepage</key>
+		<key alias="reportIssueCanonicalHomePageDescription">The default url &lt;strong&gt;'/'&lt;/strong&gt; can also be accessed by &lt;strong&gt;{0}&lt;/strong&gt; &lt;br/&gt;Make sure the URL Module is running or that you use URL rewriting</key>
+		<key alias="reportIssueLowercaseUrlValidator">Lower case url's</key>
+		<key alias="reportIssueLowercaseUrlValidatorDescription">The url &lt;strong&gt;'{0}'&lt;/strong&gt; can be accessed as uppercase and lowercase&lt;br/&gt;Make sure the URL Module is running or that you use URL rewriting</key>
+		<key alias="reportIssueTrailingSlashValidator">Trailing slash</key>
+		<key alias="reportIssueTrailingSlashValidatorDescription">The url &lt;strong&gt;'{0}'&lt;/strong&gt; can be accessed with and without a trailing slash &lt;br/&gt;Make sure the URL Module is running or that you use URL rewriting</key>
+		<key alias="reportIssueBrokenMedia_1100">The reference to media item &lt;strong&gt;{0}&lt;/strong&gt; is broken. Make sure the domain name is correct.</key>
+		<key alias="reportIssueCanonicalDefaultHomePage">Default.aspx</key>
+		<key alias="reportIssueCanonicalDefaultHomePageDescription">he default url &lt;strong&gt;'/'&lt;/strong&gt; can also be accessed by default.aspx &lt;br/&gt;Make sure the URL Module is running or that you use URL rewriting</key>
+		<key alias="reportIssueBrokenCSSUrlValidator">The link to stylesheet &lt;strong&gt;{0}&lt;/strong&gt; is broken.</key>
+		<key alias="reportIssueBrokenJSUrlValidator">The link to Javascript file &lt;strong&gt;{0}&lt;/strong&gt; is broken.</key>
+		<key alias="reportIssueEmptyDocumentValidator">This template only renders empty text</key>
+		<key alias="reportIssueMissingH1TagValidator">H1 tag is missing in this template</key>
+		<key alias="reportIssueLastUpdate">Old Content</key>
+		<key alias="reportIssueLastUpdateDescription">Search engines like fresh content and the newest content item on this site is older than one month.</key>
+		<key alias="reportIssueSEODocumentTypeConfigurationMissing">No documenttypes configured for SEO</key>
+		<key alias="reportIssueSEODocumentTypeConfigurationMissingDescription">It's important to set the SEO settings per documenttype.&lt;br/&gt; These settings are used for rendering Title, Description meta tags and generating sitemaps.&lt;br/&gt; You can edit these settings in the settings tree of the SEO Checker section.</key>
+		<key alias="reportIssueWebsiteNotConfiguredForHost">Hostname configuration issue</key>
+		<key alias="reportIssueWebsiteNotConfiguredForHostDescription">The website is not configured for '&lt;strong&gt;{0}&lt;/strong&gt;'. Visitors might access the website with and without the www prefix.&lt;br/&gt; Update IIS settings so it accepts the url with and without www prefix</key>
+		<key alias="reportIssueFocusKeywordNotSpecified">The focus keyword is not specified</key>
+		<key alias="reportIssueFocusKeywordNotSpecifiedDescription">To analyze your content for keywords it's required to specify the focus keyword</key>
+		<key alias="reportIssueH1KeywordFocusKeywordNotFound">The focus keyword is not found in the page title (H1)</key>
+		<key alias="reportIssueSeoMetaDescriptionMinLengthPageValidatorDescription">The SEO description should be descriptive and should contain at least 80 characters</key>
+		<key alias="reportIssueBodyTextFocusKeywordNotFound">The focus keyword is not found in the body text</key>
+		<key alias="reportIssueTrialModeDescription">SEO checker found &lt;strong&gt;{0} (other) errors&lt;/strong&gt; on this page. When running in trial mode only keyword usage errors will be reported.</key>
+		<key alias="reportIssueExceptionValidator">Error during validation of document (propably a template error), details are logged in the Umbraco log.</key>
+		<key alias="reportIssueBrokenLink_1011">The link to the url &lt;strong&gt;{0}&lt;/strong&gt; is empty.&lt;br/&gt; Make sure the link contains a url.</key>
+		<key alias="reportIssueBrokenMedia_1011">The reference to the media item &lt;strong&gt;{0}&lt;/strong&gt; is empty.&lt;br/&gt; Make sure the media item contains a url.</key>
+		<key alias="reportIssueRobotsTxtBlockAllRequest">The robots.txt file prevents all pages being indexed.</key>
+		<key alias="reportIssueRobotsTxtBlockAllRequesttDescription">The robots.txt file contains:&lt;br/&gt;&lt;br/&gt;
+User-agent: *&lt;br/&gt;
+Disallow: /&lt;br/&gt;&lt;br/&gt;
+
+And doesn't contain any &lt;strong&gt;Allow&lt;/strong&gt; element to index a specific folder.&lt;br/&gt; This means all pages on the site will not be indexed and will not appear in the search results.</key>
+		<key alias="reportIssueRobotsTxtBlockGoogleRequest">The robots.txt file prevents all pages being indexed by Google.</key>
+		<key alias="reportIssueRobotsTxtBlockGoogleRequestDescription">The robots.txt file contains:&lt;br/&gt;&lt;br/&gt;
+User-agent: Googlebot&lt;br/&gt;
+Disallow: /&lt;br/&gt;&lt;br/&gt;
+
+And doesn't contain any &lt;strong&gt;Allow&lt;/strong&gt; element to index a specific folder.&lt;br/&gt; This means all pages on the site will not be indexed by Googlebot and will not appear in the Google search results.</key>
+		<key alias="reportIssueRootNodeContainsRobotNoFollow">The robots meta tag on the homepage prevents all child pages being indexed.</key>
+		<key alias="reportIssueRootNodeContainsRobotNoFollowDescription">The Robots meta tag (meta name="robots") contains &lt;strong&gt;nofollow&lt;/strong&gt;.&lt;br/&gt; This means search engines will not follow links from the homepage and no child pages will appear in the search results.</key>
+		<key alias="reportIssueNoPublishedParentValidation">Sorry SEO checker can't validate the page because at least one parent should have a published version.</key>
+		<key alias="reportIssueProtectedPageValidator">This page is protected and cannot be validated.</key>
+		<key alias="reportIssueBrokenLink_1103">The link to url &lt;strong&gt;{0}&lt;/strong&gt; timed out.&lt;br/&gt;Link: &lt;a href="{0}" target="_blank"&gt;{1}&lt;/a&gt;.</key>
+		<key alias="reportIssueBrokenMedia_1103">The reference to media item &lt;strong&gt;{0}&lt;/strong&gt; timed out.</key>
+		<key alias="reportIssueMissingOGTitleProperty">The og:title property is missing in the template. </key>
+		<key alias="reportIssueMissingOGTypeProperty">The og:type property is missing in the template. </key>
+		<key alias="reportIssueMissingOGDecriptionProperty">The og:description property is missing in the template. </key>
+		<key alias="reportIssueMissingOGUrlProperty">The og:url property is missing in the template. </key>
+		<key alias="reportIssueEmptyOGTitleProperty">The og:title property is empty. </key>
+		<key alias="reportIssueEmptyOGDescriptionProperty">The og:title property is empty. </key>
+		<key alias="reportIssueEmptyOGTypeProperty">The og:url property is empty. </key>
+		<key alias="reportIssueEmptyOGUrlProperty">The og:url property is empty. </key>
+		<key alias="reportIssueInvalidOGUrlProperty">The og:url property is relative, make sure url starts with http(s). </key>
+		<key alias="reportIssueMissingTwitterCardDescription">The twitter:description meta tag is missing in the template. </key>
+		<key alias="reportIssueMissingTwitterCardTitle">The twitter:title meta tag is missing in the template. </key>
+		<key alias="reportIssueMissingTwitterCardType">The twitter:card meta tag is missing in the template. </key>
+		<key alias="reportIssueMissingTwitterCardSite">The twitter:site meta tag is missing in the template. </key>
+		<key alias="reportIssueEmptyTwitterCardDescription">The twitter:description meta tag is empty. </key>
+		<key alias="reportIssueEmptyTwitterCardTitle">The twitter:title meta tag is empty. </key>
+		<key alias="reportIssueEmptyTwitterCardType">The twitter:card meta tag is empty. </key>
+		<key alias="reportIssueEmptyTwitterCardSite">The twitter:site meta tag is empty. </key>
+	</area>
+	<area alias="seoCheckerValidationIssues">
+		<key alias="title">Validation issues</key>
+		<key alias="noAdminWarning">SEO Checker found some issues that needs to be solved in templates. You don't have access to the template section. Please ask your developer to fix the issues.</key>
+		<key alias="noResult">No validation issues found</key>
+		<key alias="validationQueueMessage">SEOChecker is still validating pages. Currently there are &lt;strong&gt;{0} pages&lt;/strong&gt; in the validation queue.</key>
+		<key alias="overviewIssueDocument">Document</key>
+		<key alias="overviewIssueDescription">Description</key>
+		<key alias="overviewIssueCategory">Category</key>
+		<key alias="ignoredTitle">Ignored validation issues</key>
+		<key alias="ignorednoResult">No ignored validation issues found</key>
+	</area>
+	<area alias="seoCheckerConfigurationIssues">
+		<key alias="title">Configuration issues</key>
+		<key alias="noResult">No configuration issues found</key>
+		<key alias="overviewIssueTitle">Issue</key>
+		<key alias="overviewIssueDescription">Description</key>
+		<key alias="overviewIssueCategory">Category</key>
+		<key alias="ignoredTitle">Ignored configuration issues</key>
+		<key alias="noIgnoredResult">No ignored configuration issues found</key>
+	</area>
+	<area alias="seoCheckerRedirectManager">
+		<key alias="title">Manage redirects</key>
+		<key alias="inboundLinkIssuesTitle">Inbound link errors</key>
+		<key alias="ignoredInboundLinkIssuesTitle">Ignored inbound link errors</key>
+		<key alias="ignoredInboundLinkIssuesNoResult">No ignored inbound link errors found</key>
+		<key alias="InboundLinkIssuesNoResult">No inbound link errors found</key>
+		<key alias="createButton">Create redirect</key>
+		<key alias="showcontentOption">Show content</key>
+		<key alias="showMediaOption">Show media</key>
+		<key alias="overviewNoResult">No redirects found</key>
+		<key alias="overviewTitle">Manage redirects</key>
+		<key alias="overviewIntro">Create, edit or delete redirects for this page.</key>
+		<key alias="overviewUrlHeader">Url</key>
+		<key alias="overviewRedirectHeader">Redirect to</key>
+		<key alias="overviewLastReferer">Last Referer</key>
+		<key alias="overviewAccessedHeader">Accessed</key>
+		<key alias="overviewLastTimeAccessedHeader">Last time accessed</key>
+		<key alias="overviewAccessedFormat">{0} time(s)</key>
+		<key alias="inboundLinkErrorMessage">The link to &lt;a href="/{0}" class="seocheckerErrorLink" target="_blank" title="{0}" &gt; {0} &lt;/a&gt; is broken.</key>
+	</area>
+	<area alias="seoCheckerRedirectManagerEditDialog">
+		<key alias="title">Edit redirect</key>
+		<key alias="createtitle">Create redirect</key>
+		<key alias="oldUrl">Old url</key>
+		<key alias="oldDescription">The old redirect where you want to redirect from.</key>
+		<key alias="redirectToNode">Redirect to node</key>
+		<key alias="redirectToNodeDescription">Specify a node you want to redirect to. If the page you want to redirect to can't be selected via a node use the Redirect to Url textbox.</key>
+		<key alias="redirectToUrl">Or redirect to url</key>
+		<key alias="redirectToUrlDescription">Specify the url you want to redirect to. Only use this when the page you want to redirect to can't be selected via the node picker!</key>
+		<key alias="wildcardUrl">Wildcard url</key>
+		<key alias="wildcardDescription">When selected all underlying pages of the old url will also map to the redirected node. If url was /news then news/newsitem will also redirect to the selected node.</key>
+		<key alias="domain">Domain</key>
+		<key alias="domainDescription">Only redirect when the url comes from the specified domain</key>
+		<key alias="querystring">Querystring</key>
+		<key alias="querystringDescription">Only redirect when the querystring from the url matches the specified querystring parameter(s)</key>
+		<key alias="basicSettings">Basic settings</key>
+		<key alias="advancedSettings">Advanced settings</key>
+		<key alias="editUrlRequiredError">Old url is required</key>
+		<key alias="editRedirectRequiredError">A url where you want to redirect to is required. Pick one using the url picker, or add a url to the  redirect to url field</key>
+		<key alias="editUrlExistsError">The old url already exists in the database, you can only specify the old url once</key>
+	</area>
+	<area alias="seoCheckerExportRedirects">
+		<key alias="exportOptionButton">Export redirects</key>
+		<key alias="exportButton">Export</key>
+		<key alias="title">Redirect export</key>
+		<key alias="exportField">Data to export</key>
+		<key alias="redirectsAndInboundLinksExportOption">Redirects and broken links</key>
+		<key alias="redirectsExportOption">Redirects</key>
+		<key alias="inboundlinksExportOption">Broken links</key>
+		<key alias="contentTypeField">Contenttypes to export</key>
+		<key alias="contentAndMediaContentTypeOption">Content and media</key>
+		<key alias="contentContentTypeOption">Content</key>
+		<key alias="mediaContentTypeOption">Media</key>
+	</area>
+	<area alias="seoCheckerImportRedirects">
+		<key alias="importOptionButton">Import redirects</key>
+		<key alias="title">Import redirects</key>
+		<key alias="uploadButton">Upload</key>
+		<key alias="importButton">Import</key>
+		<key alias="uploadFileField">Select a file to import</key>
+		<key alias="fileRequiredError">No file specified to import</key>
+		<key alias="fileExtensionError">The file extension '{0}' can't be used for importing redirects. Try default Csv or Excel extensions.</key>
+		<key alias="importProvider">Select the file type</key>
+		<key alias="importProviderDescription">Select the type of file you want to import the redirects from</key>
+		<key alias="csvFieldSeparator">Field Separator</key>
+		<key alias="csvTextIndicator">Text Indicator</key>
+		<key alias="csvTextIndicatorNoIndicatorOption">No text indicator</key>
+		<key alias="excelWorksheetOption">Select Excel worksheet</key>
+		<key alias="mappingSourceColumn">Source url column</key>
+		<key alias="mappingSourceColumnDescription">Choose the column from the datasource you want to use as the url you want to redirect from.</key>
+		<key alias="mappingTargetColumn">Target url column</key>
+		<key alias="mappingTargetColumnDescription">Choose the column from the datasource you want to use as the url you want to redirect to.</key>
+		<key alias="mapAgainstNode">Try to map target url against a node</key>
+		<key alias="mapAgainstNodeDescription">When checked the import process will try to map the target url against a node.</key>
+		<key alias="onlyImportWhenMatchNode">Only import when target url matches node</key>
+		<key alias="onlyImportWhenMatchNodeDescription">When checked the node will only be imported when it can be mapped against a node.</key>
+		<key alias="redirectImportedResultMessage">The redirects are imported into your Umbraco environment.</key>
+		<key alias="sourceAndTargetMappingError">Source column cannot be the same as target</key>
+		<key alias="ExportErrorsButton">Export errors</key>
+		<key alias="ImportedResult">Imported redirects</key>
+		<key alias="ImportedErrors">Import errors</key>
+		<key alias="ImportedErrorsDescription">The number of redirects that could not be imported. Use the 'Export errors' button to export the errors to a new Excel file.</key>
+	</area>
+	<area alias="seoCheckerBulkActions">
+		<key alias="bulkActionDeleteConfirmMessage">Click 'ok' to remove the selected items from the issuelist.</key>
+		<key alias="bulkActionDeleteExecuted">The selected items are deleted.</key>
+		<key alias="bulkActionIgnoreListExecuted">The selected items are added to the ignorelist.</key>
+		<key alias="bulkActionRemovedIgnoreListExecuted">The selected items are removed from the ignorelist.</key>
+		<key alias="bulkActionRevalidate">Revalidating selected item(s)</key>
+		<key alias="bulkActionInitializing">Initializing</key>
+		<key alias="bulkActionRevalidateCurrentPage">Validating &lt;strong&gt;'{0}'&lt;/strong&gt;.</key>
+		<key alias="bulkActionIgnoreOption">Ignore this issue next time</key>
+	</area>
+	<area alias="seoCheckerHealthChecks">
+		<key alias="inboundLinkErrorsSuccesMessage">Yeah no inbound link errors to fix!</key>
+		<key alias="inboundLinkErrorsFailedMessage">Uh Oh still some inbound link errors to fix. Go to the issues section of SEOChecker and fix them there.</key>
+		<key alias="validationErrorsSuccesMessage">Yeah no validation errors to fix!</key>
+		<key alias="validationErrorsFailedMessage">Uh Oh still some validation errors to fix. Go to the issues section of SEOChecker and fix them there.</key>
+		<key alias="configurationErrorsSuccesMessage">Yeah no configuration errors to fix!</key>
+		<key alias="configurationErrorsFailedMessage">Uh Oh still some configuration errors to fix. Go to the issues section of SEOChecker and fix them there.</key>
+	</area>
+</language>
+
+
