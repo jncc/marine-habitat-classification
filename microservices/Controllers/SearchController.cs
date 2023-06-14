@@ -55,7 +55,7 @@ namespace microservices.Controllers
 
         [HttpPost]
         [Route("search/clear_jncc_index")]
-        public async Task<string> ClearJnccIndex()
+        public async Task<string> ClearJnccIndex() // todo: remove this
         {
             var jnccIndexService = new JnccIndexService();
             await jnccIndexService.ClearIndex();
@@ -90,7 +90,6 @@ namespace microservices.Controllers
                             title = $"{biotope.ORIGINAL_CODE.Trim()} {formattedTitle}",
                             content = $"{formattedDescription} {formattedSituation} {GetSpeciesString(biotope)}",
                             url = env.BIOTOPE_BASE_URL + biotope.BIOTOPE_KEY.ToLower(),
-                            resource_type = "dataset",
                             keywords = GetKeywords(biotope),
                             published_date = "2015-03"
                         }
